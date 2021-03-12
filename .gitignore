@@ -7,3 +7,7 @@
 *.bak
 *.dsk
 *.identcache
+*.msi
+*.msu
+*.stub
+*.HLP

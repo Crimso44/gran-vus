@@ -12,9 +12,6 @@
 			<Projects Include="..\VUR - patch 3.5 to 3.76\Source\patch.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="..\MSSQL Server\setup.dproj">
-				<Dependencies/>
-			</Projects>
 			<Projects Include="LoadFromMDB\LoadFromMDB.dproj">
 				<Dependencies/>
 			</Projects>
@@ -53,15 +50,6 @@
 		<Target Name="patch:Make">
 			<MSBuild Projects="..\VUR - patch 3.5 to 3.76\Source\patch.dproj" Targets="Make"/>
 		</Target>
-		<Target Name="setup">
-			<MSBuild Projects="..\MSSQL Server\setup.dproj"/>
-		</Target>
-		<Target Name="setup:Clean">
-			<MSBuild Projects="..\MSSQL Server\setup.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="setup:Make">
-			<MSBuild Projects="..\MSSQL Server\setup.dproj" Targets="Make"/>
-		</Target>
 		<Target Name="LoadFromMDB">
 			<MSBuild Projects="LoadFromMDB\LoadFromMDB.dproj"/>
 		</Target>
@@ -72,13 +60,13 @@
 			<MSBuild Projects="LoadFromMDB\LoadFromMDB.dproj" Targets="Make"/>
 		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="GranVUS;LoadFromXLS;patch;setup;LoadFromMDB"/>
+			<CallTarget Targets="GranVUS;LoadFromXLS;patch;LoadFromMDB"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="GranVUS:Clean;LoadFromXLS:Clean;patch:Clean;setup:Clean;LoadFromMDB:Clean"/>
+			<CallTarget Targets="GranVUS:Clean;LoadFromXLS:Clean;patch:Clean;LoadFromMDB:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="GranVUS:Make;LoadFromXLS:Make;patch:Make;setup:Make;LoadFromMDB:Make"/>
+			<CallTarget Targets="GranVUS:Make;LoadFromXLS:Make;patch:Make;LoadFromMDB:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>
