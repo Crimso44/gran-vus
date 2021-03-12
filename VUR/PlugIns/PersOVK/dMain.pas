@@ -414,7 +414,7 @@ begin
   if s<>EmptyStr then SetLength(s,Length(s)-1);
   qrPersonFAM_LIST.Value := s;
 
-  if qrPersonPDPCode.AsString <> '' then
+  if (qrPersonWUchet2_IsWork.AsInteger = 1) and (qrPersonPDPCode.AsString <> '') then
     qrPersonOKVED_OKPDTR.AsString :=
       StringReplace(qrPersonPDPCode.AsString, '/', ', ', [rfReplaceAll]);
 
