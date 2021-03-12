@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Этот файл создан автоматически конструктором XML-схем. Он содержит сведения о разметке для компонентов на поверхности разработки.-->
+<XSDDesignerLayout Style="LeftRight" layoutVersion="2" viewPortLeft="-3964" viewPortTop="-8249" zoom="100">
+    <Import_XmlElement left="-3256" top="12198" width="5291" height="714" selected="0" zOrder="69" index="0" expanded="0" />
+    <KFSType_XmlComplexType left="926" top="-2434" width="4022" height="1984" selected="0" zOrder="70" index="1" expanded="1" />
+    <ORGType_XmlComplexType left="-3677" top="-5000" width="4577" height="2407" selected="0" zOrder="71" index="2" expanded="1" />
+    <str100_XmlSimpleType left="-3491" top="9093" width="5291" height="1562" selected="0" zOrder="72" index="3" expanded="1" />
+    <str50_XmlSimpleType left="-3492" top="9066" width="5292" height="1561" selected="0" zOrder="73" index="4" expanded="1" />
+    <str30_XmlSimpleType left="-3491" top="9068" width="5291" height="1561" selected="0" zOrder="74" index="5" expanded="1" />
+    <str255_XmlSimpleType left="-3519" top="9127" width="5292" height="1561" selected="0" zOrder="75" index="6" expanded="1" />
+    <str150_XmlSimpleType left="-3493" top="9048" width="5292" height="1561" selected="0" zOrder="76" index="7" expanded="1" />
+    <str15_XmlSimpleType left="-3439" top="9056" width="5292" height="1562" selected="0" zOrder="77" index="8" expanded="1" />
+    <str10_XmlSimpleType left="-3520" top="8943" width="5291" height="1561" selected="0" zOrder="78" index="9" expanded="1" />
+    <str250_XmlSimpleType left="-3466" top="9118" width="5292" height="1561" selected="0" zOrder="79" index="10" expanded="1" />
+    <str12_XmlSimpleType left="-3467" top="9120" width="5292" height="1561" selected="0" zOrder="80" index="11" expanded="1" />
+    <str2_XmlSimpleType left="-3442" top="9070" width="5292" height="1561" selected="0" zOrder="81" index="12" expanded="1" />
+    <str20_XmlSimpleType left="-3441" top="9093" width="5292" height="1561" selected="0" zOrder="82" index="13" expanded="1" />
+    <str11_XmlSimpleType left="-3493" top="9118" width="5292" height="1561" selected="0" zOrder="83" index="14" expanded="1" />
+    <str17_XmlSimpleType left="-3599" top="9023" width="5292" height="1561" selected="0" zOrder="84" index="15" expanded="1" />
+    <str8_XmlSimpleType left="-3519" top="9120" width="5292" height="1561" selected="0" zOrder="85" index="16" expanded="1" />
+    <str5_XmlSimpleType left="-3388" top="9217" width="5291" height="1562" selected="0" zOrder="86" index="17" expanded="1" />
+    <ImportType_XmlComplexType left="-3573" top="-7249" width="4895" height="1984" selected="0" zOrder="87" index="18" expanded="0" />
+    <KTERRType_XmlComplexType left="-3651" top="-2486" width="4472" height="2408" selected="0" zOrder="88" index="19" expanded="1" />
+    <KOVKType_XmlComplexType left="20268" top="-4975" width="4894" height="2408" selected="0" zOrder="89" index="20" expanded="1" />
+    <PERSONType_XmlComplexType left="927" top="-4974" width="5265" height="2407" selected="0" zOrder="90" index="21" expanded="1" />
+    <KOPFEnum_XmlSimpleType left="-3758" top="5768" width="5292" height="2831" selected="0" zOrder="91" index="22" expanded="1" />
+    <KREGPLEnum_XmlSimpleType left="1646" top="5825" width="5292" height="2831" selected="0" zOrder="92" index="23" expanded="1" />
+    <KWRANGEEnum_XmlSimpleType left="7196" top="5873" width="5794" height="2831" selected="0" zOrder="93" index="24" expanded="1" />
+    <KNATIONEnum_XmlSimpleType left="13070" top="5900" width="5662" height="2831" selected="0" zOrder="94" index="25" expanded="1" />
+    <KFSTATEEnum_XmlSimpleType left="7303" top="8943" width="5291" height="2408" selected="0" zOrder="95" index="26" expanded="1" />
+    <KEDUCEnum_XmlSimpleType left="12826" top="8936" width="5292" height="2831" selected="0" zOrder="96" index="27" expanded="1" />
+    <KSCIENCEEnum_XmlSimpleType left="1852" top="8890" width="5292" height="1985" selected="0" zOrder="97" index="28" expanded="1" />
+    <KWSOSTEnum_XmlSimpleType left="18811" top="5900" width="5450" height="2831" selected="0" zOrder="98" index="29" expanded="1" />
+    <KKVALType_XmlComplexType left="6218" top="-4974" width="7382" height="2408" selected="0" zOrder="99" index="30" expanded="1" />
+    <ADDRType_XmlComplexType left="13573" top="-4947" width="6694" height="2407" selected="0" zOrder="100" index="31" expanded="1" />
+    <ADDR_TYPEEnum_XmlSimpleType left="-3706" top="3624" width="6006" height="1984" selected="0" zOrder="101" index="32" expanded="1" />
+    <APPOINTMENTType_XmlComplexType left="4948" top="-2381" width="7038" height="2408" selected="0" zOrder="102" index="33" expanded="1" />
+    <KWKTYPEType_XmlComplexType left="11985" top="-2434" width="6879" height="2408" selected="0" zOrder="103" index="34" expanded="1" />
+    <INT123Enum_XmlSimpleType left="2328" top="3678" width="5265" height="1984" selected="0" zOrder="104" index="35" expanded="1" />
+    <KPOSTType_XmlComplexType left="18863" top="-2407" width="5292" height="2408" selected="0" zOrder="105" index="36" expanded="1" />
+    <KCPROFEnum_XmlSimpleType left="12250" top="3704" width="5291" height="1984" selected="0" zOrder="106" index="37" expanded="1" />
+    <KDEPARTType_XmlComplexType left="-3654" top="80" width="5292" height="2407" selected="0" zOrder="107" index="38" expanded="1" />
+    <EDUCType_XmlComplexType left="1612" top="134" width="5292" height="2408" selected="0" zOrder="108" index="39" expanded="1" />
+    <TYPEEnum_XmlSimpleType left="17382" top="3678" width="5292" height="1984" selected="0" zOrder="109" index="40" expanded="1" />
+    <INT12Enum_XmlSimpleType left="7486" top="3678" width="4842" height="1984" selected="0" zOrder="110" index="41" expanded="1" />
+    <KNAPRType_XmlComplexType left="6878" top="159" width="5292" height="2408" selected="0" zOrder="111" index="42" expanded="1" />
+    <KUZType_XmlComplexType left="23044" top="159" width="4154" height="1984" selected="0" zOrder="112" index="43" expanded="1" />
+    <LANGSType_XmlComplexType left="12117" top="133" width="5504" height="2408" selected="0" zOrder="113" index="44" expanded="1" />
+    <KLANGEnum_XmlSimpleType left="18229" top="9049" width="5291" height="2408" selected="0" zOrder="114" index="45" expanded="1" />
+    <PHONESType_XmlComplexType left="17621" top="79" width="5477" height="2408" selected="0" zOrder="115" index="46" expanded="1" />
+    <WCATEnum_XmlSimpleType left="22622" top="3704" width="5265" height="1985" selected="0" zOrder="164" index="47" expanded="1" />
+    <PERSONPHONESKeyRef_XmlKeyref left="6022" top="9690" width="503" height="503" selected="0" zOrder="161" expanded="0" />
+    <KKVALPERSONKeyRef_XmlKeyref left="3464" top="253" width="503" height="503" selected="0" zOrder="128" expanded="0" />
+    <KKVALEDUCKeyRef_XmlKeyref left="5527" top="6375" width="503" height="503" selected="0" zOrder="149" expanded="0" />
+    <KUZKeyRef_XmlKeyref left="5067" top="7781" width="503" height="503" selected="0" zOrder="155" expanded="0" />
+    <PERSONEDUCKeyRef_XmlKeyref left="4805" top="6239" width="503" height="503" selected="0" zOrder="146" expanded="0" />
+    <KDEPARTKeyRef_XmlKeyref left="4012" top="6337" width="503" height="503" selected="0" zOrder="143" expanded="0" />
+    <KFSKeyRef_XmlKeyref left="3686" top="-4763" width="503" height="503" selected="0" zOrder="116" expanded="0" />
+    <PERSONAPPOINTMENTKeyRef_XmlKeyref left="3725" top="2631" width="503" height="503" selected="0" zOrder="134" expanded="0" />
+    <PERSONADDRKeyRef_XmlKeyref left="3650" top="825" width="503" height="503" selected="0" zOrder="131" expanded="0" />
+    <KTERRKeyRef_XmlKeyref left="3651" top="-3393" width="503" height="503" selected="0" zOrder="119" expanded="0" />
+    <KWKTYPEKeyRef_XmlKeyref left="4037" top="3252" width="503" height="503" selected="0" zOrder="137" expanded="0" />
+    <PERSONLANGSKeyRef_XmlKeyref left="5520" top="8732" width="503" height="503" selected="0" zOrder="158" expanded="0" />
+    <KPOSTKeyRef_XmlKeyref left="4035" top="5066" width="503" height="503" selected="0" zOrder="140" expanded="0" />
+    <ORGKeyRef_XmlKeyref left="3413" top="-1027" width="503" height="503" selected="0" zOrder="125" expanded="0" />
+    <KNAPREDUCKeyRef_XmlKeyref left="4856" top="6919" width="503" height="503" selected="0" zOrder="152" expanded="0" />
+    <KOVKKeyRef_XmlKeyref left="3650" top="-2238" width="503" height="503" selected="0" zOrder="122" expanded="0" />
+</XSDDesignerLayout>

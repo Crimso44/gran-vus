@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<PersonalityInfo>
+		<Option>
+			<Option Name="Personality">Default.Personality</Option>
+			<Option Name="ProjectType"></Option>
+			<Option Name="Version">1.0</Option>
+			<Option Name="GUID">{7AC7BC5E-178A-42A8-88ED-B7BD227AEC75}</Option>
+		</Option>
+	</PersonalityInfo>
+	<Default.Personality>  <Projects>
+      <Projects Name="GranVUS.exe">GranVUS.bdsproj</Projects>
+      <Projects Name="Form11MU.dll">PlugIns\Form11MU\Form11MU.bdsproj</Projects>
+      <Projects Name="PersChanges.dll">PlugIns\PersChanges\PersChanges.bdsproj</Projects>
+      <Projects Name="PersOVK.dll">PlugIns\PersOVK\PersOVK.bdsproj</Projects>
+      <Projects Name="PersOVKBlue.dll">PlugIns\PersOVKBlue\PersOVKBlue.bdsproj</Projects>
+      <Projects Name="PersOVKGreen.dll">PlugIns\PersOVKGreen\PersOVKGreen.bdsproj</Projects>
+      <Projects Name="PersOVKRed.dll">PlugIns\PersOVKRed\PersOVKRed.bdsproj</Projects>
+      <Projects Name="PersOVKYellow.dll">PlugIns\PersOVKYellow\PersOVKYellow.bdsproj</Projects>
+      <Projects Name="WorkIn.dll">PlugIns\WorkIn\WorkIn.bdsproj</Projects>
+      <Projects Name="patch.exe">..\VUR - patch 3.75 to 3.75+\Source\patch.bdsproj</Projects>
+      <Projects Name="Form6.dll">PlugIns\Form6\Form6.bdsproj</Projects>
+      <Projects Name="Targets">GranVUS.exe Form11MU.dll PersChanges.dll PersOVK.dll PersOVKBlue.dll PersOVKGreen.dll PersOVKRed.dll PersOVKYellow.dll WorkIn.dll patch.exe Form6.dll</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+</BorlandProject>

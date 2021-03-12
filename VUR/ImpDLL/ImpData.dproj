@@ -1,0 +1,130 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{B685A7D0-B0DB-42C2-B371-096698884877}</ProjectGuid>
+			<MainSource>ImpData.dpr</MainSource>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<ProjectVersion>12.0</ProjectVersion>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_DependencyCheckOutputName>ImpData.dll</DCC_DependencyCheckOutputName>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_UsePackage>vcl;rtl;vclx;dbrtl;vcldb;adortl;dbxcds;dbexpress;vclib;ibxpress;xmlrtl;vclactnband;inet;IntrawebDB_80_100;Intraweb_80_100;vclie;inetdbbde;inetdbxpress;IndyCore;IndySystem;dclOfficeXP;VclSmp;soaprtl;dsnap;IndyProtocols;bdertl;teeui;teedb;tee;vcldbx;dsnapcon;websnap;webdsnap;RaizeComponentsVcl;RaizeComponentsVclDb;AEMUtil;AEMDBUtils;my;EQTLD6;ECQDBCD6;dxEdtrD6;Ecomp;GifImgPack;ifps3_pack;TTableGrid;odac100;dac100;GranVUS;OPTkWiz;ExcpMngrPack;dxELibD6;dxmdsD10;AEMADO;AEMSE;SynEdit_D6;RVXMLD7;RVHTMLD7;rvActionsRunD7;xml4pack;dxNavBarD10;dxGDIPlusD10;cxLibraryD10;dxDockingD10;dxdborD10;dxorgcD10;GR32_D2005;dxtrmdD10;cxSpreadSheetD10;dxdbtrD10;dxFlowChartD10;dxComnD10;dxMasterViewD10;cxEditorsD10;dxThemeD10;cxDataD10;cxExtEditorsD10;cxPageControlD10;cxBarEditItemD10;dxBarD10;dxBarDBNavD10;dxBarExtDBItemsD10;dxBarExtItemsD10;dxRibbonD10;cxGridD10;cxTreeListD10;cxVerticalGridD10;cxPivotGridD10;dxLayoutControlcxEditAdaptersD10;dxLayoutControlD10;dxPSCoreD10;dxPSLnksD10;vclshlctrls;dxPScxCommonD10;dxPScxGrid6LnkD10;dxPScxPCProdD10;dxPScxPivotGridLnkD10;dxPScxScheduler2LnkD10;cxSchedulerD10;dxPScxSSLnkD10;dxPScxTLLnkD10;dxPScxVGridLnkD10;dxPSTeeChartD10;dxPSdxOCLnkD10;dxPSdxDBTVLnkD10;dxPSdxFCLnkD10;dxPSdxLCLnkD10;dxPSdxMVLnkD10;dxPSdxDBOCLnkD10;dxPScxExtCommonD10;dxPsPrVwAdvD10;dxPSDBTeeChartD10;AEMSQLEd;DevExp;HiddenDX</DCC_UsePackage>
+			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
+			<DCC_Platform>x86</DCC_Platform>
+			<DCC_UnitSearchPath>..\Common;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
+			<DCC_N>true</DCC_N>
+			<DCC_S>false</DCC_S>
+			<GenDll>true</GenDll>
+			<DCC_E>false</DCC_E>
+			<DCC_F>false</DCC_F>
+			<DCC_K>false</DCC_K>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="ImpData.dpr">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="fImport.pas">
+				<Form>fmImport</Form>
+			</DCCReference>
+			<DCCReference Include="MSXML2_TLB.pas"/>
+			<DCCReference Include="fError.pas">
+				<Form>frmError</Form>
+			</DCCReference>
+			<DCCReference Include="DisplayDSs.pas">
+				<Form>Form1</Form>
+			</DCCReference>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Source>
+						<Source Name="MainSource">ImpData.dpr</Source>
+					</Source>
+					<Parameters>
+						<Parameters Name="HostApplication">C:\Documents and Settings\grehovvl\Мои документы\Borland Studio Projects\GranVUS\Source\VUR\ImpDLL\UseImpDLL.exe</Parameters>
+						<Parameters Name="UseLauncher">False</Parameters>
+						<Parameters Name="LoadAllSymbols">True</Parameters>
+						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+					</Parameters>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1049</VersionInfo>
+						<VersionInfo Name="CodePage">1251</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Excluded_Packages>
+						<Excluded_Packages Name="C:\Documents and Settings\grehovvl\Мои документы\Borland Studio Projects\Bpl\APCtrlsPack.bpl">AEM Designer Controls</Excluded_Packages>
+						<Excluded_Packages Name="C:\Documents and Settings\grehovvl\Мои документы\Borland Studio Projects\Bpl\dcldxSBD10.bpl">ExpressSideBar by Developer Express Inc.</Excluded_Packages>
+						<Excluded_Packages Name="C:\Documents and Settings\grehovvl\Мои документы\Borland Studio Projects\Bpl\WSTypes.bpl">WSClient4 Array types registrations</Excluded_Packages>
+						<Excluded_Packages Name="C:\Documents and Settings\grehovvl\Мои документы\Borland Studio Projects\Bpl\dxPSdxDBGrLnkD7.bpl">ExpressPrinting System ReportLink for ExpressQuantumGrid by Developer Express Inc.</Excluded_Packages>
+						<Excluded_Packages Name="C:\Documents and Settings\grehovvl\Мои документы\Borland Studio Projects\Bpl\dxPSTLLnkD7.bpl">ExpressPrinting System ReportLink for ExpressQuantumTreeList by Developer Express Inc.</Excluded_Packages>
+						<Excluded_Packages Name="C:\Documents and Settings\grehovvl\Мои документы\Borland Studio Projects\Bpl\dcldxExELD6.bpl">ExpressEditors Library (Extended) by Developer Express Inc.</Excluded_Packages>
+						<Excluded_Packages Name="C:\Documents and Settings\grehovvl\Мои документы\Borland Studio Projects\Bpl\dclodac100.bpl">Oracle Data Access Components</Excluded_Packages>
+						<Excluded_Packages Name="C:\Documents and Settings\grehovvl\Мои документы\Borland Studio Projects\Bpl\dcldxGrEdD6.bpl">Express extended inplace editors</Excluded_Packages>
+						<Excluded_Packages Name="C:\job\VCL2005\Developer Express.VCL\Library\Delphi10\dclcxSchedulerD10.bpl">ExpressScheduler 2 by Developer Express Inc.</Excluded_Packages>
+						<Excluded_Packages Name="C:\job\VCL2005\Developer Express.VCL\Library\Delphi10\dcldxLayoutControlD10.bpl">ExpressLayout Control by Developer Express Inc.</Excluded_Packages>
+					</Excluded_Packages>
+				</Delphi.Personality>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>

@@ -1,0 +1,43 @@
+select Person.*,KOVK.*,KWRange.*,KFState.*,Addr.*,A1.POST_CODE as POST_CODE1,A1.ADDR_STR as ADDR_STR1
+,AppointmentLastAll.*,KPost.*, IIF([KDepart].DEP_FULL_NAME is null, [KDEPART].DEP_NAME, [KDepart].DEP_FULL_NAME) as DEP_NAME,
+IIF(Person.IsAspirant is null, 'работы', 'учебы') as Mesto, IIF(KOVK.ISOVK, 'Военному комиссару', 'Руководителю') as OVK,
+IIF(Person.IsAspirant is null, 'должность', 'курс') as Dolg, 
+ KEduc.ED_NAME
+ &iif(IsNull(Kuz.UZ_NAME),"",", "&Kuz.UZ_NAME) 
+ &iif(IsNull(Educ.END_DATE),"",", "&Educ.END_DATE) 
+ &iif(IsNull(KKVal.KVAL_Name),"",", "&KKVal.KVAL_Name) 
+ &iif(IsNull(KNAPR.Napr_Name),"",", "&KNAPR.Napr_Name) as Education,
+ iif(IsNull(Kuz2.UZ_NAME),"",", "&Kuz2.UZ_NAME) 
+ &iif(IsNull(Educ2.END_DATE),"",", "&Educ2.END_DATE) 
+ &iif(IsNull(KKVal2.KVAL_Name),"",", "&KKVal2.KVAL_Name) 
+ &iif(IsNull(KNAPR2.Napr_Name),"",", "&KNAPR2.Napr_Name) as Education2,
+ iif(IsNull(Kuz3.UZ_NAME),"",", "&Kuz3.UZ_NAME) 
+ &iif(IsNull(Educ3.END_DATE),"",", "&Educ3.END_DATE) 
+ &iif(IsNull(KKVal3.KVAL_Name),"",", "&KKVal3.KVAL_Name) 
+ &iif(IsNull(KNAPR3.Napr_Name),"",", "&KNAPR3.Napr_Name) as Education3,
+ iif(IsNull(Person.PROF1),"",", "&Person.PROF1) as Education4,
+  KWRange.WRNG_NAME + iif((select Param_Value from Params Where Params.Param_Id = 8) = '1', iif(Person.WSOST_ID=9,' юстиции',iif(Person.WSOST_ID=10,' медицинской службы','')),'') as WRNG_Name1
+from (((((((((((((((((((([Person]
+left outer join [KOVK] on [Person].OVK_ID=[KOVK].OVK_ID)
+left outer join [KWRange] on [Person].WRNG_ID=[KWRange].WRNG_ID)
+left outer join [KEduc] on [Person].ED_ID=[KEduc].ED_ID)
+left outer join [KFState] on [Person].FST_ID=[KFState].FST_ID)
+left outer join [Addr] on ([Person].PERS_ID=[Addr].PERS_ID and [Addr].ADDR_TYPE=0))
+left outer join [Addr] A1 on ([Person].PERS_ID=A1.PERS_ID and A1.ADDR_TYPE=1))
+left outer join [Educ] on ([Person].PERS_ID=[Educ].PERS_ID and [Educ].type=1))
+left outer join KKval on KKval.kval_id = [Educ].Kval_Id)
+left outer join KNapr on KNapr.Napr_id = [Educ].Napr_Id)
+left outer join [KUz] on [KUz].UZ_ID=[Educ].UZ_ID)
+left outer join [Educ] As Educ2 on ([Person].PERS_ID=[Educ2].PERS_ID and [Educ2].type=2))
+left outer join KKval as KKval2 on KKval2.kval_id = Educ2.Kval_Id)
+left outer join KNapr as KNapr2 on KNapr2.Napr_id = Educ2.Napr_Id)
+left outer join [KUz] As KUz2 on [KUz2].UZ_ID=[Educ2].UZ_ID)
+left outer join [Educ] As Educ3 on ([Person].PERS_ID=[Educ3].PERS_ID and [Educ3].type=3))
+left outer join KKval as KKval3 on KKval3.kval_id = Educ3.Kval_Id)
+left outer join KNapr as KNapr3 on KNapr3.Napr_id = Educ3.Napr_Id)
+left outer join [KUz] As KUz3 on [KUz3].UZ_ID=[Educ3].UZ_ID)
+left outer join AppointmentLastAll on [Person].Pers_Id=AppointmentLastAll.Pers_Id)
+left outer join [KPost] on AppointmentLastAll.POST_ID=[KPost].POST_ID)
+left outer join [KDepart] on AppointmentLastAll.DEP_ID=[KDepart].DEP_ID
+
+where [Person].PERS_ID=:PERS_ID

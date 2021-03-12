@@ -1,0 +1,2271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by Aleksey V. Meleschenin (State Unitary Enterprise of Moscow “GNPP “Granit-Center) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gr="http://www.granit.ru" elementFormDefault="qualified">
+	<xs:element name="Import" type="ImportType">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент</xs:documentation>
+		</xs:annotation>
+		<xs:key name="KFSKey">
+			<xs:selector xpath=".//KFS"/>
+			<xs:field xpath="KOD"/>
+		</xs:key>
+		<xs:keyref name="KFSKeyRef" refer="KFSKey">
+			<xs:selector xpath=".//ORG"/>
+			<xs:field xpath="FS_ID"/>
+		</xs:keyref>
+		<xs:key name="ORGKey">
+			<xs:selector xpath=".//ORG"/>
+			<xs:field xpath="ORGID"/>
+		</xs:key>
+		<xs:key name="KTERRKey">
+			<xs:selector xpath=".//KTERR"/>
+			<xs:field xpath="KODTERR"/>
+		</xs:key>
+		<xs:keyref name="KTERRKeyRef" refer="KTERRKey">
+			<xs:selector xpath=".//ORG"/>
+			<xs:field xpath="TERR_ID"/>
+		</xs:keyref>
+		<xs:key name="KOVKKey">
+			<xs:selector xpath=".//KOVK"/>
+			<xs:field xpath="OVK_ID"/>
+		</xs:key>
+		<xs:keyref name="KOVKKeyRef" refer="KOVKKey">
+			<xs:selector xpath=".//ORG"/>
+			<xs:field xpath="OVK_ID"/>
+		</xs:keyref>
+		<xs:keyref name="KOVKPERSONKeyRef" refer="KOVKKey">
+			<xs:selector xpath=".//PERSON"/>
+			<xs:field xpath="OVK_ID"/>
+		</xs:keyref>
+		<xs:keyref name="ORGKeyRef" refer="ORGKey">
+			<xs:selector xpath=".//PERSON"/>
+			<xs:field xpath="ORG_ID"/>
+		</xs:keyref>
+		<xs:key name="KKVALKey">
+			<xs:selector xpath=".//KKVAL"/>
+			<xs:field xpath="KVAL_ID"/>
+		</xs:key>
+		<xs:keyref name="KKVALPERSONKeyRef" refer="KKVALKey">
+			<xs:selector xpath=".//PERSON"/>
+			<xs:field xpath="Kval_Id"/>
+		</xs:keyref>
+		<xs:key name="PERSONKey">
+			<xs:selector xpath=".//PERSON"/>
+			<xs:field xpath="PERS_ID"/>
+		</xs:key>
+		<xs:keyref name="PERSONADDRKeyRef" refer="PERSONKey">
+			<xs:selector xpath=".//ADDR"/>
+			<xs:field xpath="PERS_ID"/>
+		</xs:keyref>
+		<xs:keyref name="PERSONAPPOINTMENTKeyRef" refer="PERSONKey">
+			<xs:selector xpath=".//APPOINTMENT"/>
+			<xs:field xpath="PERS_ID"/>
+		</xs:keyref>
+		<xs:key name="APPOINTMENTKey">
+			<xs:selector xpath=".//APPOINTMENT"/>
+			<xs:field xpath="ID"/>
+		</xs:key>
+		<xs:key name="KPOSTKey">
+			<xs:selector xpath=".//KPOST"/>
+			<xs:field xpath="POST_ID"/>
+		</xs:key>
+		<xs:keyref name="KPOSTKeyRef" refer="KPOSTKey">
+			<xs:selector xpath=".//APPOINTMENT"/>
+			<xs:field xpath="POST_ID"/>
+		</xs:keyref>
+		<xs:key name="KDEPARTKey">
+			<xs:selector xpath=".//KDEPART"/>
+			<xs:field xpath="DEP_ID"/>
+		</xs:key>
+		<xs:keyref name="KDEPARTKeyRef" refer="KDEPARTKey">
+			<xs:selector xpath=".//APPOINTMENT"/>
+			<xs:field xpath="DEP_ID"/>
+		</xs:keyref>
+		<xs:keyref name="PERSONEDUCKeyRef" refer="PERSONKey">
+			<xs:selector xpath=".//EDUC"/>
+			<xs:field xpath="PERS_ID"/>
+		</xs:keyref>
+		<xs:keyref name="KKVALEDUCKeyRef" refer="KKVALKey">
+			<xs:selector xpath=".//EDUC"/>
+			<xs:field xpath="KVAL_ID"/>
+		</xs:keyref>
+		<xs:key name="KNAPRKey">
+			<xs:selector xpath=".//KNAPR"/>
+			<xs:field xpath="NAPR_ID"/>
+		</xs:key>
+		<xs:keyref name="KNAPREDUCKeyRef" refer="KNAPRKey">
+			<xs:selector xpath=".//EDUC"/>
+			<xs:field xpath="NAPR_ID"/>
+		</xs:keyref>
+		<xs:key name="KUZKey">
+			<xs:selector xpath=".//KUZ"/>
+			<xs:field xpath="UZ_ID"/>
+		</xs:key>
+		<xs:keyref name="KUZKeyRef" refer="KUZKey">
+			<xs:selector xpath=".//EDUC"/>
+			<xs:field xpath="UZ_ID"/>
+		</xs:keyref>
+		<xs:key name="LANGSKey">
+			<xs:selector xpath=".//LANGS"/>
+			<xs:field xpath="PERS_ID"/>
+			<xs:field xpath="LANG_ID"/>
+			<xs:field xpath="LSK_ID"/>
+		</xs:key>
+		<xs:keyref name="PERSONLANGSKeyRef" refer="PERSONKey">
+			<xs:selector xpath=".//LANGS"/>
+			<xs:field xpath="PERS_ID"/>
+		</xs:keyref>
+		<xs:keyref name="PERSONPHONESKeyRef" refer="PERSONKey">
+			<xs:selector xpath=".//PHONES"/>
+			<xs:field xpath="PERS_ID"/>
+		</xs:keyref>
+		<xs:key name="ADDRKey">
+			<xs:selector xpath=".//ADDR"/>
+			<xs:field xpath="ADDR_ID"/>
+		</xs:key>
+		<xs:key name="ADDRUniqueKey">
+			<xs:selector xpath=".//ADDR"/>
+			<xs:field xpath="PERS_ID"/>
+			<xs:field xpath="ADDR_TYPE"/>
+		</xs:key>
+		<xs:key name="StaffListKey">
+			<xs:selector xpath=".//StaffList"/>
+			<xs:field xpath="DEP_ID"/>
+			<xs:field xpath="POST_ID"/>
+		</xs:key>
+		<xs:keyref name="KDEPARTStaffListKeyRef" refer="KDEPARTKey">
+			<xs:selector xpath=".//StaffList"/>
+			<xs:field xpath="DEP_ID"/>
+		</xs:keyref>
+		<xs:keyref name="KPOSTStaffListKeyRef" refer="KPOSTKey">
+			<xs:selector xpath=".//StaffList"/>
+			<xs:field xpath="POST_ID"/>
+		</xs:keyref>
+		<xs:key name="EDUCKey">
+			<xs:selector xpath=".//EDUC"/>
+			<xs:field xpath="EDQ_ID"/>
+		</xs:key>
+		<xs:key name="PHONESKey">
+			<xs:selector xpath=".//PHONES"/>
+			<xs:field xpath="PH_ID"/>
+		</xs:key>
+		<xs:key name="PHONESUniqueKey">
+			<xs:selector xpath=".//PHONES"/>
+			<xs:field xpath="PERS_ID"/>
+			<xs:field xpath="PH_TYPE"/>
+		</xs:key>
+		<xs:key name="FAMILYKey">
+			<xs:selector xpath=".//FAMILY"/>
+			<xs:field xpath="FAM_ID"/>
+		</xs:key>
+		<xs:keyref name="PERSONFAMILYKeyRef" refer="PERSONKey">
+			<xs:selector xpath=".//FAMILY"/>
+			<xs:field xpath="PERS_ID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:complexType name="KFSType">
+		<xs:sequence>
+			<xs:element name="KOD" type="str2" gr:key="FS_ID">
+				<xs:annotation>
+					<xs:documentation>Код</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FS_NAME" type="str100">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ORGType">
+		<xs:sequence>
+			<xs:element name="ORGID" type="GUID" gr:key="ORGID">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PARENT" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вышестоящая организация</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FS_ID" type="str2" minOccurs="0" gr:refTable="KFS">
+				<xs:annotation>
+					<xs:documentation>Код ОКФС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="INN" type="str15" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKPO" type="str8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКПО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKONH" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКВЭД</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SOOGU" type="str5" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКОГУ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KOPF_ID" type="KOPFEnum" minOccurs="0" gr:refTable="KOPF">
+				<xs:annotation>
+					<xs:documentation>Код ОКОПФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KODREG" type="str11" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКАТО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="REGDATE" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации в налоговом органе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="REGNUM" type="str20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ORGNAME" type="str250" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наимнование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ORGSNAME" type="str50" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование сокращенное</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="COMMENT" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительные сведения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIZADDR" type="str250" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Фактический адрес</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="URADDR" type="str250" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Юридический адрес</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="POSTADDR" type="str250" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Почтовый адрес</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PHONE" type="str50" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Телефон</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FAX" type="str50" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Факс</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMAIL" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Электронная почта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WWW" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес в Интернете</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CONFDATE" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата заполнения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKBV" type="str12" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>№ в ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIRST_DATE" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации в ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LAST_DATE" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата представления отчета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="F6_SHIFR" type="str2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Шифр Формы № 6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MAINOKONH" type="str15" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основной ОКВЭД</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OCCUPATION" type="str150" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Деятельность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SBM_ID" type="VV5Enum" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор подчиненности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TERR_ID" type="str20" minOccurs="0" gr:refTable="KTERR">
+				<xs:annotation>
+					<xs:documentation>Вышестоящий ВУО курирует. Код по классификатору терр. единиц.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HAS_BRON" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ведет бронирование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="REGPL_ID" type="KREGPLEnum" minOccurs="0" gr:refTable="KREGPL">
+				<xs:annotation>
+					<xs:documentation>Код места регистрации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKATO2" type="str50" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКАТО фактического адреса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKATO3" type="str50" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКАТО почтового адреса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Feature1" type="str30" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительные сведения. Признак 1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Feature2" type="str30" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительные сведения. Признак 2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Feature3" type="str30" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительные сведения. Признак 3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OVK_ID" type="GUID" minOccurs="0" gr:refTable="KOVK">
+				<xs:annotation>
+					<xs:documentation>Идентификатор ОВК</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="License1" type="str30" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>№ лицензии на право ведения образовательной деятельности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="License1_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи лицензии на право ведения образовательной деятельности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="License2" type="str30" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер лицензии на право ведения образовательной деятельности по образовательным программам послевузовского образования</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="License2_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи лицензии на право ведения образовательной деятельности по образовательным программам послевузовского образования</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Certificate" type="str30" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер свидетельства о государственной аккредитации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BeginCertificate_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата начала действия свидетельства о государственной аккредитации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndCertificate_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата окончания действия свидетельства о государственной аккредитации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WhoPuts" type="str255" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Аттестационный материал на офицера запаса оформляет</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HasVK" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наличие военной кафедры</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VKChief" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Начальник военной кафедры</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VKChiefRange" type="KWRANGEEnum" minOccurs="0" gr:refTable="KWRANGE">
+				<xs:annotation>
+					<xs:documentation>Идентификатор воинского звания начальника военной кафедры</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="str100">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100" fixed="false"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str50">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str30">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str255">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str150">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="150"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str15">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str10">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str250">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="250"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str12">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str2">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str20">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str11">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str17">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="17"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str8">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str5">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ImportType">
+		<xs:sequence>
+			<xs:element name="ORG" type="ORGType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Организация</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KFS" type="KFSType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Справочник ОКФС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KTERR" type="KTERRType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Классификатор структуры ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KOVK" type="KOVKType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Справочник военкоматов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PERSON" type="PERSONType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Работник</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KKVAL" type="KKVALType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Справочник квалификаций выпускников</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ADDR" type="ADDRType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Адрес</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="APPOINTMENT" type="APPOINTMENTType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Назначение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KPOST" type="KPOSTType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Справочник должностей</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KDEPART" type="KDEPARTType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Справочник подразделений организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StaffList" type="StaffListType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Штатное расписание</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EDUC" type="EDUCType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Образование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KNAPR" type="KNAPRType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Справочник специальностей выпускников</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KUZ" type="KUZType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Справочник учебных заведений</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LANGS" type="LANGSType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Владение языками</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PHONES" type="PHONESType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Телефоны</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FAMILY" type="FAMILYType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Состав семьи</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KTERRType">
+		<xs:sequence>
+			<xs:element name="KODTERR" type="str20" gr:key="TERR_ID">
+				<xs:annotation>
+					<xs:documentation>Код</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NAME" type="str150">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IS_OKATO" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Терр.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KOVKType">
+		<xs:sequence>
+			<xs:element name="OVK_ID" type="GUID" gr:key="OVK_ID">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OVK_NAME" type="str100">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OVK_ADDR" type="str250" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OVK_PHONE" type="str50" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Телефон</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PERSONType">
+		<xs:sequence>
+			<xs:element name="PERS_ID" type="GUID" gr:key="PERS_ID">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ORG_ID" type="GUID" gr:refTable="ORG">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FAM" type="str50">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IM" type="str50">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OTCH" type="str50" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MALE" type="xs:short" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Пол. 0 - женский. 1 - мужской</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BIRTHDAY" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BIRTHPLACE" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Место рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKATO" type="str11" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКАТО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NAT_ID" type="KNATIONEnum" gr:refTable="KNATION">
+				<xs:annotation>
+					<xs:documentation>Код вида гражданства по ОКИН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PSP_SER" type="str10" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Серия паспорта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PSP_NUM" type="str10" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер паспорта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PSP_PLACE" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Кем выдан паспорт</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PSP_DATE" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи паспорта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="INN" type="str12" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="STRAH" type="str20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>№ страхового свидетельства</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FST_ID" type="KFSTATEEnum" minOccurs="0" gr:refTable="KFSTATE">
+				<xs:annotation>
+					<xs:documentation>Код по ОКИН семейного положения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ED_ID" type="KEDUCEnum" minOccurs="0" gr:refTable="KEDUC">
+				<xs:annotation>
+					<xs:documentation>Код по ОКИН полученного образования</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SC_ID" type="KSCIENCEEnum" minOccurs="0" gr:refTable="KSCIENCE">
+				<xs:annotation>
+					<xs:documentation>Код по ОКИН ученой степени</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IS_WAR" type="xs:short" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ГПЗ, ГПП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EOARMY_DATE" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Год/дата увольнения из армии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CSOST" type="xs:short" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Категория состава. 0 - Нет. 1 - Летно-подъемный. 2 - Плавающий</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WRNG_ID" type="KWRANGEEnum" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор воинского звания</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WSOST_ID" type="KWSOSTEnum" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор военного состава (профиля)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CAT_ZAP" type="xs:short" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Категория запаса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VUS" type="str10" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Кодовое обозначение ВУС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WCAT" type="WCATEnum" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Годность к службе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OVK_ID" type="GUID" minOccurs="0" gr:refTable="KOVK">
+				<xs:annotation>
+					<xs:documentation>Идентификатор военкомата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WUCHET1" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Состоит на воинском учете - общем (номер команды, партии)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpecialWUchet1" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Спецформирование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WUCHET2" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Состоит на воинском учете - специальном</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WDISCL" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отметки о снятии с воинского учета/помещения в архив</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TAB_NUMB" type="str10" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Табельный номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DOG_NUMB" type="str20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>№ трудового договора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DOG_DATE" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата трудового договора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IS_RAB" type="xs:short" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Гос. служащий</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PROF1" type="str50" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Профессия по образованию - основная</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKPDTR1" type="str10" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Профессия по образованию - основная - ОКПДТР</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PROF2" type="str50" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Профессия по образованию - другая</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKPDTR2" type="str10" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Профессия по образованию - другая - ОКПДТР</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CONFDATE" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата внесения изменений</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NUMB_T2" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Рег. номер Т-2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="W_DBEG" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата постановки на учет</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="W_DEND" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата снятия с воинского учета/помещения в архив</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="D_OVK" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата сверки с ОВК</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="D_WBIL" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата сверки с военным билетом</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OUT_ORD_NUMB" type="str50" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер приказа об увольнении</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OUT_ORD_DATE" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата приказа об увольнении</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OUT_DATE" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата увольнения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WID" type="str10" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Личный №</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WBser" type="str2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Военный документ серия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WBnum" type="str8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Военный документ номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Comments" type="str255" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительные сведения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WUCHET2_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Состоит на воинском учете - специальном - дата изменения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Document" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Военный документ. 0 - Военный билет. 1 - Временное удостоверение. 2 - приписное свидетельство</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Branch" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Группа учета. 0 - РА. 1 - ВМФ. 2 -  ФСБ. 3 - МВД</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsAspirant" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>0 - Студент. 1 - Аспирант</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StudyEnd_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Плановая даа окончания обучения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderAkadem" type="str20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер приказа на академ. отпуск</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderAkadem_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата приказа на академ. отпуск</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReasonAkadem" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Причина академ. отпуска</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BeginAkadem_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата начала академ. отпуска</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndAkadem_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата ожидаемого выхода из академ. отпуска</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RealEndAkadem_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата фактического выхода из академ. отпуска</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MedResult_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата прохождения мед.комиссии после академ. отпуска</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MedResult" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Результат мед. комиссии. 1 - возобновление отсрочки. 2 - снятие с воинского учета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VKStatus" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Обучение на военной кафедре. 0 - к обучению не приступал. 1 - обучается. 2 - успешно окончил. 3 - прервал обучение, расторгнул контракт</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BeginWar_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата начала обучения на военной кафедре</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndWar_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата планового окончания обучения на военной кафедре</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RealEndWar_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата фактического окончания (успешного или расторжения контракта) обучения на военной кафедре</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReasonEndWar" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Причина расторжения контракта обучения на военной кафедре</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dismissal_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата отчисления из института</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderDismissal" type="str20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер приказа об отчислении из института</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderDismissal_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата приказа об отчислении из института</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReasonDismissal" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основание, причина отчисления из института</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DisserName" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование диссертационной / дипломной работы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Degree_ID" type="KSCIENCEEnum" minOccurs="0" gr:refTable="KSCIENCE">
+				<xs:annotation>
+					<xs:documentation>Искомая ученая степень</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GuideDegree_ID" type="KSCIENCEEnum" minOccurs="0" gr:refTable="KSCIENCE">
+				<xs:annotation>
+					<xs:documentation>Ученая степень руководителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIOGuide" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ФИО руководителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Defend_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Защита назначена на</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RealDefend_date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Защита состоялась</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContractEnd" type="str50" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Контракт истекает</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Kval_Id" type="GUID" minOccurs="0" gr:refTable="KKVAL">
+				<xs:annotation>
+					<xs:documentation>Получаемая квалификация</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="KOPFEnum" gr:kod="KOD" gr:key="KOPF_ID">
+		<xs:restriction base="str2">
+			<xs:annotation>
+				<xs:documentation>Справочник ОКОПФ</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="41">
+				<xs:annotation>
+					<xs:documentation>Унитарные предприятия, основанные на праве оперативного управления</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="42">
+				<xs:annotation>
+					<xs:documentation>Унитарные предприятия, основанные на праве хозяйственного ведения</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="47">
+				<xs:annotation>
+					<xs:documentation>Открытые акционерные общества</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="51">
+				<xs:annotation>
+					<xs:documentation>Полные товарищества</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="52">
+				<xs:annotation>
+					<xs:documentation>Производственные кооперативы</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="53">
+				<xs:annotation>
+					<xs:documentation>Крестьянские (фермерские) хозяйства</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="64">
+				<xs:annotation>
+					<xs:documentation>Товарищества на вере (командитные товарищества)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="65">
+				<xs:annotation>
+					<xs:documentation>Общества с ограниченной ответственностью</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="66">
+				<xs:annotation>
+					<xs:documentation>Общества с дополнительной ответственностью</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="67">
+				<xs:annotation>
+					<xs:documentation>Закрытые акционерные общества</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="68">
+				<xs:annotation>
+					<xs:documentation>Дочерние унитарные предприятия</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="76">
+				<xs:annotation>
+					<xs:documentation>Садоводческие, огороднические или дачные некоммерческие товарищества</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="77">
+				<xs:annotation>
+					<xs:documentation>Ассоциации крестьянских (фермерских) хозяйств</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="78">
+				<xs:annotation>
+					<xs:documentation>Органы общественной самодеятельности</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="79">
+				<xs:annotation>
+					<xs:documentation>Финансово-промышленные группы</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="80">
+				<xs:annotation>
+					<xs:documentation>Территориальные общественные самоуправления</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="81">
+				<xs:annotation>
+					<xs:documentation>Учреждения</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="83">
+				<xs:annotation>
+					<xs:documentation>Общественные и религиозные организации (объединения)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="84">
+				<xs:annotation>
+					<xs:documentation>Общественные движения</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="85">
+				<xs:annotation>
+					<xs:documentation>Потребительские кооперативы</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="87">
+				<xs:annotation>
+					<xs:documentation>Простые товарищества</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="88">
+				<xs:annotation>
+					<xs:documentation>Фонды</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="90">
+				<xs:annotation>
+					<xs:documentation>Представительства и филиалы</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="91">
+				<xs:annotation>
+					<xs:documentation>Индивидуальные предприниматели</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="92">
+				<xs:annotation>
+					<xs:documentation>Паевые инвестиционные фонды</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="93">
+				<xs:annotation>
+					<xs:documentation>Объединения юридических лиц (ассоциации и союзы)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="94">
+				<xs:annotation>
+					<xs:documentation>Товарищества собственников жилья</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="96">
+				<xs:annotation>
+					<xs:documentation>Некоммерческие партнерства</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="97">
+				<xs:annotation>
+					<xs:documentation>Автономные некоммерческие организации</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Иные неюридические лица</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KREGPLEnum" gr:kod="REGPL_KOD" gr:key="REGPL_ID">
+		<xs:restriction base="str5">
+			<xs:annotation>
+				<xs:documentation>Справочник мест регистрации</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="01">
+				<xs:annotation>
+					<xs:documentation>МРП</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="02">
+				<xs:annotation>
+					<xs:documentation>МНС</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="03">
+				<xs:annotation>
+					<xs:documentation>МИНЮСТ РФ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="04">
+				<xs:annotation>
+					<xs:documentation>ЦБ РФ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="05">
+				<xs:annotation>
+					<xs:documentation>Прочее</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KWRANGEEnum">
+		<xs:restriction base="xs:int">
+			<xs:annotation>
+				<xs:documentation>Справочник воинских званий</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>призывник</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>рядовой</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>ефрейтор</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>младший сержант</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>сержант</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>старший сержант</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>старшина</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>прапорщик</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>старший прапорщик</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>младший лейтенант</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>лейтенант</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>старший лейтенант</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>капитан</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>майор</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>подполковник</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>полковник</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>генерал-майор</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>генерал-лейтенант</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>генерал-полковник</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>генерал армии</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation>матрос</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation>старший матрос</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>старшина 2-й статьи</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation>старшина 1-й статьи</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>главный старшина</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>главный корабельный старшина</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>мичман</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>старший мичман</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="29">
+				<xs:annotation>
+					<xs:documentation>капитан-лейтенант</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>капитан 3-го ранга</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>капитан 2-го ранга</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="32">
+				<xs:annotation>
+					<xs:documentation>капитан 1-го ранга</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>контр-адмирал</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>вице-адмирал</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="35">
+				<xs:annotation>
+					<xs:documentation>адмирал</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="36">
+				<xs:annotation>
+					<xs:documentation>адмирал флота</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="37">
+				<xs:annotation>
+					<xs:documentation>допризывник</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KNATIONEnum" gr:kod="OKIN" gr:key="NAT_ID">
+		<xs:restriction base="str20">
+			<xs:annotation>
+				<xs:documentation>Справочник видов гражданств</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="020001">
+				<xs:annotation>
+					<xs:documentation>Гражданин Российской Федерации</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="020002">
+				<xs:annotation>
+					<xs:documentation>Гражданин Российской Федерации и иностранного государства (двойное гражданство)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="020003">
+				<xs:annotation>
+					<xs:documentation>Иностранный гражданин</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="020004">
+				<xs:annotation>
+					<xs:documentation>Лицо без гражданства</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KFSTATEEnum" gr:kod="OKIN" gr:key="FST_ID">
+		<xs:restriction base="str20">
+			<xs:annotation>
+				<xs:documentation>Справочник видов семейных отношений</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="100001">
+				<xs:annotation>
+					<xs:documentation>Не состоит в браке</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="100002">
+				<xs:annotation>
+					<xs:documentation>Состоит в зарегистрированном браке</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="100003">
+				<xs:annotation>
+					<xs:documentation>Состоит в незарегистрированном браке</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KEDUCEnum" gr:kod="OKIN" gr:key="ED_ID">
+		<xs:restriction base="str20">
+			<xs:annotation>
+				<xs:documentation>Справочник полученных образований</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="300001">
+				<xs:annotation>
+					<xs:documentation>Дошкольное образование</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="300002">
+				<xs:annotation>
+					<xs:documentation>Начальное образование</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="300003">
+				<xs:annotation>
+					<xs:documentation>Основное общее образование</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="300007">
+				<xs:annotation>
+					<xs:documentation>Среднее (полное) общее образование</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="300010">
+				<xs:annotation>
+					<xs:documentation>Начальное профессиональное образование</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="300011">
+				<xs:annotation>
+					<xs:documentation>Среднее профессиональное образование</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="300015">
+				<xs:annotation>
+					<xs:documentation>Неполное высшее образование</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="300018">
+				<xs:annotation>
+					<xs:documentation>Высшее образование</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="300019">
+				<xs:annotation>
+					<xs:documentation>Послевузовское образование</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KSCIENCEEnum" gr:kod="SC_OKIN" gr:key="SC_ID">
+		<xs:restriction base="str20">
+			<xs:annotation>
+				<xs:documentation>Справочник ученых степеней</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="350001">
+				<xs:annotation>
+					<xs:documentation>Доктор наук</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="350002">
+				<xs:annotation>
+					<xs:documentation>Кандидат наук</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KWSOSTEnum">
+		<xs:restriction base="xs:int">
+			<xs:annotation>
+				<xs:documentation>Справочник военных составов (профилей)</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>солдаты (матросы)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>сержанты (старшины)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>прапорщики (мичманы)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>командный</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>инженерный и технический</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>военно-гуманитарный и педагогический</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>юридический</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>медицинский</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>ветеринарный</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="KKVALType">
+		<xs:sequence>
+			<xs:element name="KVAL_ID" type="GUID" gr:key="KVAL_ID">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KVAL_NAME" type="str255">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KVAL_SHORT_NAME" type="str255" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование сокращенное</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KVAL_KOD" type="str15" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код квалификации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KVAL_FLAG" type="INT12Enum">
+				<xs:annotation>
+					<xs:documentation>1 - для студентов. 2 - для аспирантов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ADDRType">
+		<xs:sequence>
+			<xs:element name="ADDR_ID" type="GUID" gr:key="ADDR_ID">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PERS_ID" type="GUID" gr:refTable="PERSON">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор работника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ADDR_TYPE" type="ADDR_TYPEEnum">
+				<xs:annotation>
+					<xs:documentation>0 - прописка. 1 - фактический</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="POST_CODE" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Индекс</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ADDR_STR" type="str100">
+				<xs:annotation>
+					<xs:documentation>Адрес</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ADDR_DATE" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Зарегистрирован с. Для прописки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ADDR_TYPEEnum">
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="APPOINTMENTType">
+		<xs:sequence>
+			<xs:element name="ID" type="GUID" gr:key="ID">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PERS_ID" type="GUID" gr:refTable="PERSON">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор работника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WTP_ID" type="KWKTYPEEnum">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор вида работы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WCH_ID" type="INT12Enum">
+				<xs:annotation>
+					<xs:documentation>1 - постоянная. 2 - временная</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="POST_ID" type="GUID" gr:refTable="KPOST">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор должности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DEP_ID" type="GUID" gr:refTable="KDEPART">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор подразделения предприятия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IN_ORD_NUMB" type="str50" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер приказа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IN_ORD_DATE" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата приказа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IN_DATE" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата назначения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StaffListType">
+		<xs:sequence>
+			<xs:element name="DEP_ID" type="GUID" gr:key="DEP_ID" gr:refTable="KDEPART">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор подразделения предприятия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="POST_ID" type="GUID" gr:key="POST_ID" gr:refTable="KPOST">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор должности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GeneralPlan" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Плановое кол-во по штатному расписанию</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WartimePlan" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Плановое кол-во по штатному расписанию военного времени</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GeneralQty" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Фактическое  кол-во по штатному расписанию</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GeneralVacancy" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Дефицит работников по штатному расписанию</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WartimeVacancy" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Дефицит работников по штатному расписанию военного времени</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="INT123Enum">
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KWKTYPEEnum">
+		<xs:restriction base="xs:int">
+			<xs:annotation>
+				<xs:documentation>Справочник видов работ</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>основная</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>По совместительству</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VV5Enum">
+		<xs:restriction base="xs:int">
+			<xs:annotation>
+				<xs:documentation>Справочник видов подчиненности</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Федеральные органы гос.власти (ФОГВ)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Органы исп. власти Субъекта (ОИВС)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Органы местного самоуправления (ОМСУ)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Другие органы (ведомств.)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="KPOSTType">
+		<xs:sequence>
+			<xs:element name="POST_ID" type="GUID" gr:key="POST_ID">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="POST_NAME" type="str50">
+				<xs:annotation>
+					<xs:documentation>Наименование в организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CPROF_ID" type="KCPROFEnum">
+				<xs:annotation>
+					<xs:documentation>Идентификатор категории должности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="KCPROFEnum">
+		<xs:restriction base="xs:int">
+			<xs:annotation>
+				<xs:documentation>Справочник категорий должности</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="100">
+				<xs:annotation>
+					<xs:documentation>Руководители</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="200">
+				<xs:annotation>
+					<xs:documentation>Специалисты</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="210">
+				<xs:annotation>
+					<xs:documentation>Специалисты сельского хозяйства</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="220">
+				<xs:annotation>
+					<xs:documentation>Специалисты торговли и общественного питания</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="230">
+				<xs:annotation>
+					<xs:documentation>Специалисты науки</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="240">
+				<xs:annotation>
+					<xs:documentation>Специалисты культуры и искусства</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="250">
+				<xs:annotation>
+					<xs:documentation>Специалисты образования</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="264">
+				<xs:annotation>
+					<xs:documentation>Специалисты - врачи</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="265">
+				<xs:annotation>
+					<xs:documentation>Специалисты - средний медицинский персонал</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="300">
+				<xs:annotation>
+					<xs:documentation>Другие служащие</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="400">
+				<xs:annotation>
+					<xs:documentation>Рабочие</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="410">
+				<xs:annotation>
+					<xs:documentation>Рабочие 1-2 разрядов</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="420">
+				<xs:annotation>
+					<xs:documentation>Рабочие 3-4 разрядов</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="430">
+				<xs:annotation>
+					<xs:documentation>Рабочие 5-го разряда и выше</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="440">
+				<xs:annotation>
+					<xs:documentation>Рабочие не имеющие тарифных разрядов</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="450">
+				<xs:annotation>
+					<xs:documentation>Рабочие сельскохозяйственного производства</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="460">
+				<xs:annotation>
+					<xs:documentation>Рабочие локомотивных бригад</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="470">
+				<xs:annotation>
+					<xs:documentation>Рабочие - водители</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="480">
+				<xs:annotation>
+					<xs:documentation>Рабочие - трактористы</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="500">
+				<xs:annotation>
+					<xs:documentation>Учащиеся</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="KDEPARTType">
+		<xs:sequence>
+			<xs:element name="DEP_ID" type="GUID" gr:key="DEP_ID">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DEP_NAME" type="str50">
+				<xs:annotation>
+					<xs:documentation>Краткое наименование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DEP_FULL_NAME" type="str255" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Полное наименование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EDUCType">
+		<xs:sequence>
+			<xs:element name="EDQ_ID" type="GUID" gr:key="EDQ_ID">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PERS_ID" type="GUID" gr:refTable="PERSON">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор работника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UZ_ID" type="GUID" minOccurs="0" gr:refTable="KUZ">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор учебного заведения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DIPLOM" type="str50" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Диплом №</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="END_DATE" type="str10" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата окончания</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KVAL" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Квалификация (Для TYPE=1,2,3)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NAPR" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Специальность (Для TYPE=1,2,3)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKSO" type="str10" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код по ОКСО специальности (Для TYPE=1,2,3)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TYPE" type="TYPEEnum">
+				<xs:annotation>
+					<xs:documentation>1 - первое. 2 - второе. 3 - послевузовское. 4 - квалификация выпускника (для студентов)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KVAL_ID" type="GUID" minOccurs="0" gr:refTable="KKVAL">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор квалификации (только для TYPE=4)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NAPR_ID" type="GUID" minOccurs="0" gr:refTable="KNAPR">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор направления (только для TYPE=4)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="TYPEEnum">
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="INT12Enum">
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="KNAPRType">
+		<xs:sequence>
+			<xs:element name="NAPR_ID" type="GUID" gr:key="NAPR_ID">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NAPR_NAME" type="str255">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NAPR_KOD" type="str15" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код специальности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NAPR_FLAG" type="INT12Enum">
+				<xs:annotation>
+					<xs:documentation>1 - для студентов. 2 - для аспирантов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KUZType">
+		<xs:sequence>
+			<xs:element name="UZ_ID" type="GUID" gr:key="UZ_ID">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UZ_NAME" type="str100">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LANGSType">
+		<xs:sequence>
+			<xs:element name="PERS_ID" type="GUID" gr:key="PERS_ID" gr:refTable="PERSON">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор работника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LANG_ID" type="KLANGEnum" gr:key="LANG_ID" gr:refTable="KLANG">
+				<xs:annotation>
+					<xs:documentation>Код по ОКИН иностранного языка</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LSK_ID" type="INT123Enum" gr:key="LSK_ID">
+				<xs:annotation>
+					<xs:documentation>1 - читаю и перевожу со словарем. 2 - читаю и могу объясниться. 3 - владею свободно</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="KLANGEnum" gr:kod="OKIN" gr:key="LANG_ID">
+		<xs:restriction base="str20">
+			<xs:annotation>
+				<xs:documentation>Справочник иностранных языков</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="040014">
+				<xs:annotation>
+					<xs:documentation>Английский</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="040069">
+				<xs:annotation>
+					<xs:documentation>Испанский</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="040070">
+				<xs:annotation>
+					<xs:documentation>Итальянский</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="040092">
+				<xs:annotation>
+					<xs:documentation>Китайский</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="040135">
+				<xs:annotation>
+					<xs:documentation>Немецкий</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="040149">
+				<xs:annotation>
+					<xs:documentation>Персидский</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="040211">
+				<xs:annotation>
+					<xs:documentation>Финский</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="040213">
+				<xs:annotation>
+					<xs:documentation>Французский</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="040252">
+				<xs:annotation>
+					<xs:documentation>Шведский</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="040276">
+				<xs:annotation>
+					<xs:documentation>Японский</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PHONESType">
+		<xs:sequence>
+			<xs:element name="PH_ID" type="GUID" gr:key="PH_ID">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PERS_ID" type="GUID" gr:refTable="PERSON">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор работника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PH_TYPE" type="INT123Enum">
+				<xs:annotation>
+					<xs:documentation>1 - рабочий. 2 - домашний. 3 - мобильный</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PH_NUMBER" type="str50">
+				<xs:annotation>
+					<xs:documentation>Номер телефона</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FAMILYType">
+		<xs:sequence>
+			<xs:element name="FAM_ID" type="GUID" gr:key="FAM_ID">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PERS_ID" type="GUID" gr:refTable="PERSON">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор работника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FT_ID" type="FTEnum">
+				<xs:annotation>
+					<xs:documentation>Родство</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FAM_NAME" type="str100">
+				<xs:annotation>
+					<xs:documentation>ФИО родственника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FAM_BIRTH" type="str10">
+				<xs:annotation>
+					<xs:documentation>Дата рождения родственника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="WCATEnum">
+		<xs:restriction base="xs:string">
+			<xs:annotation>
+				<xs:documentation>Годность к службе</xs:documentation>
+			</xs:annotation>
+			<xs:maxLength value="1"/>
+			<xs:enumeration value="А"/>
+			<xs:enumeration value="Б"/>
+			<xs:enumeration value="В"/>
+			<xs:enumeration value="Г"/>
+			<xs:enumeration value="Д"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FTEnum">
+		<xs:restriction base="xs:int">
+			<xs:annotation>
+				<xs:documentation>Виды родства</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Муж</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Жена</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Отец</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Мать</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Сын</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Дочь</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Брат</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Сестра</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Другая степень родства, свойства</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GUID">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

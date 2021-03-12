@@ -1,0 +1,1 @@
+{$R 'IDB_LOGO.res' 'IDB_LOGO.RC'}

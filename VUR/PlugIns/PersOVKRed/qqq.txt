@@ -1,0 +1,42 @@
+select P.*,KWR.*,KWS.*,KED.*,A.*,A1.POST_CODE as POST_CODE1,A1.ADDR_STR as ADDR_STR1,PH.*,KFST.*
+,AppointmentLast.*,KP.*,
+P.Pers_Id as PPers_Id,
+  KWR.WRNG_NAME as WRNG_Name1
+from (((((((((Person P
+left outer join KWRANGE KWR  on (P.WRNG_ID=KWR.WRNG_ID))
+left outer join KWSOST  KWS  on (P.WSOST_ID=KWS.WSOST_ID))
+left outer join KEDUC   KED  on (P.ED_ID=KED.ED_ID))
+left outer join (select * from ADDR ax  where (Ax.ADDR_TYPE=0 or Ax.ADDR_TYPE is null)) A on (P.PERS_ID=A.PERS_ID))
+left outer join (select * from ADDR A1x where A1x.ADDR_TYPE=1) A1 on (P.PERS_ID=A1.PERS_ID))
+left outer join (select * from PHONES PHx where (PHx.PH_TYPE=2 or PHx.PH_TYPE is null)) PH on (P.PERS_ID=PH.PERS_ID))
+left outer join KFSTATE KFST on (P.FST_ID=KFST.FST_ID))
+left outer join Appointment as AppointmentLast on (P.AppLast=AppointmentLast.Id))
+left outer join [KPOST] KP on (AppointmentLast.POST_ID=[KP].POST_ID))
+
+
+WHERE P.OVK_ID=:OVK_ID
+  AND P.IS_WAR<>0 and
+(p.W_DEND is NULL or p.W_DEND > date()) and (
+         (p.MALE=1 and (kwr.M_LIMIT is not NULL) and  (#FullAges#p.BIRTHDAY#)>=kwr.M_LIMIT  ) or
+         (p.MALE=0 and (kwr.FEM_LIMIT is not NULL) and  (#FullAges#p.BIRTHDAY#)>=kwr.FEM_LIMIT  )) and p.Wuchet2_IsWork = 1
+  /*PERS_SET*/
+AND 
+((P.AppLast IS NOT NULL AND P.OUT_ORD_DATE IS NULL)
+OR (P.AppLastStudy IS NOT NULL AND P.ORDERDISMISSAL_DATE IS NULL))
+ORDER BY P.FAM, P.IM, P.OTCH
+
+
+
+
+select 
+ iif(IsNull(Kuz.UZ_NAME)   ,"",", "&Kuz.UZ_NAME)
+ &iif(IsNull(Educ.END_DATE) ,"",", "&Educ.END_DATE)
+ &iif((KKVAL.Kval_Name is null)     ,'',', '&KKVAL.Kval_Name)
+ &iif((KNapr.NAPR_Name is null)     ,'',', '&KNapr.NAPR_Name) as
+Education
+from (((Educ 
+left outer join KKval on KKval.kval_id = [Educ].Kval_Id)
+left outer join KNapr on KNapr.Napr_id = [Educ].Napr_Id)
+left outer join [KUz] on [KUz].UZ_ID=[Educ].UZ_ID)
+Where Educ.Pers_Id = :Pers_Id and Educ.Type in (1,2,3)
+Order by Educ.Type

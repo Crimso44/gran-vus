@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Import xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:/DOCUME~1/grehovvl/C316~1/BORLAN~1/GranVUS/Source/VUR/ImpDLL/Schema/VURSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<ORG>
+		<ORGID>1</ORGID>
+		<PARENT>Префектура ЦАО г.Москвы</PARENT>
+		<INN>7709010587</INN>
+		<OKPO>29074686</OKPO>
+		<OKONH>14333,14965,61124</OKONH>
+		<KOPF_ID>42</KOPF_ID>
+		<REGDATE>1995-03-22</REGDATE>
+		<REGNUM>036.340</REGNUM>
+		<ORGNAME>ГУП г. Москвы "ГНПП "Гранит-Центр"</ORGNAME>
+		<ORGSNAME>ГНПП "Гранит-Центр"</ORGSNAME>
+		<FIZADDR>109147, г. Москва, ул. Воронцовская, д.23</FIZADDR>
+		<URADDR>109147, г. Москва, ул. Воронцовская, д.23</URADDR>
+		<POSTADDR>109147, г.Москва, ул. Воронцовская, д.23</POSTADDR>
+		<PHONE>912-35-79, 911-01-06, 912-35-79,  911-01-06, 912-4</PHONE>
+		<FAX>911-02-58</FAX>
+		<WWW>www.granit.ru</WWW>
+		<CONFDATE>2006-11-15</CONFDATE>
+		<F6_SHIFR>03</F6_SHIFR>
+		<MAINOKONH>14333</MAINOKONH>
+		<TERR_ID>45000000000</TERR_ID>
+		<HAS_BRON>false</HAS_BRON>
+		<REGPL_ID>01</REGPL_ID>
+	</ORG>
+	<KTERR>
+		<KODTERR>45000000000</KODTERR>
+		<NAME>Город Москва столица Российской Федерации город федерального значения</NAME>
+	</KTERR>
+	<KOVK>
+		<OVK_ID>153</OVK_ID>
+		<OVK_NAME>Черемушкинский РВК г.Москвы</OVK_NAME>
+	</KOVK>
+	<PERSON>
+		<PERS_ID>310</PERS_ID>
+		<ORG_ID>1</ORG_ID>
+		<FAM>Грехов </FAM>
+		<IM>Владимир</IM>
+		<OTCH>Леонидович</OTCH>
+		<MALE>1</MALE>
+		<BIRTHDAY>1984-10-08</BIRTHDAY>
+		<BIRTHPLACE>г. Москва</BIRTHPLACE>
+		<NAT_ID>020001</NAT_ID>
+		<PSP_SER>45 07</PSP_SER>
+		<PSP_NUM>719744</PSP_NUM>
+		<PSP_PLACE>Паспортно-визовым отделением  ОВД р-на Ясенево</PSP_PLACE>
+		<PSP_DATE>2004-10-12</PSP_DATE>
+		<STRAH>132-779-853 96</STRAH>
+		<FST_ID>100001</FST_ID>
+		<IS_WAR>1</IS_WAR>
+		<WRNG_ID>1</WRNG_ID>
+		<OVK_ID>153</OVK_ID>
+		<TAB_NUMB>1428</TAB_NUMB>
+		<D_WBIL>2007-02-07</D_WBIL>
+	</PERSON>
+	<APPOINTMENT>
+		<ID>450</ID>
+		<PERS_ID>310</PERS_ID>
+		<WTP_ID>1</WTP_ID>
+		<WCH_ID>1</WCH_ID>
+		<POST_ID>48</POST_ID>
+		<DEP_ID>124</DEP_ID>
+		<IN_ORD_NUMB>21/ок</IN_ORD_NUMB>
+		<IN_ORD_DATE>2006-02-20</IN_ORD_DATE>
+		<IN_DATE>2006-02-20</IN_DATE>
+	</APPOINTMENT>
+	<APPOINTMENT>
+		<ID>568</ID>
+		<PERS_ID>310</PERS_ID>
+		<WTP_ID>1</WTP_ID>
+		<WCH_ID>1</WCH_ID>
+		<POST_ID>48</POST_ID>
+		<DEP_ID>124</DEP_ID>
+		<IN_ORD_NUMB>ГЦ-03-356/6</IN_ORD_NUMB>
+		<IN_ORD_DATE>2006-06-21</IN_ORD_DATE>
+		<IN_DATE>2006-06-01</IN_DATE>
+	</APPOINTMENT>
+	<APPOINTMENT>
+		<ID>861</ID>
+		<PERS_ID>310</PERS_ID>
+		<WTP_ID>1</WTP_ID>
+		<WCH_ID>1</WCH_ID>
+		<POST_ID>48</POST_ID>
+		<DEP_ID>95</DEP_ID>
+		<IN_ORD_NUMB>232/от</IN_ORD_NUMB>
+		<IN_ORD_DATE>2007-12-18</IN_ORD_DATE>
+		<IN_DATE>2008-01-09</IN_DATE>
+	</APPOINTMENT>
+	<KWKTYPE>
+		<WTP_ID>1</WTP_ID>
+		<WTP_NAME>постоянная</WTP_NAME>
+		<WTP_FLAG>3</WTP_FLAG>
+	</KWKTYPE>
+	<KPOST>
+		<POST_ID>48</POST_ID>
+		<POST_NAME>Главный специалист</POST_NAME>
+		<CPROF_ID>300</CPROF_ID>
+	</KPOST>
+	<KDEPART>
+		<DEP_ID>95</DEP_ID>
+		<DEP_NAME>Отдел разработки прикладного программного обеспече</DEP_NAME>
+	</KDEPART>
+	<KDEPART>
+		<DEP_ID>124</DEP_ID>
+		<DEP_NAME>Отдел управления проектами</DEP_NAME>
+	</KDEPART>
+</Import>

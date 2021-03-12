@@ -1,0 +1,259 @@
+unit dMain;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  EkRtf, Db, ADODB, ekbasereport, ekfunc, DateUtils;
+
+type
+  TdmMain = class(TDataModule)
+    EkRTF1: TEkRTF;
+    dbMain: TADOConnection;
+    qrPerson: TADOQuery;
+    qrFamily: TADOQuery;
+    qrOrg: TADOQuery;
+    qrOrgCont: TADOQuery;
+    qrReportType: TADOQuery;
+    EkUDFList1: TEkUDFList;
+    qrPersonSQL: TADOQuery;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure EkUDFList1NotIsNullCalculate(Sender: TObject; Args: TEkUDFArgs;
+      ArgCount: Integer; UDFResult: TObject);
+    procedure EkUDFList1EqualCalculate(Sender: TObject; Args: TEkUDFArgs;
+      ArgCount: Integer; UDFResult: TObject);
+    procedure EkUDFList1dateCalculate(Sender: TObject; Args: TEkUDFArgs;
+      ArgCount: Integer; UDFResult: TObject);
+  private
+    { Private declarations }
+    function DateToStrDoc(d: TDateTime): String;
+  public
+    { Public declarations }
+    function OpenData(ID: Integer): boolean;
+    function PrintData(nType: Integer): boolean;
+  end;
+
+var
+  dmMain: TdmMain;
+
+const
+  sEventObject = '—ообщение о приеме\увольнении (стандартное)';
+
+implementation
+
+{$R *.DFM}
+
+uses SaveEvents, IniSupport, StrUtils;
+
+procedure TdmMain.DataModuleCreate(Sender: TObject);
+begin
+  if dbMain.Connected then ShowMessage('Close default connection!');
+end;
+
+procedure TdmMain.EkUDFList1EqualCalculate(Sender: TObject;
+  Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
+  function GetInt(O: TObject): Integer;
+  begin
+    if O is TField then Result := TField(O).AsInteger else Result := TEkReportVariable(O).AsInteger;
+  end;
+var
+  i: Integer;
+begin
+  (UDFResult as TEkReportVariable).AsBoolean := False;
+  for i:=1 to ArgCount-1 do
+    if GetInt(Args[0])=GetInt(Args[i]) then
+    begin
+      (UDFResult as TEkReportVariable).AsBoolean := True;
+      Exit;
+    end;
+end;
+
+function TdmMain.DateToStrDoc(d: TDateTime): String;
+  function GetMonth(n: Integer): String;
+  begin
+    case n of
+      1: Result := '€нвар€';
+      2: Result := 'феврал€';
+      3: Result := 'марта';
+      4: Result := 'апрел€';
+      5: Result := 'ма€';
+      6: Result := 'июн€';
+      7: Result := 'июл€';
+      8: Result := 'августа';
+      9: Result := 'сент€бр€';
+      10: Result := 'окт€бр€';
+      11: Result := 'но€бр€';
+      12: Result := 'декабр€';
+    end;
+  end;
+begin
+  Result := 'Ђ '+IntToStr(DayOf(d))+' ї '+GetMonth(MonthOf(d))+' '+IntToStr(YearOf(d))+' г.';
+end;
+
+procedure TdmMain.EkUDFList1dateCalculate(Sender: TObject;
+  Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
+begin
+  (UDFResult as TEkReportVariable).AsString := FormatDateTime('dd.mm.yyyy',Date)
+end;
+
+procedure TdmMain.EkUDFList1NotIsNullCalculate(Sender: TObject;
+  Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
+var
+  I: integer;
+  B: boolean;
+begin
+  B := True;
+  for I := 0 to Length(Args)-1 do B := B and not (TField(Args[I]).IsNull or (TField(Args[I]).AsString=''));
+  (UDFResult as TEkReportVariable).AsBoolean := B;end;
+
+function TdmMain.OpenData(ID: Integer): boolean;
+var i: Integer;
+  IsJet: Boolean;
+begin
+  IsJet := false;
+  if Pos(WideString('Provider=Microsoft.Jet'), dbMain.ConnectionString) > 0 then
+    IsJet := true;
+
+  if not IsJet then
+    qrPerson.SQL.Text := qrPersonSQL.SQL.Text;
+
+  try
+    qrPerson.Parameters.ParamByName('PERS_ID').Value := ID;
+    qrPerson.Open;
+    qrFamily.Parameters.ParamByName('PERS_ID').Value := ID;
+    qrFamily.Open;
+    for i:=0 to ComponentCount-1 do
+      if Components[i] is TADOQuery then
+        if not (Components[i] as TADOQuery).Active then
+          (Components[i] as TADOQuery).Open;
+    Result := true;
+  except
+    Result := false;
+  end;
+end;
+
+function TdmMain.PrintData(nType: Integer): boolean;
+const
+  sAbout: array[0..5] of String = ('о приеме на работу',
+                                   'об изменени€х',
+                                   'об уходе учащегос€ в академический отпуск',
+                                   'об окончании академического отпуска',
+                                   'об обучении на военной кафедре',
+                                   'об увольнении');
+  sReportTypeSQL: array[0..5] of String = (
+      'select NULL as REPORT_TYPE from Person where 1=0',
+      'select NULL as REPORT_TYPE from Person where 1=0',
+      'select NULL as REPORT_TYPE from Person where 1=0',
+      'select NULL as REPORT_TYPE from Person where 1=0',
+      'select NULL as REPORT_TYPE from Person where 1=0',
+      'select ''”волен (приказ и дата)'' as REPORT_TYPE');
+var
+  s: string;
+  sType: String;
+begin
+  try
+    sType  := sAbout[nType];
+
+    case nType of
+      0: EkRTF1.Infile  := GetTemplatesDir + 'WorkInStandard.rtf';
+      5: EkRTF1.Infile  := GetTemplatesDir + 'WorkOutStandard.rtf';
+    end;
+    EkRTF1.OutFile := GetReportsDir + '\—ообщение '+sType+' - '+
+      qrPerson.FieldByName('Fam').AsString+' '+
+      qrPerson.FieldByName('Im').AsString+' '+
+      qrPerson.FieldByName('Otch').AsString+'.rtf';
+
+    s   := sType;
+    if not qrPerson.FieldByName('IsAspirant').IsNull then begin
+      if (nType = 0) then s := 'о поступлении';
+      if (nType = 5) then begin
+        s := 'об отчислении';
+        sReportTypeSQL[5] := 'select ''ќтчислен (приказ и дата)'' as REPORT_TYPE';
+      end;
+    end;
+    if nType=1 then
+      s := s + ' сведений о гражданине, ' +
+      IfThen(qrPerson.FieldByName('STATE').AsString='0','подлeжащем призыву','пребывающем в запасе');
+    EkRTF1.CreateVar('REPORT_TITLE',s+':');
+
+    if qrOrgCont.Locate('IS_VUS',1,[]) then begin
+      EkRTF1.CreateVar('VUR_PHONE',qrOrgCont.FieldByName('PHONE').AsString);
+      EkRTF1.CreateVar('VUR_POST',qrOrgCont.FieldByName('POST').AsString);
+      s := IfThen(qrOrgCont.FieldByName('IM').AsString<>'',
+             LeftStr(qrOrgCont.FieldByName('IM').AsString,1)+'.','')+
+           IfThen(qrOrgCont.FieldByName('OTCH').AsString<>'',
+             LeftStr(qrOrgCont.FieldByName('OTCH').AsString,1)+'.','')+
+           ' '+qrOrgCont.FieldByName('FAM').AsString;
+      EkRTF1.CreateVar('VUR_NAME',s);
+    end;
+    if qrOrgCont.Locate('IS_GEN',1,[]) then begin
+      EkRTF1.CreateVar('GEN_POST',qrOrgCont.FieldByName('POST').AsString);
+      s := IfThen(qrOrgCont.FieldByName('IM').AsString<>'',
+             LeftStr(qrOrgCont.FieldByName('IM').AsString,1)+'.','')+
+           IfThen(qrOrgCont.FieldByName('OTCH').AsString<>'',
+             LeftStr(qrOrgCont.FieldByName('OTCH').AsString,1)+'.','')+
+           ' '+qrOrgCont.FieldByName('FAM').AsString;
+      EkRTF1.CreateVar('GEN_NAME',s);
+    end;
+
+    if qrPerson.FieldByName('STATE').AsString='0' then begin
+      EkRTF1.CreateVar('MAN_TYPE1','подлежащем призыву');
+      EkRTF1.CreateVar('MAN_TYPE2','подлежащего призыву');
+    end
+    else begin
+      EkRTF1.CreateVar('MAN_TYPE1','пребывающем в запасе');
+      EkRTF1.CreateVar('MAN_TYPE2','пребывающего в запасе');
+    end;
+
+    qrReportType.Close;
+    qrReportType.SQL.Text := sReportTypeSQL[nType];
+    qrReportType.Open;
+
+    case nType of
+      5:
+        if (not qrPerson.FieldByName('IsAspirant').IsNull) then
+          s := qrPerson.FieldByName('Dismissal_date').AsString +
+              '(є '+qrPerson.FieldByName('OrderDismissal').AsString+
+              ' от '+qrPerson.FieldByName('OrderDismissal_date').AsString+')'
+        else s := qrPerson.FieldByName('OUT_DATE').AsString+
+              '(є '+qrPerson.FieldByName('OUT_ORD_NUMB').AsString+
+              ' от '+qrPerson.FieldByName('OUT_ORD_DATE').AsString+')';
+    else
+      s := EmptyStr;
+    end;
+    EkRTF1.CreateVar('REPORT_ORDER',s);
+
+    with TADOQuery.Create(Self) do
+    try
+      Connection := dbMain;
+      SQL.Text :=
+        'select OutNumber, OutDate from personchanges pc '+
+        'where pc.Pers_Id = :Pers_ID and pc.OutNumber <> '''' and not exists ( '+
+        '      select 1 from personchanges pcc where pcc.OutNumber <> '''' and pc.Pers_id = pcc.Pers_id and pc.OutDate < pcc.OutDate) ';
+      Parameters.ParseSQL(SQL.Text, True);
+      Parameters.ParamByName('Pers_ID').Value := qrPerson.Parameters.ParamByName('PERS_ID').Value;
+      Open;
+      if Eof then begin
+        EkRTF1.CreateVar('OutNumber','          ');
+        EkRTF1.CreateVar('OutDate','Ђ      ї                     20     г.');
+      end else begin
+        EkRTF1.CreateVar('OutNumber',Fields[0].AsString);
+        EkRTF1.CreateVar('OutDate',DateToStrDoc(Fields[1].AsDateTime));
+      end;
+    finally
+      Free;
+    end;
+
+    EkRTF1.ExecuteOpen([qrPerson,qrFamily,qrOrg,qrReportType],SW_SHOWDEFAULT);
+    SaveEvent(dbMain, evs_Report_Print, sEventObject,
+      ['Ќомер сотрудника: '+IntToStr(qrPerson.Parameters.ParamByName('PERS_ID').Value),
+       '“ип: '+sType]);
+
+    Result := true;
+  except
+    Result := false;
+  end;
+end;
+
+
+end.

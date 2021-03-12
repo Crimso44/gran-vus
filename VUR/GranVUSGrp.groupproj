@@ -1,0 +1,84 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{32C705DC-AF05-4942-9862-EF4C42F972D1}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="GranVUS.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="LoadFromXLS\LoadFromXLS.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\VUR - patch 3.5 to 3.76\Source\patch.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\MSSQL Server\setup.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="LoadFromMDB\LoadFromMDB.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="GranVUS">
+			<MSBuild Projects="GranVUS.dproj"/>
+		</Target>
+		<Target Name="GranVUS:Clean">
+			<MSBuild Projects="GranVUS.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="GranVUS:Make">
+			<MSBuild Projects="GranVUS.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="LoadFromXLS">
+			<MSBuild Projects="LoadFromXLS\LoadFromXLS.dproj"/>
+		</Target>
+		<Target Name="LoadFromXLS:Clean">
+			<MSBuild Projects="LoadFromXLS\LoadFromXLS.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="LoadFromXLS:Make">
+			<MSBuild Projects="LoadFromXLS\LoadFromXLS.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="patch">
+			<MSBuild Projects="..\VUR - patch 3.5 to 3.76\Source\patch.dproj"/>
+		</Target>
+		<Target Name="patch:Clean">
+			<MSBuild Projects="..\VUR - patch 3.5 to 3.76\Source\patch.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="patch:Make">
+			<MSBuild Projects="..\VUR - patch 3.5 to 3.76\Source\patch.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="setup">
+			<MSBuild Projects="..\MSSQL Server\setup.dproj"/>
+		</Target>
+		<Target Name="setup:Clean">
+			<MSBuild Projects="..\MSSQL Server\setup.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="setup:Make">
+			<MSBuild Projects="..\MSSQL Server\setup.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="LoadFromMDB">
+			<MSBuild Projects="LoadFromMDB\LoadFromMDB.dproj"/>
+		</Target>
+		<Target Name="LoadFromMDB:Clean">
+			<MSBuild Projects="LoadFromMDB\LoadFromMDB.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="LoadFromMDB:Make">
+			<MSBuild Projects="LoadFromMDB\LoadFromMDB.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="GranVUS;LoadFromXLS;patch;setup;LoadFromMDB"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="GranVUS:Clean;LoadFromXLS:Clean;patch:Clean;setup:Clean;LoadFromMDB:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="GranVUS:Make;LoadFromXLS:Make;patch:Make;setup:Make;LoadFromMDB:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>

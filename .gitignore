@@ -1,0 +1,9 @@
+*.dcu
+*.dll
+*.exe
+*.rar
+*.~*
+*.local
+*.bak
+*.dsk
+*.identcache
