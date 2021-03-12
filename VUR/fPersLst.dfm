@@ -1189,6 +1189,27 @@ object fmPersonList: TfmPersonList
       RowIndex = 0
       FieldName = 'AssignText'
     end
+    object dbgDataIn_Ord_NumbStudy: TdxDBGridColumn
+      Caption = #1053#1086#1084#1077#1088' '#1087#1088#1080#1082#1072#1079#1072' '#1086' '#1079#1072#1095#1080#1089#1083#1077#1085#1080#1080
+      Width = 100
+      BandIndex = 1
+      RowIndex = 0
+      FieldName = 'In_Ord_NumbStudy'
+    end
+    object dbgDataIn_Ord_DateStudy: TdxDBGridDateColumn
+      Caption = #1044#1072#1090#1072' '#1087#1088#1080#1082#1072#1079#1072' '#1086' '#1079#1072#1095#1080#1089#1083#1077#1085#1080#1080
+      Width = 100
+      BandIndex = 1
+      RowIndex = 0
+      FieldName = 'In_Ord_DateStudy'
+    end
+    object dbgDataIn_DateStudy: TdxDBGridDateColumn
+      Caption = #1044#1072#1090#1072' '#1079#1072#1095#1080#1089#1083#1077#1085#1080#1103
+      Width = 100
+      BandIndex = 1
+      RowIndex = 0
+      FieldName = 'In_DateStudy'
+    end
   end
   object DataSQL: TMemo
     Left = 448
@@ -1332,8 +1353,23 @@ object fmPersonList: TfmPersonList
         '   iif([KPOST].CPROF_ID=500 or [KPOST].CPROF2015_ID=500, null, [' +
         'Person].Dog_Date) as Dog_DateWork, --Dog_DateWork !!D'
       ''
+      
+        '   iif([KPOST].CPROF_ID=500 or [KPOST].CPROF2015_ID=500, Appoint' +
+        'mentFirstStudy.In_Ord_Numb, null) as In_Ord_NumbStudy, --In_Ord_' +
+        'NumbStudy'
+      
+        '   iif([KPOST].CPROF_ID=500 or [KPOST].CPROF2015_ID=500, Appoint' +
+        'mentFirstStudy.In_Ord_Date, null) as In_Ord_DateStudy, --In_Ord_' +
+        'DateStudy !!D'
+      
+        '   iif([KPOST].CPROF_ID=500 or [KPOST].CPROF2015_ID=500, Appoint' +
+        'mentFirstStudy.In_Date, null) as In_DateStudy, --In_DateStudy !!' +
+        'D'
+      ''
       '   AppointmentFirst.In_Date as BeginWork_Date, '
-      '   AppointmentFirstStudy.In_Date as BeginStudy_Date, '
+      
+        '   AppointmentFirstStudy.In_Date as BeginStudy_Date, --BeginStud' +
+        'y_Date !!D'
       ''
       '   PStudy.Post_Name as PostStudy, --PostStudy'
       
@@ -1514,7 +1550,8 @@ object fmPersonList: TfmPersonList
         '.ASAppFirst=ASAppointmentFirst.Id) --ASIn_Date !!!'
       
         ' left outer join Appointment As AppointmentFirstStudy on [Person' +
-        '].AppFirstStudy=AppointmentFirstStudy.Id)'
+        '].AppFirstStudy=AppointmentFirstStudy.Id)  --In_Ord_NumbStudy --' +
+        'In_Ord_DateStudy --In_DateStudy --BeginStudy_Date !!!'
       
         ' left outer join Appointment As AppointmentLastStudy on [Person]' +
         '.AppLastStudy=AppointmentLastStudy.Id) --PostStudy --LastStudy !' +
@@ -1536,275 +1573,6 @@ object fmPersonList: TfmPersonList
         '1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) --PDPCode' +
         ' ???')
     TabOrder = 1
-    Visible = False
-    WordWrap = False
-  end
-  object DataSQL_SQL: TMemo
-    Left = 448
-    Top = 139
-    Width = 53
-    Height = 21
-    Lines.Strings = (
-      'SELECT distinct '
-      
-        '[Person].[PERS_ID],[Person].[ORG_ID],[Person].[FAM],[Person].[IM' +
-        '],[Person].[OTCH],[Person].[MALE],[Person].[BIRTHDAY],[Person].[' +
-        'BIRTHPLACE],'
-      
-        '[Person].[OKATO],[Person].[NAT_ID],[Person].[PSP_SER],[Person].[' +
-        'PSP_NUM],[Person].[PSP_PLACE],[Person].[PSP_DATE],[Person].[INN]' +
-        ','
-      
-        '[Person].[STRAH],[Person].[FST_ID],[Person].[ED_ID],[Person].[SC' +
-        '_ID],[Person].[IS_WAR],[Person].[EOARMY_DATE],[Person].[CSOST],'
-      
-        '[Person].[WRNG_ID],[Person].[WSOST_ID],[Person].[CAT_ZAP],[Perso' +
-        'n].[VUS],[Person].[WCAT],[Person].[OVK_ID],[Person].[WUCHET1],'
-      
-        '[Person].[SpecialWUchet1],[Person].[WUCHET2],[Person].[WDISCL],[' +
-        'Person].[TAB_NUMB],[Person].[DOG_NUMB],[Person].[DOG_DATE],'
-      
-        '[Person].[IS_RAB],[Person].[PROF1],[Person].[OKPDTR1],[Person].[' +
-        'PROF2],[Person].[OKPDTR2],[Person].[CONFDATE],[Person].[NUMB_T2]' +
-        ','
-      
-        '[Person].[W_DBEG],[Person].[W_DEND],[Person].[D_OVK],[Person].[D' +
-        '_WBIL],[Person].[OUT_ORD_NUMB],[Person].[OUT_ORD_DATE],'
-      
-        '[Person].[OUT_DATE],[Person].[WID],[Person].[WBser],[Person].[WB' +
-        'num],[Person].[WUCHET2_date],[Person].[Document],[Person].[Branc' +
-        'h],'
-      
-        '[Person].[IsAspirant],[Person].[StudyEnd_date],[Person].[OrderAk' +
-        'adem],[Person].[OrderAkadem_date],[Person].[ReasonAkadem],'
-      
-        '[Person].[BeginAkadem_date],[Person].[EndAkadem_date],[Person].[' +
-        'RealEndAkadem_date],[Person].[MedResult_date],[Person].[MedResul' +
-        't],'
-      
-        '[Person].[VKStatus],[Person].[BeginWar_date],[Person].[EndWar_da' +
-        'te],[Person].[RealEndWar_date],[Person].[ReasonEndWar],'
-      
-        '[Person].[Dismissal_date],[Person].[OrderDismissal],[Person].[Or' +
-        'derDismissal_date],[Person].[ReasonDismissal],[Person].[DisserNa' +
-        'me],'
-      
-        '[Person].[Degree_ID],[Person].[GuideDegree_ID],[Person].[FIOGuid' +
-        'e],[Person].[Defend_date],[Person].[RealDefend_date],'
-      
-        '[Person].[ContractEnd],[Person].[StudyForm],[Person].[Kval_Id],[' +
-        'Person].[Delay_ID],[Person].[DelayStart_date],[Person].[DelayEnd' +
-        '_date],'
-      
-        '[Person].[Health],[Person].[HealthDocNo],[Person].[HealthDoc_dat' +
-        'e],[Person].[Warfare],[Person].[ASOrder_In],[Person].[ASDate_In]' +
-        ','
-      
-        '[Person].[ASOut_ORD_NUMB],[Person].[ASOut_ORD_Date],[Person].[AS' +
-        'Out_Date],[Person].[AppLast],[Person].[AppLastAll],[Person].[App' +
-        'LastStudy],'
-      
-        '[Person].[ASAppLast],[Person].[ASAppFirst],[Person].[AppFirst],[' +
-        'Person].[AppFirstStudy],[Person].[Med_Where],[Person].[Med_Date]' +
-        ','
-      
-        '[Person].[Med_Result],[Person].[Psy_Where],[Person].[Psy_Date],[' +
-        'Person].[Psy_Result],[Person].[Asf_Sport],[Person].[Mob_Days],'
-      
-        '[Person].[Mob_Hours],[Person].[Mob_Mins],[Person].[Mob_CardDate]' +
-        ',[Person].[Mob_MissReason],[Person].[WUCHET2_Ser],'
-      
-        '[Person].[WUCHET2_IsWork],[Person].[PDPCode],[Person].[WRNG_Date' +
-        '],'
-      '  dbo.SGN(LEN([Person].WUchet2)),'
-      '    IIF(([Person].W_DEND is null),0,1) AS W_EndCount,'
-      '    IIF([PERSON].W_DEND is NULL and ('
-      
-        '         ([PERSON].MALE=1 and (KWRangeX.M_LIMIT is not NULL) and' +
-        '  (#FullAges#[PERSON].BIRTHDAY#)>=KWRangeX.M_LIMIT  ) or'
-      
-        '         ([PERSON].MALE=0 and (KWRangeX.FEM_LIMIT is not NULL) a' +
-        'nd  (#FullAges#[PERSON].BIRTHDAY#)>=KWRangeX.FEM_LIMIT  ))'
-      '        ,1,0) AS TooOld,'
-      
-        '   iif([Person].MedResult=1,'#39#1042#1086#1079#1086#1073#1085#1086#1074#1083#1077#1085#1080#1077' '#1086#1090#1089#1088#1086#1095#1082#1080#39',iif([Person' +
-        '].MedResult=2,'#39#1057#1085#1103#1090#1080#1077' '#1089' '#1074#1086#1080#1085#1089#1082#1086#1075#1086' '#1091#1095#1077#1090#1072#39','#39#39')) as MedResultText,'
-      
-        '   iif(Branch=0,'#39#1056#1040#39',iif(Branch=1,'#39#1042#1052#1060#39',iif(Branch=2,'#39#1060#1057#1041#39',iif(B' +
-        'ranch=3,'#39#1052#1042#1044#39','#39#39')))) as BranchName,'
-      
-        '   WUchet1+iif(SpecialWUchet1=1,'#39' '#1057#1087#1077#1094#1092#1086#1088#1084#1080#1088#1086#1074#1072#1085#1080#1077#39','#39#39') as WUch1' +
-        ','
-      
-        '   iif((WUCHET2_Ser is null) or WUCHET2_Ser='#39#39','#39#39','#39#1057#1077#1088#1080#1103' '#39'+WUCHE' +
-        'T2_Ser+'#39' '#39')+iif((WUCHET2 is null) or WUCHET2='#39#39','#39#39','#39#8470' '#39'+WUCHET2)' +
-        ' as WUch2,'
-      '   PersonReservChkInfo.Reserved,'
-      '   PersonReservChkInfo.MainWork,'
-      '   PersonReservChkInfo.PermanentWork,'
-      '   PersonReservChkInfo.WARTIME,'
-      '   PersonReservChkInfo.DefVUS,'
-      '   PersonReservChkInfo.Command300,'
-      '   PersonReservChkInfo.EOARMY_YEAR,'
-      '   PersonReservChkInfo.DefPOST,'
-      '   PersonReservChkInfo.DefPOST_Post,'
-      '   PersonReservChkInfo.DefPOST_Wsost,'
-      '   PersonReservChkInfo.DefPOST_Wrange,'
-      '   PersonReservChkInfo.IS_BAD,'
-      '    '
-      '   ph0.PH_NUMBER as PHONEWRK, --PHONEWRK'
-      '   ph1.PH_NUMBER as PHONEDOM, --PHONEDOM'
-      '   ph2.PH_NUMBER as PHONEMOB, --PHONEMOB'
-      '   addr1.ADDR_STR as ADDRPASS, --ADDRPASS'
-      '   addr2.ADDR_STR as ADDRREAL, --ADDRREAL'
-      '   addr1.POST_CODE as INDADDRPASS, --INDADDRPASS !!I'
-      '   addr2.POST_CODE as INDADDRREAL, --INDADDRREAL !!I'
-      ''
-      '   [KPOST].CPROF2015_ID AS CPROF_ID, --CPROF_ID !!I'
-      '   [KPOST].POST_NAME, --POST_NAME'
-      
-        '   iif([KPOST].CPROF_ID=500 or [KPOST].CPROF2015_ID=500,'#39#39',iif([' +
-        'Person].Is_Rab=0,'#39#1076#1072#39','#39#1085#1077#1090#39')) as Gos, --Gos'
-      
-        '   iif([KPOST].CPROF_ID=500 or [KPOST].CPROF2015_ID=500, [Person' +
-        '].Dog_Numb, null) as Dog_NumbStudy, --Dog_NumbStudy'
-      
-        '   iif([KPOST].CPROF_ID=500 or [KPOST].CPROF2015_ID=500, [Person' +
-        '].Dog_Date, null) as Dog_DateStudy, --Dog_DateStudy !!D'
-      
-        '   iif([KPOST].CPROF_ID=500 or [KPOST].CPROF2015_ID=500, null, [' +
-        'Person].Dog_Numb) as Dog_NumbWork, --Dog_NumbWork'
-      
-        '   iif([KPOST].CPROF_ID=500 or [KPOST].CPROF2015_ID=500, null, [' +
-        'Person].Dog_Date) as Dog_DateWork, --Dog_DateWork !!D'
-      ''
-      '   AppointmentFirst.In_Date as BeginWork_Date, '
-      '   AppointmentFirstStudy.In_Date as BeginStudy_Date, '
-      ''
-      '   PStudy.Post_Name as PostStudy, --PostStudy'
-      '   [KDepart].Dep_name,   [KDepart].KDepart_num,'
-      '   [KDepart].IS_ASF, '
-      '   IsNull([ASF].OrgSName, '#39#39') As ASFName, --ASFName'
-      '   [ASPX].DEP_Name As ASDep_Name, --ASDep_Name'
-      '   KWRangeX.WRng_Name AS WRange, KWRangeX.State As WRState,'
-      '   KWRangeX.Che AS Che, '
-      ''
-      '   ASAppointmentFirst.In_Date As ASIn_Date, --ASIn_Date !!D'
-      '   [ASPOST].POST_NAME As ASPost_Name, --ASPost_Name'
-      ''
-      '   [KFSTATE].FST_NAME, --FST_NAME'
-      '   [KEDUC].ED_NAME, --ED_NAME'
-      '   [KCPROF].CPROF_NAME, --CPROF_NAME'
-      '   [KOVK].OVK_NAME, --OVK_NAME'
-      '   [KDelay].DelayName, --DelayName'
-      '   [KNapr].NAPR_KOD+'#39' / '#39'+[KNapr].NAPR_NAME as Napr, --Napr'
-      '   [KWsost].WSost_Name, --WSOST_NAME'
-      '   1 As Foo'
-      ''
-      ' FROM (((((((((((((((((((((((((((('
-      
-        ' '#9#9#9'[Person] INNER JOIN PersonReservChkInfo ON [Person].PERS_ID ' +
-        '= PersonReservChkInfo.PERS_ID)'
-      
-        ' left outer join Appointment As AppointmentLastAll on [Person].A' +
-        'ppLastAll=AppointmentLastAll.Id)'
-      
-        '                  left outer join [KDepart] on AppointmentLastAl' +
-        'l.Dep_Id=[KDepart].Dep_Id) '
-      
-        #9#9#9#9'  left outer join [KPOST] on [KPOST].POST_ID=AppointmentLast' +
-        'All.POST_ID) --CPROF_ID --POST_NAME --Gos --Dog_NumbStudy --Dog_' +
-        'DateStudy --Dog_NumbWork --Dog_DateWork --CPROF_NAME !!!'
-      
-        #9#9#9#9'  left outer join [KCPROF2015] on [KCPROF2015].CPROF_ID=[KPO' +
-        'ST].CPROF2015_ID) --CPROF_NAME !!!'
-      '            '
-      
-        ' left outer join ASAppointment as ASAppointmentLastAll on [Perso' +
-        'n].ASAppLast=ASAppointmentLastAll.Id) --ASDep_Name --ASPost_Name' +
-        ' --ASFName !!!'
-      
-        '                  left outer join (select ASP_ID, ASF_ID, DEP_NA' +
-        'ME from ASP) as ASPX on ASAppointmentLastAll.ASP_Id=[ASPX].ASP_I' +
-        'd) --ASDep_Name --ASFName !!!'
-      
-        '                  left outer join ASF on ASF.ASF_Id = ASAppointm' +
-        'entLastAll.ASFX_Id) --ASFName --ASDep_Name !!!'
-      
-        '                  left outer join [ASPOST] on [ASPOST].ASPOST_ID' +
-        '=ASAppointmentLastAll.ASPOST_ID) --ASPost_Name !!!'
-      ''
-      
-        ' left outer join [Phones] ph0 on (ph0.PERS_ID=[Person].PERS_ID a' +
-        'nd ph0.PH_TYPE = 1)) --PHONEWRK !!!'
-      
-        ' left outer join [Phones] ph1 on (ph1.PERS_ID=[Person].PERS_ID a' +
-        'nd ph1.PH_TYPE = 2)) --PHONEDOM !!!'
-      
-        ' left outer join [Phones] ph2 on (ph2.PERS_ID=[Person].PERS_ID a' +
-        'nd ph2.PH_TYPE = 3)) --PHONEMOB !!!'
-      
-        ' left outer join [ADDR] addr1 on (addr1.PERS_ID=[Person].PERS_ID' +
-        ' and addr1.ADDR_TYPE = 0)) --ADDRPASS --INDADDRPASS !!!'
-      
-        ' left outer join [ADDR] addr2 on (addr2.PERS_ID=[Person].PERS_ID' +
-        ' and addr2.ADDR_TYPE = 1)) --ADDRREAL --INDADDRREAL !!!'
-      ''
-      
-        ' left outer join [KWRange] as KWRangeX on [Person].WRng_Id=KWRan' +
-        'geX.WRng_Id)'
-      
-        ' left outer join [KWSost] on [Person].WSost_Id=[KWSost].WSost_Id' +
-        ') ---WSOST_NAME !!!'
-      
-        ' left outer join [KFSTATE] on [KFSTATE].FST_ID=[Person].FST_ID) ' +
-        '--FST_NAME !!!'
-      
-        ' left outer join [KEDUC] on [KEDUC].ED_ID=[Person].ED_ID) --ED_N' +
-        'AME !!!'
-      
-        ' left outer join [EDUC] on ([EDUC].Pers_ID=[Person].Pers_ID and ' +
-        '[Educ].Type=4)) --Napr --End_Date !!!'
-      
-        ' left outer join [KNapr] on [KNapr].Napr_ID=[Educ].Napr_ID) --Na' +
-        'pr !!!'
-      
-        ' left outer join [KOVK] on [KOVK].OVK_ID=[Person].OVK_ID) --OVK_' +
-        'NAME !!!'
-      
-        ' left outer join [KDelay] on [KDelay].ID=[Person].Delay_ID) --De' +
-        'layName !!!'
-      ''
-      
-        ' left outer join Appointment As AppointmentFirst on [Person].App' +
-        'Last=AppointmentFirst.Id) '
-      
-        ' left outer join ASAppointment as ASAppointmentFirst on [Person]' +
-        '.ASAppFirst=ASAppointmentFirst.Id) --ASIn_Date !!!'
-      
-        ' left outer join Appointment As AppointmentFirstStudy on [Person' +
-        '].AppFirstStudy=AppointmentFirstStudy.Id)'
-      
-        ' left outer join Appointment As AppointmentLastStudy on [Person]' +
-        '.AppLastStudy=AppointmentLastStudy.Id) --PostStudy --LastStudy !' +
-        '!! '
-      
-        ' '#9#9#9#9'left outer join [KPOST] as PStudy on PStudy.POST_ID=Appoint' +
-        'mentLastStudy.POST_ID) --PostStudy !!!'
-      
-        'left outer join PDP on PDP.POST_ID = AppointmentLastAll.POST_ID)' +
-        ' --PDPCode !!! '#9#9#9
-      'WHERE 1=1'
-      
-        'and  (PDP.Limited = 0 OR Person.WCAT='#39#1042#39') AND charindex('#39'.'#39'+conv' +
-        'ert(varchar,Person.WSOST_ID)+'#39'.'#39', PDP.WSOST)>0 AND  (PDP.WRange=' +
-        '0 OR PDP.CHE >= KWRangeX.CHE) AND  PDP.Age <= #FullAges#[PERSON]' +
-        '.BIRTHDAY# And --PDPCode ???'
-      
-        '  ((PDP.Sex=1 and Person.Male=1) or (PDP.Sex=2 and Person.Male<>' +
-        '1) or (PDP.Sex is null) or (PDP.Sex<>1 and PDP.Sex <>2)) --PDPCo' +
-        'de ???')
-    TabOrder = 6
     Visible = False
     WordWrap = False
   end
@@ -2876,6 +2644,16 @@ object fmPersonList: TfmPersonList
     end
     object qrDataADDR_DATE_END: TDateTimeField
       FieldName = 'ADDR_DATE_END'
+    end
+    object qrDataIn_Ord_NumbStudy: TStringField
+      FieldName = 'In_Ord_NumbStudy'
+      Size = 255
+    end
+    object qrDataIn_Ord_DateStudy: TDateField
+      FieldName = 'In_Ord_DateStudy'
+    end
+    object qrDataIn_DateStudy: TDateField
+      FieldName = 'In_DateStudy'
     end
   end
   object DataSource1: TDataSource

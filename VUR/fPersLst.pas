@@ -311,7 +311,6 @@ type
     dbgDataWrng_Date: TdxDBGridColumn;
     dbgDataColumn97: TdxDBGridColumn;
     dbgDataColumn98: TdxDBGridColumn;
-    DataSQL_SQL: TMemo;
     qrDataPersonMale: TStringField;
     dbgDataPersonMale: TdxDBGridColumn;
     dbgDataBirthPlace: TdxDBGridColumn;
@@ -364,6 +363,12 @@ type
     dbgDataADDR_DATE_END: TdxDBGridDateColumn;
     qrDataADDR_DATE_END: TDateTimeField;
     dbgDataPers_ID: TdxDBGridColumn;
+    qrDataIn_Ord_NumbStudy: TStringField;
+    qrDataIn_Ord_DateStudy: TDateField;
+    qrDataIn_DateStudy: TDateField;
+    dbgDataIn_Ord_NumbStudy: TdxDBGridColumn;
+    dbgDataIn_Ord_DateStudy: TdxDBGridDateColumn;
+    dbgDataIn_DateStudy: TdxDBGridDateColumn;
     procedure actAddExecute(Sender: TObject);
     procedure actEditExecute(Sender: TObject);
     procedure actDelExecute(Sender: TObject);
@@ -443,10 +448,7 @@ begin
       dbgData.Bands[dbgData.Columns[i].BandIndex].Visible := True;
     end;
 
-  if dmMain.isJet then
-    dataLines := DataSQL
-  else
-    dataLines := DataSQL_SQL;
+  dataLines := DataSQL;
 
   // Удаляем ненужные строки из запроса
   Result := '';
