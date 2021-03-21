@@ -3327,6 +3327,7 @@ var
   VUSIsOk   : Boolean; //ВУС не дефицитна.
   Cmd300    : Boolean; //Шаблон %300% подходит!
   SpecForm  : Boolean; //Спецформирование!
+  DocIsSprav: Boolean; //Справка уклониста
   DefPost   : Boolean; //Должность найдена в перечне бронируемых.
   DefPost_Post, DefPost_WRange, DefPost_WSost: Boolean;
   DoReserv  : Boolean; //Должен быть забронирован.
@@ -3359,17 +3360,17 @@ begin
     Open;
     IsMvkOrder := not Eof;
     Close;
-    SQL.Text := IsJet(
-    'SELECT AppointmentLastAll.*, KDEPART.DEP_NAME, KPOST.POST_NAME'#13+
-                '     , IIF(IIF(ISNULL([StaffList].WartimePlan),0,[StaffList].WartimePlan)>0,1,0) AS WARTIME'#13+
-                '     , IIF(EXISTS(SELECT *'#13+
-                                  '  FROM PDP'#13+
-                                  ' WHERE PDP.POST_ID = AppointmentLastAll.POST_ID'#13+
-                                  '   AND (PDP.Limited = 0 OR '''+edWCat.Text+'''=''В'')'#13+
-                                  '   AND PDP.WSOST LIKE ''%.'+GetWSOST_IDstr+'.%'''#13+
-                                  '   AND (PDP.WRange=0 OR PDP.CHE >= (SELECT CHE FROM KWRange WHERE WRng_Id = '+GetWRng_IdStr+'))'#13+
-                                  '   AND PDP.AGE <= '+IntToStr(GetFullAge(dtBirth.Date))+#13+
-                                  '   AND ((PDP.Sex=1 and '+IntToStr(Male)+'=1) or (PDP.Sex=2 and '+IntToStr(Male)+'<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2))), 1, 0) AS DefPOST, '#13+
+    SQL.Text :=
+      'SELECT AppointmentLastAll.*, KDEPART.DEP_NAME, KPOST.POST_NAME'#13+
+            '     , IIF(IIF(ISNULL([StaffList].WartimePlan),0,[StaffList].WartimePlan)>0,1,0) AS WARTIME'#13+
+            '     , IIF(EXISTS(SELECT *'#13+
+                              '  FROM PDP'#13+
+                              ' WHERE PDP.POST_ID = AppointmentLastAll.POST_ID'#13+
+                              '   AND (PDP.Limited = 0 OR '''+edWCat.Text+'''=''В'')'#13+
+                              '   AND PDP.WSOST LIKE ''%.'+GetWSOST_IDstr+'.%'''#13+
+                              '   AND (PDP.WRange=0 OR PDP.CHE >= (SELECT CHE FROM KWRange WHERE WRng_Id = '+GetWRng_IdStr+'))'#13+
+                              '   AND PDP.AGE <= '+IntToStr(GetFullAge(dtBirth.Date))+#13+
+                              '   AND ((PDP.Sex=1 and '+IntToStr(Male)+'=1) or (PDP.Sex=2 and '+IntToStr(Male)+'<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2))), 1, 0) AS DefPOST, '#13+
 
       'IIf(not Exists (SELECT * FROM PDP   WHERE '#13+
       '      PDP.POST_ID = AppointmentLastAll.POST_ID '#13+
@@ -3423,83 +3424,15 @@ begin
       '))),0,1) AS DefPOST_WSost '#13+
 
 
-                '  FROM ((AppointmentLastAll '#13+
-                '   LEFT JOIN KDepart ON KDepart.DEP_ID = AppointmentLastAll.DEP_ID)'#13+
-                '   LEFT JOIN KPOST ON KPOST.POST_ID = AppointmentLastAll.POST_ID)'#13+
-                '   LEFT JOIN StaffList ON AppointmentLastAll.DEP_ID=[StaffList].DEP_ID'#13+
-                '                      AND AppointmentLastAll.POST_ID=[StaffList].POST_ID'#13+
-                ' WHERE PERS_ID = '+IntToStr(ID),
+      '  FROM ((AppointmentLastAll '#13+
+      '   LEFT JOIN KDepart ON KDepart.DEP_ID = AppointmentLastAll.DEP_ID)'#13+
+      '   LEFT JOIN KPOST ON KPOST.POST_ID = AppointmentLastAll.POST_ID)'#13+
+      '   LEFT JOIN StaffList ON AppointmentLastAll.DEP_ID=[StaffList].DEP_ID'#13+
+      '                      AND AppointmentLastAll.POST_ID=[StaffList].POST_ID'#13+
+      ' WHERE PERS_ID = '+IntToStr(ID);
 
 
-    'SELECT AppointmentLastAll.*, KDEPART.DEP_NAME, KPOST.POST_NAME'#13+
-                '     , IIF(ISNULL([StaffList].WartimePlan,0)>0,1,0) AS WARTIME'#13+
-                '     , IIF(EXISTS(SELECT *'#13+
-                                  '  FROM PDP'#13+
-                                  ' WHERE PDP.POST_ID = AppointmentLastAll.POST_ID'#13+
-                                  '   AND (PDP.Limited = 0 OR '''+edWCat.Text+'''=''В'')'#13+
-                                  '   AND PDP.WSOST LIKE ''%.'+GetWSOST_IDstr+'.%'''#13+
-                                  '   AND (PDP.WRange=0 OR PDP.CHE >= (SELECT CHE FROM KWRange WHERE WRng_Id = '+GetWRng_IdStr+'))'#13+
-                                  '   AND PDP.AGE <= '+IntToStr(GetFullAge(dtBirth.Date))+#13+
-                                  '   AND ((PDP.Sex=1 and '+IntToStr(Male)+'=1) or (PDP.Sex=2 and '+IntToStr(Male)+'<>1) or (PDP.Sex is null) or (PDP.Sex<>1 and PDP.Sex <>2))), 1, 0) AS DefPOST, '#13+
 
-      'IIf(not Exists (SELECT * FROM PDP   WHERE '#13+
-      '      PDP.POST_ID = AppointmentLastAll.POST_ID '#13+
-          '   AND (PDP.Limited = 0 OR '''+edWCat.Text+'''=''В'')'#13+
-          '   AND PDP.WSOST LIKE ''%.'+GetWSOST_IDstr+'.%'''#13+
-          '   AND (PDP.WRange=0 OR PDP.CHE >= (SELECT CHE FROM KWRange WHERE WRng_Id = '+GetWRng_IdStr+'))'#13+
-          '   AND PDP.AGE <= '+IntToStr(GetFullAge(dtBirth.Date))+#13+
-          '   AND ((PDP.Sex=1 and '+IntToStr(Male)+'=1) or (PDP.Sex=2 and '+IntToStr(Male)+'<>1) or (PDP.Sex is null) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
-      '    ) '#13+
-      'and ((not Exists (SELECT * FROM PDP   WHERE (PDP.POST_ID = AppointmentLastAll.POST_ID)) or '#13+
-      'Exists (SELECT * FROM PDP   WHERE '#13+
-          '   (PDP.Limited = 0 OR '''+edWCat.Text+'''=''В'')'#13+
-          '   AND PDP.WSOST LIKE ''%.'+GetWSOST_IDstr+'.%'''#13+
-          '   AND (PDP.WRange=0 OR PDP.CHE >= (SELECT CHE FROM KWRange WHERE WRng_Id = '+GetWRng_IdStr+'))'#13+
-          '   AND PDP.AGE <= '+IntToStr(GetFullAge(dtBirth.Date))+#13+
-          '   AND ((PDP.Sex=1 and '+IntToStr(Male)+'=1) or (PDP.Sex=2 and '+IntToStr(Male)+'<>1) or (PDP.Sex is null) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
-      '))),0,1) AS DefPOST_Post, '#13+
-
-      'IIf(not Exists (SELECT * FROM PDP   WHERE '#13+
-      '      PDP.POST_ID = AppointmentLastAll.POST_ID '#13+
-          '   AND (PDP.Limited = 0 OR '''+edWCat.Text+'''=''В'')'#13+
-          '   AND PDP.WSOST LIKE ''%.'+GetWSOST_IDstr+'.%'''#13+
-          '   AND (PDP.WRange=0 OR PDP.CHE >= (SELECT CHE FROM KWRange WHERE WRng_Id = '+GetWRng_IdStr+'))'#13+
-          '   AND PDP.AGE <= '+IntToStr(GetFullAge(dtBirth.Date))+#13+
-          '   AND ((PDP.Sex=1 and '+IntToStr(Male)+'=1) or (PDP.Sex=2 and '+IntToStr(Male)+'<>1) or (PDP.Sex is null) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
-      '    ) '#13+
-      'and ((not Exists (SELECT * FROM PDP   WHERE  (PDP.WRange=0 OR PDP.CHE >= (SELECT CHE FROM KWRange WHERE WRng_Id = '+GetWRng_IdStr+'))) or '#13+
-      'Exists (SELECT * FROM PDP   WHERE '#13+
-      '      PDP.POST_ID = AppointmentLastAll.POST_ID '#13+
-          '   AND (PDP.Limited = 0 OR '''+edWCat.Text+'''=''В'')'#13+
-          '   AND PDP.WSOST LIKE ''%.'+GetWSOST_IDstr+'.%'''#13+
-          '   AND PDP.AGE <= '+IntToStr(GetFullAge(dtBirth.Date))+#13+
-          '   AND ((PDP.Sex=1 and '+IntToStr(Male)+'=1) or (PDP.Sex=2 and '+IntToStr(Male)+'<>1) or (PDP.Sex is null) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
-      '))),0,1) AS DefPOST_WRange, '#13+
-
-      'IIf(not Exists (SELECT * FROM PDP   WHERE '#13+
-      '      PDP.POST_ID = AppointmentLastAll.POST_ID '#13+
-          '   AND (PDP.Limited = 0 OR '''+edWCat.Text+'''=''В'')'#13+
-          '   AND PDP.WSOST LIKE ''%.'+GetWSOST_IDstr+'.%'''#13+
-          '   AND (PDP.WRange=0 OR PDP.CHE >= (SELECT CHE FROM KWRange WHERE WRng_Id = '+GetWRng_IdStr+'))'#13+
-          '   AND PDP.AGE <= '+IntToStr(GetFullAge(dtBirth.Date))+#13+
-          '   AND ((PDP.Sex=1 and '+IntToStr(Male)+'=1) or (PDP.Sex=2 and '+IntToStr(Male)+'<>1) or (PDP.Sex is null) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
-      '    ) '#13+
-      'and ((not Exists (SELECT * FROM PDP   WHERE PDP.WSOST LIKE ''%.'+GetWSOST_IDstr+'.%'') or '#13+
-      'Exists (SELECT * FROM PDP   WHERE '#13+
-      '      PDP.POST_ID = AppointmentLastAll.POST_ID '#13+
-          '   AND (PDP.Limited = 0 OR '''+edWCat.Text+'''=''В'')'#13+
-          '   AND (PDP.WRange=0 OR PDP.CHE >= (SELECT CHE FROM KWRange WHERE WRng_Id = '+GetWRng_IdStr+'))'#13+
-          '   AND PDP.AGE <= '+IntToStr(GetFullAge(dtBirth.Date))+#13+
-          '   AND ((PDP.Sex=1 and '+IntToStr(Male)+'=1) or (PDP.Sex=2 and '+IntToStr(Male)+'<>1) or (PDP.Sex is null) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
-      '))),0,1) AS DefPOST_WSost '#13+
-
-
-                '  FROM ((AppointmentLastAll '#13+
-                '   LEFT JOIN KDepart ON KDepart.DEP_ID = AppointmentLastAll.DEP_ID)'#13+
-                '   LEFT JOIN KPOST ON KPOST.POST_ID = AppointmentLastAll.POST_ID)'#13+
-                '   LEFT JOIN StaffList ON AppointmentLastAll.DEP_ID=[StaffList].DEP_ID'#13+
-                '                      AND AppointmentLastAll.POST_ID=[StaffList].POST_ID'#13+
-                ' WHERE PERS_ID = '+IntToStr(ID));
 
     Open;
     if IsEmpty then begin
@@ -3510,6 +3443,7 @@ begin
       DefPost_Post  := False;
       DefPost_WRange:= False;
       DefPost_WSost := False;
+      DocIsSprav := False;
       DEP_NAME  := '';
       POST_NAME := '';
     end
@@ -3523,6 +3457,7 @@ begin
       DefPost_WSost  := FieldByName('DefPost_WSost') .AsInteger = 1;
       DEP_NAME  := FieldByName('DEP_NAME') .AsString;
       POST_NAME := FieldByName('POST_NAME').AsString;
+      DocIsSprav := cbDocument.ItemIndex = 3;
     end;
     Close;
     SQL.Text := 'SELECT state FROM KWRange WHERE WRng_Id = '+GetWRng_IdStr;
@@ -3553,7 +3488,7 @@ begin
   finally Free;
   end;
   DoReserv :=  IsMvkOrder or (WorkMain and WorkPerm and DepIsWar and VUSIsOk and
-                 not Cmd300 and not SpecForm and DefPost);
+                 not Cmd300 and not SpecForm and DefPost and not DocIsSprav);
 
   Msg := '';
   if edWUch2_IsWork.Checked then begin //IsReserved
@@ -3567,6 +3502,7 @@ begin
       if not VUSIsOk  then Msg := 'ВУС входит в список дефицитных.' else
       if Cmd300       then Msg := 'имеется моб. предписание по небронируемой команде.' else
       if SpecForm     then Msg := 'имеется моб. предписание в спецформирование.' else
+      if DocIsSprav   then Msg := 'не подлежит бронированию как владелец справки уклониста.' else
       if not DefPost  then begin
         Msg := 'работник не подпадает ни под один пункт ПДП.';
         if not DefPost_Post then

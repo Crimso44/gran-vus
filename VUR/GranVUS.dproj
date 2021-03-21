@@ -252,8 +252,8 @@
 						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
 						<VersionInfo Name="MajorVer">3</VersionInfo>
 						<VersionInfo Name="MinorVer">8</VersionInfo>
-						<VersionInfo Name="Release">7</VersionInfo>
-						<VersionInfo Name="Build">184</VersionInfo>
+						<VersionInfo Name="Release">8</VersionInfo>
+						<VersionInfo Name="Build">185</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -265,13 +265,13 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">НПП &quot;Гранит-Центр&quot;</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">3.8.7.184</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">3.8.8.185</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">Гран-ВУР</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
 						<VersionInfoKeys Name="OriginalFilename"/>
-						<VersionInfoKeys Name="ProductName">Гран-ВУР 3.81</VersionInfoKeys>
-						<VersionInfoKeys Name="ProductVersion">3.8.7.184</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductName">Гран-ВУР 3.82</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">3.8.8.185</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
 					<Excluded_Packages>

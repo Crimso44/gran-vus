@@ -32,7 +32,8 @@ uses
   vur388 in 'patches\vur388.pas',
   vur390 in 'patches\vur390.pas',
   vur389 in 'patches\vur389.pas',
-  vur391 in 'patches\vur391.pas';
+  vur391 in 'patches\vur391.pas',
+  vur392 in 'patches\vur392.pas';
 
 {$R *.res}
 

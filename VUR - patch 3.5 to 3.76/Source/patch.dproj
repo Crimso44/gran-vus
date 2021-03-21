@@ -92,6 +92,7 @@
 			<DCCReference Include="patches\vur390.pas"/>
 			<DCCReference Include="patches\vur389.pas"/>
 			<DCCReference Include="patches\vur391.pas"/>
+			<DCCReference Include="patches\vur392.pas"/>
 			<BuildConfiguration Include="Debug">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>

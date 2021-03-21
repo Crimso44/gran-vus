@@ -990,6 +990,7 @@ begin
       if qrDataDefVUS         .AsInteger = 1 then Msg := 'Забронирован, но ВУС входит в список дефицитных.' else
       if qrDataCommand300     .AsInteger = 1 then Msg := 'Забронирован, но имеет моб. предписание по небронируемой команде.' else
       if qrDataSpecialWUchet1 .AsInteger = 1 then Msg := 'Забронирован, но имеет моб. предписание в спецформирование.' else
+      if qrDataDocument       .AsInteger = 3 then Msg := 'Забронирован, но не подлежит бронированию как владелец справки уклониста.';
 
       if qrDataDefPost        .AsInteger = 0 then begin
         Msg := 'Забронирован, но не подпадает ни под один пункт ПДП.';

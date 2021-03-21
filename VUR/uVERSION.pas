@@ -2,7 +2,7 @@ unit uVERSION;
 
 interface
 const
-  sVersion = '3.81.3';
+  sVersion = '3.82';
   sAppTitle = 'ֳנאם-ֲ׃׀ '+sVersion;
 implementation
 
