@@ -55,7 +55,6 @@ type
     qrDataKOKPDTR_CODE: TStringField;
     qrDataKOKPDTR_Name_Full: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure FormCreate(Sender: TObject);
     procedure actNewExecute(Sender: TObject);
     procedure actEditExecute(Sender: TObject);
     procedure actDeleteExecute(Sender: TObject);
@@ -112,31 +111,6 @@ procedure TfmTPDP.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
   fmTPDP := nil;
-end;
-
-procedure TfmTPDP.FormCreate(Sender: TObject);
-begin
-  if not dmMain.isJet then
-    qrData.SQL.Text :=
-      'SELECT cast([TPDP].ID as varchar)+''.''+cast(IIF((Cond.ID is null),0,Cond.ID) as varchar) AS ID '+
-      '     , [TPDP].ID AS TPDP_ID '+
-      '     , [TPDP].OKVED '+
-      '     , [TPDP].KOKPDTR '+
-      '     , [KOKPDTR].KOKPDTR_CODE '+
-      '     , [KOKPDTR].KOKPDTR_Name '+
-      '     , [KOKPDTR].KOKPDTR_CODE + '' '' + [KOKPDTR].KOKPDTR_NAME As KOKPDTR_NAME_Full '+
-      '     , Cond.ID AS COND_ID '+
-      '     , Cond.Limited '+
-      '     , IIF(IsNull(Cond.Age,0)=0, ''Без ограничения'', cast(Cond.Age as varchar)) AS Age '+
-      '     , IIF(IsNull(Cond.WRange,0)=0, ''Независимо от звания'', Cast(Rng.WRNG_NAME as varchar)) AS WRange '+
-      '     , Cond.WSosts '+
-      '     , IIF(Sex=1,''М'',IIF(Sex=2,''Ж'',''М и Ж'')) As SexName '+
-      '  FROM (([TPDP] '+
-      '       LEFT OUTER JOIN [TPDPCond] As Cond ON ([TPDP].ID=Cond.TPDP_ID)) '+
-      '       LEFT OUTER JOIN [KWRange] AS Rng ON (Cond.WRange=Rng.WRNG_ID)) '+
-      '       LEFT OUTER JOIN [KOKPDTR] ON ([TPDP].KOKPDTR = [KOKPDTR].KOKPDTR_ID)';
-
-  qrData.Open;
 end;
 
 procedure TfmTPDP.actNewExecute(Sender: TObject);

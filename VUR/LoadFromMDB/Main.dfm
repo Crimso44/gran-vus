@@ -31,6 +31,10 @@ object fmMain: TfmMain
     object P1: TTabSheet
       Caption = 'P1'
       TabVisible = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Bevel3: TBevel
         Left = 8
         Top = 312

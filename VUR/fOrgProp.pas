@@ -1064,7 +1064,7 @@ begin
          ' "Расчёт по картотеке"(с изображением молнии).'});
       end
       else begin
-        SQL.Text := 'SELECT * FROM PERSON WHERE WUCHET2_IsWork = 1 and ((W_DEND is null) or Year(W_DEND) >= Year('+IsJet('','Get')+'date())) and (OUT_ORD_NUMB is null)';
+        SQL.Text := 'SELECT * FROM PERSON WHERE WUCHET2_IsWork = 1 and ((W_DEND is null) or Year(W_DEND) >= Year(date())) and (OUT_ORD_NUMB is null)';
         Open;
         if IsEmpty then begin
           ShowInfo('ВНИМАНИЕ: Изменено значение флага "Ведёт бронирование"!'#13#13+

@@ -969,16 +969,6 @@ begin ////////////////// Processing //////////////////
     Connection := dmMain.DBMain; ParamCheck := False;
     qry2.Connection := dmMain.DBMain;
 
-    if not dmMain.isJet then begin
-      sqlText := TStringList.Create;
-
-      sFile := ExtractFilePath(ParamStr(0)) + 'GranVusSql1.sql';
-      sqlText.LoadFromFile(sFile);
-      ExecScript(qry, sqlText);
-
-    end;
-
-
     with dmMain.ExcelApplication do
     try
       Connect;

@@ -865,10 +865,10 @@ begin
     LoadStrings(colLangSkill.Items,false,'SELECT * FROM KLANGSK','LSK_ID','LSK_NAME');
     LoadStrings(colDepName.Items,false,'SELECT * FROM KDepart ORDER BY DEP_NAME','DEP_ID','DEP_NAME');
     LoadStrings(cbFamState.Items,false,'SELECT * FROM KFSTATE Where OKIN is not null ORDER BY '+
-      IsJet('iif(IsNull(OKIN),999999,OKIN)','IsNull(OKIN,999999)'),'FST_ID','FST_NAME');
+      'iif(IsNull(OKIN),999999,OKIN)','FST_ID','FST_NAME');
     LoadStrings(colFamType.Items,false,'SELECT * FROM KFAMTYPE ORDER BY FT_NAME','FT_ID','FT_NAME');
     LoadStrings(cbEduc.Items,false,'SELECT * FROM KEDUC Where Okin is not null Order by '+
-      IsJet('iif(IsNull(OKIN),999999,OKIN)','IsNull(OKIN,999999)'),'ED_ID','ED_NAME');
+      'iif(IsNull(OKIN),999999,OKIN)','ED_ID','ED_NAME');
     LoadStrings(cbUz1.Items,false,'SELECT * FROM KUZ ORDER BY UZ_NAME','UZ_ID','UZ_NAME');
     LoadStrings(cbUz2.Items,false,'SELECT * FROM KUZ ORDER BY UZ_NAME','UZ_ID','UZ_NAME');
     LoadStrings(cbUz3.Items,false,'SELECT * FROM KUZ ORDER BY UZ_NAME','UZ_ID','UZ_NAME');
@@ -1581,7 +1581,7 @@ begin
     if (not qrData.FieldByName('FST_ID').IsNull) and (ListIndex(cbFamState.Items,qrData.FieldByName('FST_ID').AsInteger) < 0) then begin
       cbFamState.Items.Clear;
       LoadStrings(cbFamState.Items,false,'SELECT * FROM KFSTATE ORDER BY '+
-        IsJet('iif(IsNull(OKIN),999999,OKIN)','IsNull(OKIN,999999)'),'FST_ID','FST_NAME');
+        'iif(IsNull(OKIN),999999,OKIN)','FST_ID','FST_NAME');
     end;
     cbFamState.ItemIndex := ListIndex(cbFamState.Items,qrData.FieldByName('FST_ID').AsInteger);
     cbFamStateChange(Self);
@@ -1602,7 +1602,7 @@ begin
     if (not qrData.FieldByName('ED_ID').IsNull) and (ListIndex(cbEduc.Items,qrData.FieldByName('ED_ID').AsInteger) < 0) then begin
       cbEduc.Items.Clear;
       LoadStrings(cbEduc.Items,false,'SELECT * FROM KEDUC Order by '+
-        IsJet('iif(IsNull(OKIN),999999,OKIN)','IsNull(OKIN,999999)'),'ED_ID','ED_NAME');
+        'iif(IsNull(OKIN),999999,OKIN)','ED_ID','ED_NAME');
     end;
     cbEduc.ItemIndex := ListIndex(cbEduc.Items,qrData.FieldByName('ED_ID').AsInteger);
     cbEduc_saved := cbEduc.ItemIndex;
@@ -3587,7 +3587,7 @@ begin
     Last;
     if (stWorkType.Text <> FieldByName('WTP_NAME').AsString) then edFamChange(nil);
     stWorkType.Text := FieldByName('WTP_NAME').AsString;
-    edContractEnd.Enabled := FieldByName(IsJet('Appointment.WCH_ID','WCH_ID')).AsInteger = 2;
+    edContractEnd.Enabled := FieldByName('Appointment.WCH_ID').AsInteger = 2;
     with edContractEnd do if Enabled then Color := clWindow else Color := clBtnFace;
     if (stWorkChar.Text <> FieldByName('WCH_NAME').AsString) then edFamChange(nil);
     stWorkChar.Text := FieldByName('WCH_NAME').AsString;

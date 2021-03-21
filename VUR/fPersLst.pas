@@ -474,7 +474,7 @@ begin
         if Pos('!!I', ss) > 0 then begin
           Result := Result + '0 as ' + Copy(ss, 1, Pos('!!I', ss)-2) + ','#13;
         end else if Pos('!!D', ss) > 0 then begin
-          Result := Result + iifStr(dmMain.isJet,'','Get') + 'Date() as ' + Copy(ss, 1, Pos('!!D', ss)-2) + ','#13;
+          Result := Result + 'Date() as ' + Copy(ss, 1, Pos('!!D', ss)-2) + ','#13;
         end else
           Result := Result + ''' '' as ' + ss + ','#13;
       end;
@@ -482,7 +482,7 @@ begin
       Result := Result + s + #13;
   end;
 
-  Result := ReplaceFullAges(Result, dmMain.isJet);
+  Result := ReplaceFullAges(Result);
 
   flds.Free;
 end;
@@ -490,7 +490,7 @@ end;
 function GeneralSQLOrderBy: String;
 begin
   Result := 'ORDER BY '+
-    iifStr(dmMain.isJet,'','dbo.')+'SGN(LEN([Person].WUchet2)) DESC, '+
+    'SGN(LEN([Person].WUchet2)) DESC, '+
     'KWRangeX.State DESC, '+
     '[KDepart].'+iifStr(dmMain.isAbcSort, 'Dep_Name', 'KDEPART_Num')+', '+
     '[Person].Fam, '+

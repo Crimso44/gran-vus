@@ -69,7 +69,6 @@ type
     slPlugIns: TStringList;
     rAdmin, rImport, rExport, rPrint, rEdit: Boolean;//User's rights
     isAbcSort: Boolean;
-    isJet: Boolean;
     procedure ScanPlugIns;// имя_dll,имя_плагина,копирайт,тип,image_index
 
     function DoConnect: boolean;
@@ -92,7 +91,6 @@ function Date2SQL(ADate: TDate): string;
 function SQL2Date(ASQL: string): TDate;
 function MakeRTFTemplate(Name: PChar; var Size: Integer): Pointer;
 function CheckUpdateLibrary: Boolean;
-function IsJet(strJet, strSql: String): String;
 
 implementation
 
@@ -100,15 +98,6 @@ uses IniSupport, msg, fMain, fPersLst, fPersonCard, fGetPsw, SaveEvents, StrUtil
   uVERSION, IniFiles;
 
 {$R *.DFM}
-
-function IsJet(strJet, strSql: String): String;
-begin
-  if dmMain.isJet then
-    Result := strJet
-  else
-    Result := strSql;
-end;
-
 
 
 function iifStr(condition: Boolean; resTrue, resFalse: String): String;
@@ -128,7 +117,7 @@ begin
     dbMain.Connected := false;
   end;
   try
-    isJet := LoadConnAttr(dbMain);
+    LoadConnAttr(dbMain);
     dbMain.Connected := true;
   except
     ShowErr(Err_DbConnect + #13 + dbMain.ConnectionString);

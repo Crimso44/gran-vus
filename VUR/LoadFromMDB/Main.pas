@@ -129,7 +129,7 @@ end;
 procedure TfmMain.pbNextClick(Sender: TObject);
 begin
 
-  if dmMain.IsJet then begin
+  if True then begin
     ShowErr('Только для загрузки данных в SQL-версию!'); Exit;
   end;
 

@@ -439,19 +439,19 @@ begin
     Connection := dmMain.dbMain; ParamCheck := False;
 //    SQL.Text := 'DELETE * FROM STAFFLIST WHERE NOT DEP_ID IN (SELECT DEP_ID FROM KDEPART) OR NOT POST_ID IN (SELECT POST_ID FROM KPOST)';
 //    ExecSQL;
-    SQL.Text := 'DELETE '+IsJet('* ','FROM ASSTAFFLIST ')+'FROM ASSTAFFLIST sl WHERE '+
+    SQL.Text := 'DELETE * FROM ASSTAFFLIST sl WHERE '+
       'NOT EXISTS (SELECT ASP_ID FROM ASP WHERE ASP_ID = sl.ASP_ID) and '+
       'NOT EXISTS (SELECT ASF_ID FROM ASF WHERE ASF_ID = -sl.ASP_ID)';
     ExecSQL;
     SQL.Text := 'select * from ( '+
       'SELECT ASP.ASP_ID, ASP.ASF_Id, ASP.DEP_NAME, '+
-        IsJet('Iif(IsNull(OrgSName), OrgName, OrgSName)','IsNull(OrgSName, OrgName)')+'+''1'' As SortName, '+
+        'Iif(IsNull(OrgSName), OrgName, OrgSName)+''1'' As SortName, '+
         'ASP.ASP_Num, ASP.Name As ASP_Name '+
       'FROM (ASP Inner Join ASF on ASF.ASF_ID = ASP.ASF_ID) '+
       'union '+
       'SELECT -ASF.ASF_ID As ASP_ID, null As ASF_Id, '+
-        IsJet('Iif(IsNull(OrgSName), OrgName, OrgSName)','IsNull(OrgSName, OrgName)')+' As Dep_Name, '+
-        IsJet('Iif(IsNull(OrgSName), OrgName, OrgSName)','IsNull(OrgSName, OrgName)')+' As SortName, '+
+        'Iif(IsNull(OrgSName), OrgName, OrgSName) As Dep_Name, '+
+        'Iif(IsNull(OrgSName), OrgName, OrgSName) As SortName, '+
         '-1 As ASP_Num, '''' as ASP_Name '+
       'FROM ASF) as x '+
       'ORDER BY SortName, '+iifStr(dmMain.isAbcSort, 'ASP_Name', 'ASP_Num');

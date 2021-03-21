@@ -26,7 +26,6 @@ type
     { Private declarations }
   public
     { Public declarations }
-    isJet: Boolean;
   end;
 
 var
@@ -40,7 +39,7 @@ uses IniSupport, Forms, Controls;
 
 procedure TdmMain.DataModuleCreate(Sender: TObject);
 begin
-  isJet := LoadConnAttr(DBMain);
+  LoadConnAttr(DBMain);
 end;
 
 procedure TdmMain.DBMainExecuteComplete(Connection: TADOConnection;

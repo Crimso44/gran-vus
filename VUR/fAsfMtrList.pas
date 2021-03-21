@@ -450,28 +450,28 @@ begin
     Connection := dmMain.dbMain; ParamCheck := False;
 //    SQL.Text := 'DELETE * FROM STAFFLIST WHERE NOT DEP_ID IN (SELECT DEP_ID FROM KDEPART) OR NOT POST_ID IN (SELECT POST_ID FROM KPOST)';
 //    ExecSQL;
-    SQL.Text := 'DELETE '+IsJet('* ', 'FROM ASMtrList ')+'FROM ASMtrList sl WHERE '+
+    SQL.Text := 'DELETE * FROM ASMtrList sl WHERE '+
       'NOT EXISTS (SELECT ASP_ID FROM ASP WHERE ASP_ID = sl.ASP_ID) and '+
       'NOT EXISTS (SELECT ASF_ID FROM ASF WHERE ASF_ID = -sl.ASP_ID)';
     ExecSQL;
     SQL.Text := 'select * from ( '+
       'SELECT ASP.ASP_ID, ASP.ASF_Id, ASP.DEP_NAME, '+
-        IsJet('Iif(IsNull(OrgSName), OrgName, OrgSName)','IsNull(OrgSName, OrgName)')+'+''1'' As SortName, '+
+        'Iif(IsNull(OrgSName), OrgName, OrgSName)+''1'' As SortName, '+
       '  ASP.ASP_Num, ASP.Name as ASP_Name, '+
       '  Sum(GeneralPlan) As GenPlan, Sum(QtyAll) As GenQty '+
       'FROM ((ASP Inner Join ASF on ASF.ASF_ID = ASP.ASF_ID) Left Join ASStaffListAll As list on list.ASP_ID = ASP.ASP_ID) '+
       'Group By ASP.ASP_ID, ASP.ASF_Id, ASP.DEP_NAME, '+
-        IsJet('Iif(IsNull(OrgSName), OrgName, OrgSName)','IsNull(OrgSName, OrgName)')+', '+
+        'Iif(IsNull(OrgSName), OrgName, OrgSName), '+
         'ASP.ASP_Num, ASP.Name '+
       'union '+
       'SELECT -ASF.ASF_ID As ASP_ID, null As ASF_Id, '+
-        IsJet('Iif(IsNull(OrgSName), OrgName, OrgSName)','IsNull(OrgSName, OrgName)')+' As Dep_Name, '+
-        IsJet('Iif(IsNull(OrgSName), OrgName, OrgSName)','IsNull(OrgSName, OrgName)')+' As SortName, '+
+        'Iif(IsNull(OrgSName), OrgName, OrgSName) As Dep_Name, '+
+        'Iif(IsNull(OrgSName), OrgName, OrgSName) As SortName, '+
       '  -1 As ASP_Num, '''' as ASP_Name, '+
       '  Sum(GeneralPlan) As GenPlan, Sum(QtyAll) As GenQty '+
       'FROM ASF Left Join ASStaffListAll As list on list.ASP_ID = -ASF.ASF_ID '+
       'Group By -ASF.ASF_ID, '+
-        IsJet('Iif(IsNull(OrgSName), OrgName, OrgSName)','IsNull(OrgSName, OrgName)')+') as x '+
+        'Iif(IsNull(OrgSName), OrgName, OrgSName)) as x '+
       'ORDER BY SortName, '+iifStr(dmMain.isAbcSort, 'ASP_Name', 'ASP_Num');
     Open;
     while not EOF do begin

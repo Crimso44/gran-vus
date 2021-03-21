@@ -506,7 +506,7 @@ begin
       AFilterArray[i] := rec;
     end;
     if rec.ListSQL = 'AppointmentLastAll.ASP_ID'then begin
-      rec.FldName := IsJet('AppointmentLastAll.','')+'ASP_ID';
+      rec.FldName := 'AppointmentLastAll.ASP_ID';
       rec.ListSQL :=
         'select ASP_ID as [ID], iif(ASF.ORGSName='''',ASF.ORGName, ASF.ORGSName)+''/''+DEP_NAME as [Наименование_100], ASP_Num as AspNum from ASP '+
         'inner join ASF On ASF.ASF_Id = ASP.ASF_Id '+
@@ -514,7 +514,7 @@ begin
       AFilterArray[i] := rec;
     end;
     if rec.ListSQL = 'AppointmentLastAll.ASPOST_ID' then begin
-      rec.FldName := IsJet('AppointmentLastAll.','')+'ASPOST_ID';
+      rec.FldName := 'AppointmentLastAll.ASPOST_ID';
       rec.ListSQL := 'select ASPOST_ID as [ID], POST_NAME as [Наименование_100] from ASPOST '+
         'order by '+iifStr(dmMain.isAbcSort,'Post_Name', 'ASPOST_Num');
     end;
@@ -574,8 +574,6 @@ begin
     s0 := s;
     ii := Integer(dxtParams.Items[i].Items[j].Data);
     sFld := AFilterArray[ii].FldName;
-    if (not dmMain.isJet) and (AFilterArray[ii].FldNameSQL <> '') then
-      sFld := AFilterArray[ii].FldNameSQL;
     ss := AFilterArray[ii].FldAlias;
     if ss = '' then ss := sFld;
     sflds := sflds + ss + ';';
@@ -588,10 +586,6 @@ begin
       s := sFld + ' & "" <> ""'
     else
       s := StringReplace(s,'(value)',sFld,[rfReplaceAll]);
-    if not dmMain.isJet then begin
-      s := StringReplace(s,'DateValue(','dbo.DateValue(',[rfReplaceAll]);
-      s := StringReplace(s,' Date()',' GetDate()',[rfReplaceAll]);
-    end;
     while Pos('{', s) > 0 do Delete(s, Pos('{', s), Pos('}', s) - Pos('{', s) + 1);
     s := StringReplace(s, '#DATE#', 'CREATE_DATE >= ' + Date2SQL(dtBoolnDateFrom.Date) +
                        ' and CREATE_DATE <= ' + Date2SQL(dtBoolnDateTo.Date), [rfReplaceAll]);
@@ -604,7 +598,7 @@ begin
     end;
     FSQL.Add('AND ('+s+')');
   end;
-  FSQL.Text := ReplaceFullAges(FSQL.Text, dmMain.isJet);
+  FSQL.Text := ReplaceFullAges(FSQL.Text);
   if chkNewWindow.Checked then begin
     ModalResult := mrCancel;
     if FForm = ffPersons then begin
