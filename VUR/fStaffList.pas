@@ -439,7 +439,7 @@ var
 //Ping('19');
             if val <> 0 then begin
 //Ping('20');
-              DataAHX[I].Data[colId, r] := val;
+              DataAHX[I].Data[colId, rh] := val;
 //Ping('21');
             end;
 //Ping('22');
@@ -541,7 +541,7 @@ begin
     Connection := dmMain.dbMain; ParamCheck := False;
 //    SQL.Text := 'DELETE * FROM STAFFLIST WHERE NOT DEP_ID IN (SELECT DEP_ID FROM KDEPART) OR NOT POST_ID IN (SELECT POST_ID FROM KPOST)';
 //    ExecSQL;
-    SQL.Text := 'DELETE '+IsJet('* ','From StaffList ')+'FROM STAFFLIST sl WHERE NOT EXISTS (SELECT DEP_ID FROM KDEPART WHERE DEP_ID = sl.DEP_ID)';
+    SQL.Text := 'DELETE * FROM STAFFLIST sl WHERE NOT EXISTS (SELECT DEP_ID FROM KDEPART WHERE DEP_ID = sl.DEP_ID)';
     ExecSQL;
     SQL.Text := 'SELECT * FROM KDEPART ' +
       'ORDER BY '+iifStr(dmMain.isAbcSort, 'Dep_Name', 'KDEPART_Num');
