@@ -2033,6 +2033,12 @@ begin
         Exit;
       end;
       qrWRange.RecNo := Integer(cbWRange.Items.Objects[cbWRange.ItemIndex]);
+
+      if (cbDocument.ItemIndex = 3) and (LowerCase(qrWRange.FieldByName('WRNG_NAME').AsString) <> 'рядовой') then begin
+        ShowErrAt(cbDocument, 'Если указан документ «Справка взамен военного билета (справка уклониста)», то звание может быть только «Рядовой»!');
+        Exit;
+      end;
+
       lst := TStringList.Create;
       try
         lst.CommaText := qrWrange.FieldByName('ZAP').AsString;

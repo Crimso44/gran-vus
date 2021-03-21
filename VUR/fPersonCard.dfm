@@ -167,7 +167,7 @@ object fmPersonForm: TfmPersonForm
     Top = 55
     Width = 797
     Height = 406
-    ActivePage = tabSheetX1
+    ActivePage = tabSheetX0
     HotTrack = True
     MultiLine = True
     RaggedRight = True
@@ -177,10 +177,6 @@ object fmPersonForm: TfmPersonForm
     OnDrawTab = PCDrawTab
     object TabSheet1: TTabSheet
       Caption = #1054#1073#1097#1080#1077' '#1089#1074#1077#1076#1077#1085#1080#1103'   '
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label6: TLabel
         Left = 4
         Top = 28
@@ -736,10 +732,6 @@ object fmPersonForm: TfmPersonForm
     object TabSheet2: TTabSheet
       Caption = #1054#1073#1088#1072#1079#1086#1074#1072#1085#1080#1077'   '
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label21: TLabel
         Left = 16
         Top = 28
@@ -1956,10 +1948,6 @@ object fmPersonForm: TfmPersonForm
     object TabSheetUpol: TTabSheet
       Caption = #1055#1086#1083#1085#1086#1084#1086#1095#1080#1103
       ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label166: TLabel
         Left = 3
         Top = 0
@@ -2007,10 +1995,6 @@ object fmPersonForm: TfmPersonForm
     object TabSheet4: TTabSheet
       Caption = #1053#1072#1079#1085#1072#1095#1077#1085#1080#1103'   '
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label47: TLabel
         Left = 16
         Top = 116
@@ -3006,10 +2990,6 @@ object fmPersonForm: TfmPersonForm
         end
         object TabSheet6: TTabSheet
           Caption = #1040#1082#1072#1076#1077#1084'. '#1086#1090#1087#1091#1089#1082
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label94: TLabel
             Left = 3
             Top = 3
@@ -3184,10 +3164,6 @@ object fmPersonForm: TfmPersonForm
         object tbVK: TTabSheet
           Caption = #1054#1073#1091#1095#1077#1085#1080#1077' '#1085#1072' '#1074#1086#1077#1085'. '#1082#1072#1092'.'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label101: TLabel
             Left = 248
             Top = 3
@@ -3308,10 +3284,6 @@ object fmPersonForm: TfmPersonForm
         object TabSheet8: TTabSheet
           Caption = #1054#1090#1095#1080#1089#1083#1077#1085#1080#1077' '#1080#1079' '#1080#1085#1089#1090#1080#1090#1091#1090#1072
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label105: TLabel
             Left = 138
             Top = 8
@@ -3423,10 +3395,6 @@ object fmPersonForm: TfmPersonForm
     object tabSheetX2: TTabSheet
       Caption = #1040#1057#1060' ('#1053#1040#1057#1060')'
       ImageIndex = 5
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         789
         375)
@@ -4002,7 +3970,6 @@ object fmPersonForm: TfmPersonForm
     Default = True
     TabOrder = 9
     OnClick = btnOkClick
-    ExplicitLeft = 560
   end
   object btnCancel: TButton
     Left = 639
@@ -4014,7 +3981,6 @@ object fmPersonForm: TfmPersonForm
     Caption = #1054#1090#1084#1077#1085#1080#1090#1100
     TabOrder = 10
     OnClick = btnCancelClick
-    ExplicitLeft = 640
   end
   object btnApply: TButton
     Left = 719
@@ -4025,7 +3991,6 @@ object fmPersonForm: TfmPersonForm
     Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
     TabOrder = 11
     OnClick = btnApplyClick
-    ExplicitLeft = 720
   end
   object dtBirth: TdxDateEdit
     Left = 148
