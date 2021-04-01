@@ -1025,17 +1025,20 @@ begin ////////////////// Processing //////////////////
           FieldByName('ED_ID').Value := CheckDictonary(idx_ED_ID,
             ['','дн','мн','ннн','янн','мон','яон','мбн','бн','бной','бна','бнял','бня','бнл'],-1)+1;
           FieldByName('TAB_NUMB').Value := CheckLen(idx_TAB_NUMB);
-          FieldByName('WRNG_ID').Value := CheckInt(idx_KWRANGE, [1..37]);
+          FieldByName('WRNG_ID').Value := CheckInt(idx_KWRANGE, [1..37], True);
           FieldByName('WSOST_ID').Value := CheckInt(idx_Sostav, [1,2,3,4,5,7,8,9,10,11], True);
           FieldByName('VUS').Value := CheckLen(idx_VUS);
           FieldByName('CAT_ZAP').Value := CheckInt(idx_Cat_Zap, [1,2], True);
           FieldByName('FST_ID').Value := CheckInt(idx_SemPol, [1,2,3,4,5,6,7]);
           FieldByName('WCAT').Value := CheckLen(idx_WCAT);
-          FieldByName('IS_WAR').Value := CheckInt(idx_WUCHET1, [0,1]);
+          if StrToIntDef(GetCell(idx_WUCHET1), -1) = -1 then
+            FieldByName('IS_WAR').Value := 0
+          else
+            FieldByName('IS_WAR').Value := CheckInt(idx_WUCHET1, [0,1]);
           FieldByName('WUCHET1').Value := CheckLen(idx_hasMob);
           FieldByName('OVK_ID').Value := CheckOvk(idx_Voenkomat);
           FieldByName('W_DBEG').Value := CheckDate(idx_War_Date);
-          FieldByName('NUMB_T2').Value := CheckInt(idx_Card_Num);
+          FieldByName('NUMB_T2').Value := CheckInt(idx_Card_Num, [], True);
           FieldByName('CONFDATE').Value := Date;
           if Post_Id > 0 then begin
             FieldByName('AppLastAll').AsInteger := Post_Id;
@@ -1066,13 +1069,11 @@ begin ////////////////// Processing //////////////////
       Disconnect;
     end;
 
-    if not dmMain.isJet then begin
-      sFile := ExtractFilePath(ParamStr(0)) + 'GranVusSql2.sql';
-      sqlText.LoadFromFile(sFile);
-      ExecScript(qry, sqlText);
+    sFile := ExtractFilePath(ParamStr(0)) + 'GranVusSql2.sql';
+    sqlText.LoadFromFile(sFile);
+    ExecScript(qry, sqlText);
 
-      sqlText.Free;
-    end;
+    sqlText.Free;
   finally
     Free;
     qry2.Free;

@@ -8,10 +8,10 @@ uses
 
 type
   TdmMain = class(TDataModule)
-    DBMain: TADOConnection;
     ExcelApplication: TExcelApplication;
     OpenDialog: TOpenDialog;
     SaveDialog: TSaveDialog;
+    dbMain: TADOConnection;
     procedure DataModuleCreate(Sender: TObject);
     procedure DBMainExecuteComplete(Connection: TADOConnection;
       RecordsAffected: Integer; const Error: Error;
