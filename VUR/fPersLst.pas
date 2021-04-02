@@ -369,6 +369,9 @@ type
     dbgDataIn_Ord_NumbStudy: TdxDBGridColumn;
     dbgDataIn_Ord_DateStudy: TdxDBGridDateColumn;
     dbgDataIn_DateStudy: TdxDBGridDateColumn;
+    qrDataIsStudent: TIntegerField;
+    qrDataStudWRangeOk: TIntegerField;
+    qrDataIsIgnore: TBooleanField;
     procedure actAddExecute(Sender: TObject);
     procedure actEditExecute(Sender: TObject);
     procedure actDelExecute(Sender: TObject);
@@ -981,27 +984,35 @@ begin
   end
   else begin
     if qrDataReserved.AsInteger = 1 then begin
-      if qrDataMainWork       .AsInteger = 0 then Msg := 'Забронирован, но работает по совместительству.' else
-      if qrDataPermanentWork  .AsInteger = 0 then Msg := 'Забронирован, но работает временно.' else
-      if qrDataWartime        .AsInteger = 0 then Msg := Format(
-        'Забронирован, но должность "%s" в подразделении "%s" не задействована в '+
-        'штатном расписании военного времени.',
-        [qrDataPOST_NAME.AsString, qrDataDEP_NAME.AsString]) else
-      if qrDataDefVUS         .AsInteger = 1 then Msg := 'Забронирован, но ВУС входит в список дефицитных.' else
-      if qrDataCommand300     .AsInteger = 1 then Msg := 'Забронирован, но имеет моб. предписание по небронируемой команде.' else
-      if qrDataSpecialWUchet1 .AsInteger = 1 then Msg := 'Забронирован, но имеет моб. предписание в спецформирование.' else
-      if qrDataDocument       .AsInteger = 3 then Msg := 'Забронирован, но не подлежит бронированию как владелец справки уклониста.';
+      if qrDataIsStudent.AsInteger = 1 then begin
+        if qrDataStudWRangeOk.AsInteger = 0 then Msg := 'Забронирован, но воинское звание студента «подлежит призыву» или «допризывник».' else
+        if qrDataDocument.AsInteger >= 2 then Msg := 'Забронирован, но воинский документ студента «справка уклониста» или «приписное свидетельство».' else
+        if qrDataDefVUS.AsInteger = 1  then Msg := 'Забронирован, но ВУС входит в список дефицитных.' else
+        if qrDataWUchet1.AsString <> ''  then Msg := 'Забронирован, но студент имеет мобилизационное предписание.' else
+        if qrDataIsIgnore.AsBoolean  then Msg := 'Забронирован, но статус учащегося помечен как игнорируемый.' else
+      end else begin
+        if qrDataMainWork       .AsInteger = 0 then Msg := 'Забронирован, но работает по совместительству.' else
+        if qrDataPermanentWork  .AsInteger = 0 then Msg := 'Забронирован, но работает временно.' else
+        if qrDataWartime        .AsInteger = 0 then Msg := Format(
+          'Забронирован, но должность "%s" в подразделении "%s" не задействована в '+
+          'штатном расписании военного времени.',
+          [qrDataPOST_NAME.AsString, qrDataDEP_NAME.AsString]) else
+        if qrDataDefVUS         .AsInteger = 1 then Msg := 'Забронирован, но ВУС входит в список дефицитных.' else
+        if qrDataCommand300     .AsInteger = 1 then Msg := 'Забронирован, но имеет моб. предписание по небронируемой команде.' else
+        if qrDataSpecialWUchet1 .AsInteger = 1 then Msg := 'Забронирован, но имеет моб. предписание в спецформирование.' else
+        if qrDataDocument       .AsInteger = 3 then Msg := 'Забронирован, но не подлежит бронированию как владелец справки уклониста.';
 
-      if qrDataDefPost        .AsInteger = 0 then begin
-        Msg := 'Забронирован, но не подпадает ни под один пункт ПДП.';
-        if qrDataDefPost_Post.AsInteger = 0 then
-          Msg := Msg + #13#10'Для данной должности в ПДП бронирование не предусмотрено.';
-        if qrDataDefPost_WRange.AsInteger = 0 then
-          Msg := Msg + #13#10'Для данного воинского звания в ПДП бронирование не предусмотрено.';
-        if qrDataDefPost_WSost.AsInteger = 0 then
-          Msg := Msg + #13#10'Военнослужащие такого состава/профиля не фигурируют в ПДП.';
-      end; {else
-        Msg := 'Забронирован, но уволен из армии менее 5-ти лет назад и пребывает в запасе по I разряду.'}
+        if qrDataDefPost        .AsInteger = 0 then begin
+          Msg := 'Забронирован, но не подпадает ни под один пункт ПДП.';
+          if qrDataDefPost_Post.AsInteger = 0 then
+            Msg := Msg + #13#10'Для данной должности в ПДП бронирование не предусмотрено.';
+          if qrDataDefPost_WRange.AsInteger = 0 then
+            Msg := Msg + #13#10'Для данного воинского звания в ПДП бронирование не предусмотрено.';
+          if qrDataDefPost_WSost.AsInteger = 0 then
+            Msg := Msg + #13#10'Военнослужащие такого состава/профиля не фигурируют в ПДП.';
+        end; {else
+          Msg := 'Забронирован, но уволен из армии менее 5-ти лет назад и пребывает в запасе по I разряду.'}
+      end;
     end
     else
       Msg := 'Не забронирован, но отвечает всем условиям бронирования.';

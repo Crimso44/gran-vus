@@ -73,7 +73,7 @@ begin
     DoSQL(
       'Create View PersonreservChkInfoBase As '#13+
       'SELECT '#13+
-      '  P.PERS_ID, P.IS_WAR, P.W_DEND, P.SpecialWUchet1, P.BIRTHDAY, P.Male, R.CHE, R.LIMIT1, '#13+
+      '  P.PERS_ID, P.IS_WAR, P.W_DEND, P.SpecialWUchet1, P.WUchet1, P.BIRTHDAY, P.Male, R.CHE, R.LIMIT1, '#13+
       '  iif(IsNull(P.WUCHET2_IsWork),0,P.WUCHET2_IsWork) AS Reserved, '#13+
       '  IIf(AppointmentLastAll.WTP_ID in (1,3,9),1,0) AS MainWork, '#13+
       '  IIf(AppointmentLastAll.WCH_ID=1,1,0) AS PermanentWork, '#13+
@@ -81,7 +81,7 @@ begin
       '  IIF(EXISTS(SELECT * FROM KDEFVUS WHERE NAME = left(P.VUS, IIF((select state from KWRANGE where WRNG_ID = P.WRNG_ID) = 3, 6, 3))), 1,0) AS DefVUS, '#13+
       '  IIF(P.WUCHET1 LIKE (SELECT Template FROM Command300), 1,0) AS Command300, '#13+
       '  P.EOARMY_DATE AS EOARMY_YEAR, '#13+
-      '  P.Document, '#13 +
+      '  P.Document, PostStudy.IsIgnore, '#13 +
       '  MvkOrd.DocNumber as MvkOrdDocNumber, MvkOrd.DocDate as MvkOrdDocDate, '#13+
       '  AppointmentLastAll.Post_Id as AppPost_Id, MvkOrd.Post_Id as MvkPost_Id, '#13+
       '  IIF(EXISTS( '#13+
@@ -90,7 +90,7 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '    ),1,0) AS DefPOST, '#13+
 
@@ -100,7 +100,7 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '    ) '#13+
       'and ((not Exists (SELECT * FROM PDP   WHERE (PDP.POST_ID = AppointmentLastAll.POST_ID)) or '#13+
@@ -108,7 +108,7 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '))),0,1) AS DefPOST_Post, '#13+
 
@@ -117,7 +117,7 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '    ) '#13+
       'and ((not Exists (SELECT * FROM PDP   WHERE  (PDP.WRange=0 OR PDP.CHE >= R.CHE)) or '#13+
@@ -125,7 +125,7 @@ begin
       '      PDP.POST_ID = AppointmentLastAll.POST_ID AND '#13+
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '))),0,1) AS DefPOST_WRange, '#13+
 
@@ -134,7 +134,7 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '    ) '#13+
       'and ((not Exists (SELECT * FROM PDP   WHERE (InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0)) or '#13+
@@ -142,7 +142,7 @@ begin
       '      PDP.POST_ID = AppointmentLastAll.POST_ID AND '#13+
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '))),0,1) AS DefPOST_WSost, '#13+
 
@@ -151,7 +151,7 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '    ) '#13+
       'and ('#13+
@@ -160,12 +160,16 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age > '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age > '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
-      ')),0,1) AS DefPOST_Age '#13+
+      ')),0,1) AS DefPOST_Age, '#13+
+      'Iif(IsNull(PostStudy.Post_Id), 0, 1) as IsStudent, '#13+
+      'Iif(P.WRNG_ID <> 1 and P.WRNG_ID <> 37, 1, 0) as StudWRangeOk '#13+
 
-      'FROM (((Person AS P '#13+
+      'FROM (((((Person AS P '#13+
       'LEFT JOIN Appointment as AppointmentLastAll ON P.AppLast=AppointmentLastAll.ID) '#13+
+      'LEFT JOIN Appointment as AppointmentLastStudy ON P.AppLastStudy=AppointmentLastStudy.ID) '#13+
+      'LEFT JOIN KPost as PostStudy ON AppointmentLastStudy.POST_ID = PostStudy.POST_ID) '#13+
       'LEFT JOIN KWRange AS R ON P.WRng_Id=R.WRng_Id) '#13+
       'LEFT JOIN MvkOrder AS MvkOrd ON P.Pers_Id=MvkOrd.Pers_Id) '#13+
       'LEFT JOIN StaffList ON (AppointmentLastAll.POST_ID=StaffList.POST_ID) AND (AppointmentLastAll.DEP_ID=StaffList.DEP_ID) '
@@ -175,7 +179,8 @@ begin
     DoSQL('CREATE VIEW PersonreservChkInfo AS '#13#10+
     'SELECT PERS_ID, Reserved, MainWork, PermanentWork, WARTIME, DefVUS, Command300, EOARMY_YEAR, Document, DefPOST,'#13 +
     ' DefPOST_WRange, DefPOST_Post, DefPOST_WSost, DefPOST_Age, '#13 +
-    'IIF(IS_WAR<>1 or (not ISNULL(W_DEND) and W_DEND<=Date()), 0,'#13 +
+    ' IsStudent, StudWRangeOk, IsIgnore, '#13 +
+    'IIF(IsStudent=0 and (IS_WAR<>1 or (not ISNULL(W_DEND) and W_DEND<=Date())), 0,'#13 +
     'IIF((Reserved=1)<>(('#13 +
     '        (MainWork=1) and'#13 +
     '        (PermanentWork=1) and'#13 +
@@ -192,7 +197,11 @@ begin
     '         ((R.CHE =15)             and (Year(Date())-Year(BIRTHDAY)<=55)) or'#13 +
     '         ((R.CHE >15)             and (Year(Date())-Year(BIRTHDAY)<=60)))'#13 +
     '        ) and'#13 +
-    '        (DefPOST=1)) or (MvkPost_Id = AppPost_Id and not IsNull(MvkOrdDocDate))),1,0)) AS IS_BAD'#13 +
+    '        (DefPOST=1)) or '#13 +
+
+    '  (MvkPost_Id = AppPost_Id and not IsNull(MvkOrdDocDate) or '#13 +
+    '  (IsStudent=1 and StudWRangeOk=1 and Document<2 and DefVUS=0 and IsNull(WUchet1) and IsIgnore=0))'#13 +
+    '),1,0)) AS IS_BAD'#13 +
     'FROM PersonReservChkInfoBase;', True);
 
 

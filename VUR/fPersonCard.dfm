@@ -167,7 +167,7 @@ object fmPersonForm: TfmPersonForm
     Top = 55
     Width = 797
     Height = 406
-    ActivePage = tabSheetX0
+    ActivePage = tabSheetX1
     HotTrack = True
     MultiLine = True
     RaggedRight = True

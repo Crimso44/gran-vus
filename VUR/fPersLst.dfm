@@ -1325,6 +1325,9 @@ object fmPersonList: TfmPersonList
       '   PersonReservChkInfo.DefPOST_WRange,'
       '   PersonReservChkInfo.DefPOST_WSost,'
       '   PersonReservChkInfo.IS_BAD,'
+      
+        '   PersonReservChkInfo.IsStudent,    PersonReservChkInfo.StudWRa' +
+        'ngeOk,    PersonReservChkInfo.IsIgnore,'
       '    '
       '   ph0.PH_NUMBER as PHONEWRK, --PHONEWRK'
       '   ph1.PH_NUMBER as PHONEDOM, --PHONEDOM'
@@ -2654,6 +2657,15 @@ object fmPersonList: TfmPersonList
     end
     object qrDataIn_DateStudy: TDateField
       FieldName = 'In_DateStudy'
+    end
+    object qrDataIsStudent: TIntegerField
+      FieldName = 'IsStudent'
+    end
+    object qrDataStudWRangeOk: TIntegerField
+      FieldName = 'StudWRangeOk'
+    end
+    object qrDataIsIgnore: TBooleanField
+      FieldName = 'IsIgnore'
     end
   end
   object DataSource1: TDataSource

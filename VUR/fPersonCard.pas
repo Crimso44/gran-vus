@@ -3328,6 +3328,9 @@ var
   Cmd300    : Boolean; //Шаблон %300% подходит!
   SpecForm  : Boolean; //Спецформирование!
   DocIsSprav: Boolean; //Справка уклониста
+  DocIsOk: Boolean; //Не Справка уклониста и не приписное
+  StudWRangeOk: Boolean; // Звание не "подлежит призыву" или "допризывник"
+  IsIgnore  : Boolean; //игнорировать при расчете ф.6
   DefPost   : Boolean; //Должность найдена в перечне бронируемых.
   DefPost_Post, DefPost_WRange, DefPost_WSost: Boolean;
   DoReserv  : Boolean; //Должен быть забронирован.
@@ -3340,6 +3343,7 @@ var
   q: TADOQuery;
   Wrng_Len: Integer;
   IsMvkOrder: Boolean;
+  IsStudent: Boolean;
 begin
   Result := True;
   if not chkVoen.Checked or (dtWEnd.Text<>EmptyStr) then Exit;
@@ -3361,7 +3365,8 @@ begin
     IsMvkOrder := not Eof;
     Close;
     SQL.Text :=
-      'SELECT AppointmentLastAll.*, KDEPART.DEP_NAME, KPOST.POST_NAME'#13+
+      'SELECT AppointmentLastAll.*, KDEPART.DEP_NAME, KPOST.POST_NAME, KPOST.IsIgnore,  '#13+
+            ' Iif(KPost.CPROF_ID = 500 or KPost.CPROF2015_ID = 500, 1, 0) as IsStudent  '#13+
             '     , IIF(IIF(ISNULL([StaffList].WartimePlan),0,[StaffList].WartimePlan)>0,1,0) AS WARTIME'#13+
             '     , IIF(EXISTS(SELECT *'#13+
                               '  FROM PDP'#13+
@@ -3432,8 +3437,6 @@ begin
       ' WHERE PERS_ID = '+IntToStr(ID);
 
 
-
-
     Open;
     if IsEmpty then begin
       WorkMain  := False;
@@ -3443,9 +3446,10 @@ begin
       DefPost_Post  := False;
       DefPost_WRange:= False;
       DefPost_WSost := False;
-      DocIsSprav := False;
       DEP_NAME  := '';
       POST_NAME := '';
+      IsIgnore := False;
+      IsStudent := False;
     end
     else begin
       WorkMain  := FieldByName('WTP_ID')   .AsInteger in [1,3,9];
@@ -3457,8 +3461,12 @@ begin
       DefPost_WSost  := FieldByName('DefPost_WSost') .AsInteger = 1;
       DEP_NAME  := FieldByName('DEP_NAME') .AsString;
       POST_NAME := FieldByName('POST_NAME').AsString;
-      DocIsSprav := cbDocument.ItemIndex = 3;
+      IsIgnore  := FieldByName('IsIgnore') .AsBoolean;
+      IsStudent := FieldByName('IsStudent').AsInteger = 1;
     end;
+    DocIsSprav := cbDocument.ItemIndex = 3;
+    DocIsOk := cbDocument.ItemIndex < 2;
+    StudWRangeOk := (GetWRng_IdStr <> '1') and (GetWRng_IdStr <> '37');
     Close;
     SQL.Text := 'SELECT state FROM KWRange WHERE WRng_Id = '+GetWRng_IdStr;
     Open;
@@ -3487,32 +3495,41 @@ begin
     edEOARMY_DATE.Text := Trim(edEOARMY_DATE.Text);
   finally Free;
   end;
-  DoReserv :=  IsMvkOrder or (WorkMain and WorkPerm and DepIsWar and VUSIsOk and
-                 not Cmd300 and not SpecForm and DefPost and not DocIsSprav);
+  DoReserv := IsMvkOrder or
+    (WorkMain and WorkPerm and DepIsWar and VUSIsOk and not Cmd300 and not SpecForm and DefPost and not DocIsSprav) or
+    (IsStudent and StudWRangeOk and DocIsOk and VUSIsOk and (fWUch1.edWUCH1.Text = '') and not IsIgnore);
 
   Msg := '';
   if edWUch2_IsWork.Checked then begin //IsReserved
     if not DoReserv then begin
-      if not WorkMain then Msg := 'вид работы - по совместительству.' else
-      if not WorkPerm then Msg := 'характер работы - временный.' else
-      if not DepIsWar then Msg := Format(
-        'должность "%s" в подразделении "%s" не задействована в '+
-        'штатном расписании военного времени.',
-        [POST_NAME, DEP_NAME]) else
-      if not VUSIsOk  then Msg := 'ВУС входит в список дефицитных.' else
-      if Cmd300       then Msg := 'имеется моб. предписание по небронируемой команде.' else
-      if SpecForm     then Msg := 'имеется моб. предписание в спецформирование.' else
-      if DocIsSprav   then Msg := 'не подлежит бронированию как владелец справки уклониста.' else
-      if not DefPost  then begin
-        Msg := 'работник не подпадает ни под один пункт ПДП.';
-        if not DefPost_Post then
-          Msg := Msg + #13#10'Для данной должности в ПДП бронирование не предусмотрено.';
-        if not DefPost_WRange then
-          Msg := Msg + #13#10'Для данного воинского звания в ПДП бронирование не предусмотрено.';
-        if not DefPost_WSost then
-          Msg := Msg + #13#10'Военнослужащие такого состава/профиля не фигурируют в ПДП.';
-      end;{ else
-        Msg := 'уволен из армии менее 5-ти лет назад и пребывает в запасе по I разряду.';}
+      if IsStudent then begin
+        if not StudWRangeOk then Msg := 'воинское звание студента «подлежит призыву» или «допризывник».' else
+        if not DocIsOk then Msg := 'воинский документ студента «справка уклониста» или «приписное свидетельство».' else
+        if not VUSIsOk  then Msg := 'ВУС входит в список дефицитных.' else
+        if fWUch1.edWUCH1.Text <> ''  then Msg := 'студент имеет мобилизационное предписание.' else
+        if IsIgnore  then Msg := 'статус учащегося помечен как игнорируемый.' else
+      end else begin
+        if not WorkMain then Msg := 'вид работы - по совместительству.' else
+        if not WorkPerm then Msg := 'характер работы - временный.' else
+        if not DepIsWar then Msg := Format(
+          'должность "%s" в подразделении "%s" не задействована в '+
+          'штатном расписании военного времени.',
+          [POST_NAME, DEP_NAME]) else
+        if not VUSIsOk  then Msg := 'ВУС входит в список дефицитных.' else
+        if Cmd300       then Msg := 'имеется моб. предписание по небронируемой команде.' else
+        if SpecForm     then Msg := 'имеется моб. предписание в спецформирование.' else
+        if DocIsSprav   then Msg := 'не подлежит бронированию как владелец справки уклониста.' else
+        if not DefPost  then begin
+          Msg := 'работник не подпадает ни под один пункт ПДП.';
+          if not DefPost_Post then
+            Msg := Msg + #13#10'Для данной должности в ПДП бронирование не предусмотрено.';
+          if not DefPost_WRange then
+            Msg := Msg + #13#10'Для данного воинского звания в ПДП бронирование не предусмотрено.';
+          if not DefPost_WSost then
+            Msg := Msg + #13#10'Военнослужащие такого состава/профиля не фигурируют в ПДП.';
+        end;{ else
+          Msg := 'уволен из армии менее 5-ти лет назад и пребывает в запасе по I разряду.';}
+      end;
       Msg := 'Бронирование некорректно, т.к. '+Msg;
     end
   end

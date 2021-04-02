@@ -12,9 +12,6 @@
 			<Projects Include="..\VUR - patch 3.5 to 3.76\Source\patch.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="LoadFromMDB\LoadFromMDB.dproj">
-				<Dependencies/>
-			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -50,23 +47,14 @@
 		<Target Name="patch:Make">
 			<MSBuild Projects="..\VUR - patch 3.5 to 3.76\Source\patch.dproj" Targets="Make"/>
 		</Target>
-		<Target Name="LoadFromMDB">
-			<MSBuild Projects="LoadFromMDB\LoadFromMDB.dproj"/>
-		</Target>
-		<Target Name="LoadFromMDB:Clean">
-			<MSBuild Projects="LoadFromMDB\LoadFromMDB.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="LoadFromMDB:Make">
-			<MSBuild Projects="LoadFromMDB\LoadFromMDB.dproj" Targets="Make"/>
-		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="GranVUS;LoadFromXLS;patch;LoadFromMDB"/>
+			<CallTarget Targets="GranVUS;LoadFromXLS;patch"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="GranVUS:Clean;LoadFromXLS:Clean;patch:Clean;LoadFromMDB:Clean"/>
+			<CallTarget Targets="GranVUS:Clean;LoadFromXLS:Clean;patch:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="GranVUS:Make;LoadFromXLS:Make;patch:Make;LoadFromMDB:Make"/>
+			<CallTarget Targets="GranVUS:Make;LoadFromXLS:Make;patch:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>

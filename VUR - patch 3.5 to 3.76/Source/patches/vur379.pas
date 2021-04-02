@@ -556,7 +556,7 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '    ),1,0) AS DefPOST, '#13+
 
@@ -566,7 +566,7 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '    ) '#13+
       'and ((not Exists (SELECT * FROM PDP   WHERE (PDP.POST_ID = AppointmentLastAll.POST_ID)) or '#13+
@@ -574,7 +574,7 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '))),0,1) AS DefPOST_Post, '#13+
 
@@ -583,7 +583,7 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '    ) '#13+
       'and ((not Exists (SELECT * FROM PDP   WHERE  (PDP.WRange=0 OR PDP.CHE >= R.CHE)) or '#13+
@@ -591,7 +591,7 @@ begin
       '      PDP.POST_ID = AppointmentLastAll.POST_ID AND '#13+
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '))),0,1) AS DefPOST_WRange, '#13+
 
@@ -600,7 +600,7 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '    ) '#13+
       'and ((not Exists (SELECT * FROM PDP   WHERE (InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0)) or '#13+
@@ -608,7 +608,7 @@ begin
       '      PDP.POST_ID = AppointmentLastAll.POST_ID AND '#13+
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '))),0,1) AS DefPOST_WSost, '#13+
 
@@ -617,7 +617,7 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age <= '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       '    ) '#13+
       'and ('#13+
@@ -626,7 +626,7 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
-      '      PDP.Age > '+FullAges('P.BirthDay', true)+' And '#13+
+      '      PDP.Age > '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       ')),0,1) AS DefPOST_Age '#13+
 
