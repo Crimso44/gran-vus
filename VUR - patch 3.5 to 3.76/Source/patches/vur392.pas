@@ -68,6 +68,7 @@ begin
     if fmMain.FBreak then Exit;
 //
 
+      AddField('Appointment','PROBATION_DATE','datetime NULL');
 
     DoSQL('Drop View PersonreservChkInfoBase', True);
     DoSQL(
@@ -84,6 +85,7 @@ begin
       '  P.Document, PostStudy.IsIgnore, '#13 +
       '  MvkOrd.DocNumber as MvkOrdDocNumber, MvkOrd.DocDate as MvkOrdDocDate, '#13+
       '  AppointmentLastAll.Post_Id as AppPost_Id, MvkOrd.Post_Id as MvkPost_Id, '#13+
+      '  IIF(IsNull(AppointmentLastAll.Probation_Date) or AppointmentLastAll.Probation_Date < Date(), 1, 0) as ProbationOk, '#13+
       '  IIF(EXISTS( '#13+
       '    SELECT * FROM PDP   WHERE '#13+
       '      PDP.POST_ID = AppointmentLastAll.POST_ID AND '#13+
@@ -189,6 +191,7 @@ begin
     '        (Command300=0) and'#13 +
     '        (SpecialWUchet1<>1) and'#13 +
     '        (Document<>3) and '#13 +
+    '        (ProbationOk=1) and'#13 +
     '        (ISNULL(EOARMY_YEAR) or (Male<>1) or'#13 +
     '         (R.LIMIT1 <= Year(Date())-Year(BIRTHDAY)) or not ('#13 +
     '         ((R.CHE<= 8)             and (Year(Date())-Year(BIRTHDAY)<=35)) or'#13 +
@@ -203,10 +206,6 @@ begin
     '  (IsStudent=1 and StudWRangeOk=1 and Document<2 and DefVUS=0 and IsNull(WUchet1) and IsIgnore=0))'#13 +
     '),1,0)) AS IS_BAD'#13 +
     'FROM PersonReservChkInfoBase;', True);
-
-
-      AddField('Appointment','PROBATION_DATE','datetime NULL');
-
 
 
 

@@ -1384,7 +1384,8 @@ object fmPersonList: TfmPersonList
         '-ASFName'
       '   [ASPX].DEP_Name As ASDep_Name, --ASDep_Name'
       '   KWRangeX.WRng_Name AS WRange, KWRangeX.State As WRState,'
-      '   KWRangeX.Che AS Che, '
+      '   KWRangeX.Che AS Che,'
+      '   AppointmentLastAll.Probation_Date,'
       ''
       '   ASAppointmentFirst.In_Date As ASIn_Date, --ASIn_Date !!D'
       '   [ASPOST].POST_NAME As ASPost_Name, --ASPost_Name'
@@ -2666,6 +2667,9 @@ object fmPersonList: TfmPersonList
     end
     object qrDataIsIgnore: TBooleanField
       FieldName = 'IsIgnore'
+    end
+    object qrDataProbation_Date: TDateField
+      FieldName = 'Probation_Date'
     end
   end
   object DataSource1: TDataSource

@@ -3330,6 +3330,7 @@ var
   DocIsSprav: Boolean; //Справка уклониста
   DocIsOk: Boolean; //Не Справка уклониста и не приписное
   StudWRangeOk: Boolean; // Звание не "подлежит призыву" или "допризывник"
+  ProbationOk: Boolean; // Испытательный срок завершен
   IsIgnore  : Boolean; //игнорировать при расчете ф.6
   DefPost   : Boolean; //Должность найдена в перечне бронируемых.
   DefPost_Post, DefPost_WRange, DefPost_WSost: Boolean;
@@ -3450,6 +3451,7 @@ begin
       POST_NAME := '';
       IsIgnore := False;
       IsStudent := False;
+      ProbationOk := False;
     end
     else begin
       WorkMain  := FieldByName('WTP_ID')   .AsInteger in [1,3,9];
@@ -3463,6 +3465,7 @@ begin
       POST_NAME := FieldByName('POST_NAME').AsString;
       IsIgnore  := FieldByName('IsIgnore') .AsBoolean;
       IsStudent := FieldByName('IsStudent').AsInteger = 1;
+      ProbationOk := FieldByName('Probation_Date').IsNull or (FieldByName('Probation_Date').AsDateTime < Date);
     end;
     DocIsSprav := cbDocument.ItemIndex = 3;
     DocIsOk := cbDocument.ItemIndex < 2;
@@ -3496,7 +3499,7 @@ begin
   finally Free;
   end;
   DoReserv := IsMvkOrder or
-    (WorkMain and WorkPerm and DepIsWar and VUSIsOk and not Cmd300 and not SpecForm and DefPost and not DocIsSprav) or
+    (WorkMain and WorkPerm and DepIsWar and VUSIsOk and not Cmd300 and not SpecForm and DefPost and ProbationOk and not DocIsSprav) or
     (IsStudent and StudWRangeOk and DocIsOk and VUSIsOk and (fWUch1.edWUCH1.Text = '') and not IsIgnore);
 
   Msg := '';
@@ -3519,6 +3522,7 @@ begin
         if Cmd300       then Msg := 'имеется моб. предписание по небронируемой команде.' else
         if SpecForm     then Msg := 'имеется моб. предписание в спецформирование.' else
         if DocIsSprav   then Msg := 'не подлежит бронированию как владелец справки уклониста.' else
+        if not ProbationOk then Msg := 'не подлежит бронированию как не завершивший испытательный срок.' else
         if not DefPost  then begin
           Msg := 'работник не подпадает ни под один пункт ПДП.';
           if not DefPost_Post then
