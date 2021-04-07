@@ -149,7 +149,6 @@ type
  TFilterType = (ptString,ptDate,ptInteger,ptList,ptSet,ptBoolean,ptBoolnDate,ptAspirant,ptListString,ptListDate);
  TFilterRec = record
    FldName: string;
-   FldNameSQL: string;
    FldType: TFilterType;
    DispName: string;
    DispGroup: string;
@@ -161,7 +160,7 @@ type
  end;
 
 var
-  AFilterArray : Array[0..147] of TFilterRec = (
+  AFilterArray : Array[0..149] of TFilterRec = (
 //Общие
 {$REGION 'COMMON'}
     (FldName:'FAM';        FldType: ptString;  DispName: 'Фамилия'; DispGroup: 'Общие'; Form: [ffPersons, ffPersChanges]),
@@ -310,7 +309,7 @@ var
       FldType: ptString;   DispName: 'Код ОКПДТР'; DispGroup: 'Специальный воинский учет'; Form: [ffPersons, ffPersChanges];
       FldAlias: 'PDPCode'),
 
-    (FldName:'(WUCHET2_IsWork = 1)'; FldNameSQL:'iif(WUCHET2_IsWork = 1, 1, 0)';
+    (FldName:'(WUCHET2_IsWork = 1)';
                             FldType: ptBoolean; DispName: 'Забронирован'; DispGroup: 'Специальный воинский учет'; Form: [ffPersons, ffPersChanges];
        FldAlias: 'WUCHET2_IsWork'),
     (FldName:'PersonReservChkInfo.IS_BAD';
@@ -340,7 +339,7 @@ var
       FldAlias: 'TAB_NUMB'),
     (FldName:'DOG_NUMB';               FldType: ptString;  DispName: 'Номер договора(соглашения)'; DispGroup: 'Назначения'; Form: [ffPersons, ffPersChanges]),
     (FldName:'DOG_DATE';               FldType: ptDate;    DispName: 'Дата договора(соглашения)'; DispGroup: 'Назначения'; Form: [ffPersons, ffPersChanges]),
-    (FldName:'(NOT IS_RAB)';FldNameSQL:'(case when IS_RAB<>0 then 0 else 1 end)';FldType: ptBoolean; DispName:'Является гос. служащим'; DispGroup: 'Назначения'; Form: [ffPersons, ffPersChanges];
+    (FldName:'(NOT IS_RAB)'; FldType: ptBoolean; DispName:'Является гос. служащим'; DispGroup: 'Назначения'; Form: [ffPersons, ffPersChanges];
       FldAlias: 'Gos'),
     (FldName:'AppointmentLastAll.WTP_ID'; FldType: ptList;    DispName:'Вид работы'; DispGroup: 'Назначения'; Form: [ffPersons];
       ListSQL: 'select WTP_ID as [ID], WTP_NAME as [Наименование_100] from KWKTYPE where WTP_FLAG = 3 order by 2'),
@@ -367,6 +366,10 @@ var
     (FldName:'OUT_ORD_DATE';           FldType: ptDate;    DispName: 'Дата приказа об увольнении'; DispGroup: 'Назначения'; Form: [ffPersons, ffPersChanges]),
     (FldName:'Assign.KAssign'; FldType: ptList;    DispName:'Разряд, чин, ранг'; DispGroup: 'Назначения'; Form: [ffPersons];
       ListSQL: 'select ID, NAME as [Наименование_100] from KAssign order by 2'),
+    (FldName:'(not IsNull(AppointmentLastAll.Probation_Date) and AppointmentLastAll.Probation_Date >= Date())';FldType: ptBoolean; DispName:'На испытательном сроке'; DispGroup: 'Назначения'; Form: [ffPersons];
+      FldAlias: 'IsProbation'),
+    (FldName:'AppointmentLastAll.Probation_Date';     FldType: ptDate;    DispName: 'Дата окончания испытательного срока'; DispGroup: 'Назначения'; Form: [ffPersons];
+      FldAlias: 'Probation_Date'),
 {$ENDREGION 'APPOINTMENT'}
 //Сведения об учащемся
 {$REGION 'STUDENTINFO'}
