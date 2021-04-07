@@ -65,6 +65,8 @@ type
     qrKDEPARTXDep_Name: TWideStringField;
     qrKDEPARTKDEPART_Num: TIntegerField;
     qrAppointmentIN_ORD_NUMB: TStringField;
+    qrAppointmentPROBATION_DATE: TDateField;
+    qridAppointmentPROBATION_DATE: TdxDBGridDateColumn;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure qrAppointmentNewRecord(DataSet: TDataSet);
     procedure qrAppointmentBeforePost(DataSet: TDataSet);

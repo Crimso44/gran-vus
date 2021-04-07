@@ -205,6 +205,7 @@ begin
     'FROM PersonReservChkInfoBase;', True);
 
 
+      AddField('Appointment','PROBATION_DATE','datetime NULL');
 
 
 

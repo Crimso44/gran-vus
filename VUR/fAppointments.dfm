@@ -41,17 +41,16 @@ object fmAppointments: TfmAppointments
     RegistryPath = '\Software\Granit\GranVUS\Person_AppointmentGrid'
     OnChangedColumnsWidth = qridAppointmentChangedColumnsWidth
     OnColumnSorting = qridAppointmentColumnSorting
-    ExplicitWidth = 534
     object qridAppointmentID: TdxDBGridColumn
       Visible = False
-      Width = 82
+      Width = 81
       BandIndex = 0
       RowIndex = 0
       FieldName = 'ID'
     end
     object qridAppointmentPERS_ID: TdxDBGridColumn
       Visible = False
-      Width = 82
+      Width = 81
       BandIndex = 0
       RowIndex = 0
       FieldName = 'PERS_ID'
@@ -122,6 +121,13 @@ object fmAppointments: TfmAppointments
       RowIndex = 0
       FieldName = 'IN_DATE'
     end
+    object qridAppointmentPROBATION_DATE: TdxDBGridDateColumn
+      Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1099#1081' '#1089#1088#1086#1082' '#1076#1086
+      Width = 132
+      BandIndex = 0
+      RowIndex = 0
+      FieldName = 'PROBATION_DATE'
+    end
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -129,7 +135,6 @@ object fmAppointments: TfmAppointments
     Width = 681
     Height = 19
     Panels = <>
-    ExplicitWidth = 534
   end
   object FrmKeep1: TFrmKeep
     IniName = 'frmdata.ini'
@@ -488,6 +493,9 @@ object fmAppointments: TfmAppointments
     object qrAppointmentIN_ORD_NUMB: TStringField
       FieldName = 'IN_ORD_NUMB'
       Size = 255
+    end
+    object qrAppointmentPROBATION_DATE: TDateField
+      FieldName = 'PROBATION_DATE'
     end
   end
   object qrKWKTYPE: TADOQuery
