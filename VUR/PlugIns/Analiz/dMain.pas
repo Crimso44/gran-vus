@@ -131,6 +131,8 @@ type
     ReportQueryPerc: TStringField;
     QForm6Perc: TStringField;
     Form6HdrQueryOrgName: TWideMemoField;
+    QForm6Perc5: TStringField;
+    ReportQueryPerc5: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure ReportQueryCalcFields(DataSet: TDataSet);
     procedure Form6HdrQueryCalcFields(DataSet: TDataSet);
@@ -571,19 +573,30 @@ begin
 end;
 
 procedure TdmMain.QForm6CalcFields(DataSet: TDataSet);
+var perc: double;
 begin
   QForm6Col_1_10.AsInteger := QForm6Col_1.AsInteger - QForm6Col_10.AsInteger;
   QForm6Col_1_10_12.AsInteger := QForm6Col_1_10.AsInteger - QForm6Col_12.AsInteger;
 
     if QForm6COL_12.AsInteger = 0 then
       QForm6Perc.AsString := '0'
-    else
-      QForm6Perc.AsString := FloatToStr(Round(100*
+    else begin
+      perc := 100*
         (1.0*(QForm6COL_1.AsInteger - QForm6COL_10.AsInteger)) /
-          QForm6COL_12.AsInteger));
+          QForm6COL_12.AsInteger;
+      if perc > 100 then perc := 100.0;
+      QForm6Perc.AsString := FloatToStr(Round(perc));
+    end;
+    if QForm6COL_2.AsInteger = 0 then
+      QForm6Perc5.AsString := '0'
+    else
+      QForm6Perc5.AsString := FloatToStr(Round(100*
+        (1.0*QForm6COL_6.AsInteger) /
+          QForm6COL_2.AsInteger));
 end;
 
 procedure TdmMain.ReportQueryCalcFields(DataSet: TDataSet);
+var perc: double;
 begin
   ReportQueryCol_1_10.AsInteger := ReportQueryCol_1.AsInteger - ReportQueryCol_10.AsInteger;
   ReportQueryCol_1_10_12.AsInteger := ReportQueryCol_1_10.AsInteger - ReportQueryCol_12.AsInteger;
@@ -594,6 +607,15 @@ begin
       ReportQueryPerc.AsString := FloatToStr(Round(100*
         (1.0*(ReportQueryCOL_1.AsInteger - ReportQueryCOL_10.AsInteger)) /
           ReportQueryCOL_12.AsInteger));
+    if ReportQueryCOL_2.AsInteger = 0 then
+      ReportQueryPerc5.AsString := '0'
+    else begin
+      perc := 100*
+        (1.0*ReportQueryCOL_6.AsInteger) /
+          ReportQueryCOL_2.AsInteger;
+      if perc > 100 then perc := 100.0;
+      ReportQueryPerc5.AsString := FloatToStr(Round(perc));
+    end;
 
 end;
 

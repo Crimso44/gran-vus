@@ -96,7 +96,7 @@ object dmMain: TdmMain
     Left = 80
     Top = 24
     Bitmap = {
-      494C010109000B00580010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010109000B005C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -625,6 +625,11 @@ object dmMain: TdmMain
       Size = 50
       Calculated = True
     end
+    object ReportQueryPerc5: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'Perc5'
+      Calculated = True
+    end
   end
   object OrgQuery: TADOQuery
     Connection = dbMain
@@ -794,6 +799,11 @@ object dmMain: TdmMain
       FieldKind = fkCalculated
       FieldName = 'Perc'
       Size = 50
+      Calculated = True
+    end
+    object QForm6Perc5: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'Perc5'
       Calculated = True
     end
   end
