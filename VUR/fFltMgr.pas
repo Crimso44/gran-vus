@@ -160,7 +160,7 @@ type
  end;
 
 var
-  AFilterArray : Array[0..149] of TFilterRec = (
+  AFilterArray : Array[0..152] of TFilterRec = (
 //Общие
 {$REGION 'COMMON'}
     (FldName:'FAM';        FldType: ptString;  DispName: 'Фамилия'; DispGroup: 'Общие'; Form: [ffPersons, ffPersChanges]),
@@ -201,6 +201,13 @@ var
     (FldName:'END_DATE_DATE'; FldType: ptDate; DispName: 'Дата окончания'; DispGroup: 'Образование'; Form: [ffPersons]),
     (FldName:'(PROF1&'' ''&PROF2)'; FldType: ptString; DispName: 'Профессия'; DispGroup: 'Образование'; Form: [ffPersons];
        FldAlias: 'PROF1'),
+    (FldName:'iif(Driver <> 0, 1, 0)'; FldType: ptBoolean; DispName: 'Водитель моб. средства'; DispGroup: 'Воинский учет'; Form: [ffPersons];
+       FldAlias: 'Driver'),
+    (FldName:'iif(not (MobContract is null) and not (MobContract < Date()), 1, 0)'; FldType: ptBoolean; DispName: 'Заключил моб. контракт'; DispGroup: 'Воинский учет'; Form: [ffPersons];
+       FldAlias: 'MobContractIsOn'),
+    (FldName:'MobContract'; FldType: ptDate; DispName: 'Дата истечения моб. контракта'; DispGroup: 'Воинский учет'; Form: [ffPersons];
+       FldAlias: 'MobContract'),
+
 //    (FldName:'SC_ID'; FldType:ptList; DispName: 'Ученая степень'; DispGroup: 'Образование'; Form: [ffPersons];
 //       ListSQL: 'select SC_ID as [ID], SC_NAME as [Наименование_70], OKIN as [ОКИН_30] from KSCIENCE order by 3'),
 {$ENDREGION 'EDU'}
