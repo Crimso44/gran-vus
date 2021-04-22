@@ -167,7 +167,7 @@ object fmPersonForm: TfmPersonForm
     Top = 55
     Width = 797
     Height = 406
-    ActivePage = tabSheetX1
+    ActivePage = tabSheetX0
     HotTrack = True
     MultiLine = True
     RaggedRight = True
@@ -1479,6 +1479,13 @@ object fmPersonForm: TfmPersonForm
         Height = 13
         Caption = #1044#1072#1090#1072' '#1087#1088#1080#1089#1074#1086#1077#1085#1080#1103':'
       end
+      object Label169: TLabel
+        Left = 316
+        Top = 359
+        Width = 141
+        Height = 13
+        Caption = #1082#1086#1085#1090#1088#1072#1082#1090' '#1085#1072' '#1084#1086#1073'. '#1088#1077#1079#1077#1088#1074' '#1076#1086
+      end
       object pnlWarMain: TPanel
         Left = 0
         Top = 0
@@ -1722,7 +1729,7 @@ object fmPersonForm: TfmPersonForm
       end
       object dtOVK: TdxDateEdit
         Left = 159
-        Top = 312
+        Top = 311
         Width = 101
         TabOrder = 15
         OnChange = edFamChange
@@ -1731,7 +1738,7 @@ object fmPersonForm: TfmPersonForm
       end
       object dtWBil: TdxDateEdit
         Left = 468
-        Top = 312
+        Top = 311
         Width = 101
         TabOrder = 16
         OnChange = edFamChange
@@ -1898,7 +1905,7 @@ object fmPersonForm: TfmPersonForm
       end
       object edWarfare: TEdit
         Left = 159
-        Top = 336
+        Top = 334
         Width = 410
         Height = 21
         MaxLength = 255
@@ -1944,14 +1951,19 @@ object fmPersonForm: TfmPersonForm
         Date = -700000.000000000000000000
         DateOnError = deToday
       end
+      object dtMobContract: TdxDateEdit
+        Left = 468
+        Top = 356
+        Width = 101
+        TabOrder = 23
+        OnChange = edFamChange
+        Date = -700000.000000000000000000
+        DateOnError = deToday
+      end
     end
     object TabSheetUpol: TTabSheet
       Caption = #1055#1086#1083#1085#1086#1084#1086#1095#1080#1103
       ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label166: TLabel
         Left = 3
         Top = 0
@@ -3168,10 +3180,6 @@ object fmPersonForm: TfmPersonForm
         object tbVK: TTabSheet
           Caption = #1054#1073#1091#1095#1077#1085#1080#1077' '#1085#1072' '#1074#1086#1077#1085'. '#1082#1072#1092'.'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label101: TLabel
             Left = 248
             Top = 3
@@ -3292,10 +3300,6 @@ object fmPersonForm: TfmPersonForm
         object TabSheet8: TTabSheet
           Caption = #1054#1090#1095#1080#1089#1083#1077#1085#1080#1077' '#1080#1079' '#1080#1085#1089#1090#1080#1090#1091#1090#1072
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label105: TLabel
             Left = 138
             Top = 8
@@ -4091,6 +4095,15 @@ object fmPersonForm: TfmPersonForm
     Visible = False
     OnChange = edFamChange
     OnKeyPress = edOKATOKeyPress
+  end
+  object bDriver: TCheckBox
+    Left = 16
+    Top = 440
+    Width = 249
+    Height = 17
+    Caption = #1042#1086#1076#1080#1090#1077#1083#1100' '#1084#1086#1073'. '#1090#1088#1072#1085#1089#1087#1086#1088#1090#1072
+    TabOrder = 13
+    OnClick = bDriverClick
   end
   object pmLang: TPopupMenu
     Left = 216

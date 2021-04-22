@@ -373,6 +373,8 @@ type
     qrDataStudWRangeOk: TIntegerField;
     qrDataIsIgnore: TBooleanField;
     qrDataProbation_Date: TDateField;
+    qrDataDriver: TIntegerField;
+    qrDataMobContract: TDateTimeField;
     procedure actAddExecute(Sender: TObject);
     procedure actEditExecute(Sender: TObject);
     procedure actDelExecute(Sender: TObject);
@@ -1003,6 +1005,8 @@ begin
         if qrDataSpecialWUchet1 .AsInteger = 1 then Msg := 'Забронирован, но имеет моб. предписание в спецформирование.' else
         if qrDataDocument       .AsInteger = 3 then Msg := 'Забронирован, но не подлежит бронированию как владелец справки уклониста.' else
         if not (qrDataProbation_Date.IsNull or (qrDataProbation_Date.AsDateTime < Date)) then Msg := 'Забронирован, но не завершил испытательный срок.' else
+        if qrDataDriver.AsInteger = 1 then Msg := 'Забронирован, но не подлежит бронированию как водитель транспорта для поставки по мобилизации.' else
+        if not (qrDataMobContract.IsNull or (qrDataMobContract.AsDateTime < Date)) then Msg := 'Забронирован, но не подлежит бронированию как заключивший контракт на пребывание в мобилизационном людском резерве.' else
 
         if qrDataDefPost        .AsInteger = 0 then begin
           Msg := 'Забронирован, но не подпадает ни под один пункт ПДП.';

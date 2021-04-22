@@ -69,6 +69,8 @@ begin
 //
 
       AddField('Appointment','PROBATION_DATE','datetime NULL');
+      AddField('Person', 'Driver', 'int NULL');
+      AddField('Person', 'MobContract', 'datetime null');
 
     DoSQL('Drop View PersonreservChkInfoBase', True);
     DoSQL(
@@ -81,7 +83,7 @@ begin
       '  IIf(IIf(ISNULL(StaffList.WartimePlan),0,StaffList.WartimePlan)>0,1,0) AS WARTIME, '#13+
       '  IIF(EXISTS(SELECT * FROM KDEFVUS WHERE NAME = left(P.VUS, IIF((select state from KWRANGE where WRNG_ID = P.WRNG_ID) = 3, 6, 3))), 1,0) AS DefVUS, '#13+
       '  IIF(P.WUCHET1 LIKE (SELECT Template FROM Command300), 1,0) AS Command300, '#13+
-      '  P.EOARMY_DATE AS EOARMY_YEAR, '#13+
+      '  P.EOARMY_DATE AS EOARMY_YEAR, P.Driver, P.MobContract, '#13+
       '  P.Document, PostStudy.IsIgnore, '#13 +
       '  MvkOrd.DocNumber as MvkOrdDocNumber, MvkOrd.DocDate as MvkOrdDocDate, '#13+
       '  AppointmentLastAll.Post_Id as AppPost_Id, MvkOrd.Post_Id as MvkPost_Id, '#13+
@@ -200,6 +202,8 @@ begin
     '         ((R.CHE =15)             and (Year(Date())-Year(BIRTHDAY)<=55)) or'#13 +
     '         ((R.CHE >15)             and (Year(Date())-Year(BIRTHDAY)<=60)))'#13 +
     '        ) and'#13 +
+    '        (Driver<>1) and'#13 +
+    '        (MobContract is null or MobContract < Date()) and'#13 +
     '        (DefPOST=1)) or '#13 +
 
     '  (MvkPost_Id = AppPost_Id and not IsNull(MvkOrdDocDate) or '#13 +

@@ -473,6 +473,9 @@ type
     Label167: TLabel;
     dtADDR_DATE_END1: TdxDateEdit;
     Label168: TLabel;
+    bDriver: TCheckBox;
+    Label169: TLabel;
+    dtMobContract: TdxDateEdit;
     procedure PCChanging(Sender: TObject; var AllowChange: Boolean);
     procedure PCDrawTab(Control: TCustomTabControl; TabIndex: Integer;
       const Rect: TRect; Active: Boolean);
@@ -537,6 +540,7 @@ type
     procedure bKval1Click(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
     procedure MenuItem12Click(Sender: TObject);
+    procedure bDriverClick(Sender: TObject);
   private
     { Private declarations }
     PrevTab: Integer;
@@ -999,6 +1003,8 @@ begin
   edWBSer.Enabled := dmMain.rEdit;
   edWBNum.Enabled := dmMain.rEdit;
   dtWBeg.Enabled := dmMain.rEdit;
+  dtMobContract.Enabled := dmMain.rEdit;
+  bDriver.Enabled := dmMain.rEdit;
   dtWBDate.Enabled := dmMain.rEdit;
   dtWRng.Enabled := dmMain.rEdit;
   cbBranch.Enabled := dmMain.rEdit;
@@ -1630,7 +1636,9 @@ begin
     LoadDate(dtWBeg        ,'W_DBEG');
     LoadDate(dtWBDate      ,'WBDate');
     LoadDate(dtWRng        ,'WRNG_Date');
+    LoadDate(dtMobContract ,'MobContract');
     LoadText(edEOARMY_DATE ,'EOARMY_DATE');
+    bDriver.Checked := qrData.FieldByName('Driver').AsInteger <> 0;
 
     (*cbDocumentZero := 0;
     cbDocument.Items.Clear;
@@ -2478,6 +2486,7 @@ begin  //StoreData
   /////////////////////
 
     AssignDate(qrData.FieldByName('W_DBEG'),dtWBeg);
+    AssignDate(qrData.FieldByName('MobContract'), dtMobContract);
     AssignDate(qrData.FieldByName('WBDate'),dtWBDate);
     AssignDate(qrData.FieldByName('WRNG_Date'),dtWRng);
     AssignStr(qrData.FieldByName('EOARMY_DATE'),edEOARMY_DATE);
@@ -2485,6 +2494,7 @@ begin  //StoreData
       qrData.FieldbyName('Document').AsInteger := cbDocument.ItemIndex + 2
     else*)
       qrData.FieldbyName('Document').AsInteger := cbDocument.ItemIndex;
+    if bDriver.Checked then qrData.FieldByName('Driver').AsInteger := 1 else qrData.FieldByName('Driver').AsInteger := 0;
     AssignStr(qrData.FieldByName('WBser'),edWBser);
     AssignStr(qrData.FieldByName('WBnum'),edWBnum);
     qrData.FieldbyName('Branch').AsInteger := cbBranch.ItemIndex;
@@ -2890,6 +2900,11 @@ begin
   aPrintForm26.Enabled := (dxtN26History.Count > 0) and
                           (not btnApply.Enabled) and
                           (dmMain.rPrint);
+end;
+
+procedure TfmPersonForm.bDriverClick(Sender: TObject);
+begin
+  edFam.OnChange(edFam);
 end;
 
 procedure TfmPersonForm.bKval1Click(Sender: TObject);
@@ -3337,6 +3352,8 @@ var
   DoReserv  : Boolean; //ƒолжен быть забронирован.
   CHE       : Integer; //„исленный эквивалент звани€
   AGE       : Integer; //¬озраст на начало года
+  Driver: Boolean; // водитель моб. транспорта
+  MobContract: Boolean; // контракт на моб. резерв
   DEP_NAME  : String;
   POST_NAME : String;
   Msg       : String;
@@ -3452,6 +3469,8 @@ begin
       IsIgnore := False;
       IsStudent := False;
       ProbationOk := False;
+      Driver := False;
+      MobContract := False;
     end
     else begin
       WorkMain  := FieldByName('WTP_ID')   .AsInteger in [1,3,9];
@@ -3465,7 +3484,9 @@ begin
       POST_NAME := FieldByName('POST_NAME').AsString;
       IsIgnore  := FieldByName('IsIgnore') .AsBoolean;
       IsStudent := FieldByName('IsStudent').AsInteger = 1;
+      Driver := bDriver.Checked;
       ProbationOk := FieldByName('Probation_Date').IsNull or (FieldByName('Probation_Date').AsDateTime < Date);
+      MobContract := (dtMobContract.Text<>EmptyStr) and not (dtMobContract.Date < Date);
     end;
     DocIsSprav := cbDocument.ItemIndex = 3;
     DocIsOk := cbDocument.ItemIndex < 2;
@@ -3499,7 +3520,8 @@ begin
   finally Free;
   end;
   DoReserv := IsMvkOrder or
-    (WorkMain and WorkPerm and DepIsWar and VUSIsOk and not Cmd300 and not SpecForm and DefPost and ProbationOk and not DocIsSprav) or
+    (WorkMain and WorkPerm and DepIsWar and VUSIsOk and not Cmd300 and not SpecForm and DefPost and
+      ProbationOk and not DocIsSprav and not Driver and not MobContract) or
     (IsStudent and StudWRangeOk and DocIsOk and VUSIsOk and (fWUch1.edWUCH1.Text = '') and not IsIgnore);
 
   Msg := '';
@@ -3523,6 +3545,8 @@ begin
         if SpecForm     then Msg := 'имеетс€ моб. предписание в спецформирование.' else
         if DocIsSprav   then Msg := 'не подлежит бронированию как владелец справки уклониста.' else
         if not ProbationOk then Msg := 'не подлежит бронированию как не завершивший испытательный срок.' else
+        if Driver then Msg := 'не подлежит бронированию как водитель транспорта дл€ поставки по мобилизации.' else
+        if MobContract then Msg := 'не подлежит бронированию как заключивший контракт на пребывание в мобилизационном людском резерве.' else
         if not DefPost  then begin
           Msg := 'работник не подпадает ни под один пункт ѕƒѕ.';
           if not DefPost_Post then

@@ -1287,7 +1287,7 @@ object fmPersonList: TfmPersonList
         ',[Person].[Mob_MissReason],[Person].[WUCHET2_Ser],'
       
         '[Person].[WUCHET2_IsWork],[Person].[PDPCode],[Person].[WRNG_Date' +
-        '],'
+        '], [Person].[Driver], [Person].[MobContract],'
       'Left([Person].[Comments], 255) as Comments,'
       'iif(Person.Male=1,'#39#1052#39','#39#1046#39') as PersonMale,'
       '  SGN(LEN([Person].WUchet2)),'
@@ -2670,6 +2670,12 @@ object fmPersonList: TfmPersonList
     end
     object qrDataProbation_Date: TDateField
       FieldName = 'Probation_Date'
+    end
+    object qrDataDriver: TIntegerField
+      FieldName = 'Driver'
+    end
+    object qrDataMobContract: TDateTimeField
+      FieldName = 'MobContract'
     end
   end
   object DataSource1: TDataSource
