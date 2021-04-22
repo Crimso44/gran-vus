@@ -37,7 +37,7 @@ var
   dmMain: TdmMain;
 
 const
-  sEventObject = 'Форма №4';
+  sEventObject = 'Форма № 4';
 
 implementation
 

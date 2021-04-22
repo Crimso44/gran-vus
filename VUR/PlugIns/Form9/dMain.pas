@@ -107,8 +107,8 @@ begin
         'and (p.W_DEnd is null or p.W_DEnd > Date())'#13+
         'and p.is_war = 1'#13+
         'and  IIF(p.W_DEND is NULL and ('#13+
-        '         (p.MALE=1 and ([KWRANGE].M_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY', true)+')>[KWRANGE].M_LIMIT  ) or'#13+
-        '         (p.MALE=0 and ([KWRANGE].FEM_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY', true)+')>[KWRANGE].FEM_LIMIT  ))'#13+
+        '         (p.MALE=1 and ([KWRANGE].M_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY')+')>[KWRANGE].M_LIMIT  ) or'#13+
+        '         (p.MALE=0 and ([KWRANGE].FEM_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY')+')>[KWRANGE].FEM_LIMIT  ))'#13+
         '        ,1,0) = 0'#13+
         ') ORDER BY Dep_NAME';
     end;
@@ -132,7 +132,7 @@ begin
 
 
 
-  ReportQuery.SQL.Text := ReplaceFullAges(ReportQuery.SQL.Text, IsJet);
+  ReportQuery.SQL.Text := ReplaceFullAges(ReportQuery.SQL.Text);
   //ReportQuery.Open;
 end;
 
@@ -161,7 +161,7 @@ begin
   try
     try
       qrDep.Open;
-      dmMain.ReportQuery.SQL.Text := ReplaceFullAges(dmMain.ReportQuery.SQL.Text, IsJet);
+      dmMain.ReportQuery.SQL.Text := ReplaceFullAges(dmMain.ReportQuery.SQL.Text);
       dmMain.ReportQuery.Open;
       dmMain.EkRTF1.ClearVars;
       dmMain.EkRTF1.CreateVar('OrgName',OrgName);

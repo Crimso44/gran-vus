@@ -28,6 +28,8 @@ type
 //        function PlugInExec(AppHandle: THandle; szConn: _Connection; nManID: Integer; nFormID: Integer = -1): Integer; stdcall;
 //
 
+  TPlugInSortInfo =
+    procedure (szSortName: PChar); stdcall;
   TPlugInExecMain =
     function (AppHandle: THandle; Conn: _Connection): Integer; stdcall;
   TPlugInExecOrg =
@@ -179,8 +181,10 @@ end;
 procedure TdmMain.ScanPlugIns;
 var sl: TStringList;
     PlugInInfo: TPlugInInfo;
+    PlugInSortInfo: TPlugInSortInfo;
     PlugType: Integer;
-    PlugName,PlugAuthor: Array[0..1000] of char;
+    PlugName,PlugAuthor, PlugSort: Array[0..1000] of char;
+    i, n: Integer;
 
     procedure ScanDir(path: string);
     var F: TSearchRec;
@@ -204,6 +208,12 @@ var sl: TStringList;
                   else begin
 // имя_dll,имя_плагина,копирайт,тип,image_index
                     sl.Clear;
+                    @PlugInSortInfo := GetProcAddress(hDll,'PlugInSortInfo');
+                    if @PlugInSortInfo<>nil then begin
+                      PlugInSortInfo(PlugSort);
+                      sl.Add(path+PlugSort);
+                    end else
+                      sl.Add(path+F.Name);
                     sl.Add(path+F.Name);
                     sl.Add(PlugName);
                     sl.Add(PlugAuthor);
@@ -216,6 +226,7 @@ var sl: TStringList;
                       sl.Add('-1');
                     end;
                     bmp.Free;
+
                     slPlugIns.Add(sl.CommaText);
                   end;
                 end;
@@ -234,6 +245,12 @@ begin
   slPlugIns.Clear;
 // add new plug_ins
   ScanDir(IniSupport.GetPlugInsDir);
+  slPlugIns.Sort();
+  for i := 0 to slPlugIns.Count - 1 do begin
+    sl.CommaText := slPlugIns[i];
+    sl.Delete(0);
+    slPlugIns[i] := sl.CommaText;
+  end;
   sl.Free;
 end;
 

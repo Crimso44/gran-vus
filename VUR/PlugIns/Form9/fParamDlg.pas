@@ -54,8 +54,8 @@ begin
       'and (p.W_DEnd is null or p.W_DEnd > Date())'#13+
       'and p.is_war = 1'#13+
       'and  IIF(p.W_DEND is NULL and ('#13+
-      '         (p.MALE=1 and ([KWRANGE].M_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY', true)+')>[KWRANGE].M_LIMIT  ) or'#13+
-      '         (p.MALE=0 and ([KWRANGE].FEM_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY', true)+')>[KWRANGE].FEM_LIMIT  ))'#13+
+      '         (p.MALE=1 and ([KWRANGE].M_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY')+')>[KWRANGE].M_LIMIT  ) or'#13+
+      '         (p.MALE=0 and ([KWRANGE].FEM_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY')+')>[KWRANGE].FEM_LIMIT  ))'#13+
       '        ,1,0) = 0'#13+
       ') ORDER BY Dep_NAME';
     Open;

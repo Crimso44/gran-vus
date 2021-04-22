@@ -38,6 +38,15 @@ begin
   StrCopy(szAuthor,'(с) 2008, ГУП г.Москвы "ГНПП "Гранит-Центр"');
 end;
 
+
+procedure PlugInSortInfo(szSortName: PChar); stdcall;
+begin
+  StrCopy(szSortName, 'Form06-2015');
+end;
+
+
+
+
 function Execute(
   AppHandle: THandle;
   Conn: _Connection;
@@ -140,7 +149,7 @@ begin
 end;
 
 exports
-  PlugInInfo, PlugInExec, PlugInExecForm;
+  PlugInInfo, PlugInExec, PlugInExecForm, PlugInSortInfo;
 
 begin
 end.

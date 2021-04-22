@@ -33,6 +33,13 @@ begin
   Result := 0;
 end;
 
+procedure PlugInSortInfo(szSortName: PChar); stdcall;
+begin
+  StrCopy(szSortName, 'Form08');
+end;
+
+
+
 function PlugInExec(
   AppHandle: THandle;
   Conn: _Connection): Integer; stdcall;
@@ -68,7 +75,7 @@ begin
 end;
 
 exports
-  PlugInInfo, PlugInExec;
+  PlugInInfo, PlugInExec, PlugInSortInfo;
 
 begin
 end.

@@ -68,7 +68,7 @@ begin
   try
     if not IsJet then
       qrPerson.SQL.Text := StringReplace(qrPerson.SQL.Text, 'Date()', 'GetDate()', [rfReplaceAll]);
-    qrPerson.SQL.Text := ReplaceFullAges(qrPerson.SQL.Text, IsJet);
+    qrPerson.SQL.Text := ReplaceFullAges(qrPerson.SQL.Text);
 
     with TADOQuery.Create(nil) do
     try
