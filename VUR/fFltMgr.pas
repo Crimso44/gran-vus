@@ -160,7 +160,7 @@ type
  end;
 
 var
-  AFilterArray : Array[0..152] of TFilterRec = (
+  AFilterArray : Array[0..155] of TFilterRec = (
 //Общие
 {$REGION 'COMMON'}
     (FldName:'FAM';        FldType: ptString;  DispName: 'Фамилия'; DispGroup: 'Общие'; Form: [ffPersons, ffPersChanges]),
@@ -319,6 +319,15 @@ var
     (FldName:'(WUCHET2_IsWork = 1)';
                             FldType: ptBoolean; DispName: 'Забронирован'; DispGroup: 'Специальный воинский учет'; Form: [ffPersons, ffPersChanges];
        FldAlias: 'WUCHET2_IsWork'),
+    (FldName:'(WUCHET2_IsWork = 1 and not IsNull(PDP.POST_ID))';
+                            FldType: ptBoolean; DispName: 'Забронирован по ПДП'; DispGroup: 'Специальный воинский учет'; Form: [ffPersons, ffPersChanges];
+       FldAlias: 'PDPCode'),
+    (FldName:'(WUCHET2_IsWork = 1 and exists(select 1 from MvkOrder as mo where mo.Pers_id = AppointmentLastAll.Pers_id and mo.Post_Id = AppointmentLastAll.Post_Id))';
+                            FldType: ptBoolean; DispName: 'Забронирован персонально'; DispGroup: 'Специальный воинский учет'; Form: [ffPersons, ffPersChanges];
+       FldAlias: 'WUCHET2_IsWorkMvk'),
+    (FldName:'iif(WUCHET2_IsWork = 1, WUCHET2_Motiv, ''-'')';
+                            FldType: ptString; DispName: 'Мотив бронирования'; DispGroup: 'Специальный воинский учет'; Form: [ffPersons, ffPersChanges];
+       FldAlias: 'WUCHET2_IsWorkMotiv'),
     (FldName:'PersonReservChkInfo.IS_BAD';
                             FldType: ptBoolean; DispName: 'Бронирование некорректно'; DispGroup: 'Специальный воинский учет'; Form: [ffPersons];
        FldAlias: 'IS_BAD'),
