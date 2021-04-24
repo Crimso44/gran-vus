@@ -2,7 +2,7 @@ object fWUch2: TfWUch2
   Left = 0
   Top = 0
   Caption = #1057#1087#1077#1094#1080#1072#1083#1100#1085#1099#1081' '#1074#1086#1080#1085#1089#1082#1080#1081' '#1091#1095#1077#1090
-  ClientHeight = 345
+  ClientHeight = 389
   ClientWidth = 418
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -52,21 +52,21 @@ object fWUch2: TfWUch2
   end
   object Label5: TLabel
     Left = 222
-    Top = 230
+    Top = 270
     Width = 65
     Height = 13
     Caption = #1050#1086#1076' '#1054#1050#1055#1044#1058#1056
   end
   object Label6: TLabel
     Left = 10
-    Top = 254
+    Top = 294
     Width = 117
     Height = 13
     Caption = #1044#1086#1083#1078#1085#1086#1089#1090#1100' '#1087#1086' '#1054#1050#1055#1044#1058#1056
   end
   object Label7: TLabel
     Left = 32
-    Top = 230
+    Top = 270
     Width = 59
     Height = 13
     Caption = #1050#1086#1076' '#1054#1050#1042#1069#1044
@@ -93,7 +93,7 @@ object fWUch2: TfWUch2
   end
   object Label10: TLabel
     Left = 8
-    Top = 202
+    Top = 242
     Width = 128
     Height = 13
     Caption = #1041#1088#1086#1085#1080#1088#1086#1074#1072#1085#1080#1077' '#1087#1086' '#1055#1044#1055
@@ -111,13 +111,21 @@ object fWUch2: TfWUch2
     Height = 13
     Caption = #1044#1086#1083#1078#1085#1086#1089#1090#1100' '#1087#1086' '#1064#1056
   end
+  object Label12: TLabel
+    Left = 10
+    Top = 188
+    Width = 186
+    Height = 13
+    Caption = #1052#1086#1090#1080#1074' '#1087#1077#1088#1089#1086#1085#1072#1083#1100#1085#1086#1075#1086' '#1073#1088#1086#1085#1080#1088#1086#1074#1072#1085#1080#1103
+  end
   object Panel1: TPanel
     Left = 0
-    Top = 304
+    Top = 348
     Width = 418
     Height = 41
     Align = alBottom
     TabOrder = 3
+    ExplicitTop = 304
     object btnOk: TButton
       Left = 322
       Top = 8
@@ -159,7 +167,7 @@ object fWUch2: TfWUch2
   end
   object edWUOKVED: TEdit
     Left = 97
-    Top = 227
+    Top = 267
     Width = 101
     Height = 21
     Color = clBtnFace
@@ -169,7 +177,7 @@ object fWUch2: TfWUch2
   end
   object edWUOKPDTR: TEdit
     Left = 293
-    Top = 227
+    Top = 267
     Width = 101
     Height = 21
     Color = clBtnFace
@@ -179,7 +187,7 @@ object fWUch2: TfWUch2
   end
   object edWUOKPDTRName: TEdit
     Left = 8
-    Top = 273
+    Top = 313
     Width = 389
     Height = 21
     Color = clBtnFace
@@ -206,5 +214,14 @@ object fWUch2: TfWUch2
     Enabled = False
     ReadOnly = True
     TabOrder = 8
+  end
+  object edWUch2_Motiv: TEdit
+    Left = 8
+    Top = 207
+    Width = 389
+    Height = 21
+    MaxLength = 255
+    TabOrder = 9
+    OnChange = edWUch2Change
   end
 end

@@ -32,6 +32,8 @@ type
     Label10: TLabel;
     edWUOKPDTRNameMvk: TEdit;
     Label11: TLabel;
+    edWUch2_Motiv: TEdit;
+    Label12: TLabel;
     procedure edWUch2Change(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);

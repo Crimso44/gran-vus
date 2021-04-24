@@ -1032,6 +1032,7 @@ begin
   fWUch1.edMob_Place.Enabled := dmMain.rEdit;
   fWUch2.edWUch2.Enabled := dmMain.rEdit;
   fWUch2.edWUch2_Ser.Enabled := dmMain.rEdit;
+  fWUch2.edWUch2_Motiv.Enabled := dmMain.rEdit;
   fWUch2.dtWUch2_date.Enabled := dmMain.rEdit;
   edWUch2_IsWork.Enabled := dmMain.rEdit;
   dtWEnd.Enabled := dmMain.rEdit;
@@ -1687,6 +1688,7 @@ begin
     LoadText(fWUch2.edWUch2       ,'WUCHET2');
     LoadDate(fWUch2.dtWUCH2_date  ,'WUCHET2_date');
     LoadText(fWUch2.edWUch2_Ser   ,'WUCHET2_Ser');
+    LoadText(fWUch2.edWUch2_Motiv   ,'WUCHET2_Motiv');
     edWUch2_IsWork.Checked := qrData.FieldByName('WUchet2_IsWork').AsInteger<>0;
     CalcWuch2Info;
     PDPCode := qrData.FieldByName('PDPCode').AsString;
@@ -2559,6 +2561,7 @@ begin  //StoreData
 
     AssignStr(qrData.FieldByName('WUCHET2'),fWUch2.edWUCH2);
     AssignStr(qrData.FieldByName('WUCHET2_Ser'),fWUch2.edWUCH2_Ser);
+    AssignStr(qrData.FieldByName('WUCHET2_Motiv'),fWUch2.edWUCH2_Motiv);
     AssignDate(qrData.FieldByName('WUCHET2_date'),fWUch2.dtWUCH2_date);
     if edWUch2_IsWork.Checked then begin
       qrData.FieldByName('WUchet2_IsWork').AsInteger := 1;

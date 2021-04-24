@@ -71,6 +71,7 @@ begin
       AddField('Appointment','PROBATION_DATE','datetime NULL');
       AddField('Person', 'Driver', 'int NULL');
       AddField('Person', 'MobContract', 'datetime null');
+      AddField('Person', 'WUCHET2_Motiv', 'varchar(255) null');
 
     DoSQL('Drop View PersonreservChkInfoBase', True);
     DoSQL(
