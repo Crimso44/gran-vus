@@ -22,7 +22,7 @@ type
     COL_7Column: TdxDBGridColumn;
     COL_8Column: TdxDBGridColumn;
     COL_9Column: TdxDBGridColumn;
-    COL_11Column: TdxDBGridColumn;
+    COL_14Column: TdxDBGridColumn;
     COL_10Column: TdxDBGridColumn;
     ActionList: TActionList;
     GenerateAction: TAction;
@@ -52,7 +52,7 @@ type
     edYear: TEdit;
     Label1: TLabel;
     Panel1: TPanel;
-    COL_10T: TdxDBGridColumn;
+    COL_13Column: TdxDBGridColumn;
     procedure GenerateActionExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure PrintActionExecute(Sender: TObject);
