@@ -41,7 +41,7 @@ end;
 
 procedure PlugInSortInfo(szSortName: PChar); stdcall;
 begin
-  StrCopy(szSortName, 'FormT2List');
+  StrCopy(szSortName, 'FormT2XList');
 end;
 
 function PlugInExec(
