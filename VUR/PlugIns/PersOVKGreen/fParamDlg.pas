@@ -45,8 +45,8 @@ begin
       'left outer join PersonReservChkInfo pr on pr.Pers_Id = P.pers_Id) ' +
       'left outer join KWRange wr on p.WRng_Id = wr.WRng_Id ' +
       'where P.IS_WAR<>0 and pr.Is_Bad = 1 and pr.Reserved = 0 and ' +
-      '(not ((p.MALE=1 and (wr.M_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY', dmMain.IsJet)+')>wr.M_LIMIT  ) or ' +
-      '(p.MALE=0 and (wr.FEM_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY', dmMain.IsJet)+')>wr.FEM_LIMIT))) and ' +
+      '(not ((p.MALE=1 and (wr.M_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY')+')>wr.M_LIMIT  ) or ' +
+      '(p.MALE=0 and (wr.FEM_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY')+')>wr.FEM_LIMIT))) and ' +
       '(p.Wuchet2_IsWork is null or p.Wuchet2_IsWork = 0)' +
       'and ((select COUNT(*) from PERS_SET)=0 or P.PERS_ID in (select PERS_ID from PERS_SET)) ' +
       'AND ' +

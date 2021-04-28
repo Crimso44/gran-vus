@@ -118,7 +118,7 @@ object dmMain: TdmMain
     Left = 80
     Top = 24
     Bitmap = {
-      494C010109000B00440010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010109000B00480010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -771,5 +771,62 @@ object dmMain: TdmMain
       'SELECT * FROM ORG')
     Left = 100
     Top = 236
+  end
+  object qrExecutor: TADOQuery
+    Connection = dbMain
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from ORG_Cont Where Is_Gen = 3')
+    Left = 184
+    Top = 48
+    object qrExecutorCONTID: TIntegerField
+      FieldName = 'CONTID'
+    end
+    object qrExecutorORGID: TIntegerField
+      FieldName = 'ORGID'
+    end
+    object qrExecutorDEPART: TWideStringField
+      FieldName = 'DEPART'
+      Size = 50
+    end
+    object qrExecutorPOST: TWideStringField
+      FieldName = 'POST'
+      Size = 50
+    end
+    object qrExecutorFIO: TWideStringField
+      FieldName = 'FIO'
+      Size = 150
+    end
+    object qrExecutorPHONE: TWideStringField
+      FieldName = 'PHONE'
+      Size = 50
+    end
+    object qrExecutorFAX: TWideStringField
+      FieldName = 'FAX'
+      Size = 50
+    end
+    object qrExecutorEMAIL: TWideStringField
+      FieldName = 'EMAIL'
+      Size = 100
+    end
+    object qrExecutorIS_GEN: TSmallintField
+      FieldName = 'IS_GEN'
+    end
+    object qrExecutorIS_VUS: TSmallintField
+      FieldName = 'IS_VUS'
+    end
+    object qrExecutorFAM: TWideStringField
+      FieldName = 'FAM'
+      Size = 50
+    end
+    object qrExecutorIM: TWideStringField
+      FieldName = 'IM'
+      Size = 50
+    end
+    object qrExecutorOTCH: TWideStringField
+      FieldName = 'OTCH'
+      Size = 50
+    end
   end
 end

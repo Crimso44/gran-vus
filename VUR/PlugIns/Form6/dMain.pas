@@ -72,10 +72,23 @@ type
     Form6QueryCOL_12T: TWideStringField;
     ReportQueryCOL_10T: TWideStringField;
     ReportQueryCOL_12T: TWideStringField;
+    qrExecutor: TADOQuery;
+    qrExecutorCONTID: TIntegerField;
+    qrExecutorORGID: TIntegerField;
+    qrExecutorDEPART: TWideStringField;
+    qrExecutorPOST: TWideStringField;
+    qrExecutorFIO: TWideStringField;
+    qrExecutorPHONE: TWideStringField;
+    qrExecutorFAX: TWideStringField;
+    qrExecutorEMAIL: TWideStringField;
+    qrExecutorIS_GEN: TSmallintField;
+    qrExecutorIS_VUS: TSmallintField;
+    qrExecutorFAM: TWideStringField;
+    qrExecutorIM: TWideStringField;
+    qrExecutorOTCH: TWideStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure Form6QueryCalcFields(DataSet: TDataSet);
     procedure ReportQueryCalcFields(DataSet: TDataSet);
-  private
   public
     F6_ID: Integer;
     NoBronMode: Boolean;
@@ -87,6 +100,7 @@ type
     procedure SetColumnValue(AColumnName: string; Value: Integer);
     procedure GetColumnValues(out cv: ColumnValues);
     procedure SetColumnValues(cv: ColumnValues);
+    procedure FillExecutor;
   end;
 
   function ISNULL(v: variant; rv: variant) : variant;
@@ -549,6 +563,26 @@ begin
   Form6HdrQuery.Requery;
   Form6Query.Requery;
 end;
+
+procedure TdmMain.FillExecutor;
+begin
+  qrExecutor.Open;
+  if qrExecutor.Eof then begin
+    EkRtf1.CreateVar('ExecutorFam', '');
+    EkRtf1.CreateVar('ExecutorIm', '');
+    EkRtf1.CreateVar('ExecutorOtch', '');
+    EkRtf1.CreateVar('ExecutorPhone', '');
+    EkRtf1.CreateVar('ExecutorPost', '');
+  end else begin
+    EkRtf1.CreateVar('ExecutorFam', qrExecutorFam.AsString);
+    EkRtf1.CreateVar('ExecutorIm', qrExecutorIm.AsString);
+    EkRtf1.CreateVar('ExecutorOtch', qrExecutorOtch.AsString);
+    EkRtf1.CreateVar('ExecutorPhone', qrExecutorPhone.AsString);
+    EkRtf1.CreateVar('ExecutorPost', qrExecutorPost.AsString);
+  end;
+  qrExecutor.Close;
+end;
+
 
 end.
 

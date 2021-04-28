@@ -16,7 +16,7 @@ type
     qrOrg: TADOQuery;
     qrOrgIOFam: TStringField;
     qrOrgFamIO: TStringField;
-    qrOrgorgname: TStringField;
+    qrOrgorgname: TWideMemoField;
     qrOrgfam: TStringField;
     qrOrgIm: TStringField;
     qrOrgOtch: TStringField;
@@ -231,6 +231,7 @@ type
     procedure qrOrgAfterScroll(DataSet: TDataSet);
   private
     FOrgID: Integer;
+    procedure FillExecutor;
   public
     IsJet: Boolean;
     function PrintData: boolean;
@@ -303,7 +304,7 @@ begin
       qrPerson.Parameters.ParamByName('IsAspirant').Value := 1
     else
       qrPerson.Parameters.ParamByName('IsAspirant').Value := 0;
-    qrPerson.SQL.Text := ReplaceFullAges(qrPerson.SQL.Text, IsJet);
+    qrPerson.SQL.Text := ReplaceFullAges(qrPerson.SQL.Text);
     //qrPerson.Open;
     qrPDP.Open;
 
@@ -311,6 +312,8 @@ begin
       EkRtf1.CreateVar('Learning', 'обучающихся')
     else
       EkRtf1.CreateVar('Learning', 'работающих');
+
+    FillExecutor;
 
     EkRTF1.ExecuteOpen([qrPerson, qrOrg, qrPDP, qrOVK],SW_SHOWDEFAULT);
     Result := true;
@@ -321,6 +324,31 @@ begin
       ShowMessage(e.Message);
   end;
 end;
+
+procedure TdmMain.FillExecutor;
+var
+  qrExecutor: TADOQuery;
+begin
+  qrExecutor := TADOQuery.Create(Self);
+  qrExecutor.Connection := dmMain.dbMain;
+  qrExecutor.SQL.Text := 'Select * from ORG_Cont where Is_Gen = 3';
+  qrExecutor.Open;
+  if qrExecutor.Eof then begin
+    EkRtf1.CreateVar('ExecutorFam', '');
+    EkRtf1.CreateVar('ExecutorIm', '');
+    EkRtf1.CreateVar('ExecutorOtch', '');
+    EkRtf1.CreateVar('ExecutorPhone', '');
+    EkRtf1.CreateVar('ExecutorPost', '');
+  end else begin
+    EkRtf1.CreateVar('ExecutorFam', qrExecutor.FieldByName('Fam').AsString);
+    EkRtf1.CreateVar('ExecutorIm', qrExecutor.FieldByName('Im').AsString);
+    EkRtf1.CreateVar('ExecutorOtch', qrExecutor.FieldByName('Otch').AsString);
+    EkRtf1.CreateVar('ExecutorPhone', qrExecutor.FieldByName('Phone').AsString);
+    EkRtf1.CreateVar('ExecutorPost', qrExecutor.FieldByName('Post').AsString);
+  end;
+  qrExecutor.Close;
+end;
+
 
 procedure TdmMain.qrOrgAfterScroll(DataSet: TDataSet);
 begin
@@ -378,7 +406,7 @@ begin
     qrPerson.Parameters.ParamByName('MvkOrderNumber').Value := qrPDP.FieldByName('DocNumber').Value;
     qrPerson.Parameters.ParamByName('MvkOrderDate').Value := qrPDP.FieldByName('DocDate').Value;
     qrPerson.Parameters.ParamByName('TPDP_Id').Value := qrPDP.FieldByName('ID').AsInteger;
-    qrPerson.SQL.Text := ReplaceFullAges(qrPerson.SQL.Text, IsJet);
+    qrPerson.SQL.Text := ReplaceFullAges(qrPerson.SQL.Text);
     qrPerson.Open;
   end;
 end;

@@ -20,6 +20,20 @@ type
     qrOrgorgname: TWideMemoField;
     ReportQuery: TADOQuery;
     EkUDFList1: TEkUDFList;
+    qrExecutor: TADOQuery;
+    qrExecutorCONTID: TIntegerField;
+    qrExecutorORGID: TIntegerField;
+    qrExecutorDEPART: TWideStringField;
+    qrExecutorPOST: TWideStringField;
+    qrExecutorFIO: TWideStringField;
+    qrExecutorPHONE: TWideStringField;
+    qrExecutorFAX: TWideStringField;
+    qrExecutorEMAIL: TWideStringField;
+    qrExecutorIS_GEN: TSmallintField;
+    qrExecutorIS_VUS: TSmallintField;
+    qrExecutorFAM: TWideStringField;
+    qrExecutorIM: TWideStringField;
+    qrExecutorOTCH: TWideStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure EkUDFList1dateCalculate(Sender: TObject; Args: TEkUDFArgs;
       ArgCount: Integer; UDFResult: TObject);
@@ -31,6 +45,7 @@ type
       ArgCount: Integer; UDFResult: TObject);
   private
     FOrgID: Integer;
+    procedure FillExecutor;
   public
     function PrintData: boolean;
   end;
@@ -56,7 +71,7 @@ begin
 //  try
     if not IsJet then
       ReportQuery.SQL.Text := StringReplace(ReportQuery.SQL.Text, 'Date()', 'GetDate()', [rfReplaceAll]);
-    ReportQuery.SQL.Text := ReplaceFullAges(ReportQuery.SQL.Text, IsJet);
+    ReportQuery.SQL.Text := ReplaceFullAges(ReportQuery.SQL.Text);
 
     with TADOQuery.Create(nil) do
     try
@@ -73,6 +88,8 @@ begin
       Close;
     finally Free;
     end;
+
+    FillExecutor;
 
     ReportQuery.Open;
     qrOrg.Open;
@@ -140,5 +157,25 @@ begin
   for I := 0 to Length(Args)-1 do B := B and not CheckNull(Args[I]);
   (UDFResult as TEkReportVariable).AsBoolean := B;
 end;
+
+procedure TdmMain.FillExecutor;
+begin
+  qrExecutor.Open;
+  if qrExecutor.Eof then begin
+    EkRtf1.CreateVar('ExecutorFam', '');
+    EkRtf1.CreateVar('ExecutorIm', '');
+    EkRtf1.CreateVar('ExecutorOtch', '');
+    EkRtf1.CreateVar('ExecutorPhone', '');
+    EkRtf1.CreateVar('ExecutorPost', '');
+  end else begin
+    EkRtf1.CreateVar('ExecutorFam', qrExecutorFam.AsString);
+    EkRtf1.CreateVar('ExecutorIm', qrExecutorIm.AsString);
+    EkRtf1.CreateVar('ExecutorOtch', qrExecutorOtch.AsString);
+    EkRtf1.CreateVar('ExecutorPhone', qrExecutorPhone.AsString);
+    EkRtf1.CreateVar('ExecutorPost', qrExecutorPost.AsString);
+  end;
+  qrExecutor.Close;
+end;
+
 
 end.

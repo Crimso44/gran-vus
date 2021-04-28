@@ -135,6 +135,55 @@ object fmOrgPropContacts: TfmOrgPropContacts
     Height = 5
     Shape = bsTopLine
   end
+  object Label14: TLabel
+    Left = 244
+    Top = 312
+    Width = 61
+    Height = 13
+    Caption = #1044#1086#1083#1078#1085#1086#1089#1090#1100':'
+  end
+  object Label15: TLabel
+    Left = 244
+    Top = 288
+    Width = 48
+    Height = 13
+    Caption = #1058#1077#1083#1077#1092#1086#1085':'
+  end
+  object Label16: TLabel
+    Left = 12
+    Top = 312
+    Width = 50
+    Height = 13
+    Caption = #1054#1090#1095#1077#1089#1090#1074#1086':'
+  end
+  object Label17: TLabel
+    Left = 12
+    Top = 288
+    Width = 25
+    Height = 13
+    Caption = #1048#1084#1103':'
+  end
+  object Label18: TLabel
+    Left = 12
+    Top = 264
+    Width = 52
+    Height = 13
+    Caption = #1060#1072#1084#1080#1083#1080#1103':'
+  end
+  object Bevel4: TBevel
+    Left = 8
+    Top = 249
+    Width = 414
+    Height = 9
+    Shape = bsTopLine
+  end
+  object Label19: TLabel
+    Left = 428
+    Top = 243
+    Width = 67
+    Height = 13
+    Caption = #1048#1089#1087#1086#1083#1085#1080#1090#1077#1083#1100
+  end
   object edOrgName: TEdit
     Left = 12
     Top = 28
@@ -250,6 +299,54 @@ object fmOrgPropContacts: TfmOrgPropContacts
     Caption = #1047#1072#1082#1088#1099#1090#1100
     Default = True
     ModalResult = 1
+    TabOrder = 16
+  end
+  object edPost3: TEdit
+    Left = 316
+    Top = 308
+    Width = 181
+    Height = 21
+    MaxLength = 50
+    TabOrder = 15
+    OnChange = edFam1Change
+  end
+  object edPhone3: TEdit
+    Left = 318
+    Top = 281
+    Width = 181
+    Height = 21
+    MaxLength = 50
+    TabOrder = 14
+    OnChange = edFam1Change
+  end
+  object edOtch3: TEdit
+    Left = 80
+    Top = 308
+    Width = 121
+    Height = 21
+    MaxLength = 50
+    TabOrder = 13
+    OnChange = edFam1Change
+    OnKeyPress = edFam1KeyPress
+  end
+  object edIm3: TEdit
+    Left = 80
+    Top = 284
+    Width = 97
+    Height = 21
+    MaxLength = 50
+    TabOrder = 12
+    OnChange = edFam1Change
+    OnKeyPress = edFam1KeyPress
+  end
+  object edFam3: TEdit
+    Left = 80
+    Top = 260
+    Width = 145
+    Height = 21
+    MaxLength = 50
     TabOrder = 11
+    OnChange = edFam1Change
+    OnKeyPress = edFam1KeyPress
   end
 end

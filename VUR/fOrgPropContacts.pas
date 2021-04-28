@@ -36,6 +36,18 @@ type
     edPost2: TEdit;
     Bevel3: TBevel;
     btnClose: TButton;
+    edPost3: TEdit;
+    edPhone3: TEdit;
+    edOtch3: TEdit;
+    edIm3: TEdit;
+    edFam3: TEdit;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Bevel4: TBevel;
+    Label19: TLabel;
     procedure edFam1Change(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

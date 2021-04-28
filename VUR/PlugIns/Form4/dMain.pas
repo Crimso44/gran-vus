@@ -16,6 +16,20 @@ type
     qrOVK: TADOQuery;
     qrVUR: TADOQuery;
     EkUDFList1: TEkUDFList;
+    qrExecutor: TADOQuery;
+    qrExecutorCONTID: TIntegerField;
+    qrExecutorORGID: TIntegerField;
+    qrExecutorDEPART: TWideStringField;
+    qrExecutorPOST: TWideStringField;
+    qrExecutorFIO: TWideStringField;
+    qrExecutorPHONE: TWideStringField;
+    qrExecutorFAX: TWideStringField;
+    qrExecutorEMAIL: TWideStringField;
+    qrExecutorIS_GEN: TSmallintField;
+    qrExecutorIS_VUS: TSmallintField;
+    qrExecutorFAM: TWideStringField;
+    qrExecutorIM: TWideStringField;
+    qrExecutorOTCH: TWideStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure EkUDFList1NotIsNullCalculate(Sender: TObject; Args: TEkUDFArgs;
       ArgCount: Integer; UDFResult: TObject);
@@ -24,6 +38,7 @@ type
     procedure EkUDFList1Functions2Calculate(Sender: TObject; Args: TEkUDFArgs;
       ArgCount: Integer; UDFResult: TObject);
   private
+    procedure FillExecutor;
     { Private declarations }
   public
     { Public declarations }
@@ -213,6 +228,8 @@ begin
       qrPers.FieldByName('Otch').AsString+' таб.№ '+
       qrPers.FieldByName('Tab_Numb').AsString+'.rtf';
 
+    FillExecutor;
+
     EkRTF1.ExecuteOpen([qrPers,qrOrg,qrVUR,qrOVK],SW_SHOWDEFAULT);
     SaveEvent(dbMain, evs_Report_Print, sEventObject,
       ['Номер сотрудника: '+IntToStr(qrPers.Parameters.ParamByName('ID').Value)]);
@@ -223,5 +240,23 @@ begin
   end end;
 end;
 
+procedure TdmMain.FillExecutor;
+begin
+  qrExecutor.Open;
+  if qrExecutor.Eof then begin
+    EkRtf1.CreateVar('ExecutorFam', '');
+    EkRtf1.CreateVar('ExecutorIm', '');
+    EkRtf1.CreateVar('ExecutorOtch', '');
+    EkRtf1.CreateVar('ExecutorPhone', '');
+    EkRtf1.CreateVar('ExecutorPost', '');
+  end else begin
+    EkRtf1.CreateVar('ExecutorFam', qrExecutorFam.AsString);
+    EkRtf1.CreateVar('ExecutorIm', qrExecutorIm.AsString);
+    EkRtf1.CreateVar('ExecutorOtch', qrExecutorOtch.AsString);
+    EkRtf1.CreateVar('ExecutorPhone', qrExecutorPhone.AsString);
+    EkRtf1.CreateVar('ExecutorPost', qrExecutorPost.AsString);
+  end;
+  qrExecutor.Close;
+end;
 
 end.

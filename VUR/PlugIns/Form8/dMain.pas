@@ -34,6 +34,20 @@ type
     qrPersonWRNG_Name1: TStringField;
     qrOrgorgname: TWideMemoField;
     qrPersonMvkData: TStringField;
+    qrExecutor: TADOQuery;
+    qrExecutorCONTID: TIntegerField;
+    qrExecutorORGID: TIntegerField;
+    qrExecutorDEPART: TWideStringField;
+    qrExecutorPOST: TWideStringField;
+    qrExecutorFIO: TWideStringField;
+    qrExecutorPHONE: TWideStringField;
+    qrExecutorFAX: TWideStringField;
+    qrExecutorEMAIL: TWideStringField;
+    qrExecutorIS_GEN: TSmallintField;
+    qrExecutorIS_VUS: TSmallintField;
+    qrExecutorFAM: TWideStringField;
+    qrExecutorIM: TWideStringField;
+    qrExecutorOTCH: TWideStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure EkUDFList1dateCalculate(Sender: TObject; Args: TEkUDFArgs;
       ArgCount: Integer; UDFResult: TObject);
@@ -43,6 +57,7 @@ type
     procedure qrPersonCalcFields(DataSet: TDataSet);
   private
     FOrgID: Integer;
+    procedure FillExecutor;
   public
     function PrintData: boolean;
   end;
@@ -93,6 +108,7 @@ begin
     finally Free;
     end;
 
+    FillExecutor;
 
     qrPerson.Open;
     qrOrg.Open;
@@ -154,5 +170,26 @@ begin
   for I := 0 to Length(Args)-1 do B := B and not CheckNull(Args[I]);
   (UDFResult as TEkReportVariable).AsBoolean := B;
 end;
+
+
+procedure TdmMain.FillExecutor;
+begin
+  qrExecutor.Open;
+  if qrExecutor.Eof then begin
+    EkRtf1.CreateVar('ExecutorFam', '');
+    EkRtf1.CreateVar('ExecutorIm', '');
+    EkRtf1.CreateVar('ExecutorOtch', '');
+    EkRtf1.CreateVar('ExecutorPhone', '');
+    EkRtf1.CreateVar('ExecutorPost', '');
+  end else begin
+    EkRtf1.CreateVar('ExecutorFam', qrExecutorFam.AsString);
+    EkRtf1.CreateVar('ExecutorIm', qrExecutorIm.AsString);
+    EkRtf1.CreateVar('ExecutorOtch', qrExecutorOtch.AsString);
+    EkRtf1.CreateVar('ExecutorPhone', qrExecutorPhone.AsString);
+    EkRtf1.CreateVar('ExecutorPost', qrExecutorPost.AsString);
+  end;
+  qrExecutor.Close;
+end;
+
 
 end.

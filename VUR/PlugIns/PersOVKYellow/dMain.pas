@@ -215,6 +215,7 @@ type
     procedure qrVURCalcFields(DataSet: TDataSet);
   private
     FOrgID: Integer;
+    procedure FillExecutor;
   public
     ListOVK: TStringList;
     IsJet: Boolean;
@@ -299,6 +300,7 @@ begin
     EkRTF1.CreateVar('TITLE1', 'яохянй цпюфдюм, пюанрюбьху х б мюярнъыхи лнлемр сбнкеммшу б');
     EkRTF1.CreateVar('TITLE2', ', опедярюбкъелши дкъ ямърхъ пюанрмхйнб ян яоежхюкэмнцн сверю');
     EkRTF1.CreateVar('YELLOW_HEAD', ', ДЮРЮ СБНКЭМЕМХЪ (ОПХЙЮГ)');
+    FillExecutor;
     EkRTF1.ExecuteOpen([qrOrg,qrVUR,qrGen,qrOVK,qrPerson],SW_SHOWDEFAULT);
     Result := true;
     SaveEvent(dbMain, evs_Report_Print, sEventObject,
@@ -309,6 +311,31 @@ begin
   //  Result := false;
   //end end;
 end;
+
+procedure TdmMain.FillExecutor;
+var
+  qrExecutor: TADOQuery;
+begin
+  qrExecutor := TADOQuery.Create(Self);
+  qrExecutor.Connection := dmMain.dbMain;
+  qrExecutor.SQL.Text := 'Select * from ORG_Cont where Is_Gen = 3';
+  qrExecutor.Open;
+  if qrExecutor.Eof then begin
+    EkRtf1.CreateVar('ExecutorFam', '');
+    EkRtf1.CreateVar('ExecutorIm', '');
+    EkRtf1.CreateVar('ExecutorOtch', '');
+    EkRtf1.CreateVar('ExecutorPhone', '');
+    EkRtf1.CreateVar('ExecutorPost', '');
+  end else begin
+    EkRtf1.CreateVar('ExecutorFam', qrExecutor.FieldByName('Fam').AsString);
+    EkRtf1.CreateVar('ExecutorIm', qrExecutor.FieldByName('Im').AsString);
+    EkRtf1.CreateVar('ExecutorOtch', qrExecutor.FieldByName('Otch').AsString);
+    EkRtf1.CreateVar('ExecutorPhone', qrExecutor.FieldByName('Phone').AsString);
+    EkRtf1.CreateVar('ExecutorPost', qrExecutor.FieldByName('Post').AsString);
+  end;
+  qrExecutor.Close;
+end;
+
 
 procedure TdmMain.DataModuleCreate(Sender: TObject);
 begin

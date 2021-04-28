@@ -187,6 +187,9 @@ begin
       finally
         Free;
       end;
+
+      dmMain.FillExecutor;
+
       dmMain.EkRTF1.ExecuteOpen(
         [dmMain.ReportQuery, dmMain.Form6HdrQuery], SW_SHOWDEFAULT);
       SaveEvent(dmMain.dbMain, evs_Report_Print, sEventObject,

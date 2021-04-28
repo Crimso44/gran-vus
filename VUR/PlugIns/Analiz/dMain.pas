@@ -133,6 +133,20 @@ type
     Form6HdrQueryOrgName: TWideMemoField;
     QForm6Perc5: TStringField;
     ReportQueryPerc5: TStringField;
+    qrExecutor: TADOQuery;
+    qrExecutorCONTID: TIntegerField;
+    qrExecutorORGID: TIntegerField;
+    qrExecutorDEPART: TWideStringField;
+    qrExecutorPOST: TWideStringField;
+    qrExecutorFIO: TWideStringField;
+    qrExecutorPHONE: TWideStringField;
+    qrExecutorFAX: TWideStringField;
+    qrExecutorEMAIL: TWideStringField;
+    qrExecutorIS_GEN: TSmallintField;
+    qrExecutorIS_VUS: TSmallintField;
+    qrExecutorFAM: TWideStringField;
+    qrExecutorIM: TWideStringField;
+    qrExecutorOTCH: TWideStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure ReportQueryCalcFields(DataSet: TDataSet);
     procedure Form6HdrQueryCalcFields(DataSet: TDataSet);
@@ -141,6 +155,7 @@ type
     procedure QForm6CalcFields(DataSet: TDataSet);
     procedure QDepsBeforeOpen(DataSet: TDataSet);
   private
+    procedure FillExecutor;
   public
     F6_ID: Integer;
     NoBronMode: Boolean;
@@ -538,6 +553,9 @@ begin
       finally
         Free;
       end;
+
+      FillExecutor;
+
       dmMain.EkRTF1.ExecuteOpen(
         [dmMain.ReportQuery, dmMain.Form6HdrQuery, dmMain.QDeps, dmMain.QForm6], SW_SHOWDEFAULT);
       SaveEvent(dmMain.dbMain, evs_Report_Print, sEventObject,
@@ -555,6 +573,26 @@ begin
   end;
   end;
 end;
+
+procedure TdmMain.FillExecutor;
+begin
+  qrExecutor.Open;
+  if qrExecutor.Eof then begin
+    EkRtf1.CreateVar('ExecutorFam', '');
+    EkRtf1.CreateVar('ExecutorIm', '');
+    EkRtf1.CreateVar('ExecutorOtch', '');
+    EkRtf1.CreateVar('ExecutorPhone', '');
+    EkRtf1.CreateVar('ExecutorPost', '');
+  end else begin
+    EkRtf1.CreateVar('ExecutorFam', qrExecutorFam.AsString);
+    EkRtf1.CreateVar('ExecutorIm', qrExecutorIm.AsString);
+    EkRtf1.CreateVar('ExecutorOtch', qrExecutorOtch.AsString);
+    EkRtf1.CreateVar('ExecutorPhone', qrExecutorPhone.AsString);
+    EkRtf1.CreateVar('ExecutorPost', qrExecutorPost.AsString);
+  end;
+  qrExecutor.Close;
+end;
+
 
 procedure TdmMain.QDepsBeforeOpen(DataSet: TDataSet);
 begin

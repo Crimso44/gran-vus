@@ -52,8 +52,8 @@ begin
       'left outer join KWRange wr on p.WRng_Id = wr.WRng_Id ' +
       'where P.IS_WAR<>0 and ' +
       '(p.W_DEND is NULL or p.W_DEND > '+sDate+') and ( ' +
-      '(p.MALE=1 and (wr.M_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY', dmMain.IsJet)+')>=wr.M_LIMIT  ) or ' +
-      '(p.MALE=0 and (wr.FEM_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY', dmMain.IsJet)+')>=wr.FEM_LIMIT  )) and p.Wuchet2_IsWork = 1 ' +
+      '(p.MALE=1 and (wr.M_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY')+')>=wr.M_LIMIT  ) or ' +
+      '(p.MALE=0 and (wr.FEM_LIMIT is not NULL) and  ('+FullAges('p.BIRTHDAY')+')>=wr.FEM_LIMIT  )) and p.Wuchet2_IsWork = 1 ' +
       '  and ((select COUNT(*) from PERS_SET)=0 or P.PERS_ID in (select PERS_ID from PERS_SET)) ' +
       'AND ' +
       '(((select max(In_Date) from Appointment where pers_id = P.pers_id and post_id in (select post_id from kpost where cprof_id <> 500)) IS NOT NULL AND P.OUT_ORD_DATE IS NULL) ' +

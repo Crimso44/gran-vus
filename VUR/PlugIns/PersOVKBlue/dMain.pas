@@ -215,6 +215,7 @@ type
     procedure qrVURCalcFields(DataSet: TDataSet);
   private
     FOrgID: Integer;
+    procedure FillExecutor;
   public
     ListOVK: TStringList;
     IsJet: Boolean;
@@ -297,13 +298,14 @@ function TdmMain.PrintData: boolean;
 begin
 //  try
     qrPerson.Parameters.ParamByName('OVK_ID').Value := -1;
-    qrPerson.SQL.Text := ReplaceFullAges(qrPerson.SQL.Text, IsJet);
+    qrPerson.SQL.Text := ReplaceFullAges(qrPerson.SQL.Text);
     qrPerson.Open;
     EkRTF1.ClearVars;
     EkRTF1.CreateVar('TITLE', 'Прошу снять со специального учета граждан, перечисленных в прилагаемой ниже таблице, в связи с достижением ими предельного возраста состояния в запасе.');
     EkRTF1.CreateVar('TITLE1', 'СПИСОК ГРАЖДАН, РАБОТАЮЩИХ В');
     EkRTF1.CreateVar('TITLE2', ', ПРЕДСТАВЛЯЕМЫЙ ДЛЯ СНЯТИЯ РАБОТНИКОВ СО СПЕЦИАЛЬНОГО УЧЕТА ПО ДОСТИЖЕНИИ ИМИ ПРЕДЕЛЬНОГО ВОЗРАСТА СОСТОЯНИЯ В ЗАПАСЕ');
     EkRTF1.CreateVar('YELLOW_HEAD', '');
+    FillExecutor;
     EkRTF1.ExecuteOpen([qrOrg,qrVUR,qrGen,qrOVK,qrPerson],SW_SHOWDEFAULT);
     Result := true;
     SaveEvent(dbMain, evs_Report_Print, sEventObject,
@@ -313,6 +315,31 @@ begin
 //    Result := false;
 //  end;
 end;
+
+procedure TdmMain.FillExecutor;
+var
+  qrExecutor: TADOQuery;
+begin
+  qrExecutor := TADOQuery.Create(Self);
+  qrExecutor.Connection := dmMain.dbMain;
+  qrExecutor.SQL.Text := 'Select * from ORG_Cont where Is_Gen = 3';
+  qrExecutor.Open;
+  if qrExecutor.Eof then begin
+    EkRtf1.CreateVar('ExecutorFam', '');
+    EkRtf1.CreateVar('ExecutorIm', '');
+    EkRtf1.CreateVar('ExecutorOtch', '');
+    EkRtf1.CreateVar('ExecutorPhone', '');
+    EkRtf1.CreateVar('ExecutorPost', '');
+  end else begin
+    EkRtf1.CreateVar('ExecutorFam', qrExecutor.FieldByName('Fam').AsString);
+    EkRtf1.CreateVar('ExecutorIm', qrExecutor.FieldByName('Im').AsString);
+    EkRtf1.CreateVar('ExecutorOtch', qrExecutor.FieldByName('Otch').AsString);
+    EkRtf1.CreateVar('ExecutorPhone', qrExecutor.FieldByName('Phone').AsString);
+    EkRtf1.CreateVar('ExecutorPost', qrExecutor.FieldByName('Post').AsString);
+  end;
+  qrExecutor.Close;
+end;
+
 
 procedure TdmMain.DataModuleCreate(Sender: TObject);
 begin
@@ -333,7 +360,7 @@ begin
     qrPerson.Close;
     qrPerson.Parameters.ParamByName('OVK_ID').Value :=
       qrOVK.FieldByName('OVK_ID').AsInteger;
-    qrPerson.SQL.Text := ReplaceFullAges(qrPerson.SQL.Text, IsJet);
+    qrPerson.SQL.Text := ReplaceFullAges(qrPerson.SQL.Text);
     qrPerson.Open;
   end;
 end;

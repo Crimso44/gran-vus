@@ -126,10 +126,6 @@ object fmOrgProp: TfmOrgProp
     TabOrder = 3
     object TabSheet1: TTabSheet
       Caption = #1042#1059#1056
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label1: TLabel
         Left = 12
         Top = 24
@@ -838,10 +834,6 @@ object fmOrgProp: TfmOrgProp
     object TabSheet2: TTabSheet
       Caption = #1043#1054#1063#1057
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel2: TPanel
         Left = 0
         Top = 0

@@ -17,12 +17,27 @@ type
     OrgQuery: TADOQuery;
     EkUDFList1: TEkUDFList;
     qrDep: TADOQuery;
+    qrExecutor: TADOQuery;
+    qrExecutorCONTID: TIntegerField;
+    qrExecutorORGID: TIntegerField;
+    qrExecutorDEPART: TWideStringField;
+    qrExecutorPOST: TWideStringField;
+    qrExecutorFIO: TWideStringField;
+    qrExecutorPHONE: TWideStringField;
+    qrExecutorFAX: TWideStringField;
+    qrExecutorEMAIL: TWideStringField;
+    qrExecutorIS_GEN: TSmallintField;
+    qrExecutorIS_VUS: TSmallintField;
+    qrExecutorFAM: TWideStringField;
+    qrExecutorIM: TWideStringField;
+    qrExecutorOTCH: TWideStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure EkUDFList1Functions0Calculate(Sender: TObject; Args: TEkUDFArgs;
       ArgCount: Integer; UDFResult: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure EkRTF1ScanRecord(ScanInfo: TEkScanInfo);
   private
+    procedure FillExecutor;
   public
     NoBronMode: Boolean;
     OrgName: String;
@@ -165,6 +180,7 @@ begin
       dmMain.ReportQuery.Open;
       dmMain.EkRTF1.ClearVars;
       dmMain.EkRTF1.CreateVar('OrgName',OrgName);
+      FillExecutor;
       dmMain.EkRTF1.ExecuteOpen(
         [dmMain.ReportQuery, dmMain.qrDep], SW_SHOWDEFAULT);
       SaveEvent(dmMain.dbMain, evs_Report_Print, sEventObject,
@@ -180,6 +196,26 @@ begin
       'или шаблон отчета используется другой программой...'#13+e.Message);
   end;
   end;
+end;
+
+
+procedure TdmMain.FillExecutor;
+begin
+  qrExecutor.Open;
+  if qrExecutor.Eof then begin
+    EkRtf1.CreateVar('ExecutorFam', '');
+    EkRtf1.CreateVar('ExecutorIm', '');
+    EkRtf1.CreateVar('ExecutorOtch', '');
+    EkRtf1.CreateVar('ExecutorPhone', '');
+    EkRtf1.CreateVar('ExecutorPost', '');
+  end else begin
+    EkRtf1.CreateVar('ExecutorFam', qrExecutorFam.AsString);
+    EkRtf1.CreateVar('ExecutorIm', qrExecutorIm.AsString);
+    EkRtf1.CreateVar('ExecutorOtch', qrExecutorOtch.AsString);
+    EkRtf1.CreateVar('ExecutorPhone', qrExecutorPhone.AsString);
+    EkRtf1.CreateVar('ExecutorPost', qrExecutorPost.AsString);
+  end;
+  qrExecutor.Close;
 end;
 
 end.

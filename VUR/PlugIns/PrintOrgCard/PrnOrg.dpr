@@ -63,6 +63,7 @@ begin
   end;
   if Result=0 then
   try
+    dmMain.FillExecutor;
     dmMain.EkRTF1.ExecuteOpen(
       [dmMain.qrOrgData,dmMain.qrOrgPaym,dmMain.qrOrgCont],SW_SHOWDEFAULT);
     SaveEvent(dmMain.dbMain, evs_Report_Print, sEventObject,

@@ -664,6 +664,20 @@ begin
       FContacts.edPhone2 .Text := EmptyStr;
       FContacts.edPost2  .Text := EmptyStr;
     end;
+    if Locate('is_gen',3,[]) then begin
+      FContacts.edFam3   .Text := FieldByName('Fam').AsString;
+      FContacts.edIm3    .Text := FieldByName('Im').AsString;
+      FContacts.edOtch3  .Text := FieldByName('Otch').AsString;
+      FContacts.edPhone3 .Text := FieldByName('Phone').AsString;
+      FContacts.edPost3  .Text := FieldByName('Post').AsString;
+    end
+    else begin
+      FContacts.edFam3   .Text := EmptyStr;
+      FContacts.edIm3    .Text := EmptyStr;
+      FContacts.edOtch3  .Text := EmptyStr;
+      FContacts.edPhone3 .Text := EmptyStr;
+      FContacts.edPost3  .Text := EmptyStr;
+    end;
     edVUR.Text :=
       FContacts.edFam2   .Text+' '+
       FContacts.edIm2    .Text+' '+
@@ -1286,6 +1300,23 @@ begin
         FieldByName('Phone').Value := NULLIF(edPhone3.Text,EmptyStr);
         FieldByName('Post').Value := NULLIF(edPost3.Text,EmptyStr);
         FieldByName('IS_GEN').Value := 2;
+        FieldByName('IS_VUS').Value := 0;
+        Post;
+      end;
+      if (FContacts.edFam3.Text<>EmptyStr) or (FContacts.edIm3.Text<>EmptyStr) or
+         (FContacts.edOtch3.Text<>EmptyStr) or (FContacts.edPhone3.Text<>EmptyStr) or
+         (FContacts.edPost3.Text<>EmptyStr) then
+      begin
+        Append;
+        FieldByName('ContId').Value := 4;
+        FieldByName('OrgId').Value := FId;
+        FieldByName('Fam').Value := NULLIF(FContacts.edFam3.Text,EmptyStr);
+        FieldByName('Im').Value := NULLIF(FContacts.edIm3.Text,EmptyStr);
+        FieldByName('Otch').Value := NULLIF(FContacts.edOtch3.Text,EmptyStr);
+        FieldByName('FIO').Value := FContacts.edFam3.Text+' '+FContacts.edIm3.Text+' '+FContacts.edOtch3.Text;
+        FieldByName('Phone').Value := NULLIF(FContacts.edPhone3.Text,EmptyStr);
+        FieldByName('Post').Value := NULLIF(FContacts.edPost3.Text,EmptyStr);
+        FieldByName('IS_GEN').Value := 3;
         FieldByName('IS_VUS').Value := 0;
         Post;
       end;
