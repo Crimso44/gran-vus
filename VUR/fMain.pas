@@ -234,6 +234,12 @@ begin
       Close;
     end;
     Close;
+    SQL.Text := 'SELECT 1 FROM KOKVED WHERE Name = ""';
+    Open;
+    if not Eof then begin
+      Dialogs.ShowMessage('Необходимо ввести расшифровку кодов ОКВЭД в словаре “ВЭД-ы из ПДП”');
+    end;
+    Close;
   finally
     Free;
   end;

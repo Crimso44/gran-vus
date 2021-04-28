@@ -3,7 +3,7 @@ object fmTPDPPunkt: TfmTPDPPunkt
   Top = 247
   HelpContext = 512
   Caption = #1055#1091#1085#1082#1090' '#1080#1079' '#1055#1044#1055
-  ClientHeight = 266
+  ClientHeight = 334
   ClientWidth = 697
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,19 +19,21 @@ object fmTPDPPunkt: TfmTPDPPunkt
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 185
-    Top = 53
-    Height = 186
+    Top = 75
+    Height = 232
+    ExplicitTop = 53
+    ExplicitHeight = 186
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
     Width = 697
-    Height = 53
+    Height = 75
     Align = alTop
     TabOrder = 0
     DesignSize = (
       697
-      53)
+      75)
     object Label1: TLabel
       Left = 9
       Top = 6
@@ -40,22 +42,22 @@ object fmTPDPPunkt: TfmTPDPPunkt
       Caption = #1050#1086#1076' '#1054#1050#1042#1069#1044
     end
     object Label2: TLabel
-      Left = 161
-      Top = 6
+      Left = 8
+      Top = 31
       Width = 141
       Height = 13
       Caption = #1050#1086#1076' '#1076#1086#1083#1078#1085#1086#1089#1090#1080' '#1087#1086' '#1054#1050#1055#1044#1058#1056
     end
     object Label3: TLabel
-      Left = 9
-      Top = 30
+      Left = 8
+      Top = 54
       Width = 198
       Height = 13
       Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1076#1086#1083#1078#1085#1086#1089#1090#1080' '#1087#1086' '#1054#1050#1055#1044#1058#1056
     end
     object lWarning: TLabel
-      Left = 428
-      Top = 8
+      Left = 336
+      Top = 32
       Width = 261
       Height = 13
       Caption = #1042#1074#1077#1076#1077#1085#1085#1099#1081' '#1082#1086#1076' '#1086#1090#1089#1091#1090#1089#1090#1074#1091#1077#1090' '#1074' '#1074#1099#1087#1080#1089#1082#1077' '#1080#1079' '#1054#1050#1055#1044#1058#1056
@@ -70,8 +72,8 @@ object fmTPDPPunkt: TfmTPDPPunkt
       Visible = False
     end
     object bAddOKPDTR: TSpeedButton
-      Left = 399
-      Top = 2
+      Left = 307
+      Top = 26
       Width = 23
       Height = 22
       Hint = #1044#1086#1073#1072#1074#1080#1090#1100' '#1082#1086#1076' '#1074' '#1074#1099#1087#1080#1089#1082#1091' '#1054#1050#1055#1044#1058#1056
@@ -116,16 +118,23 @@ object fmTPDPPunkt: TfmTPDPPunkt
       Visible = False
       OnClick = bAddOKPDTRClick
     end
+    object Label4: TLabel
+      Left = 146
+      Top = 6
+      Width = 71
+      Height = 13
+      Caption = #1056#1072#1089#1096#1080#1092#1088#1086#1074#1082#1072
+    end
     object edOKPDTR: TEdit
-      Left = 320
-      Top = 3
+      Left = 228
+      Top = 27
       Width = 73
       Height = 21
       TabOrder = 1
       OnChange = edOKPDTRChange
     end
     object edOkved: TMaskEdit
-      Left = 91
+      Left = 75
       Top = 3
       Width = 54
       Height = 21
@@ -133,26 +142,38 @@ object fmTPDPPunkt: TfmTPDPPunkt
       MaxLength = 8
       TabOrder = 0
       Text = '  .  .  '
-      OnChange = edPer_NoChange
+      OnChange = edOkvedChange
     end
     object edOKPDTRName: TEdit
-      Left = 213
-      Top = 27
-      Width = 476
+      Left = 228
+      Top = 51
+      Width = 460
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       Color = clBtnFace
       Enabled = False
       TabOrder = 2
     end
+    object edOKVEDName: TEdit
+      Left = 228
+      Top = 3
+      Width = 460
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      Color = clBtnFace
+      Enabled = False
+      TabOrder = 3
+    end
   end
   object paLeft: TPanel
     Left = 0
-    Top = 53
+    Top = 75
     Width = 185
-    Height = 186
+    Height = 232
     Align = alLeft
     TabOrder = 1
+    ExplicitTop = 53
+    ExplicitHeight = 186
     object Panel4: TPanel
       Left = 1
       Top = 1
@@ -173,25 +194,28 @@ object fmTPDPPunkt: TfmTPDPPunkt
       Left = 1
       Top = 25
       Width = 183
-      Height = 160
+      Height = 206
       Align = alClient
       ItemHeight = 13
       Sorted = True
       TabOrder = 1
+      ExplicitHeight = 160
     end
   end
   object Panel3: TPanel
     Left = 188
-    Top = 53
+    Top = 75
     Width = 509
-    Height = 186
+    Height = 232
     Align = alClient
     TabOrder = 2
+    ExplicitTop = 53
+    ExplicitHeight = 186
     object dbgData: TdxDBGrid
       Left = 1
       Top = 42
       Width = 507
-      Height = 143
+      Height = 189
       Bands = <
         item
         end>
@@ -214,6 +238,7 @@ object fmTPDPPunkt: TfmTPDPPunkt
       RegistryPath = '\Software\Granit\GranVUS\TPDPDPunktGrid'
       OnChangedColumnsWidth = dbgDataChangedColumnsWidth
       OnCustomDrawCell = dbgDataCustomDrawCell
+      ExplicitHeight = 143
       object dbgDataWSosts: TdxDBGridMaskColumn
         Caption = #1057#1086#1089#1090#1072#1074'/'#1087#1088#1086#1092#1080#1083#1100
         Width = 71
@@ -298,11 +323,12 @@ object fmTPDPPunkt: TfmTPDPPunkt
   end
   object Panel6: TPanel
     Left = 0
-    Top = 239
+    Top = 307
     Width = 697
     Height = 27
     Align = alBottom
     TabOrder = 3
+    ExplicitTop = 239
     object Panel7: TPanel
       Left = 536
       Top = 1

@@ -156,7 +156,8 @@ object fmTPDP: TfmTPDP
         #1084#1086' '#1086#1090' '#1079#1074#1072#1085#1080#1103#39', Rng.WRNG_NAME) AS WRange'
       '     , Cond.WSosts'
       '     , IIF(Sex=1,'#39#1052#39',IIF(Sex=2,'#39#1046#39','#39#1052' '#1080' '#1046#39')) As SexName'
-      '  FROM (([TPDP] '
+      '     , [KOKVED].Name As OKVED_Name'
+      '  FROM ((([TPDP] '
       
         '       LEFT OUTER JOIN [TPDPCond] As Cond ON ([TPDP].ID=Cond.TPD' +
         'P_ID))'
@@ -165,7 +166,11 @@ object fmTPDP: TfmTPDP
         '_ID))'
       
         '       LEFT OUTER JOIN [KOKPDTR] ON ([TPDP].KOKPDTR = [KOKPDTR].' +
-        'KOKPDTR_ID)'
+        'KOKPDTR_ID))'
+      
+        '       LEFT OUTER JOIN [KOKVED] ON ([TPDP].OKVED = [KOKVED].Code' +
+        ')'
+      ''
       '')
     Left = 40
     Top = 72
@@ -217,6 +222,10 @@ object fmTPDP: TfmTPDP
     object qrDataKOKPDTR_Name_Full: TStringField
       FieldName = 'KOKPDTR_Name_Full'
       Size = 250
+    end
+    object qrDataOKVED_Name: TWideStringField
+      FieldName = 'OKVED_Name'
+      Size = 255
     end
   end
   object dxBarManager1: TdxBarManager

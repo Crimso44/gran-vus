@@ -2329,9 +2329,13 @@ object fmExport: TfmExport
     SQL.Strings = (
       'SELECT TPDP.id, '
       'TPDP.OKVED as Per_No, kokpdtr.kokpdtr_Code as Razd_No, '
-      'TPDP.Podrazd_No, TPDP.PUNKT, TPDP.Posts'
-      'FROM TPDP '
-      'left join kokpdtr on kokpdtr.kokpdtr_Id = TPDP.kokpdtr')
+      
+        'TPDP.Podrazd_No, TPDP.PUNKT, TPDP.Posts, kokved.Name as Okved_Na' +
+        'me'
+      'FROM (TPDP '
+      'left join kokpdtr on kokpdtr.kokpdtr_Id = TPDP.kokpdtr)'
+      'left join kokved on kokved.code = TPDP.okved'
+      '')
     Left = 332
     Top = 52
   end

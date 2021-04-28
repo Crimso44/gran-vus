@@ -54,6 +54,7 @@ type
     dbgDataOKVED: TdxDBGridMaskColumn;
     qrDataKOKPDTR_CODE: TStringField;
     qrDataKOKPDTR_Name_Full: TStringField;
+    qrDataOKVED_Name: TWideStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure actNewExecute(Sender: TObject);
     procedure actEditExecute(Sender: TObject);

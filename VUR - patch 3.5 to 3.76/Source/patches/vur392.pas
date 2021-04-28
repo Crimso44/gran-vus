@@ -73,6 +73,24 @@ begin
       AddField('Person', 'MobContract', 'datetime null');
       AddField('Person', 'WUCHET2_Motiv', 'varchar(255) null');
 
+
+      DoSQL('Create table KOKVED (' +
+            'Code Varchar(8) NOT NULL Primary Key,' +
+            'Name Varchar(255) NULL' +
+            ')', True);
+      DoSQL('INSERT INTO KL_DATA (KL_ID, KL_NAME, DISP_NAME, IS_EDIT, CHK_DEL) ' +
+            'VALUES (48, "KOKVED", "ВЭД-ы из ПДП", 1, ' +
+            'null)', True);
+      DoSQL('INSERT INTO KL_FLD (FLD_ID, KL_ID, FLD_NAME, DISP_NAME, DISP_SIZE, IS_KEY, IS_EDIT, VISIBLE, '+
+            'DEF_VALUE, HAS_NULL) VALUES (181, 48, "Code", "Код ОКВЭД", 99, 1, 1, 1, ' +
+            'null, 0)', True);
+      DoSQL('INSERT INTO KL_FLD (FLD_ID, KL_ID, FLD_NAME, DISP_NAME, DISP_SIZE, IS_KEY, IS_EDIT, VISIBLE, '+
+            'DEF_VALUE, HAS_NULL) VALUES (182, 48, "Name", "Расшифровка кода ОКВЭД", 200, 0, 1, 1, ' +
+            'null, 0)', True);
+
+      DoSQL('Insert into KOKVED (Code, Name) Select Distinct OKVED , "" From TPDP Where OKVED <> ""', True);
+
+
     DoSQL('Drop View PersonreservChkInfoBase', True);
     DoSQL(
       'Create View PersonreservChkInfoBase As '#13+

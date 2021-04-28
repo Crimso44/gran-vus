@@ -67,6 +67,8 @@ type
     edOKPDTRName: TEdit;
     lWarning: TLabel;
     bAddOKPDTR: TSpeedButton;
+    edOKVEDName: TEdit;
+    Label4: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure ActionListUpdate(Action: TBasicAction; var Handled: Boolean);
     procedure pbOkClick(Sender: TObject);
@@ -88,6 +90,7 @@ type
     procedure edOKPDTRChange(Sender: TObject);
     procedure bAddOKPDTRClick(Sender: TObject);
     procedure dbgDataChangedColumnsWidth(Sender: TObject);
+    procedure edOkvedChange(Sender: TObject);
   private
     { Private declarations }
     q: TADOQuery;
@@ -234,6 +237,7 @@ begin
   case FMode of
     mEdit: begin
       edOKVED      .Text := FDS.FieldByName('OKVED').AsString;
+      edOKVEDName  .Text := FDS.FieldByName('OKVED_Name').AsString;
       edOKPDTR     .Text := FDS.FieldByName('KOKPDTR_Code').AsString;
       edOKPDTRName .Text := FDS.FieldByName('KOKPDTR_Name').AsString;
       LoadPosts;
@@ -301,7 +305,8 @@ function TfmTPDPPunkt.StoreData;
 var
   TPDP_ID : Integer;
   I       : Integer;
-  s: String;
+  s, okved: String;
+  q: TADOQuery;
 begin
   Result := False;
   try
@@ -329,7 +334,8 @@ begin
     //Store it
     dmMain.dbMain.BeginTrans;
     try
-      with TADOQuery.Create(nil) do
+      q := TADOQuery.Create(nil);
+      with q do
       try
         Connection := dmMain.dbMain; ParamCheck := False;
         if FMode = mEdit then begin
@@ -344,7 +350,8 @@ begin
         SQL.Text := 'SELECT * FROM [TPDP]';
         Open;
         Append;
-        FieldByName('OKVED').AsString := GetFullTrim(edOKVED.Text);
+        okved := GetFullTrim(edOKVED.Text);
+        FieldByName('OKVED').AsString := okved;
         FieldByName('KOKPDTR').AsInteger := KOKPDTR;
         s := StringReplace(lbPosts.Items.Text,#13#10,', ',[rfReplaceAll]);
         s := System.Copy(s, 1, Length(s)-2); //Strip last comma
@@ -375,6 +382,21 @@ begin
           FieldByName('Sex').AsInteger     := taCondSex.AsInteger;
           Post;
           taCond.Next;
+        end;
+        if okved <> '' then begin
+          SQL.Text := 'Select * from KOKVED where code = :code';
+          Parameters.ParseSQL(SQL.Text, True);
+          Parameters.ParamByName('code').Value := okved;
+          Open;
+          if Eof then begin
+            Close;
+            SQL.Text := 'Select * from KOKVED';
+            Open;
+            Append;
+            FieldByName('code').AsString := okved;
+            Post;
+          end;
+          Close;
         end;
       finally Free;
       end;
@@ -522,6 +544,27 @@ begin
     end;
   end;
   LoadPosts;
+end;
+
+procedure TfmTPDPPunkt.edOkvedChange(Sender: TObject);
+var
+  okved: String;
+begin
+  FChanged := True;
+
+  okved := Trim(edOKVED.Text);
+  if okved <> '' then begin
+    with q do begin
+      SQL.Text := Format('Select Code, Name From [KOKVED] Where Code = %s', [QuotedStr(okved)]);
+      Open;
+      if Eof then begin
+        edOKVEDName.Text := '';
+      end else begin
+        edOKVEDName.Text := Fields[1].AsString;
+      end;
+      Close;
+    end;
+  end;
 end;
 
 procedure TfmTPDPPunkt.edPer_NoChange(Sender: TObject);
