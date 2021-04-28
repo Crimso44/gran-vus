@@ -408,7 +408,7 @@ begin
     if (qrPers.FieldByName('IS_RAB').AsInteger=0) and Worker then
       EkRTF1.Infile := ExtractFilePath(EkRTF1.Infile)+'form2vus2.rtf'
     else
-      EkRTF1.Infile := ExtractFilePath(EkRTF1.Infile)+'form2vus1.rtf';
+      EkRTF1.Infile := ExtractFilePath(EkRTF1.Infile)+'form2vus1new.rtf';
     EkRTF1.Outfile := ExtractFilePath(EkRTF1.Outfile)+
       'װמנלא ׂ-2(ֲ׃ׁ) '+
       StringReplace(StringReplace(StringReplace(StringReplace(StringReplace(
