@@ -146,6 +146,10 @@ type
       Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
     procedure DataModuleCreate(Sender: TObject);
     procedure qrDataCalcFields(DataSet: TDataSet);
+    procedure EkUDFList1Functions1Calculate(Sender: TObject; Args: TEkUDFArgs;
+      ArgCount: Integer; UDFResult: TObject);
+    procedure EkUDFList1Functions0Calculate(Sender: TObject; Args: TEkUDFArgs;
+      ArgCount: Integer; UDFResult: TObject);
   private
     procedure FillExecutor;
     { Private declarations }
@@ -165,7 +169,7 @@ implementation
 {$R *.DFM}
 uses SaveEvents, IniSupport;
 
-procedure TdmMain.EkUDFList1Functions2Calculate(Sender: TObject;
+procedure TdmMain.EkUDFList1Functions0Calculate(Sender: TObject;
   Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
 begin
 //FIO
@@ -173,6 +177,38 @@ begin
     TField(Args[0]).AsString+' '+
     Copy(TField(Args[1]).AsString,1,1)+'. '+
     Copy(TField(Args[2]).AsString,1,1)+'.';
+end;
+
+procedure TdmMain.EkUDFList1Functions1Calculate(Sender: TObject;
+  Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
+function CheckNull(O: TObject): Boolean;
+begin
+  if O is TField then Result := TField(O).IsNull or (TField(O).AsString='')
+  else Result := Trim(TEkReportVariable(O).AsString) <> '';
+end;
+var
+  I: integer;
+  B: boolean;
+begin
+  B := True;
+  for I := 0 to Length(Args)-1 do B := B and not CheckNull(Args[I]);
+  (UDFResult as TEkReportVariable).AsBoolean := B;
+end;
+
+procedure TdmMain.EkUDFList1Functions2Calculate(Sender: TObject;
+  Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
+  function ToString(O: TObject): string;
+  begin
+    if O is TField then Result := TField(O).AsString
+    else Result := TEkReportVariable(O).AsString;
+  end;
+var res: string;
+begin
+  res :=
+    (ToString(Args[0])+' ')[1] + '. ' +
+    (ToString(Args[1])+' ')[1] + '. ' +
+    ToString(Args[2]);
+  (UDFResult as TEkReportVariable).AsString := res;
 end;
 
 procedure TdmMain.DataModuleCreate(Sender: TObject);

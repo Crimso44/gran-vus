@@ -90,6 +90,7 @@ object dmMain: TdmMain
     OutFile = 'outfile.doc'
     TrueValue = 'True'
     FalseValue = 'False'
+    UDFList = EkUDFList1
     Charset = DEFAULT_CHARSET
     Lang = 0
     Options = [eoGraphicsBinary, eoDotAsColon]
@@ -121,7 +122,7 @@ object dmMain: TdmMain
     Left = 80
     Top = 24
     Bitmap = {
-      494C010109000B00700010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010109000B00740010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -860,5 +861,31 @@ object dmMain: TdmMain
       FieldName = 'OTCH'
       Size = 50
     end
+  end
+  object EkUDFList1: TEkUDFList
+    Functions = <
+      item
+        OnCalculate = EkUDFList1Functions0Calculate
+        Name = 'date'
+        ArgMinCount = 0
+        ArgMaxCount = 0
+        ResultType = 1
+      end
+      item
+        OnCalculate = EkUDFList1Functions1Calculate
+        Name = 'NotIsNull'
+        ArgMinCount = 1
+        ArgMaxCount = 16
+        ResultType = 1
+      end
+      item
+        OnCalculate = EkUDFList1Functions2Calculate
+        Name = 'IOFam'
+        ArgMinCount = 3
+        ArgMaxCount = 3
+        ResultType = 1
+      end>
+    Left = 157
+    Top = 29
   end
 end

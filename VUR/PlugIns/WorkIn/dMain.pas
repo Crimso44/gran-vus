@@ -24,6 +24,8 @@ type
       ArgCount: Integer; UDFResult: TObject);
     procedure EkUDFList1dateCalculate(Sender: TObject; Args: TEkUDFArgs;
       ArgCount: Integer; UDFResult: TObject);
+    procedure EkUDFList1Functions3Calculate(Sender: TObject; Args: TEkUDFArgs;
+      ArgCount: Integer; UDFResult: TObject);
   private
     { Private declarations }
     function DateToStrDoc(d: TDateTime): String;
@@ -67,6 +69,22 @@ begin
       (UDFResult as TEkReportVariable).AsBoolean := True;
       Exit;
     end;
+end;
+
+procedure TdmMain.EkUDFList1Functions3Calculate(Sender: TObject;
+  Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
+  function ToString(O: TObject): string;
+  begin
+    if O is TField then Result := TField(O).AsString
+    else Result := TEkReportVariable(O).AsString;
+  end;
+var res: string;
+begin
+  res :=
+    (ToString(Args[0])+' ')[1] + '. ' +
+    (ToString(Args[1])+' ')[1] + '. ' +
+    ToString(Args[2]);
+  (UDFResult as TEkReportVariable).AsString := res;
 end;
 
 function TdmMain.DateToStrDoc(d: TDateTime): String;

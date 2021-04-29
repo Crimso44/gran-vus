@@ -188,6 +188,13 @@ object dmMain: TdmMain
         ArgMinCount = 0
         ArgMaxCount = 0
         ResultType = 1
+      end
+      item
+        OnCalculate = EkUDFList1Functions3Calculate
+        Name = 'IOFam'
+        ArgMinCount = 3
+        ArgMaxCount = 3
+        ResultType = 1
       end>
     Left = 71
     Top = 129

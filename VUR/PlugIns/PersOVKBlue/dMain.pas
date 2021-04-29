@@ -3,7 +3,8 @@ unit dMain;
 interface
 
 uses
-  SysUtils, Classes, DB, ADODB, ekbasereport, ekrtf, Dialogs, Forms, Windows;
+  SysUtils, Classes, DB, ADODB, ekbasereport, ekrtf, Dialogs, Forms, Windows,
+  ekfunc;
 
 type
   TdmMain = class(TDataModule)
@@ -207,12 +208,19 @@ type
     qrPersonPPers_Id: TIntegerField;
     qrPersonDocNumber: TStringField;
     qrPersonDocDate: TDateTimeField;
+    EkUDFList1: TEkUDFList;
     procedure qrPersonPROF1GetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure EkRTF1ScanRecord(ScanInfo: TEkScanInfo);
     procedure qrPersonCalcFields(DataSet: TDataSet);
     procedure qrVURCalcFields(DataSet: TDataSet);
+    procedure EkUDFList1Functions0Calculate(Sender: TObject; Args: TEkUDFArgs;
+      ArgCount: Integer; UDFResult: TObject);
+    procedure EkUDFList1Functions1Calculate(Sender: TObject; Args: TEkUDFArgs;
+      ArgCount: Integer; UDFResult: TObject);
+    procedure EkUDFList1Functions2Calculate(Sender: TObject; Args: TEkUDFArgs;
+      ArgCount: Integer; UDFResult: TObject);
   private
     FOrgID: Integer;
     procedure FillExecutor;
@@ -363,6 +371,44 @@ begin
     qrPerson.SQL.Text := ReplaceFullAges(qrPerson.SQL.Text);
     qrPerson.Open;
   end;
+end;
+
+procedure TdmMain.EkUDFList1Functions0Calculate(Sender: TObject;
+  Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
+begin
+  (UDFResult as TEkReportVariable).AsString := FormatDateTime('dd.mm.yyyy',Date);
+end;
+
+procedure TdmMain.EkUDFList1Functions1Calculate(Sender: TObject;
+  Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
+function CheckNull(O: TObject): Boolean;
+begin
+  if O is TField then Result := TField(O).IsNull or (TField(O).AsString='')
+  else Result := Trim(TEkReportVariable(O).AsString) <> '';
+end;
+var
+  I: integer;
+  B: boolean;
+begin
+  B := True;
+  for I := 0 to Length(Args)-1 do B := B and not CheckNull(Args[I]);
+  (UDFResult as TEkReportVariable).AsBoolean := B;
+end;
+
+procedure TdmMain.EkUDFList1Functions2Calculate(Sender: TObject;
+  Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
+  function ToString(O: TObject): string;
+  begin
+    if O is TField then Result := TField(O).AsString
+    else Result := TEkReportVariable(O).AsString;
+  end;
+var res: string;
+begin
+  res :=
+    (ToString(Args[0])+' ')[1] + '. ' +
+    (ToString(Args[1])+' ')[1] + '. ' +
+    ToString(Args[2]);
+  (UDFResult as TEkReportVariable).AsString := res;
 end;
 
 procedure TdmMain.qrPersonCalcFields(DataSet: TDataSet);

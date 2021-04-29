@@ -19,6 +19,7 @@ object dmMain: TdmMain
     OutFile = 'outfile.doc'
     TrueValue = 'True'
     FalseValue = 'False'
+    UDFList = EkUDFList1
     Charset = DEFAULT_CHARSET
     Lang = 1049
     Options = [eoGraphicsBinary, eoClearMissedFields, eoDotAsColon]
@@ -114,5 +115,31 @@ object dmMain: TdmMain
       'inner join kokpdtr on kokpdtr.kokpdtr_id = tpdp.kokpdtr')
     Left = 132
     Top = 192
+  end
+  object EkUDFList1: TEkUDFList
+    Functions = <
+      item
+        OnCalculate = EkUDFList1Functions0Calculate
+        Name = 'date'
+        ArgMinCount = 0
+        ArgMaxCount = 0
+        ResultType = 1
+      end
+      item
+        OnCalculate = EkUDFList1Functions1Calculate
+        Name = 'NotIsNull'
+        ArgMinCount = 1
+        ArgMaxCount = 16
+        ResultType = 1
+      end
+      item
+        OnCalculate = EkUDFList1Functions2Calculate
+        Name = 'IOFam'
+        ArgMinCount = 3
+        ArgMaxCount = 3
+        ResultType = 1
+      end>
+    Left = 157
+    Top = 29
   end
 end

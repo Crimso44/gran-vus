@@ -18,8 +18,22 @@ object dmMain: TdmMain
   object EkUDFList1: TEkUDFList
     Functions = <
       item
-        OnCalculate = EkUDFList1Functions2Calculate
+        OnCalculate = EkUDFList1Functions0Calculate
         Name = 'FIO'
+        ArgMinCount = 3
+        ArgMaxCount = 3
+        ResultType = 1
+      end
+      item
+        OnCalculate = EkUDFList1Functions1Calculate
+        Name = 'NotIsNull'
+        ArgMinCount = 1
+        ArgMaxCount = 16
+        ResultType = 1
+      end
+      item
+        OnCalculate = EkUDFList1Functions2Calculate
+        Name = 'IOFam'
         ArgMinCount = 3
         ArgMaxCount = 3
         ResultType = 1

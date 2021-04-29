@@ -132,6 +132,20 @@ object dmMain: TdmMain
         ArgMinCount = 0
         ArgMaxCount = 0
         ResultType = 1
+      end
+      item
+        OnCalculate = EkUDFList1Functions1Calculate
+        Name = 'NotIsNull'
+        ArgMinCount = 1
+        ArgMaxCount = 16
+        ResultType = 1
+      end
+      item
+        OnCalculate = EkUDFList1Functions2Calculate
+        Name = 'IOFam'
+        ArgMinCount = 3
+        ArgMaxCount = 3
+        ResultType = 1
       end>
     Left = 224
     Top = 56

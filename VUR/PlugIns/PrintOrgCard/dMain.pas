@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  Db, ADODB, EkRtf, ekbasereport;
+  Db, ADODB, EkRtf, ekbasereport, ekfunc;
 
 type
   TdmMain = class(TDataModule)
@@ -13,7 +13,14 @@ type
     qrOrgPaym: TADOQuery;
     dbMain: TADOConnection;
     EkRTF1: TEkRTF;
+    EkUDFList1: TEkUDFList;
     procedure DataModuleCreate(Sender: TObject);
+    procedure EkUDFList1Functions0Calculate(Sender: TObject; Args: TEkUDFArgs;
+      ArgCount: Integer; UDFResult: TObject);
+    procedure EkUDFList1Functions1Calculate(Sender: TObject; Args: TEkUDFArgs;
+      ArgCount: Integer; UDFResult: TObject);
+    procedure EkUDFList1Functions2Calculate(Sender: TObject; Args: TEkUDFArgs;
+      ArgCount: Integer; UDFResult: TObject);
   private
     { Private declarations }
   public
@@ -48,6 +55,44 @@ begin
     EkRTF1.Outfile := s + 'Сведения об организации.rtf';
     Free;
   end;
+end;
+
+procedure TdmMain.EkUDFList1Functions0Calculate(Sender: TObject;
+  Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
+begin
+  (UDFResult as TEkReportVariable).AsString := FormatDateTime('dd.mm.yyyy',Date);
+end;
+
+procedure TdmMain.EkUDFList1Functions1Calculate(Sender: TObject;
+  Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
+function CheckNull(O: TObject): Boolean;
+begin
+  if O is TField then Result := TField(O).IsNull or (TField(O).AsString='')
+  else Result := Trim(TEkReportVariable(O).AsString) <> '';
+end;
+var
+  I: integer;
+  B: boolean;
+begin
+  B := True;
+  for I := 0 to Length(Args)-1 do B := B and not CheckNull(Args[I]);
+  (UDFResult as TEkReportVariable).AsBoolean := B;
+end;
+
+procedure TdmMain.EkUDFList1Functions2Calculate(Sender: TObject;
+  Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
+  function ToString(O: TObject): string;
+  begin
+    if O is TField then Result := TField(O).AsString
+    else Result := TEkReportVariable(O).AsString;
+  end;
+var res: string;
+begin
+  res :=
+    (ToString(Args[0])+' ')[1] + '. ' +
+    (ToString(Args[1])+' ')[1] + '. ' +
+    ToString(Args[2]);
+  (UDFResult as TEkReportVariable).AsString := res;
 end;
 
 procedure TdmMain.FillExecutor;

@@ -32,7 +32,7 @@ object dmMain: TdmMain
     Left = 80
     Top = 24
     Bitmap = {
-      494C010109000B00640010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010109000B00680010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -510,6 +510,20 @@ object dmMain: TdmMain
         Name = 'RowNum'
         ArgMinCount = 0
         ArgMaxCount = 0
+        ResultType = 1
+      end
+      item
+        OnCalculate = EkUDFList1Functions1Calculate
+        Name = 'NotIsNull'
+        ArgMinCount = 1
+        ArgMaxCount = 16
+        ResultType = 1
+      end
+      item
+        OnCalculate = EkUDFList1Functions2Calculate
+        Name = 'IOFam'
+        ArgMinCount = 3
+        ArgMaxCount = 3
         ResultType = 1
       end>
     Left = 336
