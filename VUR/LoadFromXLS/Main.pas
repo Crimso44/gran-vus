@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls, ComCtrls, DB, ADODB;
+  Dialogs, ExtCtrls, StdCtrls, ComCtrls, DB, ADODB, CheckLst, cxGraphics,
+  cxLookAndFeels, cxLookAndFeelPainters, Menus, cxButtons;
 
 type
   TfmMain = class(TForm)
@@ -54,6 +55,18 @@ type
     Label19: TLabel;
     Label20: TLabel;
     cbKeepData: TCheckBox;
+    P11: TTabSheet;
+    Button1: TButton;
+    Bevel5: TBevel;
+    Button2: TButton;
+    Bevel6: TBevel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Image2: TImage;
+    Label4: TLabel;
+    lstWorkCols: TCheckListBox;
+    bCheckAll: TcxButton;
+    bUncheckAll: TcxButton;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure pbExit1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -63,6 +76,8 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure pbReportCopyClick(Sender: TObject);
     procedure pbReportSaveClick(Sender: TObject);
+    procedure bCheckAllClick(Sender: TObject);
+    procedure bUncheckAllClick(Sender: TObject);
   private
     { Private declarations }
     FYesNoAll: (ynaAsk, ynaYes, ynaNo);
@@ -146,7 +161,8 @@ const
   idx_Voenkomat       = 52;
   idx_War_Date        = 53;
   idx_Card_Num        = 54;
-  ColCount = 54;
+  idx_OUT_Date        = 55;
+  ColCount = 55;
   ColName : array [1..ColCount] of String = (
     'Фамилия',
     'Имя',
@@ -201,7 +217,8 @@ const
     'Наличие моб. предписания',
     'Военный комиссариат',
     'Дата постановки на воинский учет',
-    'Номер личной карточки'
+    'Номер личной карточки',
+    'Дата увольнения'
     );
   CellLen : array [1..ColCount] of Integer =  (
   50,
@@ -257,7 +274,8 @@ const
   100,
   -3,
   -1,
-  -3
+  -3,
+  -1
   );
 
 
@@ -283,85 +301,93 @@ begin
 end;
 
 procedure TfmMain.pbNextClick(Sender: TObject);
+var
+  i: Integer;
 begin
-  if not FileExists(edFile.Text) then begin
-    ShowErr('Входной файл не найден!'); Exit;
-  end;
-  try
-    with dmMain.ExcelApplication do
-    try
-      Connect;
-      Visible[0]:=False;
-      Workbooks.Open(edFile.Text, 0, 1, NULL, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL,
-      {$IFDEF OfficeXP}
-      NULL, NULL, NULL,
-      {$ELSE}
-      0,
-      {$ENDIF}
-      0);
-    finally
-      Quit;
-      Disconnect;
+  if PC.ActivePage = P1 then begin
+    if not FileExists(edFile.Text) then begin
+      ShowErr('Входной файл не найден!'); Exit;
     end;
-  except
-    ShowErr('Не удалось открыть файл электронной таблицы!'); Exit;
-  end;
-
-  with TADOQuery.Create(Self) do
-  try
     try
-      Connection := dmMain.dbMain;
-      SQL.Text := 'SELECT * FROM USERS WHERE Login='+QuotedStr(edLogin.Text);
-      Open;
-      if IsEmpty then begin
-        ShowErr('Неверное системное имя пользователя!'); Exit;
-      end;
-
-      if StrMD5(edLogin.Text+edPsw.Text)<>FieldByName('HASH').AsString then begin
-        SaveEvent(dmMain.dbMain, evs_Login_Failed,'',['Неверный пароль: '+edPsw.Text]);
-        ShowErr('Введенный пароль неверен!');
-        edPsw.SetFocus;
-        edPsw.SelectAll;
-        Exit;
-      end;
-
-      if not FieldByName('rLogin').AsBoolean then begin
-        ShowErr('Вы не обладаете правом входа в систему. '+
-                'За разъяснениями вы можете обратиться к администратору системы.');
-        Exit;
-      end;
-
-      if not FieldByName('rImport').AsBoolean then begin
-        ShowErr('Вы не обладаете правом на импорт данных. '+
-                'За разъяснениями вы можете обратиться к администратору системы.');
-        Exit;
+      with dmMain.ExcelApplication do
+      try
+        Connect;
+        Visible[0]:=False;
+        Workbooks.Open(edFile.Text, 0, 1, NULL, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL,
+        {$IFDEF OfficeXP}
+        NULL, NULL, NULL,
+        {$ELSE}
+        0,
+        {$ENDIF}
+        0);
+      finally
+        Quit;
+        Disconnect;
       end;
     except
-      ShowErr('Ошибка при обращении к базе данных!');
-      Exit;
+      ShowErr('Не удалось открыть файл электронной таблицы!'); Exit;
     end;
-  finally Free;
+
+    with TADOQuery.Create(Self) do
+    try
+      try
+        Connection := dmMain.dbMain;
+        SQL.Text := 'SELECT * FROM USERS WHERE Login='+QuotedStr(edLogin.Text);
+        Open;
+        if IsEmpty then begin
+          ShowErr('Неверное системное имя пользователя!'); Exit;
+        end;
+
+        if StrMD5(edLogin.Text+edPsw.Text)<>FieldByName('HASH').AsString then begin
+          SaveEvent(dmMain.dbMain, evs_Login_Failed,'',['Неверный пароль: '+edPsw.Text]);
+          ShowErr('Введенный пароль неверен!');
+          edPsw.SetFocus;
+          edPsw.SelectAll;
+          Exit;
+        end;
+
+        if not FieldByName('rLogin').AsBoolean then begin
+          ShowErr('Вы не обладаете правом входа в систему. '+
+                  'За разъяснениями вы можете обратиться к администратору системы.');
+          Exit;
+        end;
+
+        if not FieldByName('rImport').AsBoolean then begin
+          ShowErr('Вы не обладаете правом на импорт данных. '+
+                  'За разъяснениями вы можете обратиться к администратору системы.');
+          Exit;
+        end;
+      except
+        ShowErr('Ошибка при обращении к базе данных!');
+        Exit;
+      end;
+    finally Free;
+    end;
+    SetLastLogin(edLogin.Text);
+    for i := 0 to lstWorkCols.Count - 1 do
+      lstWorkCols.Checked[i] := True;
+    PC.ActivePage := P11;
+  end else begin
+    PC.ActivePage := P2;
+    SaveEvent(dmMain.dbMain, evs_Login_Ok,'LoadFromXLS',[]);
+    try Processing; except ON E: Exception do ShowErr(E.Message) end;
+    if meReport.Lines.Count=0 then meReport.Lines.Add('Без замечаний.');
+    meReport.Lines.Text :=
+      Format('СТАТИСТИКА'#13#10#13#10+
+             'считано строк: %d'#13#10+
+             'пропущено строк: %d'#13#10+
+             'добавлено карточек: %d'#13#10+
+             'перезаписано карточек: %d'#13#10+
+             'проигнорировано дубликатов: %d'#13#10+
+             'добавлено учебных заведений: %d'#13#10+
+             'добавлено должностей: %d'#13#10+
+             'добавлено подразделений: %d'#13#10#13#10+
+             'ЗАМЕЧАНИЯ'#13#10#13#10,[
+             FLine, FEmpty, FAdd, FOverride, FIgnoreDuplicate, FEducation, FPost, FDepartment
+             ])+
+      meReport.Lines.Text;
+    PC.ActivePage := P3;
   end;
-  SetLastLogin(edLogin.Text);
-  SaveEvent(dmMain.dbMain, evs_Login_Ok,'LoadFromXLS',[]);
-  PC.ActivePage := P2;
-  try Processing; except ON E: Exception do ShowErr(E.Message) end;
-  if meReport.Lines.Count=0 then meReport.Lines.Add('Без замечаний.');
-  meReport.Lines.Text :=
-    Format('СТАТИСТИКА'#13#10#13#10+
-           'считано строк: %d'#13#10+
-           'пропущено строк: %d'#13#10+
-           'добавлено карточек: %d'#13#10+
-           'перезаписано карточек: %d'#13#10+
-           'проигнорировано дубликатов: %d'#13#10+
-           'добавлено учебных заведений: %d'#13#10+
-           'добавлено должностей: %d'#13#10+
-           'добавлено подразделений: %d'#13#10#13#10+
-           'ЗАМЕЧАНИЯ'#13#10#13#10,[
-           FLine, FEmpty, FAdd, FOverride, FIgnoreDuplicate, FEducation, FPost, FDepartment
-           ])+
-    meReport.Lines.Text;
-  PC.ActivePage := P3;
 end;
 
 procedure TfmMain.pbFileClick(Sender: TObject);
@@ -412,6 +438,12 @@ var
   Other_ID   : Integer;
   qry, qry2  : TADOQuery;
 //
+  function CheckWorkIndex(ind: Integer): boolean;
+  begin
+    if ind < idx_PSP_PLACE then Result := True
+    else Result := lstWorkCols.Checked[ind - idx_PSP_PLACE];
+  end;
+//
   function CheckEOF(AColumn: Integer): Boolean;
   var I : Integer;
   begin
@@ -460,7 +492,10 @@ var
         if Result then begin
            Pers_ID := FieldByName('Pers_ID').AsInteger;
            Close;
-           SQL.Text := 'Delete from Phones      where Pers_id='+IntToStr(Pers_ID); ExecSQL;
+           if CheckWorkIndex(idx_PH_NUMBER_2) then
+             SQL.Text := 'Delete from Phones      where PH_TYPE = 1 and Pers_id='+IntToStr(Pers_ID); ExecSQL;
+           if CheckWorkIndex(idx_PH_NUMBER_1) then
+             SQL.Text := 'Delete from Phones      where PH_TYPE = 2 and Pers_id='+IntToStr(Pers_ID); ExecSQL;
            if cbKeepData.Checked then begin
              Keep_Pers_Id := Pers_Id;
            end else begin
@@ -550,48 +585,52 @@ var
       SQL.Text := 'SELECT MAX(ADDR_ID) FROM ADDR'; Open;
       Other_ID := Fields[0].AsInteger+1; Close;
 
-      if cbKeepData.Checked then begin
-        SQL.Text :=
-          'SELECT * FROM ADDR Where Addr_Type = 0 and Pers_Id = ' + IntToStr(Pers_Id);
-        Open;
-        if Eof then begin
+      if CheckWorkIndex(idx_Post_Code_0) or CheckWorkIndex(idx_Addr_Str_0) then begin
+        if cbKeepData.Checked then begin
+          SQL.Text :=
+            'SELECT * FROM ADDR Where Addr_Type = 0 and Pers_Id = ' + IntToStr(Pers_Id);
+          Open;
+          if Eof then begin
+            Append;
+            FieldByName('ADDR_ID').Value := Other_ID;
+            FieldByName('PERS_ID').Value := Pers_ID;
+          end else begin
+            Edit;
+          end;
+        end else begin
+          SQL.Text := 'SELECT * FROM ADDR'; Open;
           Append;
           FieldByName('ADDR_ID').Value := Other_ID;
           FieldByName('PERS_ID').Value := Pers_ID;
-        end else begin
-          Edit;
         end;
-      end else begin
-        SQL.Text := 'SELECT * FROM ADDR'; Open;
-        Append;
-        FieldByName('ADDR_ID').Value := Other_ID;
-        FieldByName('PERS_ID').Value := Pers_ID;
+        FieldByName('ADDR_TYPE').Value := 0;
+        if CheckWorkIndex(idx_Post_Code_0) then FieldByName('POST_CODE').Value := CheckZIP(idx_Post_Code_0);
+        if CheckWorkIndex(idx_Addr_Str_0) then FieldByName('ADDR_STR').Value := CheckLen(idx_Addr_Str_0);
+        Post;
       end;
-      FieldByName('ADDR_TYPE').Value := 0;
-      FieldByName('POST_CODE').Value := CheckZIP(idx_Post_Code_0);
-      FieldByName('ADDR_STR').Value := CheckLen(idx_Addr_Str_0);
-      Post;
-      if cbKeepData.Checked then begin
-        Close;
-        SQL.Text :=
-          'SELECT * FROM ADDR Where Addr_Type = 1 and Pers_Id = ' + IntToStr(Pers_Id);
-        Open;
-        if Eof then begin
+      if CheckWorkIndex(idx_Post_Code_1) or CheckWorkIndex(idx_Addr_Str_1) then begin
+        if cbKeepData.Checked then begin
+          Close;
+          SQL.Text :=
+            'SELECT * FROM ADDR Where Addr_Type = 1 and Pers_Id = ' + IntToStr(Pers_Id);
+          Open;
+          if Eof then begin
+            Append;
+            FieldByName('ADDR_ID').Value := Other_ID+1;
+            FieldByName('PERS_ID').Value := Pers_ID;
+          end else begin
+            Edit;
+          end;
+        end else begin
           Append;
           FieldByName('ADDR_ID').Value := Other_ID+1;
           FieldByName('PERS_ID').Value := Pers_ID;
-        end else begin
-          Edit;
         end;
-      end else begin
-        Append;
-        FieldByName('ADDR_ID').Value := Other_ID+1;
-        FieldByName('PERS_ID').Value := Pers_ID;
+        FieldByName('ADDR_TYPE').Value := 1;
+        if CheckWorkIndex(idx_Post_Code_1) then FieldByName('POST_CODE').Value := CheckZIP(idx_Post_Code_1);
+        if CheckWorkIndex(idx_Addr_Str_1) then FieldByName('ADDR_STR').Value := CheckLen(idx_Addr_Str_1);
+        Post;
       end;
-      FieldByName('ADDR_TYPE').Value := 1;
-      FieldByName('POST_CODE').Value := CheckZIP(idx_Post_Code_1);
-      FieldByName('ADDR_STR').Value := CheckLen(idx_Addr_Str_1);
-      Post;
       Close;
     end;
   end;
@@ -603,18 +642,22 @@ var
       Other_ID := Fields[0].AsInteger+1; Close;
 
       SQL.Text := 'SELECT * FROM PHONES'; Open;
-      Append;
-      FieldByName('PH_ID').Value := Other_ID;
-      FieldByName('PERS_ID').Value := Pers_ID;
-      FieldByName('PH_NUMBER').Value := CheckLen(idx_PH_NUMBER_2);
-      FieldByName('PH_TYPE').Value := 1;
-      Post;
-      Append;
-      FieldByName('PH_ID').Value := Other_ID+1;
-      FieldByName('PERS_ID').Value := Pers_ID;
-      FieldByName('PH_NUMBER').Value := CheckLen(idx_PH_NUMBER_1);
-      FieldByName('PH_TYPE').Value := 2;
-      Post;
+      if CheckWorkIndex(idx_PH_NUMBER_2) then begin
+        Append;
+        FieldByName('PH_ID').Value := Other_ID;
+        FieldByName('PERS_ID').Value := Pers_ID;
+        FieldByName('PH_NUMBER').Value := CheckLen(idx_PH_NUMBER_2);
+        FieldByName('PH_TYPE').Value := 1;
+        Post;
+      end;
+      if CheckWorkIndex(idx_PH_NUMBER_1) then begin
+        Append;
+        FieldByName('PH_ID').Value := Other_ID+1;
+        FieldByName('PERS_ID').Value := Pers_ID;
+        FieldByName('PH_NUMBER').Value := CheckLen(idx_PH_NUMBER_1);
+        FieldByName('PH_TYPE').Value := 2;
+        Post;
+      end;
       Close;
     end;
   end;
@@ -754,48 +797,49 @@ var
     UZ_ID, ObrDoc_Id : Integer;
   begin
     with qry do begin
-      if cbKeepData.Checked and
-        (CheckUZ(idx_UZ_NAME_1, UZ_ID) or CheckUZ(idx_UZ_NAME_2, UZ_ID)) then begin
-
-        SQL.Text := 'Delete from Educ        where Pers_id='+IntToStr(Pers_ID); ExecSQL;
+      if cbKeepData.Checked and CheckWorkIndex(idx_UZ_NAME_1) and CheckUZ(idx_UZ_NAME_1, UZ_ID)  then begin
+        SQL.Text := 'Delete from Educ        where Type = 1 and Pers_id='+IntToStr(Pers_ID); ExecSQL;
+      end;
+      if cbKeepData.Checked and CheckWorkIndex(idx_UZ_NAME_2) and CheckUZ(idx_UZ_NAME_2, UZ_ID)  then begin
+        SQL.Text := 'Delete from Educ        where Type = 2 and Pers_id='+IntToStr(Pers_ID); ExecSQL;
       end;
       SQL.Text := 'SELECT MAX(EDQ_ID) FROM EDUC'; Open;
       Other_ID := Fields[0].AsInteger+1; Close;
 
       SQL.Text := 'SELECT * FROM EDUC'; Open;
-      if CheckUZ(idx_UZ_NAME_1, UZ_ID) then begin
+      if CheckWorkIndex(idx_UZ_NAME_1) and CheckUZ(idx_UZ_NAME_1, UZ_ID) then begin
         Append;
         FieldByName('EDQ_ID').Value := Other_ID;
         FieldByName('PERS_ID').Value := Pers_ID;
         FieldByName('UZ_ID').Value := UZ_ID;
-        FieldByName('DIPLOM').Value := CheckLen(idx_DIPLOM_1);
-        FieldByName('DIPLOM_SER').Value := CheckLen(idx_DIPLOM_Ser_1);
-        FieldByName('ObrDoc_Id').Value := CheckObrDoc(idx_Obr_Doc_1);
-        FieldByName('END_DATE').Value := CheckDateYear(idx_END_DATE_1);
-        FieldByName('KVAL').Value := CheckLen(idx_KVAL_1);
-        if Length(FieldByName('KVAL').AsString) > 0 then
+        if CheckWorkIndex(idx_DIPLOM_1) then FieldByName('DIPLOM').Value := CheckLen(idx_DIPLOM_1);
+        if CheckWorkIndex(idx_DIPLOM_Ser_1) then FieldByName('DIPLOM_SER').Value := CheckLen(idx_DIPLOM_Ser_1);
+        if CheckWorkIndex(idx_Obr_Doc_1) then FieldByName('ObrDoc_Id').Value := CheckObrDoc(idx_Obr_Doc_1);
+        if CheckWorkIndex(idx_END_DATE_1) then FieldByName('END_DATE').Value := CheckDateYear(idx_END_DATE_1);
+        if CheckWorkIndex(idx_KVAL_1) then FieldByName('KVAL').Value := CheckLen(idx_KVAL_1);
+        if CheckWorkIndex(idx_KVAL_1) then if Length(FieldByName('KVAL').AsString) > 0 then
           FieldByName('KVAL_Id').Value := GetKval(FieldByName('KVAL').AsString);
-        FieldByName('NAPR').Value := CheckLen(idx_NAPR_1);
-        if Length(FieldByName('NAPR').AsString) > 0 then
+        if CheckWorkIndex(idx_NAPR_1) then FieldByName('NAPR').Value := CheckLen(idx_NAPR_1);
+        if CheckWorkIndex(idx_NAPR_1) then if Length(FieldByName('NAPR').AsString) > 0 then
           FieldByName('NAPR_Id').Value := GetNapr(FieldByName('NAPR').AsString);
         FieldByName('Type').Value := 1;
         Post;
         Inc(Other_ID);
       end;
-      if CheckUZ(idx_UZ_NAME_2, UZ_ID) then begin
+      if CheckWorkIndex(idx_UZ_NAME_2) then if CheckUZ(idx_UZ_NAME_2, UZ_ID) then begin
         Append;
         FieldByName('EDQ_ID').Value := Other_ID;
         FieldByName('PERS_ID').Value := Pers_ID;
         FieldByName('UZ_ID').Value := UZ_ID;
-        FieldByName('DIPLOM').Value := CheckLen(idx_DIPLOM_2);
-        FieldByName('DIPLOM_SER').Value := CheckLen(idx_DIPLOM_Ser_2);
-        FieldByName('ObrDoc_Id').Value := CheckObrDoc(idx_Obr_Doc_2);
-        FieldByName('END_DATE').Value := CheckDateYear(idx_END_DATE_2);
-        FieldByName('KVAL').Value := CheckLen(idx_KVAL_2);
-        if Length(FieldByName('KVAL').AsString) > 0 then
+        if CheckWorkIndex(idx_DIPLOM_2) then FieldByName('DIPLOM').Value := CheckLen(idx_DIPLOM_2);
+        if CheckWorkIndex(idx_DIPLOM_Ser_2) then FieldByName('DIPLOM_SER').Value := CheckLen(idx_DIPLOM_Ser_2);
+        if CheckWorkIndex(idx_Obr_Doc_2) then FieldByName('ObrDoc_Id').Value := CheckObrDoc(idx_Obr_Doc_2);
+        if CheckWorkIndex(idx_END_DATE_2) then FieldByName('END_DATE').Value := CheckDateYear(idx_END_DATE_2);
+        if CheckWorkIndex(idx_KVAL_2) then FieldByName('KVAL').Value := CheckLen(idx_KVAL_2);
+        if CheckWorkIndex(idx_KVAL_2) then if Length(FieldByName('KVAL').AsString) > 0 then
           FieldByName('KVAL_Id').Value := GetKval(FieldByName('KVAL').AsString);
-        FieldByName('NAPR').Value := CheckLen(idx_NAPR_2);
-        if Length(FieldByName('NAPR').AsString) > 0 then
+        if CheckWorkIndex(idx_NAPR_2) then FieldByName('NAPR').Value := CheckLen(idx_NAPR_2);
+        if CheckWorkIndex(idx_NAPR_2) then if Length(FieldByName('NAPR').AsString) > 0 then
           FieldByName('NAPR_Id').Value := GetNapr(FieldByName('NAPR').AsString);
         FieldByName('Type').Value := 2;
         Post;
@@ -824,26 +868,28 @@ var
     try
       Connection := dmMain.DBMain; ParamCheck := False;
 
-      KOKPDTR_ID := 0;
-      SX := GetCell(idx_OKPDTR_Code);
-      if SX <> '' then begin
-         SS := GetCell(idx_OKPDTR_Name);
-         if SS = '' then
-           SS := S;
-         SQL.Text := 'Select * From KOKPDTR Where KOKPDTR_Code='+QuotedStr(SX); Open;
-         if IsEmpty then begin
+      if CheckWorkIndex(idx_OKPDTR_Code) then begin
+        KOKPDTR_ID := 0;
+        SX := GetCell(idx_OKPDTR_Code);
+        if SX <> '' then begin
+           SS := GetCell(idx_OKPDTR_Name);
+           if SS = '' then
+             SS := S;
+           SQL.Text := 'Select * From KOKPDTR Where KOKPDTR_Code='+QuotedStr(SX); Open;
+           if IsEmpty then begin
+             Close;
+             SQL.Text := 'SELECT MAX(KOKPDTR_ID) FROM KOKPDTR'; Open;
+             KOKPDTR_ID := Fields[0].AsInteger+1; Close;
+             SQL.Text := 'SELECT * FROM KOKPDTR'; Open;
+             Append;
+             FieldByName('KOKPDTR_ID').Value   := KOKPDTR_ID;
+             FieldByName('KOKPDTR_Code').Value := SX;
+             FieldByName('KOKPDTR_Name').Value := SS;
+             Post;
+           end else
+             KOKPDTR_ID := FieldByName('KOKPDTR_ID').Value;
            Close;
-           SQL.Text := 'SELECT MAX(KOKPDTR_ID) FROM KOKPDTR'; Open;
-           KOKPDTR_ID := Fields[0].AsInteger+1; Close;
-           SQL.Text := 'SELECT * FROM KOKPDTR'; Open;
-           Append;
-           FieldByName('KOKPDTR_ID').Value   := KOKPDTR_ID;
-           FieldByName('KOKPDTR_Code').Value := SX;
-           FieldByName('KOKPDTR_Name').Value := SS;
-           Post;
-         end else
-           KOKPDTR_ID := FieldByName('KOKPDTR_ID').Value;
-         Close;
+        end;
       end;
 
       SQL.Text := 'SELECT * FROM KPOST WHERE POST_NAME='+QuotedStr(S); Open;
@@ -901,7 +947,7 @@ var
         FieldByName('DEP_ID').Value   := DEP_ID;
         FieldByName('KDEPART_Num').Value   := DEP_ID;
         FieldByName('DEP_NAME').Value := CheckLen(Idx);
-        FieldByName('DEP_FULL_NAME').Value := CheckLen(idx_DEP_FULL_NAME);
+        if CheckWorkIndex(idx_DEP_FULL_NAME) then FieldByName('DEP_FULL_NAME').Value := CheckLen(idx_DEP_FULL_NAME);
         Post;
         Inc(FDepartment); laDepartment.Caption := IntToStr(FDepartment);
       end
@@ -936,7 +982,9 @@ var
   var POST_ID, DEP_ID : Integer;
   begin
     Result := -1;
-    if CheckPOST(POST_ID, CProf_Id) and CheckDepart(DEP_ID) then  with qry do begin
+    if CheckWorkIndex(idx_POST_NAME) and CheckWorkIndex(idx_DEP_NAME) and
+       CheckPOST(POST_ID, CProf_Id) and CheckDepart(DEP_ID)
+    then  with qry do begin
 //      SQL.Text := 'SELECT MAX(ID) FROM Appointment'; Open;
 //      Other_ID := Fields[0].AsInteger+1; Close;
 
@@ -946,10 +994,10 @@ var
       FieldByName('POST_ID').Value := POST_ID;
       FieldByName('DEP_ID').Value := DEP_ID;
       FieldByName('Pers_ID').Value := Pers_ID;
-      FieldByName('WTP_ID').Value := CheckDictonary(idx_WTP_ID,['ОСН','СОВМ'], 0)+1;
-      FieldByName('WCH_ID').Value := CheckDictonary(idx_WCH_ID,['ПОСТ','ВРЕМ'], 0)+1;
-      FieldByName('IN_DATE').Value := CheckDate(idx_IN_DATE, False);
-      FieldByName('IN_ORD_DATE').Value := FieldByName('IN_DATE').Value;
+      if CheckWorkIndex(idx_WTP_ID) then FieldByName('WTP_ID').Value := CheckDictonary(idx_WTP_ID,['ОСН','СОВМ'], 0)+1;
+      if CheckWorkIndex(idx_WCH_ID) then FieldByName('WCH_ID').Value := CheckDictonary(idx_WCH_ID,['ПОСТ','ВРЕМ'], 0)+1;
+      if CheckWorkIndex(idx_IN_DATE) then FieldByName('IN_DATE').Value := CheckDate(idx_IN_DATE, False);
+      if CheckWorkIndex(idx_IN_DATE) then FieldByName('IN_ORD_DATE').Value := FieldByName('IN_DATE').Value;
       Post;
       Result := FieldByNAme('ID').AsInteger;
       Close;
@@ -957,11 +1005,12 @@ var
   end;
 //
 var
-  sqlText: TStringList;
+  //sqlText: TStringList;
   sFile: String;
 begin ////////////////// Processing //////////////////
   Forms.Application.ProcessMessages;
 
+  //sqlText := TStringList.Create;
   qry := TADOQuery.Create(nil);
   qry2 := TADOQuery.Create(nil);
   with qry do
@@ -1020,25 +1069,31 @@ begin ////////////////// Processing //////////////////
           FieldByName('STRAH').Value := CheckLen(idx_STRAH);
           FieldByName('PSP_SER').Value := CheckLen(idx_PSP_SER);
           FieldByName('PSP_NUM').Value := CheckLen(idx_PSP_NUM);
-          FieldByName('PSP_PLACE').Value := CheckLen(idx_PSP_PLACE);
-          FieldByName('PSP_DATE').Value := CheckDate(idx_PSP_DATE);
-          FieldByName('ED_ID').Value := CheckDictonary(idx_ED_ID,
+
+          if CheckWorkIndex(idx_PSP_PLACE) then FieldByName('PSP_PLACE').Value := CheckLen(idx_PSP_PLACE);
+          if CheckWorkIndex(idx_PSP_DATE) then FieldByName('PSP_DATE').Value := CheckDate(idx_PSP_DATE);
+          if CheckWorkIndex(idx_ED_ID) then FieldByName('ED_ID').Value := CheckDictonary(idx_ED_ID,
             ['','ДО','НО','ООО','СОО','НПО','СПО','НВО','ВО','ВОПК','ВОБ','ВОСМ','ВОС','ВОМ'],-1)+1;
-          FieldByName('TAB_NUMB').Value := CheckLen(idx_TAB_NUMB);
-          FieldByName('WRNG_ID').Value := CheckInt(idx_KWRANGE, [1..37], True);
-          FieldByName('WSOST_ID').Value := CheckInt(idx_Sostav, [1,2,3,4,5,7,8,9,10,11], True);
-          FieldByName('VUS').Value := CheckLen(idx_VUS);
-          FieldByName('CAT_ZAP').Value := CheckInt(idx_Cat_Zap, [1,2], True);
-          FieldByName('FST_ID').Value := CheckInt(idx_SemPol, [1,2,3,4,5,6,7]);
-          FieldByName('WCAT').Value := CheckLen(idx_WCAT);
-          if StrToIntDef(GetCell(idx_WUCHET1), -1) = -1 then
-            FieldByName('IS_WAR').Value := 0
-          else
-            FieldByName('IS_WAR').Value := CheckInt(idx_WUCHET1, [0,1]);
-          FieldByName('WUCHET1').Value := CheckLen(idx_hasMob);
-          FieldByName('OVK_ID').Value := CheckOvk(idx_Voenkomat);
-          FieldByName('W_DBEG').Value := CheckDate(idx_War_Date);
-          FieldByName('NUMB_T2').Value := CheckInt(idx_Card_Num, [], True);
+          if CheckWorkIndex(idx_TAB_NUMB) then FieldByName('TAB_NUMB').Value := CheckLen(idx_TAB_NUMB);
+          if CheckWorkIndex(idx_KWRANGE) then FieldByName('WRNG_ID').Value := CheckInt(idx_KWRANGE, [1..37], True);
+          if CheckWorkIndex(idx_Sostav) then FieldByName('WSOST_ID').Value := CheckInt(idx_Sostav, [1,2,3,4,5,7,8,9,10,11], True);
+          if CheckWorkIndex(idx_VUS) then FieldByName('VUS').Value := CheckLen(idx_VUS);
+          if CheckWorkIndex(idx_Cat_Zap) then FieldByName('CAT_ZAP').Value := CheckInt(idx_Cat_Zap, [1,2], True);
+          if CheckWorkIndex(idx_SemPol) then FieldByName('FST_ID').Value := CheckInt(idx_SemPol, [1,2,3,4,5,6,7]);
+          if CheckWorkIndex(idx_WCAT) then FieldByName('WCAT').Value := CheckLen(idx_WCAT);
+          if CheckWorkIndex(idx_WUCHET1) then begin
+            if StrToIntDef(GetCell(idx_WUCHET1), -1) = -1 then
+              FieldByName('IS_WAR').Value := 0
+            else
+              FieldByName('IS_WAR').Value := CheckInt(idx_WUCHET1, [0,1]);
+          end;
+          if CheckWorkIndex(idx_hasMob) then FieldByName('WUCHET1').Value := CheckLen(idx_hasMob);
+          if CheckWorkIndex(idx_Voenkomat) then FieldByName('OVK_ID').Value := CheckOvk(idx_Voenkomat);
+          if CheckWorkIndex(idx_War_Date) then FieldByName('W_DBEG').Value := CheckDate(idx_War_Date);
+          if CheckWorkIndex(idx_Card_Num) then FieldByName('NUMB_T2').Value := CheckInt(idx_Card_Num, [], True);
+          if CheckWorkIndex(idx_OUT_DATE) then FieldByName('OUT_DATE').Value := CheckDate(idx_OUT_DATE, False);
+          if CheckWorkIndex(idx_OUT_DATE) then FieldByName('OUT_ORD_DATE').Value := FieldByName('OUT_DATE').Value;
+
           FieldByName('CONFDATE').Value := Date;
           if Post_Id > 0 then begin
             FieldByName('AppLastAll').AsInteger := Post_Id;
@@ -1069,15 +1124,31 @@ begin ////////////////// Processing //////////////////
       Disconnect;
     end;
 
-    sFile := ExtractFilePath(ParamStr(0)) + 'GranVusSql2.sql';
-    sqlText.LoadFromFile(sFile);
-    ExecScript(qry, sqlText);
+    //sFile := ExtractFilePath(ParamStr(0)) + 'GranVusSql2.sql';
+    //sqlText.LoadFromFile(sFile);
+    //ExecScript(qry, sqlText);
 
-    sqlText.Free;
+    //sqlText.Free;
   finally
     Free;
     qry2.Free;
   end;
+end;
+
+procedure TfmMain.bCheckAllClick(Sender: TObject);
+var
+  i: Integer;
+begin
+    for i := 0 to lstWorkCols.Count - 1 do
+      lstWorkCols.Checked[i] := True;
+end;
+
+procedure TfmMain.bUncheckAllClick(Sender: TObject);
+var
+  i: Integer;
+begin
+    for i := 0 to lstWorkCols.Count - 1 do
+      lstWorkCols.Checked[i] := False;
 end;
 
 procedure TfmMain.ExecScript(query: TADOQuery; list: TStringList);
