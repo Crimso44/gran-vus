@@ -83,7 +83,7 @@ begin
             'null)', True);
       DoSQL('INSERT INTO KL_FLD (FLD_ID, KL_ID, FLD_NAME, DISP_NAME, DISP_SIZE, IS_KEY, IS_EDIT, VISIBLE, '+
             'DEF_VALUE, HAS_NULL) VALUES (181, 48, "Code", "Код ОКВЭД", 99, 1, 1, 1, ' +
-            'null, 0)', True);
+            '"{Type:OKVED}", 0)', True);
       DoSQL('INSERT INTO KL_FLD (FLD_ID, KL_ID, FLD_NAME, DISP_NAME, DISP_SIZE, IS_KEY, IS_EDIT, VISIBLE, '+
             'DEF_VALUE, HAS_NULL) VALUES (182, 48, "Name", "Расшифровка кода ОКВЭД", 200, 0, 1, 1, ' +
             'null, 0)', True);

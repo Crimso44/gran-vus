@@ -231,7 +231,7 @@ var
                             FldType: ptString;  DispName: 'Номер Т-2'; DispGroup: 'Воинский учет'; Form: [ffPersons, ffPersChanges];
        FldAlias: 'NUMB_T2'),
     (FldName:'W_DBEG';      FldType: ptDate;    DispName: 'Дата постановки'; DispGroup: 'Воинский учет'; Form: [ffPersons, ffPersChanges]),
-    (FldName:'Document';    FldType: ptList;    DispName: 'Вид воинского документа'; DispGroup: 'Воинский учет'; Form: [ffPersons, ffPersChanges];
+    (FldName:'[Person].Document';    FldType: ptList;    DispName: 'Вид воинского документа'; DispGroup: 'Воинский учет'; Form: [ffPersons, ffPersChanges];
        ListSQL: 'SELECT 0 as ID, ''Военный билет'' as [Наименование_100] from org '+
         'union all SELECT 1, ''Временное удостоверение''  from org '+
         'union all SELECT 2, ''Приписное свидетельство''  from org '+

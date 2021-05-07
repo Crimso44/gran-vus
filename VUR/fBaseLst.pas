@@ -227,6 +227,7 @@ procedure TfmBaseLst.AssignLstData;
 //
 var
   col, colLu: TdxDBTreeListColumn;
+  maskCol: TdxDBGridMaskColumn;
   len, i: Integer;
   ss, sn, def_value: String;
   dd: TLuData;
@@ -268,17 +269,30 @@ begin
     len := 0;
     while not qrFldData.EOF do begin
 
-      col := dbgData.CreateColumn(
-        dbgData.GetDefaultFieldColumnClass(
-          qrData.FieldByName(
-            qrFldData.FieldByName('FLD_NAME').AsString)));
+      def_value := StringReplace(qrFldData.FieldByName('DEF_VALUE').AsString, '"', '''', [rfReplaceAll]);
+
+      i := Pos('{Type:',def_value);
+      ss := '';
+      if i > 0 then begin
+        ss := Copy(def_value, i+6, MaxInt);
+        i := Pos('}', ss);
+        ss := Copy(ss, 1, i-1);
+      end;
+      if ss = 'OKVED' then begin
+        col := dbgData.CreateColumn(TdxDBGridMaskColumn);
+        maskCol := TdxDBGridMaskColumn(col);
+        maskCOl.EditMask := '!00.99.99;1; '
+      end else
+        col := dbgData.CreateColumn(
+          dbgData.GetDefaultFieldColumnClass(
+            qrData.FieldByName(
+              qrFldData.FieldByName('FLD_NAME').AsString)));
       with col do
       begin
         FieldName     := qrFldData.FieldByName('FLD_NAME').AsString;
         Caption       := qrFldData.FieldByName('DISP_NAME').AsString;
         if Length(Caption) > len then len := Length(Caption);
         Width         := qrFldData.FieldByName('DISP_SIZE').AsInteger;
-        def_value := StringReplace(qrFldData.FieldByName('DEF_VALUE').AsString, '"', '''', [rfReplaceAll]);
         if Pos('{LU:',def_value)>0 then begin
           colLu := dbgData.CreateColumn(
             dbgData.GetDefaultFieldColumnClass(

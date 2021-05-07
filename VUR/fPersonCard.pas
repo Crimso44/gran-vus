@@ -473,9 +473,9 @@ type
     Label167: TLabel;
     dtADDR_DATE_END1: TdxDateEdit;
     Label168: TLabel;
-    bDriver: TCheckBox;
     Label169: TLabel;
     dtMobContract: TdxDateEdit;
+    bDriver: TCheckBox;
     procedure PCChanging(Sender: TObject; var AllowChange: Boolean);
     procedure PCDrawTab(Control: TCustomTabControl; TabIndex: Integer;
       const Rect: TRect; Active: Boolean);

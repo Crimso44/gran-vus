@@ -841,20 +841,12 @@ begin
   if (ANode.Strings[dbgDataWUchet1.Index]<>'')
   then SetColor(scSpec);
 
-  if (ANode.Strings[dbgDataColumnOUT_DATE.Index]<>'') and
-     (ANode.Values[dbgDataColumnOUT_DATE.Index]<=Now) and
-     (((ANode.Strings[dbgDataColumnDismissal_Date.Index]<>'')and
-       (ANode.Values[dbgDataColumnDismissal_Date.Index]<=Now)and
-       (ANode.Strings[dbgDataColumnBeginStudy_Date.Index]<>''))or
-      (ANode.Strings[dbgDataColumnBeginStudy_Date.Index]=''))
+  if (ANode.Strings[dbgDataColumnDismissal_Date.Index]<>'')and
+     (ANode.Values[dbgDataColumnDismissal_Date.Index]<=Now)
   then SetColor(scFired)
   else
-  if (ANode.Strings[dbgDataColumnDismissal_Date.Index]<>'') and
-     (ANode.Values[dbgDataColumnDismissal_Date.Index]<=Now) and
-     (((ANode.Strings[dbgDataColumnOUT_DATE.Index]<>'')and
-       (ANode.Values[dbgDataColumnOUT_DATE.Index]<=Now)and
-       (ANode.Strings[dbgDataColumnBeginWork_Date.Index]<>''))or
-      (ANode.Strings[dbgDataColumnBeginWork_Date.Index]=''))
+  if (ANode.Strings[dbgDataColumnOUT_DATE.Index]<>'')and
+     (ANode.Values[dbgDataColumnOUT_DATE.Index]<=Now)
   then SetColor(scFired)
   else
   if (ANode.Strings[dbgDataColumnIS_WAR.Index]<>'1') or

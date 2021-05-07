@@ -167,7 +167,7 @@ object fmPersonForm: TfmPersonForm
     Top = 55
     Width = 797
     Height = 406
-    ActivePage = tabSheetX0
+    ActivePage = TabSheetUpol
     HotTrack = True
     MultiLine = True
     RaggedRight = True
@@ -1960,14 +1960,19 @@ object fmPersonForm: TfmPersonForm
         Date = -700000.000000000000000000
         DateOnError = deToday
       end
+      object bDriver: TCheckBox
+        Left = 16
+        Top = 358
+        Width = 249
+        Height = 17
+        Caption = #1042#1086#1076#1080#1090#1077#1083#1100' '#1084#1086#1073'. '#1090#1088#1072#1085#1089#1087#1086#1088#1090#1072
+        TabOrder = 24
+        OnClick = bDriverClick
+      end
     end
     object TabSheetUpol: TTabSheet
       Caption = #1055#1086#1083#1085#1086#1084#1086#1095#1080#1103
       ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label166: TLabel
         Left = 3
         Top = 0
@@ -2015,10 +2020,6 @@ object fmPersonForm: TfmPersonForm
     object TabSheet4: TTabSheet
       Caption = #1053#1072#1079#1085#1072#1095#1077#1085#1080#1103'   '
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label47: TLabel
         Left = 16
         Top = 116
@@ -2815,7 +2816,7 @@ object fmPersonForm: TfmPersonForm
         Top = 214
         Width = 792
         Height = 154
-        ActivePage = TabSheet9
+        ActivePage = TabSheet8
         HotTrack = True
         MultiLine = True
         RaggedRight = True
@@ -3188,10 +3189,6 @@ object fmPersonForm: TfmPersonForm
         object tbVK: TTabSheet
           Caption = #1054#1073#1091#1095#1077#1085#1080#1077' '#1085#1072' '#1074#1086#1077#1085'. '#1082#1072#1092'.'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label101: TLabel
             Left = 248
             Top = 3
@@ -3312,10 +3309,6 @@ object fmPersonForm: TfmPersonForm
         object TabSheet8: TTabSheet
           Caption = #1054#1090#1095#1080#1089#1083#1077#1085#1080#1077' '#1080#1079' '#1080#1085#1089#1090#1080#1090#1091#1090#1072
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label105: TLabel
             Left = 138
             Top = 8
@@ -4111,15 +4104,6 @@ object fmPersonForm: TfmPersonForm
     Visible = False
     OnChange = edFamChange
     OnKeyPress = edOKATOKeyPress
-  end
-  object bDriver: TCheckBox
-    Left = 16
-    Top = 440
-    Width = 249
-    Height = 17
-    Caption = #1042#1086#1076#1080#1090#1077#1083#1100' '#1084#1086#1073'. '#1090#1088#1072#1085#1089#1087#1086#1088#1090#1072
-    TabOrder = 13
-    OnClick = bDriverClick
   end
   object pmLang: TPopupMenu
     Left = 216
