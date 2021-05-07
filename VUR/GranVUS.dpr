@@ -71,7 +71,5 @@ begin
   IsDemoVersion(true);
   Application.CreateForm(TfmMain, fmMain);
   Application.CreateForm(TdmMain, dmMain);
-  Application.CreateForm(TfWUch2, fWUch2);
-  Application.CreateForm(TfMessageConfirm, fMessageConfirm);
   Application.Run;
 end.

@@ -68,6 +68,7 @@ type
       ASelected, AFocused, ANewItemRow: Boolean; var AText: String;
       var AColor: TColor; AFont: TFont; var AAlignment: TAlignment;
       var ADone: Boolean);
+    procedure FormCreate(Sender: TObject);
   public
     { Public declarations }
   end;
@@ -98,7 +99,11 @@ end;
 
 procedure ShowTPDPModal;
 begin
-  if Assigned(fmTPDP) then fmTPDP.Close;
+  if Assigned(fmTPDP) then begin
+    fmTPDP.Close;
+    fmTPDP.Free;
+    fmTPDP := nil;
+  end;
 
   with TfmTPDP.Create(Application) do
   try     ShowModal;
@@ -112,6 +117,11 @@ procedure TfmTPDP.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
   fmTPDP := nil;
+end;
+
+procedure TfmTPDP.FormCreate(Sender: TObject);
+begin
+  qrData.Open;
 end;
 
 procedure TfmTPDP.actNewExecute(Sender: TObject);
