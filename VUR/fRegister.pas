@@ -94,7 +94,7 @@ begin
     Result := lbDemoVersion.Visible;
   finally
     Free;
-  end; *)
+  end;*)
 end;
 
 procedure TfmRegister.lbCompanyUrlMouseEnter(Sender: TObject);

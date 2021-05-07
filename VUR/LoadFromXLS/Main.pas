@@ -162,7 +162,9 @@ const
   idx_War_Date        = 53;
   idx_Card_Num        = 54;
   idx_OUT_Date        = 55;
-  ColCount = 55;
+  idx_OUT_ORD         = 56;
+  idx_OUT_ORD_Date    = 57;
+  ColCount = 57;
   ColName : array [1..ColCount] of String = (
     'Фамилия',
     'Имя',
@@ -218,7 +220,9 @@ const
     'Военный комиссариат',
     'Дата постановки на воинский учет',
     'Номер личной карточки',
-    'Дата увольнения'
+    'Дата увольнения',
+    '№ приказа об увольнении',
+    'Дата приказа об увольнении'
     );
   CellLen : array [1..ColCount] of Integer =  (
   50,
@@ -275,6 +279,8 @@ const
   -3,
   -1,
   -3,
+  -1,
+  50,
   -1
   );
 
@@ -1091,8 +1097,9 @@ begin ////////////////// Processing //////////////////
           if CheckWorkIndex(idx_Voenkomat) then FieldByName('OVK_ID').Value := CheckOvk(idx_Voenkomat);
           if CheckWorkIndex(idx_War_Date) then FieldByName('W_DBEG').Value := CheckDate(idx_War_Date);
           if CheckWorkIndex(idx_Card_Num) then FieldByName('NUMB_T2').Value := CheckInt(idx_Card_Num, [], True);
-          if CheckWorkIndex(idx_OUT_DATE) then FieldByName('OUT_DATE').Value := CheckDate(idx_OUT_DATE, False);
-          if CheckWorkIndex(idx_OUT_DATE) then FieldByName('OUT_ORD_DATE').Value := FieldByName('OUT_DATE').Value;
+          if CheckWorkIndex(idx_OUT_DATE) then FieldByName('OUT_DATE').Value := CheckDate(idx_OUT_DATE);
+          if CheckWorkIndex(idx_OUT_ORD) then FieldByName('OUT_ORD_NUMB').Value := CheckLen(idx_OUT_ORD);
+          if CheckWorkIndex(idx_OUT_ORD_DATE) then FieldByName('OUT_ORD_DATE').Value := CheckDate(idx_OUT_ORD_DATE);
 
           FieldByName('CONFDATE').Value := Date;
           if Post_Id > 0 then begin

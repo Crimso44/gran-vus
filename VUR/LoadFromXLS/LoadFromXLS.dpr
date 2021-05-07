@@ -18,7 +18,7 @@ uses
 begin
   Application.Initialize;
   {$IFNDEF BackDoor}
-  if {!!! false and } IsDemoVersion then begin
+  if IsDemoVersion then begin
     ShowErr('Лицензия не найдена!');
     Application.Terminate;
   end
