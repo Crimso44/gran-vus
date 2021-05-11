@@ -220,6 +220,139 @@ type
     qrPersonPPers_Id: TIntegerField;
     qrPDPDocNumber: TStringField;
     qrPDPDocDate: TDateTimeField;
+    qrPersonLearn: TADOQuery;
+    IntegerField1: TIntegerField;
+    IntegerField2: TIntegerField;
+    IntegerField3: TIntegerField;
+    WideStringField1: TWideStringField;
+    WideStringField2: TWideStringField;
+    WideStringField3: TWideStringField;
+    SmallintField1: TSmallintField;
+    DateTimeField1: TDateTimeField;
+    WideStringField4: TWideStringField;
+    WideStringField5: TWideStringField;
+    IntegerField4: TIntegerField;
+    WideStringField6: TWideStringField;
+    WideStringField7: TWideStringField;
+    WideStringField8: TWideStringField;
+    DateTimeField2: TDateTimeField;
+    WideStringField9: TWideStringField;
+    WideStringField10: TWideStringField;
+    IntegerField5: TIntegerField;
+    SmallintField2: TSmallintField;
+    WideStringField11: TWideStringField;
+    SmallintField3: TSmallintField;
+    SmallintField4: TSmallintField;
+    WideStringField12: TWideStringField;
+    WideStringField13: TWideStringField;
+    IntegerField6: TIntegerField;
+    WideStringField14: TWideStringField;
+    IntegerField7: TIntegerField;
+    WideStringField15: TWideStringField;
+    WideStringField16: TWideStringField;
+    WideStringField17: TWideStringField;
+    WideStringField18: TWideStringField;
+    DateTimeField3: TDateTimeField;
+    SmallintField5: TSmallintField;
+    WideStringField19: TWideStringField;
+    WideStringField20: TWideStringField;
+    WideStringField21: TWideStringField;
+    WideStringField22: TWideStringField;
+    DateTimeField4: TDateTimeField;
+    IntegerField8: TIntegerField;
+    DateTimeField5: TDateTimeField;
+    DateTimeField6: TDateTimeField;
+    DateTimeField7: TDateTimeField;
+    DateTimeField8: TDateTimeField;
+    WideStringField23: TWideStringField;
+    DateTimeField9: TDateTimeField;
+    DateTimeField10: TDateTimeField;
+    WideStringField24: TWideStringField;
+    WideStringField25: TWideStringField;
+    WideStringField26: TWideStringField;
+    WideMemoField1: TWideMemoField;
+    DateTimeField11: TDateTimeField;
+    IntegerField9: TIntegerField;
+    IntegerField10: TIntegerField;
+    IntegerField11: TIntegerField;
+    DateTimeField12: TDateTimeField;
+    WideStringField27: TWideStringField;
+    DateTimeField13: TDateTimeField;
+    WideStringField28: TWideStringField;
+    DateTimeField14: TDateTimeField;
+    DateTimeField15: TDateTimeField;
+    DateTimeField16: TDateTimeField;
+    DateTimeField17: TDateTimeField;
+    IntegerField12: TIntegerField;
+    IntegerField13: TIntegerField;
+    DateTimeField18: TDateTimeField;
+    DateTimeField19: TDateTimeField;
+    DateTimeField20: TDateTimeField;
+    WideStringField29: TWideStringField;
+    DateTimeField21: TDateTimeField;
+    WideStringField30: TWideStringField;
+    DateTimeField22: TDateTimeField;
+    WideStringField31: TWideStringField;
+    WideStringField32: TWideStringField;
+    IntegerField14: TIntegerField;
+    IntegerField15: TIntegerField;
+    WideStringField33: TWideStringField;
+    DateTimeField23: TDateTimeField;
+    DateTimeField24: TDateTimeField;
+    WideStringField34: TWideStringField;
+    IntegerField16: TIntegerField;
+    IntegerField17: TIntegerField;
+    IntegerField18: TIntegerField;
+    DateTimeField25: TDateTimeField;
+    DateTimeField26: TDateTimeField;
+    WideStringField35: TWideStringField;
+    WideStringField36: TWideStringField;
+    DateTimeField27: TDateTimeField;
+    WideStringField37: TWideStringField;
+    WideStringField38: TWideStringField;
+    SmallintField6: TSmallintField;
+    SmallintField7: TSmallintField;
+    WideStringField39: TWideStringField;
+    WideStringField40: TWideStringField;
+    IntegerField19: TIntegerField;
+    IntegerField20: TIntegerField;
+    IntegerField21: TIntegerField;
+    IntegerField22: TIntegerField;
+    IntegerField23: TIntegerField;
+    WideStringField41: TWideStringField;
+    WideStringField42: TWideStringField;
+    IntegerField24: TIntegerField;
+    SmallintField8: TSmallintField;
+    IntegerField25: TIntegerField;
+    WideStringField43: TWideStringField;
+    DateTimeField28: TDateTimeField;
+    IntegerField26: TIntegerField;
+    WideStringField44: TWideStringField;
+    IntegerField27: TIntegerField;
+    SmallintField9: TSmallintField;
+    WideStringField45: TWideStringField;
+    WideStringField46: TWideStringField;
+    IntegerField28: TIntegerField;
+    IntegerField29: TIntegerField;
+    IntegerField30: TIntegerField;
+    WideStringField47: TWideStringField;
+    DateTimeField29: TDateTimeField;
+    DateTimeField30: TDateTimeField;
+    WideStringField48: TWideStringField;
+    WideStringField49: TWideStringField;
+    WideStringField50: TWideStringField;
+    IntegerField31: TIntegerField;
+    IntegerField32: TIntegerField;
+    BooleanField1: TBooleanField;
+    WideStringField51: TWideStringField;
+    WideStringField52: TWideStringField;
+    WideStringField53: TWideStringField;
+    WideStringField54: TWideStringField;
+    WideStringField55: TWideStringField;
+    SmallintField10: TSmallintField;
+    WideStringField56: TWideStringField;
+    StringField1: TStringField;
+    qrPDPLearn: TADOQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure EkUDFList1dateCalculate(Sender: TObject; Args: TEkUDFArgs;
       ArgCount: Integer; UDFResult: TObject);
@@ -233,9 +366,9 @@ type
       ArgCount: Integer; UDFResult: TObject);
   private
     FOrgID: Integer;
+    qrPersonX, qrPDPX: TADOQuery;
     procedure FillExecutor;
   public
-    IsJet: Boolean;
     function PrintData: boolean;
   end;
 
@@ -256,28 +389,25 @@ var
   f: TfrmGetType;
   res: Word;
 begin
-  IsJet := false;
-  if Pos(WideString('Provider=Microsoft.Jet'), dbMain.ConnectionString) > 0 then
-    IsJet := true;
   try
     learn := False;
 
-    if not IsJet then
-      qrOvk.SQL.Text :=
-        'select *, IIF(IsOVK=1, ''Военному комиссару'', ''Начальник ВУС администрации'') as OVK from KOVK';
-
     qrOVK.Open;
     qrOrg.Open;
-    if Copy(qrOrg.FieldByName('MAINOKONH').AsString, 1, 5) = '85.22' then begin
-      f := TfrmGetType.Create(Self);
-      res := f.ShowModal;
-      f.Free;
 
-      if res = mrYes then
-        learn := True
-      else if res <> mrNo then
-        Exit;
-    end;
+    qrPersonX := qrPerson;
+    qrPDPX := qrPDP;
+
+    f := TfrmGetType.Create(Self);
+    res := f.ShowModal;
+    f.Free;
+
+    if res = mrYes then begin
+      learn := True;
+      qrPersonX := qrPersonLearn;
+      qrPDPX := qrPDPLearn;
+    end else if res <> mrNo then
+      Exit;
 
     with TADOQuery.Create(nil) do
     try
@@ -285,39 +415,40 @@ begin
       SQL.Text := 'select COUNT(*) from PERS_SET';
       Open;
       if Fields[0].AsInteger > 0 then
-        qrPerson.SQL.Text := StringReplace(qrPerson.SQL.Text,'/*PERS_SET*/',
+        qrPersonX.SQL.Text := StringReplace(qrPersonX.SQL.Text,'/*PERS_SET*/',
           'and (P.PERS_ID in (select PERS_ID from PERS_SET))', [])
       else
-        qrPerson.SQL.Text := StringReplace(qrPerson.SQL.Text,'/*PERS_SET*/',
+        qrPersonX.SQL.Text := StringReplace(qrPersonX.SQL.Text,'/*PERS_SET*/',
           '', []);
       Close;
       SQL.Text := 'select Param_Value from Params Where Params.Param_Id = 8';
       Open;
       if not Eof then
         if Fields[0].AsString = '1' then
-          qrPerson.SQL.Text := StringReplace(qrPerson.SQL.Text,'KWR.WRNG_NAME',
+          qrPersonX.SQL.Text := StringReplace(qrPersonX.SQL.Text,'KWR.WRNG_NAME',
             'KWR.WRNG_NAME + iif(P.WSOST_ID=9,'' юстиции'',iif(P.WSOST_ID=10,'' медицинской службы'',''''))', []);
 
     finally Free;
     end;
 
-    qrPerson.Parameters.ParamByName('TPDP_Id').Value := -1;
+    qrPersonX.SQL.Text := ReplaceFullAges(qrPersonX.SQL.Text);
     if learn then
-      qrPerson.Parameters.ParamByName('IsAspirant').Value := 1
+      qrPersonX.Open
     else
-      qrPerson.Parameters.ParamByName('IsAspirant').Value := 0;
-    qrPerson.SQL.Text := ReplaceFullAges(qrPerson.SQL.Text);
-    //qrPerson.Open;
-    qrPDP.Open;
+      qrPersonX.Parameters.ParamByName('TPDP_Id').Value := -1;
+    qrPDPX.Open;
 
-    if learn then
-      EkRtf1.CreateVar('Learning', 'обучающихся')
-    else
+    if learn then begin
+      EkRtf1.CreateVar('Learning', 'обучающихся');
+      EkRtf1.CreateVar('learn', true);
+    end else begin
       EkRtf1.CreateVar('Learning', 'работающих');
+      EkRtf1.CreateVar('learn', false);
+    end;
 
     FillExecutor;
 
-    EkRTF1.ExecuteOpen([qrPerson, qrOrg, qrPDP, qrOVK],SW_SHOWDEFAULT);
+    EkRTF1.ExecuteOpen([qrPersonX, qrOrg, qrPDPX, qrOVK],SW_SHOWDEFAULT);
     Result := true;
     SaveEvent(dbMain, evs_Report_Print, sEventObject,
       ['Номер организации: '+IntToStr(FOrgID)]);
@@ -378,10 +509,10 @@ begin
   with DataSet do begin
     FieldByName('RecNo').Value := abs(RecNo);
   end;
-  s := qrPerson.FieldByName('ED_NAME').AsString;
+  s := qrPersonX.FieldByName('ED_NAME').AsString;
   qrEduc.Close;
   qrEduc.Parameters.ParamByName('pers_id').Value :=
-    qrPersonPPERS_ID.Value;
+    qrPersonX.FieldByName('PPERS_ID').Value;
   qrEduc.Open;
   while not qrEduc.Eof do begin
     s := s + qrEduc.Fields[0].AsString;
@@ -389,9 +520,9 @@ begin
     qrEduc.Next;
   end;
   qrEduc.Close;
-  if qrPerson.FieldByName('PROF1').AsString <> '' then
-    s := s + ' ' + qrPerson.FieldByName('PROF1').AsString;
-  qrPerson.FieldByName('Education').Value := s;
+  if qrPersonX.FieldByName('PROF1').AsString <> '' then
+    s := s + ' ' + qrPersonX.FieldByName('PROF1').AsString;
+  qrPersonX.FieldByName('Education').Value := s;
 end;
 
 procedure TdmMain.DataModuleCreate(Sender: TObject);

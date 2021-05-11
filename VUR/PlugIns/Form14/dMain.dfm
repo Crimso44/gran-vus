@@ -46,15 +46,6 @@ object dmMain: TdmMain
         Name = 'MvkOrderDate'
         Size = -1
         Value = Null
-      end
-      item
-        Name = 'IsAspirant'
-        Attributes = [paNullable]
-        DataType = ftWideString
-        NumericScale = 255
-        Precision = 255
-        Size = 510
-        Value = Null
       end>
     SQL.Strings = (
       
@@ -81,7 +72,7 @@ object dmMain: TdmMain
         'left outer join (select * from PHONES PHx where (PHx.PH_TYPE=2 o' +
         'r PHx.PH_TYPE is null)) PH on (P.PERS_ID=PH.PERS_ID))'
       'left outer join KFSTATE KFST on (P.FST_ID=KFST.FST_ID))'
-      'left outer join Appointment on (P.AppLastAll=Appointment.Id))'
+      'left outer join Appointment on (P.AppLast=Appointment.Id))'
       
         'left outer join [KPOST] KP on (Appointment.POST_ID=[KP].POST_ID)' +
         ')'
@@ -94,9 +85,6 @@ object dmMain: TdmMain
       
         'WHERE (pdp.Id = :TPDP_Id or (MvkOrder.DocNumber = :MvkOrderNumbe' +
         'r and MvkOrder.DocDate = :MvkOrderDate))'
-      
-        'and (iif(p.IsAspirant is null, 1, 0)) = iif(:IsAspirant = 1, 0, ' +
-        '1)'
       '  AND P.IS_WAR<>0 and'
       'pr.Is_Bad = 1 and pr.Reserved = 0 and'
       
@@ -108,10 +96,7 @@ object dmMain: TdmMain
       'and (p.Wuchet2_IsWork is null or p.Wuchet2_IsWork = 0)'
       '  /*PERS_SET*/'
       'AND '
-      '((P.AppLast IS NOT NULL AND P.OUT_ORD_DATE IS NULL)'
-      
-        'OR (P.AppLastStudy IS NOT NULL AND P.ORDERDISMISSAL_DATE IS NULL' +
-        '))'
+      '(P.AppLast IS NOT NULL AND P.OUT_ORD_DATE IS NULL)'
       'ORDER BY P.FAM, P.IM, P.OTCH')
     Left = 96
     Top = 85
@@ -939,5 +924,541 @@ object dmMain: TdmMain
       'Order by Educ.Type')
     Left = 204
     Top = 188
+  end
+  object qrPersonLearn: TADOQuery
+    Connection = dbMain
+    CursorType = ctStatic
+    OnCalcFields = qrPersonCalcFields
+    Parameters = <
+      item
+        Name = 'TPDP_Id'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 510
+        Value = Null
+      end
+      item
+        Name = 'MvkOrderNumber'
+        Size = -1
+        Value = Null
+      end
+      item
+        Name = 'MvkOrderDate'
+        Size = -1
+        Value = Null
+      end>
+    SQL.Strings = (
+      
+        'select P.*,KWR.*,KWS.*,KED.*,A.*,A1.POST_CODE as POST_CODE1,A1.A' +
+        'DDR_STR as ADDR_STR1,PH.*,KFST.*'
+      ',Appointment.*,KP.*,'
+      'P.Pers_Id as PPers_Id,'
+      '  KWR.WRNG_NAME  as WRNG_Name1,'
+      'pdp.*, Year(p.BirthDay) as BirthYear'
+      'from (((((((((((Person P'
+      'left outer join KWRANGE KWR  on (P.WRNG_ID=KWR.WRNG_ID))'
+      'left outer join KWSOST  KWS  on (P.WSOST_ID=KWS.WSOST_ID))'
+      'left outer join KEDUC   KED  on (P.ED_ID=KED.ED_ID))'
+      
+        'left outer join (select * from ADDR ax  where (Ax.ADDR_TYPE=0 or' +
+        ' Ax.ADDR_TYPE is null)) A on (P.PERS_ID=A.PERS_ID))'
+      
+        'left outer join (select * from ADDR A1x where A1x.ADDR_TYPE=1) A' +
+        '1 on (P.PERS_ID=A1.PERS_ID))'
+      
+        'left outer join (select * from PHONES PHx where (PHx.PH_TYPE=2 o' +
+        'r PHx.PH_TYPE is null)) PH on (P.PERS_ID=PH.PERS_ID))'
+      'left outer join KFSTATE KFST on (P.FST_ID=KFST.FST_ID))'
+      'left outer join Appointment on (P.AppLastStudy=Appointment.Id))'
+      
+        'left outer join [KPOST] KP on (Appointment.POST_ID=[KP].POST_ID)' +
+        ')'
+      
+        'left outer join PersonReservChkInfo pr on pr.Pers_Id = P.pers_Id' +
+        ' )'
+      'left outer join TPDP pdp on pdp.kokpdtr = KP.kokpdtr)'
+      'left outer join MvkOrder on MvkOrder.Pers_Id = p.Pers_Id'
+      ''
+      'WHERE '
+      
+        '  P.AppLastStudy IS NOT NULL and Iif(P.WRNG_ID <> 1 and P.WRNG_I' +
+        'D <> 37, 1, 0) = 1 and P.Document<2 and'
+      
+        '  IIF(EXISTS(SELECT * FROM KDEFVUS WHERE NAME = left(P.VUS, IIF(' +
+        '(select state from KWRANGE where WRNG_ID = P.WRNG_ID) = 3, 6, 3)' +
+        ')), 1,0) = 0'
+      '  and IsNull(P.WUchet1) and KP.IsIgnore=0'
+      '  AND P.IS_WAR<>0 and'
+      'pr.Is_Bad = 1 and pr.Reserved = 0'
+      '  /*PERS_SET*/'
+      'AND '
+      '(P.AppLastStudy IS NOT NULL AND P.ORDERDISMISSAL_DATE IS NULL)'
+      'ORDER BY P.FAM, P.IM, P.OTCH')
+    Left = 96
+    Top = 141
+    object IntegerField1: TIntegerField
+      FieldName = 'PPers_Id'
+    end
+    object IntegerField2: TIntegerField
+      FieldKind = fkCalculated
+      FieldName = 'RecNo'
+      Calculated = True
+    end
+    object IntegerField3: TIntegerField
+      FieldName = 'ORG_ID'
+    end
+    object WideStringField1: TWideStringField
+      FieldName = 'FAM'
+      Size = 50
+    end
+    object WideStringField2: TWideStringField
+      FieldName = 'IM'
+      Size = 50
+    end
+    object WideStringField3: TWideStringField
+      FieldName = 'OTCH'
+      Size = 50
+    end
+    object SmallintField1: TSmallintField
+      FieldName = 'MALE'
+    end
+    object DateTimeField1: TDateTimeField
+      FieldName = 'BIRTHDAY'
+    end
+    object WideStringField4: TWideStringField
+      FieldName = 'BIRTHPLACE'
+      Size = 100
+    end
+    object WideStringField5: TWideStringField
+      FieldName = 'OKATO'
+      Size = 11
+    end
+    object IntegerField4: TIntegerField
+      FieldName = 'NAT_ID'
+    end
+    object WideStringField6: TWideStringField
+      FieldName = 'PSP_SER'
+      Size = 10
+    end
+    object WideStringField7: TWideStringField
+      FieldName = 'PSP_NUM'
+      Size = 10
+    end
+    object WideStringField8: TWideStringField
+      FieldName = 'PSP_PLACE'
+      Size = 100
+    end
+    object DateTimeField2: TDateTimeField
+      FieldName = 'PSP_DATE'
+    end
+    object WideStringField9: TWideStringField
+      FieldName = 'INN'
+      Size = 12
+    end
+    object WideStringField10: TWideStringField
+      FieldName = 'STRAH'
+    end
+    object IntegerField5: TIntegerField
+      FieldName = 'SC_ID'
+    end
+    object SmallintField2: TSmallintField
+      FieldName = 'IS_WAR'
+    end
+    object WideStringField11: TWideStringField
+      FieldName = 'EOARMY_DATE'
+      Size = 10
+    end
+    object SmallintField3: TSmallintField
+      FieldName = 'CSOST'
+    end
+    object SmallintField4: TSmallintField
+      FieldName = 'CAT_ZAP'
+    end
+    object WideStringField12: TWideStringField
+      FieldName = 'VUS'
+      Size = 10
+    end
+    object WideStringField13: TWideStringField
+      FieldName = 'WCAT'
+      Size = 1
+    end
+    object IntegerField6: TIntegerField
+      FieldName = 'OVK_ID'
+    end
+    object WideStringField14: TWideStringField
+      FieldName = 'WUCHET1'
+      Size = 100
+    end
+    object IntegerField7: TIntegerField
+      FieldName = 'SpecialWUchet1'
+    end
+    object WideStringField15: TWideStringField
+      FieldName = 'WUCHET2'
+      Size = 100
+    end
+    object WideStringField16: TWideStringField
+      FieldName = 'WDISCL'
+      Size = 100
+    end
+    object WideStringField17: TWideStringField
+      FieldName = 'TAB_NUMB'
+      Size = 10
+    end
+    object WideStringField18: TWideStringField
+      FieldName = 'DOG_NUMB'
+    end
+    object DateTimeField3: TDateTimeField
+      FieldName = 'DOG_DATE'
+    end
+    object SmallintField5: TSmallintField
+      FieldName = 'IS_RAB'
+    end
+    object WideStringField19: TWideStringField
+      FieldName = 'PROF1'
+      Size = 50
+    end
+    object WideStringField20: TWideStringField
+      FieldName = 'OKPDTR1'
+      Size = 10
+    end
+    object WideStringField21: TWideStringField
+      FieldName = 'PROF2'
+      Size = 50
+    end
+    object WideStringField22: TWideStringField
+      FieldName = 'OKPDTR2'
+      Size = 10
+    end
+    object DateTimeField4: TDateTimeField
+      FieldName = 'CONFDATE'
+    end
+    object IntegerField8: TIntegerField
+      FieldName = 'NUMB_T2'
+    end
+    object DateTimeField5: TDateTimeField
+      FieldName = 'W_DBEG'
+    end
+    object DateTimeField6: TDateTimeField
+      FieldName = 'W_DEND'
+    end
+    object DateTimeField7: TDateTimeField
+      FieldName = 'D_OVK'
+    end
+    object DateTimeField8: TDateTimeField
+      FieldName = 'D_WBIL'
+    end
+    object WideStringField23: TWideStringField
+      FieldName = 'OUT_ORD_NUMB'
+      Size = 50
+    end
+    object DateTimeField9: TDateTimeField
+      FieldName = 'OUT_ORD_DATE'
+    end
+    object DateTimeField10: TDateTimeField
+      FieldName = 'OUT_DATE'
+    end
+    object WideStringField24: TWideStringField
+      FieldName = 'WID'
+      Size = 10
+    end
+    object WideStringField25: TWideStringField
+      FieldName = 'WBser'
+      Size = 2
+    end
+    object WideStringField26: TWideStringField
+      FieldName = 'WBnum'
+      Size = 8
+    end
+    object WideMemoField1: TWideMemoField
+      FieldName = 'Comments'
+      BlobType = ftWideMemo
+    end
+    object DateTimeField11: TDateTimeField
+      FieldName = 'WUCHET2_date'
+    end
+    object IntegerField9: TIntegerField
+      FieldName = 'Document'
+    end
+    object IntegerField10: TIntegerField
+      FieldName = 'Branch'
+    end
+    object IntegerField11: TIntegerField
+      FieldName = 'IsAspirant'
+    end
+    object DateTimeField12: TDateTimeField
+      FieldName = 'StudyEnd_date'
+    end
+    object WideStringField27: TWideStringField
+      FieldName = 'OrderAkadem'
+    end
+    object DateTimeField13: TDateTimeField
+      FieldName = 'OrderAkadem_date'
+    end
+    object WideStringField28: TWideStringField
+      FieldName = 'ReasonAkadem'
+      Size = 100
+    end
+    object DateTimeField14: TDateTimeField
+      FieldName = 'BeginAkadem_date'
+    end
+    object DateTimeField15: TDateTimeField
+      FieldName = 'EndAkadem_date'
+    end
+    object DateTimeField16: TDateTimeField
+      FieldName = 'RealEndAkadem_date'
+    end
+    object DateTimeField17: TDateTimeField
+      FieldName = 'MedResult_date'
+    end
+    object IntegerField12: TIntegerField
+      FieldName = 'MedResult'
+    end
+    object IntegerField13: TIntegerField
+      FieldName = 'VKStatus'
+    end
+    object DateTimeField18: TDateTimeField
+      FieldName = 'BeginWar_date'
+    end
+    object DateTimeField19: TDateTimeField
+      FieldName = 'EndWar_date'
+    end
+    object DateTimeField20: TDateTimeField
+      FieldName = 'RealEndWar_date'
+    end
+    object WideStringField29: TWideStringField
+      FieldName = 'ReasonEndWar'
+      Size = 100
+    end
+    object DateTimeField21: TDateTimeField
+      FieldName = 'Dismissal_date'
+    end
+    object WideStringField30: TWideStringField
+      FieldName = 'OrderDismissal'
+    end
+    object DateTimeField22: TDateTimeField
+      FieldName = 'OrderDismissal_date'
+    end
+    object WideStringField31: TWideStringField
+      FieldName = 'ReasonDismissal'
+      Size = 100
+    end
+    object WideStringField32: TWideStringField
+      FieldName = 'DisserName'
+      Size = 100
+    end
+    object IntegerField14: TIntegerField
+      FieldName = 'Degree_ID'
+    end
+    object IntegerField15: TIntegerField
+      FieldName = 'GuideDegree_ID'
+    end
+    object WideStringField33: TWideStringField
+      FieldName = 'FIOGuide'
+      Size = 100
+    end
+    object DateTimeField23: TDateTimeField
+      FieldName = 'Defend_date'
+    end
+    object DateTimeField24: TDateTimeField
+      FieldName = 'RealDefend_date'
+    end
+    object WideStringField34: TWideStringField
+      FieldName = 'ContractEnd'
+      Size = 50
+    end
+    object IntegerField16: TIntegerField
+      FieldName = 'StudyForm'
+    end
+    object IntegerField17: TIntegerField
+      FieldName = 'Kval_Id'
+    end
+    object IntegerField18: TIntegerField
+      FieldName = 'Delay_ID'
+    end
+    object DateTimeField25: TDateTimeField
+      FieldName = 'DelayStart_date'
+    end
+    object DateTimeField26: TDateTimeField
+      FieldName = 'DelayEnd_date'
+    end
+    object WideStringField35: TWideStringField
+      FieldName = 'Health'
+      Size = 60
+    end
+    object WideStringField36: TWideStringField
+      FieldName = 'HealthDocNo'
+      Size = 60
+    end
+    object DateTimeField27: TDateTimeField
+      FieldName = 'HealthDoc_date'
+    end
+    object WideStringField37: TWideStringField
+      FieldName = 'Warfare'
+      Size = 255
+    end
+    object WideStringField38: TWideStringField
+      FieldName = 'WRNG_NAME'
+      Size = 100
+    end
+    object SmallintField6: TSmallintField
+      FieldName = 'M_LIMIT'
+    end
+    object SmallintField7: TSmallintField
+      FieldName = 'FEM_LIMIT'
+    end
+    object WideStringField39: TWideStringField
+      FieldName = 'ZAP'
+      Size = 10
+    end
+    object WideStringField40: TWideStringField
+      FieldName = 'GODN'
+      Size = 10
+    end
+    object IntegerField19: TIntegerField
+      FieldName = 'CHE'
+    end
+    object IntegerField20: TIntegerField
+      FieldName = 'ZAPSTATE'
+    end
+    object IntegerField21: TIntegerField
+      FieldName = 'LIMIT1'
+    end
+    object IntegerField22: TIntegerField
+      FieldName = 'LIMIT2'
+    end
+    object IntegerField23: TIntegerField
+      FieldName = 'LIMIT3'
+    end
+    object WideStringField41: TWideStringField
+      FieldName = 'WSOST_NAME'
+      Size = 50
+    end
+    object WideStringField42: TWideStringField
+      FieldName = 'ED_NAME'
+      Size = 50
+    end
+    object IntegerField24: TIntegerField
+      FieldName = 'ADDR_ID'
+    end
+    object SmallintField8: TSmallintField
+      FieldName = 'ADDR_TYPE'
+    end
+    object IntegerField25: TIntegerField
+      FieldName = 'POST_CODE'
+    end
+    object WideStringField43: TWideStringField
+      FieldName = 'ADDR_STR'
+      Size = 100
+    end
+    object DateTimeField28: TDateTimeField
+      FieldName = 'ADDR_DATE'
+    end
+    object IntegerField26: TIntegerField
+      FieldName = 'POST_CODE1'
+    end
+    object WideStringField44: TWideStringField
+      FieldName = 'ADDR_STR1'
+      Size = 100
+    end
+    object IntegerField27: TIntegerField
+      FieldName = 'PH_ID'
+    end
+    object SmallintField9: TSmallintField
+      FieldName = 'PH_TYPE'
+    end
+    object WideStringField45: TWideStringField
+      FieldName = 'PH_NUMBER'
+      Size = 50
+    end
+    object WideStringField46: TWideStringField
+      FieldName = 'FST_NAME'
+      Size = 50
+    end
+    object IntegerField28: TIntegerField
+      FieldName = 'WTP_ID'
+    end
+    object IntegerField29: TIntegerField
+      FieldName = 'WCH_ID'
+    end
+    object IntegerField30: TIntegerField
+      FieldName = 'DEP_ID'
+    end
+    object WideStringField47: TWideStringField
+      FieldName = 'IN_ORD_NUMB'
+      Size = 50
+    end
+    object DateTimeField29: TDateTimeField
+      FieldName = 'IN_ORD_DATE'
+    end
+    object DateTimeField30: TDateTimeField
+      FieldName = 'IN_DATE'
+    end
+    object WideStringField48: TWideStringField
+      FieldName = 'POST_NAME'
+      Size = 255
+    end
+    object WideStringField49: TWideStringField
+      FieldName = 'OKPDTR'
+      Size = 17
+    end
+    object WideStringField50: TWideStringField
+      FieldName = 'OKPDTR_NAME'
+      Size = 50
+    end
+    object IntegerField31: TIntegerField
+      FieldName = 'CPROF_ID'
+    end
+    object IntegerField32: TIntegerField
+      FieldName = 'KPost_Num'
+    end
+    object BooleanField1: TBooleanField
+      FieldName = 'IsIgnore'
+    end
+    object WideStringField51: TWideStringField
+      FieldKind = fkCalculated
+      FieldName = 'Education'
+      ReadOnly = True
+      Size = 255
+      Calculated = True
+    end
+    object WideStringField52: TWideStringField
+      FieldName = 'Per_No'
+      Size = 10
+    end
+    object WideStringField53: TWideStringField
+      FieldName = 'Razd_No'
+      Size = 10
+    end
+    object WideStringField54: TWideStringField
+      FieldName = 'Podrazd_No'
+      Size = 10
+    end
+    object WideStringField55: TWideStringField
+      FieldName = 'Punkt'
+      Size = 10
+    end
+    object SmallintField10: TSmallintField
+      FieldName = 'BirthYear'
+      ReadOnly = True
+    end
+    object WideStringField56: TWideStringField
+      FieldName = 'Posts'
+      Size = 255
+    end
+    object StringField1: TStringField
+      FieldName = 'WRNG_Name1'
+      Size = 100
+    end
+  end
+  object qrPDPLearn: TADOQuery
+    Connection = dbMain
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select 1 as xxx from VerInfo')
+    Left = 145
+    Top = 209
   end
 end

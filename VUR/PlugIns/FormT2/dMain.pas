@@ -54,7 +54,7 @@ var
   dmMain: TdmMain;
 
 const
-  sEventObject = 'Форма Т-2(ВУС)';
+  sEventObject = 'Форма Т-2(ВУС) шапка старая';
 
 implementation
 

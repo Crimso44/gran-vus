@@ -48,7 +48,7 @@ begin
       ['Ошибка при обращении к базе данных.']);
     MessageBox(Application.Handle,
       'Ошибка при обращении к базе данных!',
-      'Печать формы Т-2(ВУС)',MB_OK or MB_ICONERROR);
+      'Печать формы Т-2(ВУС) шапка старая',MB_OK or MB_ICONERROR);
     Result := -1;
   end
   else
@@ -60,7 +60,7 @@ begin
         'Ошибка при создании отчета!'+#13+
         'Возможно неверно указаны рабочие папки '+#13+
         'или шаблон отчета используется другой программой...',
-        'Печать формы Т-2(ВУС)',MB_OK or MB_ICONERROR);
+        'Печать формы Т-2(ВУС) шапка старая',MB_OK or MB_ICONERROR);
     end
     else Result := 0;
   dmMain.dbMain.ConnectionObject := old_conn;
