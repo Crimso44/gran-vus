@@ -672,10 +672,12 @@ begin
     end;
     if QForm6COL_2.AsInteger = 0 then
       QForm6Perc5.AsString := '0'
-    else
-      QForm6Perc5.AsString := FloatToStr(Round(100*
-        (1.0*QForm6COL_6.AsInteger) /
-          QForm6COL_2.AsInteger));
+    else begin
+      perc := Round(100*
+        (1.0*QForm6COL_6.AsInteger) / QForm6COL_2.AsInteger);
+      if perc > 100 then perc := 100.0;
+      QForm6Perc5.AsString := FloatToStr(perc);
+    end;
 end;
 
 procedure TdmMain.ReportQueryCalcFields(DataSet: TDataSet);
@@ -686,16 +688,18 @@ begin
 
     if ReportQueryCOL_12.AsInteger = 0 then
       ReportQueryPerc.AsString := '0'
-    else
-      ReportQueryPerc.AsString := FloatToStr(Round(100*
+    else begin
+      perc := Round(100*
         (1.0*(ReportQueryCOL_1.AsInteger - ReportQueryCOL_10.AsInteger)) /
-          ReportQueryCOL_12.AsInteger));
+          ReportQueryCOL_12.AsInteger);
+      if perc > 100 then perc := 100.0;
+      ReportQueryPerc.AsString := FloatToStr(perc);
+    end;
     if ReportQueryCOL_2.AsInteger = 0 then
       ReportQueryPerc5.AsString := '0'
     else begin
       perc := 100*
-        (1.0*ReportQueryCOL_6.AsInteger) /
-          ReportQueryCOL_2.AsInteger;
+        (1.0*ReportQueryCOL_6.AsInteger) / ReportQueryCOL_2.AsInteger;
       if perc > 100 then perc := 100.0;
       ReportQueryPerc5.AsString := FloatToStr(Round(perc));
     end;
