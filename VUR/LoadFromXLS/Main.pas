@@ -446,8 +446,13 @@ var
 //
   function CheckWorkIndex(ind: Integer): boolean;
   begin
-    if ind < idx_PSP_PLACE then Result := True
-    else Result := lstWorkCols.Checked[ind - idx_PSP_PLACE];
+    if (ind < idx_BIRTHPLACE) or (ind = idx_PSP_SER) or (ind = idx_PSP_NUM) then Result := True
+    else begin
+      if ind < idx_PSP_PLACE then
+        Result := lstWorkCols.Checked[ind - idx_BIRTHPLACE]
+      else
+        Result := lstWorkCols.Checked[ind - idx_BIRTHPLACE - 2];
+    end;
   end;
 //
   function CheckEOF(AColumn: Integer): Boolean;
@@ -474,16 +479,27 @@ var
   end;
 //
   function CheckDuplicate: Boolean;
-  var Ser, Num: String;
+  var Ser, SerX, Num: String;
+    q: TADOQuery;
+    i: Integer;
   begin
     Result := True;
-    Ser := LeftStr(GetCell(idx_PSP_SER),CellLen[idx_PSP_SER]);
+    Ser := StringReplace(LeftStr(GetCell(idx_PSP_SER),CellLen[idx_PSP_SER]), ' ', '', [rfReplaceAll]);
     Num := LeftStr(GetCell(idx_PSP_NUM),CellLen[idx_PSP_NUM]);
-    with TADOQuery.Create(nil) do
+    q := TADOQuery.Create(nil);
+    with q do
     try
       Keep_Pers_Id := -1;
       Connection := dmMain.dbMain;
-      SQL.Text := Format('SELECT * FROM PERSON WHERE PSP_SER=%s AND PSP_NUM=%s',
+      if Length(Ser) < 2 then
+        SerX := Ser
+      else begin
+        SerX := Ser[1];
+        for i := 2 to Length(Ser) - 1 do
+          SerX := SerX + '[ ]' + Ser[i];
+        SerX := SerX + Ser[Length(Ser)];
+      end;
+      SQL.Text := Format('SELECT * FROM PERSON WHERE PSP_SER like %s AND PSP_NUM=%s',
         [QuotedStr(Ser),QuotedStr(Num)]);
       Open;
       IsDuplicate := not IsEmpty;
@@ -1069,10 +1085,10 @@ begin ////////////////// Processing //////////////////
           FieldByName('MALE').Value := CheckDictonary(idx_MALE,['∆','Ã'],
             Byte(AnsiUpperCase(RightStr(GetCell(idx_OTCH),1))<>'¿'));
           FieldByName('BIRTHDAY').Value := CheckDate(idx_BIRTHDAY);
-          FieldByName('BIRTHPLACE').Value := CheckLen(idx_BIRTHPLACE);
-          FieldByName('NAT_ID').Value := CheckDictonary(idx_NAT_ID,['√–','√–2','»√','¡√'], 0)+1;
-          FieldByName('INN').Value := CheckLen(idx_INN);
-          FieldByName('STRAH').Value := CheckLen(idx_STRAH);
+          if CheckWorkIndex(idx_BIRTHPLACE) then FieldByName('BIRTHPLACE').Value := CheckLen(idx_BIRTHPLACE);
+          if CheckWorkIndex(idx_NAT_ID) then FieldByName('NAT_ID').Value := CheckDictonary(idx_NAT_ID,['√–','√–2','»√','¡√'], 0)+1;
+          if CheckWorkIndex(idx_INN) then FieldByName('INN').Value := CheckLen(idx_INN);
+          if CheckWorkIndex(idx_STRAH) then FieldByName('STRAH').Value := CheckLen(idx_STRAH);
           FieldByName('PSP_SER').Value := CheckLen(idx_PSP_SER);
           FieldByName('PSP_NUM').Value := CheckLen(idx_PSP_NUM);
 
