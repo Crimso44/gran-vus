@@ -12,7 +12,7 @@ object dmMain: TdmMain
   end
   object OpenDialog: TOpenDialog
     DefaultExt = 'XLS'
-    Filter = #1060#1072#1081#1083#1099' Microsoft Excel (*.xls)|*.xls'
+    Filter = #1060#1072#1081#1083#1099' Microsoft Excel (*.xls, *.xlsx)|*.xls;*.xlsx'
     Options = [ofHideReadOnly, ofFileMustExist, ofEnableSizing]
     Left = 192
     Top = 36
