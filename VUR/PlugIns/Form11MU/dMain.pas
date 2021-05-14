@@ -187,7 +187,12 @@ begin
     EkRtf1.CreateVar('ExecutorOtch', '');
     EkRtf1.CreateVar('ExecutorPhone', '');
     EkRtf1.CreateVar('ExecutorPost', '');
+    EkRtf1.CreateVar('Executor', false);
   end else begin
+    EkRtf1.CreateVar('Executor',
+      Trim(
+        qrExecutor.FieldByName('Fam').AsString + qrExecutor.FieldByName('Im').AsString + qrExecutor.FieldByName('Otch').AsString
+      ) <> '');
     EkRtf1.CreateVar('ExecutorFam', qrExecutorFam.AsString);
     EkRtf1.CreateVar('ExecutorIm', qrExecutorIm.AsString);
     EkRtf1.CreateVar('ExecutorOtch', qrExecutorOtch.AsString);

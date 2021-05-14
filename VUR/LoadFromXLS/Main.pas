@@ -150,21 +150,24 @@ const
   idx_WTP_ID          = 41;
   idx_WCH_ID          = 42;
   idx_IN_DATE         = 43;
-  idx_KWRANGE         = 44;
-  idx_Sostav          = 45;
-  idx_VUS             = 46;
-  idx_Cat_Zap         = 47;
-  idx_SemPol          = 48;
-  idx_WCAT            = 49;
-  idx_WUCHET1         = 50;
-  idx_hasMob          = 51;
-  idx_Voenkomat       = 52;
-  idx_War_Date        = 53;
-  idx_Card_Num        = 54;
-  idx_OUT_Date        = 55;
-  idx_OUT_ORD         = 56;
-  idx_OUT_ORD_Date    = 57;
-  ColCount = 57;
+  idx_IN_ORD_NUMB     = 44;
+  idx_IN_ORD_DATE     = 45;
+  idx_KWRANGE         = 46;
+  idx_Sostav          = 47;
+  idx_VUS             = 48;
+  idx_Cat_Zap         = 49;
+  idx_SemPol          = 50;
+  idx_WCAT            = 51;
+  idx_WUCHET1         = 52;
+  idx_hasMob          = 53;
+  idx_Voenkomat       = 54;
+  idx_War_Date        = 55;
+  idx_Card_Num        = 56;
+  idx_OUT_Date        = 57;
+  idx_OUT_ORD         = 58;
+  idx_OUT_ORD_Date    = 59;
+  idx_Document        = 60;
+  ColCount = 60;
   ColName : array [1..ColCount] of String = (
     'Фамилия',
     'Имя',
@@ -209,6 +212,8 @@ const
     'Вид работы',
     'Характер работы',
     'Дата последнего назначения',
+    'Основание последнего назначения',
+    'Дата основания последнего назначения',
     'Воинское звание',
     'Состав, профиль',
     'ВУС',
@@ -222,7 +227,8 @@ const
     'Номер личной карточки',
     'Дата увольнения',
     '№ приказа об увольнении',
-    'Дата приказа об увольнении'
+    'Дата приказа об увольнении',
+    'Вид воинского документа'
     );
   CellLen : array [1..ColCount] of Integer =  (
   50,
@@ -268,6 +274,8 @@ const
   0,
   0,
   -1,
+  255,
+  -1,
   -3,
   -3,
   10,
@@ -281,7 +289,8 @@ const
   -3,
   -1,
   50,
-  -1
+  -1,
+  -3
   );
 
 
@@ -446,12 +455,12 @@ var
 //
   function CheckWorkIndex(ind: Integer): boolean;
   begin
-    if (ind < idx_BIRTHPLACE) or (ind = idx_PSP_SER) or (ind = idx_PSP_NUM) then Result := True
+    if (ind < idx_BIRTHDAY) or (ind = idx_PSP_SER) or (ind = idx_PSP_NUM) then Result := True
     else begin
       if ind < idx_PSP_PLACE then
-        Result := lstWorkCols.Checked[ind - idx_BIRTHPLACE]
+        Result := lstWorkCols.Checked[ind - idx_BIRTHDAY]
       else
-        Result := lstWorkCols.Checked[ind - idx_BIRTHPLACE - 2];
+        Result := lstWorkCols.Checked[ind - idx_BIRTHDAY - 2];
     end;
   end;
 //
@@ -479,7 +488,7 @@ var
   end;
 //
   function CheckDuplicate: Boolean;
-  var Ser, SerX, Num: String;
+  var Ser, SerX, SerNz, Num: String;
     q: TADOQuery;
     i: Integer;
   begin
@@ -494,13 +503,13 @@ var
       if Length(Ser) < 2 then
         SerX := Ser
       else begin
-        SerX := Ser[1];
-        for i := 2 to Length(Ser) - 1 do
-          SerX := SerX + '[ ]' + Ser[i];
-        SerX := SerX + Ser[Length(Ser)];
+        SerNz := StringReplace(Ser, ' ', '', [rfReplaceAll]);
+        SerX := SerNz[1];
+        for i := 2 to Length(SerNz) do
+          SerX := SerX + '%' + SerNz[i];
       end;
       SQL.Text := Format('SELECT * FROM PERSON WHERE PSP_SER like %s AND PSP_NUM=%s',
-        [QuotedStr(Ser),QuotedStr(Num)]);
+        [QuotedStr(SerX),QuotedStr(Num)]);
       Open;
       IsDuplicate := not IsEmpty;
       if IsDuplicate then begin
@@ -877,7 +886,7 @@ var
     I, KOKPDTR_ID : Integer;
   begin
     S := GetCell(Idx);
-    Result := (S<>'') and (GetCell(Idx+3)<>'');
+    Result := (S<>'') and (GetCell(Idx+4)<>'');
     if not Result then begin
       if S='' then
       for I := Idx+3 to Idx+6 do if GetCell(I)<>'' then begin
@@ -1002,6 +1011,7 @@ var
 
   function AddAppointment: Integer;
   var POST_ID, DEP_ID : Integer;
+    inOrdDate: Variant;
   begin
     Result := -1;
     if CheckWorkIndex(idx_POST_NAME) and CheckWorkIndex(idx_DEP_NAME) and
@@ -1019,7 +1029,14 @@ var
       if CheckWorkIndex(idx_WTP_ID) then FieldByName('WTP_ID').Value := CheckDictonary(idx_WTP_ID,['ОСН','СОВМ'], 0)+1;
       if CheckWorkIndex(idx_WCH_ID) then FieldByName('WCH_ID').Value := CheckDictonary(idx_WCH_ID,['ПОСТ','ВРЕМ'], 0)+1;
       if CheckWorkIndex(idx_IN_DATE) then FieldByName('IN_DATE').Value := CheckDate(idx_IN_DATE, False);
-      if CheckWorkIndex(idx_IN_DATE) then FieldByName('IN_ORD_DATE').Value := FieldByName('IN_DATE').Value;
+      if CheckWorkIndex(idx_IN_ORD_NUMB) then FieldByName('IN_ORD_NUMB').Value := CheckLen(idx_IN_ORD_NUMB);
+      if CheckWorkIndex(idx_IN_ORD_DATE) then begin
+        inOrdDate := CheckDate(idx_IN_ORD_DATE, True);
+        if inOrdDate = Null then
+          FieldByName('IN_ORD_DATE').Value := FieldByName('IN_DATE').Value
+        else
+          FieldByName('IN_ORD_DATE').Value := inOrdDate;
+      end;
       Post;
       Result := FieldByNAme('ID').AsInteger;
       Close;
@@ -1078,13 +1095,13 @@ begin ////////////////// Processing //////////////////
           FieldByName('PERS_ID').Value := PERS_ID;
           FieldByName('ORG_ID').Value := 1;
           FieldByName('IS_RAB').Value := 1;
-          FieldByName('Document').Value := 0;
+          if CheckWorkIndex(idx_Document) then FieldByName('Document').Value := CheckInt(idx_Document, [0..3], True);;
           FieldByName('FAM').Value := CheckLen(idx_FAM);
           FieldByName('IM').Value := CheckLen(idx_IM);
           FieldByName('OTCH').Value := CheckLen(idx_OTCH);
           FieldByName('MALE').Value := CheckDictonary(idx_MALE,['Ж','М'],
             Byte(AnsiUpperCase(RightStr(GetCell(idx_OTCH),1))<>'А'));
-          FieldByName('BIRTHDAY').Value := CheckDate(idx_BIRTHDAY);
+          if CheckWorkIndex(idx_BIRTHDAY) then FieldByName('BIRTHDAY').Value := CheckDate(idx_BIRTHDAY);
           if CheckWorkIndex(idx_BIRTHPLACE) then FieldByName('BIRTHPLACE').Value := CheckLen(idx_BIRTHPLACE);
           if CheckWorkIndex(idx_NAT_ID) then FieldByName('NAT_ID').Value := CheckDictonary(idx_NAT_ID,['ГР','ГР2','ИГ','БГ'], 0)+1;
           if CheckWorkIndex(idx_INN) then FieldByName('INN').Value := CheckLen(idx_INN);

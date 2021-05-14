@@ -221,7 +221,7 @@ begin
     '         ((R.CHE =15)             and (Year(Date())-Year(BIRTHDAY)<=55)) or'#13 +
     '         ((R.CHE >15)             and (Year(Date())-Year(BIRTHDAY)<=60)))'#13 +
     '        ) and'#13 +
-    '        (Driver<>1) and'#13 +
+    '        (Driver is null or Driver<>1) and'#13 +
     '        (MobContract is null or MobContract < Date()) and'#13 +
     '        (DefPOST=1)) or '#13 +
 
