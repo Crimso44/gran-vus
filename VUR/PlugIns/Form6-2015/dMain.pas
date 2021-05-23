@@ -289,14 +289,6 @@ var
           State:= KWRangeQuery.FieldByName('STATE').AsInteger;
           WrngNeedCall := KWRangeQuery.FieldByName('WRNG_ID').AsInteger = 1;
           WCat := PersonQuery.FieldByName('WCAT').AsString;
-          if WrngNeedCall and ((WCat = 'À') or (WCat = 'Á')) then
-            IncVal(13);
-          if (PersonQuery.FieldByName('WUCHET1').AsString <> '') or
-           (WrngNeedCall and ((WCat = 'À') or (WCat = 'Á') or (WCat = 'Â'))) or
-           (PersonQuery.FieldByName('Document').AsInteger = 3) or
-           (PersonQuery.FieldByName('Driver').AsInteger = 1) or
-           (not PersonQuery.FieldByName('MobContract').IsNull and not (PersonQuery.FieldByName('MobContract').AsDateTime < Date)) then
-           IncVal(14);
           if State = 0 then
             IncVal(11)
           else if ((PersonQuery.FieldByName('W_DEND').IsNull) or (PersonQuery.FieldByName('W_DEND').AsDateTime > Now)) and
@@ -319,6 +311,14 @@ var
               end;
             end else if PersonQuery.FieldByName('WUCHET1').AsString = '' then
               IncVal(9);
+            if WrngNeedCall and ((WCat = 'À') or (WCat = 'Á')) then
+              IncVal(13);
+            if (PersonQuery.FieldByName('WUCHET1').AsString <> '') or
+             (WrngNeedCall and ((WCat = 'À') or (WCat = 'Á') or (WCat = 'Â'))) or
+             (PersonQuery.FieldByName('Document').AsInteger = 3) or
+             (PersonQuery.FieldByName('Driver').AsInteger = 1) or
+             (not PersonQuery.FieldByName('MobContract').IsNull and not (PersonQuery.FieldByName('MobContract').AsDateTime < Date)) then
+             IncVal(14);
           end;
         end;
       end;
