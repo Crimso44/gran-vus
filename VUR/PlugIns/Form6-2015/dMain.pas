@@ -287,38 +287,42 @@ var
           DecodeDate(PersonQuery.FieldByName('BIRTHDAY').AsDateTime, BirthYear, Month, Day);
           Age:= CurYear - BirthYear;
           State:= KWRangeQuery.FieldByName('STATE').AsInteger;
-          WrngNeedCall := KWRangeQuery.FieldByName('WRNG_ID').AsInteger = 1;
+          WrngNeedCall := State = 0;
           WCat := PersonQuery.FieldByName('WCAT').AsString;
-          if State = 0 then
-            IncVal(11)
-          else if ((PersonQuery.FieldByName('W_DEND').IsNull) or (PersonQuery.FieldByName('W_DEND').AsDateTime > Now)) and
-             (((PersonQuery.FieldByName('MALE').AsInteger = 1) and
-             ((KWRangeQuery.FieldByName('M_LIMIT').IsNull) or (Age <= KWRangeQuery.FieldByName('M_LIMIT').AsInteger)))
-             or ((PersonQuery.FieldByName('MALE').AsInteger = 0) and
-             ((KWRangeQuery.FieldByName('FEM_LIMIT').IsNull) or (Age <= KWRangeQuery.FieldByName('FEM_LIMIT').AsInteger)))) then begin
-            IncVal(2);
-            case State of
-              3: IncVal(3);
-              1,2: IncVal(4);
-            end;
-            if (State in [1,2]) and (PersonQuery.FieldByName('WCAT').AsString = 'Â') then
-              IncVal(5);
-            if PersonQuery.FieldByName('WUCHET2_IsWork').AsInteger = 1 then begin
-              IncVal(6);
-              if State = 3 then IncVal(7);
-              if State in [1,2] then begin
-                IncVal(8);
+          if (PersonQuery.FieldByName('W_DEND').IsNull) or (PersonQuery.FieldByName('W_DEND').AsDateTime > Now) then begin
+            if State = 0 then begin
+              IncVal(11);
+              if (WCat = 'À') or (WCat = 'Á') then
+                IncVal(13);
+              if (WCat = 'À') or (WCat = 'Á') or (WCat = 'Â') then
+                IncVal(14);
+            end else if
+               (((PersonQuery.FieldByName('MALE').AsInteger = 1) and
+               ((KWRangeQuery.FieldByName('M_LIMIT').IsNull) or (Age <= KWRangeQuery.FieldByName('M_LIMIT').AsInteger)))
+               or ((PersonQuery.FieldByName('MALE').AsInteger = 0) and
+               ((KWRangeQuery.FieldByName('FEM_LIMIT').IsNull) or (Age <= KWRangeQuery.FieldByName('FEM_LIMIT').AsInteger)))) then begin
+              IncVal(2);
+              case State of
+                3: IncVal(3);
+                1,2: IncVal(4);
               end;
-            end else if PersonQuery.FieldByName('WUCHET1').AsString = '' then
-              IncVal(9);
-            if WrngNeedCall and ((WCat = 'À') or (WCat = 'Á')) then
-              IncVal(13);
-            if (PersonQuery.FieldByName('WUCHET1').AsString <> '') or
-             (WrngNeedCall and ((WCat = 'À') or (WCat = 'Á') or (WCat = 'Â'))) or
-             (PersonQuery.FieldByName('Document').AsInteger = 3) or
-             (PersonQuery.FieldByName('Driver').AsInteger = 1) or
-             (not PersonQuery.FieldByName('MobContract').IsNull and not (PersonQuery.FieldByName('MobContract').AsDateTime < Date)) then
-             IncVal(14);
+              if (State in [1,2]) and (PersonQuery.FieldByName('WCAT').AsString = 'Â') then
+                IncVal(5);
+              if PersonQuery.FieldByName('WUCHET2_IsWork').AsInteger = 1 then begin
+                IncVal(6);
+                if State = 3 then IncVal(7);
+                if State in [1,2] then begin
+                  IncVal(8);
+                end;
+              end else if PersonQuery.FieldByName('WUCHET1').AsString = '' then
+                IncVal(9);
+              if (PersonQuery.FieldByName('WUCHET1').AsString <> '') or
+               (WrngNeedCall and ((WCat = 'À') or (WCat = 'Á') or (WCat = 'Â'))) or
+               (PersonQuery.FieldByName('Document').AsInteger = 3) or
+               (PersonQuery.FieldByName('Driver').AsInteger = 1) or
+               (not PersonQuery.FieldByName('MobContract').IsNull and not (PersonQuery.FieldByName('MobContract').AsDateTime < Date)) then
+               IncVal(14);
+            end;
           end;
         end;
       end;
