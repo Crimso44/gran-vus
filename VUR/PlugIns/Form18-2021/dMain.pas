@@ -201,8 +201,10 @@ begin
     try
       qrPer.Open;
       while not qrPer.EOF do begin
-        PerList1.Add(qrPer.Fields[0].AsString);
-        PerList2.Add(qrPer.Fields[1].AsString);
+        if PerList1.IndexOf(qrPer.Fields[0].AsString) < 0 then
+          PerList1.Add(qrPer.Fields[0].AsString);
+        if PerList2.IndexOf(qrPer.Fields[1].AsString) < 0 then
+          PerList2.Add(qrPer.Fields[1].AsString);
         qrPer.Next;
       end;
     except

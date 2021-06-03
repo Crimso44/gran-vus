@@ -180,7 +180,6 @@ type
     qrPersonPOST_CODE1: TIntegerField;
     qrPersonNAT_NAME: TWideStringField;
     qrPersonWUchet2_IsWork: TIntegerField;
-    qrPersonSQL: TADOQuery;
     qrPersonPPers_Id: TIntegerField;
     EkUDFList1: TEkUDFList;
     procedure qrPersonPROF1GetText(Sender: TField; var Text: string; DisplayText: Boolean);
@@ -201,6 +200,7 @@ type
   public
     ListOVK: TStringList;
     IsJet: Boolean;
+    ReportType: Integer;
     function OpenData(OrgId: Integer): boolean;
     function PrintData: boolean;
   end;
@@ -218,15 +218,17 @@ uses DateUtils, SaveEvents, IniSupport, StrUtils;
 
 function TdmMain.OpenData(OrgId: Integer): boolean;
 var
-  sDate, sYyyy: String;
+  year15: string;
 begin
-  sDate := 'Date()';
-  sYyyy := '"yyyy"';
-  if not IsJet then begin
-    sDate := 'GetDate()';
-    sYyyy := 'yy';
-    qrOvk.SQL.Text := StringReplace(qrOvk.SQL.Text, 'IIF(IsOVK', 'IIF(IsOVK=1', [rfReplaceAll]);
-    qrPerson.SQL.Text := qrPersonSQL.SQL.Text;
+  if ReportType = 0 then begin
+    year15 := '15';
+    EkRTF1.Outfile := GetReportsDir + 'Список граждан мужского пола 15- и 16-летнего возраста.rtf';
+    EkRTF1.CreateVar('ReportName', 'граждан мужского пола 15- и 16-летнего возраста');
+  end else begin
+    year15 := '16';
+    qrPerson.SQL.Text := StringReplace(qrPerson.SQL.Text, ',15,', ',16,', [rfReplaceAll]);
+    EkRTF1.Outfile := GetReportsDir + 'Список граждан мужского пола, подлежащих первоначальной постановке на воинский учет в следующем году.rtf';
+    EkRTF1.CreateVar('ReportName', 'граждан мужского пола, подлежащих первоначальной постановке на воинский учет в следующем году');
   end;
 
   FOrgID := OrgID;
@@ -237,8 +239,8 @@ begin
       qrOVK.SQL.Add('WHERE EXISTS(SELECT * FROM PERSON P '+
                                   'WHERE P.OVK_ID=KOVK.OVK_ID '+
                                   '  and ((select COUNT(*) from PERS_SET)=0 or P.PERS_ID in (select PERS_ID from PERS_SET)) '+
-                                  'and dateadd('+sYyyy+',15,p.Birthday) <= '+sDate+' '+
-                                  'and dateadd('+sYyyy+',17,p.Birthday) > '+sDate+' '+
+                                  'and dateadd("yyyy",' + year15 + ',p.Birthday) <= Date() '+
+                                  'and dateadd("yyyy",17,p.Birthday) > Date() '+
       ')');
     qrOVK.SQL.Add('ORDER BY OVK_NAME');
     qrOVK.Open;
@@ -316,7 +318,6 @@ begin
   ListOVK := TStringList.Create;
   if dbMain.Connected then ShowMessage('Close default connection!');
   EkRTF1.Infile := GetTemplatesDir + 'PersOVK1516.rtf';
-  EkRTF1.Outfile := GetReportsDir + 'Список граждан мужского пола 15- и 16-летнего возраста.rtf';
 end;
 
 procedure TdmMain.DataModuleDestroy(Sender: TObject);

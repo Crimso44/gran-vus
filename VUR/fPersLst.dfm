@@ -168,7 +168,7 @@ object fmPersonList: TfmPersonList
       Width = 80
       BandIndex = 0
       RowIndex = 0
-      FieldName = 'ADDRPASS'
+      FieldName = 'BIRTHPLACE'
     end
     object dbgDataDEP_NAME: TdxDBGridColumn
       Caption = #1057#1090#1088#1091#1082#1090#1091#1088#1085#1086#1077' '#1087#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1077', '#1074' '#1082#1086#1090#1086#1088#1086#1084' '#1088#1072#1073#1086#1090#1072#1077#1090

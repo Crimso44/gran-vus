@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, CheckLst;
+  Dialogs, StdCtrls, CheckLst, ExtCtrls;
 
 type
   TfmParamDlg = class(TForm)
@@ -14,6 +14,7 @@ type
     rbAll: TRadioButton;
     rbSel: TRadioButton;
     cbxOVK: TCheckListBox;
+    rgReportType: TRadioGroup;
     procedure FormCreate(Sender: TObject);
     procedure rbAllClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -81,6 +82,7 @@ procedure TfmParamDlg.Button1Click(Sender: TObject);
 var i: Integer;
 begin
   dmMain.ListOVK.Clear;
+  dmMain.ReportType := rgReportType.ItemIndex;
   if rbAll.Checked then ModalResult := mrOk
   else begin
     for i:=0 to cbxOVK.Items.Count-1 do
