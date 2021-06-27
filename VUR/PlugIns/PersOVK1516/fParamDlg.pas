@@ -35,16 +35,7 @@ implementation
 uses ADOdb, dMain, msg, WinHelpViewer;
 
 procedure TfmParamDlg.FormCreate(Sender: TObject);
-var
-  sDate, sYyyy: String;
 begin
-  sDate := 'Date()';
-  sYyyy := '"yyyy"';
-  if not dmMain.IsJet then begin
-    sDate := 'GetDate()';
-    sYyyy := 'yy';
-  end;
-
   HelpFile := ExtractFileDir(Application.ExeName) + '/granvus.hlp';
   with TADOQuery.Create(Self) do
   try
@@ -55,8 +46,8 @@ begin
         'SELECT * FROM PERSON P '+
         'WHERE P.OVK_ID=KOVK.OVK_ID '+
         '  and ((select COUNT(*) from PERS_SET)=0 or P.PERS_ID in (select PERS_ID from PERS_SET)) '+
-        'and dateadd('+sYyyy+',15,p.Birthday) <= '+sDate+' '+
-        'and dateadd('+sYyyy+',17,p.Birthday) > '+sDate+' '+
+        ' and ((year(p.Birthday) + 16) = Year(Date()) ' +
+        '   or (year(p.Birthday) + 15) = Year(Date())) ' +
       ') ORDER BY OVK_NAME';
     Open;
     cbxOVK.Items.Clear;

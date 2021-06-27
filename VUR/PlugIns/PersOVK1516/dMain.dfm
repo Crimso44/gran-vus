@@ -197,6 +197,12 @@ object dmMain: TdmMain
         Precision = 255
         Size = 510
         Value = Null
+      end
+      item
+        Name = 'small'
+        DataType = ftInteger
+        Size = -1
+        Value = Null
       end>
     SQL.Strings = (
       
@@ -206,21 +212,9 @@ object dmMain: TdmMain
         ',AppointmentLastAll.*,KP.*,IIF(KD.DEP_FULL_NAME is null, KD.DEP_' +
         'NAME, KD.DEP_FULL_NAME) as DEP_FULL_NAME,'
       'P.Pers_Id as PPers_Id,'
-      'KED.ED_NAME'
-      ' &iif(IsNull(Kuz.UZ_NAME)   ,"",", "&Kuz.UZ_NAME)'
-      ' &iif(IsNull(Educ.END_DATE) ,"",", "&Educ.END_DATE)'
-      ' &iif((KKVAL.Kval_Name is null)     ,'#39#39','#39', '#39'&KKVAL.Kval_Name)'
-      ' &iif((KNapr.NAPR_Name is null)     ,'#39#39','#39', '#39'&KNapr.NAPR_Name) '
-      ''
-      ' &iif(IsNull(Kuz2.UZ_NAME)  ,"",", "&Kuz2.UZ_NAME)'
-      ' &iif(IsNull(Educ2.END_DATE),"",", "&Educ2.END_DATE)'
-      ' &iif((KKVAL2.Kval_Name is null)     ,'#39#39','#39', '#39'&KKVAL2.Kval_Name)'
-      ' &iif((KNapr2.NAPR_Name is null)     ,'#39#39','#39', '#39'&KNapr2.NAPR_Name) '
-      ''
-      ' &iif(IsNull(P.PROF1)       ,"",", "&P.PROF1)'
-      ' as Education,'
+      'KED.ED_NAME as Education,'
       ' KN.NAT_NAME'
-      'from ((((((((((((((((((Person P'
+      'from ((((((((((Person P'
       'left outer join KWRANGE KWR  on (P.WRNG_ID=KWR.WRNG_ID))'
       'left outer join KWSOST  KWS  on (P.WSOST_ID=KWS.WSOST_ID))'
       'left outer join KEDUC   KED  on (P.ED_ID=KED.ED_ID))'
@@ -243,22 +237,6 @@ object dmMain: TdmMain
       
         'left outer join [KDEPART] KD on (AppointmentLastAll.DEP_ID=[KD].' +
         'DEP_ID))'
-      
-        'left outer join [Educ] on (P.PERS_ID=[Educ].PERS_ID and [Educ].t' +
-        'ype=1))'
-      'left outer join KKval on KKval.kval_id = [Educ].Kval_Id)'
-      'left outer join KNapr on KNapr.Napr_id = [Educ].Napr_Id)'
-      
-        'left outer join [Educ] as Educ2 on (P.PERS_ID=[Educ2].PERS_ID an' +
-        'd [Educ2].type=2))'
-      
-        'left outer join KKval as KKval2 on KKval2.kval_id = Educ2.Kval_I' +
-        'd)'
-      
-        'left outer join KNapr as KNapr2 on KNapr2.Napr_id = Educ2.Napr_I' +
-        'd)'
-      'left outer join [KUz] on [KUz].UZ_ID=[Educ].UZ_ID)'
-      'left outer join [KUz] as KUz2 on [KUz2].UZ_ID=[Educ2].UZ_ID)'
       'left outer join KNation KN  on (KN.NAT_ID=P.NAT_ID)'
       ''
       'WHERE P.OVK_ID=:OVK_ID'
@@ -266,8 +244,10 @@ object dmMain: TdmMain
         '  and ((select COUNT(*) from PERS_SET)=0 or P.PERS_ID in (select' +
         ' PERS_ID from PERS_SET))'
       'AND  not (KD.DEP_ID is null)'
-      'and dateadd("yyyy",15,p.Birthday) <= Date()'
-      'and dateadd("yyyy",17,p.Birthday) > Date()'
+      'and ((year(p.Birthday) + 16) = Year(Date()) '
+      
+        '      or ((:small = 1) and (year(p.Birthday) + 15) = Year(Date()' +
+        '))) '
       'ORDER BY P.FAM, P.IM, P.OTCH')
     Left = 128
     Top = 188
@@ -751,6 +731,13 @@ object dmMain: TdmMain
     object qrPersonPPers_Id: TIntegerField
       FieldName = 'PPers_Id'
     end
+    object qrPersonEducationFull: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkCalculated
+      FieldName = 'EducationFull'
+      Size = 255
+      Calculated = True
+    end
   end
   object qrEduc: TADOQuery
     Connection = dbMain
@@ -818,5 +805,59 @@ object dmMain: TdmMain
       end>
     Left = 157
     Top = 29
+  end
+  object qEduc: TADOQuery
+    Connection = dbMain
+    CursorType = ctStatic
+    OnCalcFields = qrPersonCalcFields
+    Parameters = <
+      item
+        Name = 'PERS_ID'
+        Size = -1
+        Value = Null
+      end>
+    SQL.Strings = (
+      'select P.Pers_Id,'
+      ' iif(IsNull(Kuz.UZ_NAME)   ,"",", "&Kuz.UZ_NAME)'
+      ' &iif(IsNull(Educ.END_DATE) ,"",", "&Educ.END_DATE)'
+      ' &iif((KKVAL.Kval_Name is null)     ,'#39#39','#39', '#39'&KKVAL.Kval_Name)'
+      ' &iif((KNapr.NAPR_Name is null)     ,'#39#39','#39', '#39'&KNapr.NAPR_Name) '
+      ''
+      ' &iif(IsNull(Kuz2.UZ_NAME)  ,"",", "&Kuz2.UZ_NAME)'
+      ' &iif(IsNull(Educ2.END_DATE),"",", "&Educ2.END_DATE)'
+      ' &iif((KKVAL2.Kval_Name is null)     ,'#39#39','#39', '#39'&KKVAL2.Kval_Name)'
+      ' &iif((KNapr2.NAPR_Name is null)     ,'#39#39','#39', '#39'&KNapr2.NAPR_Name) '
+      ''
+      ' &iif(IsNull(P.PROF1)       ,"",", "&P.PROF1)'
+      ' as Education'
+      'from (((((((Person P'
+      
+        'left outer join [Educ] on (P.PERS_ID=[Educ].PERS_ID and [Educ].t' +
+        'ype=1))'
+      'left outer join KKval on KKval.kval_id = [Educ].Kval_Id)'
+      'left outer join KNapr on KNapr.Napr_id = [Educ].Napr_Id)'
+      
+        'left outer join [Educ] as Educ2 on (P.PERS_ID=[Educ2].PERS_ID an' +
+        'd [Educ2].type=2))'
+      
+        'left outer join KKval as KKval2 on KKval2.kval_id = Educ2.Kval_I' +
+        'd)'
+      
+        'left outer join KNapr as KNapr2 on KNapr2.Napr_id = Educ2.Napr_I' +
+        'd)'
+      'left outer join [KUz] on [KUz].UZ_ID=[Educ].UZ_ID)'
+      'left outer join [KUz] as KUz2 on [KUz2].UZ_ID=[Educ2].UZ_ID'
+      ''
+      'WHERE P.PERS_ID=:PERS_ID')
+    Left = 136
+    Top = 252
+    object qEducPers_Id: TIntegerField
+      FieldName = 'Pers_Id'
+    end
+    object qEducEducation: TStringField
+      DisplayWidth = 2000
+      FieldName = 'Education'
+      Size = 1000
+    end
   end
 end

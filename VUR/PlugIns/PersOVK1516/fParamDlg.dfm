@@ -61,7 +61,6 @@ object fmParamDlg: TfmParamDlg
       ItemHeight = 13
       TabOrder = 2
       OnDblClick = cbxOVKDblClick
-      ExplicitHeight = 97
     end
   end
   object Button1: TButton
@@ -74,7 +73,6 @@ object fmParamDlg: TfmParamDlg
     Default = True
     TabOrder = 1
     OnClick = Button1Click
-    ExplicitTop = 199
   end
   object Button2: TButton
     Left = 304
@@ -86,7 +84,6 @@ object fmParamDlg: TfmParamDlg
     Caption = #1054#1090#1084#1077#1085#1080#1090#1100
     ModalResult = 2
     TabOrder = 2
-    ExplicitTop = 199
   end
   object rgReportType: TRadioGroup
     Left = 8

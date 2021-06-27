@@ -49,9 +49,6 @@ begin
     try
       dmMain.dbMain.ConnectionObject := Conn;
       dmMain.dbMain.Tag := SaveEvents.GetLastUserID(dmMain.dbMain);
-      dmMain.IsJet := false;
-      if Pos(WideString('Provider=Microsoft.Jet'), dmMain.dbMain.ConnectionString) > 0 then
-        dmMain.IsJet := true;
 
       with TADOQuery.Create(nil) do
       try

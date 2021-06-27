@@ -182,6 +182,10 @@ type
     qrPersonWUchet2_IsWork: TIntegerField;
     qrPersonPPers_Id: TIntegerField;
     EkUDFList1: TEkUDFList;
+    qEduc: TADOQuery;
+    qrPersonEducationFull: TStringField;
+    qEducPers_Id: TIntegerField;
+    qEducEducation: TStringField;
     procedure qrPersonPROF1GetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
@@ -199,7 +203,6 @@ type
     procedure FillExecutor;
   public
     ListOVK: TStringList;
-    IsJet: Boolean;
     ReportType: Integer;
     function OpenData(OrgId: Integer): boolean;
     function PrintData: boolean;
@@ -221,15 +224,20 @@ var
   year15: string;
 begin
   if ReportType = 0 then begin
-    year15 := '15';
+    year15 :=
+        'and ((year(p.Birthday) + 16) = Year(Date()) ' +
+        '  or (year(p.Birthday) + 15) = Year(Date())) ';
     EkRTF1.Outfile := GetReportsDir + 'Список граждан мужского пола 15- и 16-летнего возраста.rtf';
     EkRTF1.CreateVar('ReportName', 'граждан мужского пола 15- и 16-летнего возраста');
+    qrPerson.Parameters.ParamByName('small').Value := 1;
   end else begin
-    year15 := '16';
-    qrPerson.SQL.Text := StringReplace(qrPerson.SQL.Text, ',15,', ',16,', [rfReplaceAll]);
+    year15 :=
+        'and (year(p.Birthday) + 16) = Year(Date()) ';
     EkRTF1.Outfile := GetReportsDir + 'Список граждан мужского пола, подлежащих первоначальной постановке на воинский учет в следующем году.rtf';
     EkRTF1.CreateVar('ReportName', 'граждан мужского пола, подлежащих первоначальной постановке на воинский учет в следующем году');
+    qrPerson.Parameters.ParamByName('small').Value := 0;
   end;
+  //qrPerson.SQL.Text := StringReplace(qrPerson.SQL.Text, '.15.', year15, [rfReplaceAll]);
 
   FOrgID := OrgID;
   try
@@ -239,8 +247,7 @@ begin
       qrOVK.SQL.Add('WHERE EXISTS(SELECT * FROM PERSON P '+
                                   'WHERE P.OVK_ID=KOVK.OVK_ID '+
                                   '  and ((select COUNT(*) from PERS_SET)=0 or P.PERS_ID in (select PERS_ID from PERS_SET)) '+
-                                  'and dateadd("yyyy",' + year15 + ',p.Birthday) <= Date() '+
-                                  'and dateadd("yyyy",17,p.Birthday) > Date() '+
+                                  year15 +
       ')');
     qrOVK.SQL.Add('ORDER BY OVK_NAME');
     qrOVK.Open;
@@ -268,7 +275,7 @@ end;
 
 function TdmMain.PrintData: boolean;
 begin
-//  try
+  try
     EkRTF1.CreateVar('CurDate', FormatDateTime('DD.MM.YYYY', Now));
     qrPerson.Parameters.ParamByName('OVK_ID').Value := -1;
     qrPerson.Open;
@@ -278,9 +285,10 @@ begin
     SaveEvent(dbMain, evs_Report_Print, sEventObject,
       ['Номер организации: '+IntToStr(FOrgID),
        'ОВК: '+ListOVK.CommaText]);
-//  except
-//    Result := false;
-//  end;
+  except on e: Exception do begin
+    ShowMessage(e.Message);
+    Result := false;
+  end; end;
 end;
 
 procedure TdmMain.FillExecutor;
@@ -421,6 +429,11 @@ begin
     qrFam.Next;
   end;
   qrFam.Close;
+  qEduc.Parameters.ParamByName('Pers_Id').Value := qrPersonPPERS_ID.Value;
+  qEduc.Open;
+  qrPerson.FieldByName('EducationFull').AsString :=
+    qrPerson.FieldByName('Education').AsString + qEduc.FieldByName('Education').AsString;
+  qEduc.Close;
   if s<>EmptyStr then SetLength(s,Length(s)-1);
   qrPersonFAM_LIST.Value := s;
 end;
