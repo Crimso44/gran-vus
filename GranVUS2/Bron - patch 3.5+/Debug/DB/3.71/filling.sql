@@ -1,0 +1,13 @@
+UPDATE SUBJ_INFO_TYPE SET SUBJ_INFO_NAME='–уковод€щий орган' WHERE SUBJ_INFO_ID=1
+GO
+UPDATE FORM6 SET EXPRESSION=NULL WHERE CPROF_ID=200
+GO
+UPDATE KCPROF SET EXPRESSION=NULL WHERE CPROF_ID=200
+GO
+
+
+insert into VerChanges(VerId,VerChgDesc)
+select VerId, 'изменилось содержимое таблиц SUBJ_INFO_TYPE, FORM6 и KCPROF'
+from VerInfo
+where VerStr='3.71'
+GO

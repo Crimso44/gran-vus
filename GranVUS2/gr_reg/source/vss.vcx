@@ -1,0 +1,3 @@
+[Default]
+SCDB=\\fileserver\VSS\srcsafe.ini
+SCPATH=$/installers/gr_reg/source

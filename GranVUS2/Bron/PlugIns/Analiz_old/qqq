@@ -1,0 +1,34 @@
+declare @Subj_ID int
+set @Subj_ID = :Subj_ID
+SELECT 
+	f.CPROF_ID,
+	f.F6_ID,
+	case when SubString(f.PRINT_NAME,1,5)='ВСЕГО' then 'ВСЕГО' 
+		 when SubString(f.PRINT_NAME,1,5)='Специ' then 'Специалисты - всего' 
+		else f.PRINT_NAME end As PRINT_NAME,
+	f.EXPRESSION,
+	f.CALCULATE,
+	f.COL_B,
+	f.COL_1,
+	f.COL_2,
+	f.COL_3,
+	f.COL_4,
+	f.COL_5,
+	f.COL_6,
+	f.COL_7,
+	f.COL_8,
+	f.COL_9,
+	f.COL_10,
+	f.COL_11,
+	f.COL_12,
+	f.COL_13,
+	f.COL_14,
+	f.COL_15,
+	f.COL_16,
+	f.COL_10T,
+	f.COL_12T	
+FROM FORM6 f
+join Form6Hdr h on f.f6_id = h.f6_id
+WHERE h.Subj_ID = @Subj_ID and f.CPROF_ID in (100,200,300,400,470,2000)
+and h.f6_shifr = '01'
+ORDER BY f.CPROF_ID

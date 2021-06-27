@@ -1,0 +1,777 @@
+Сравнение файлов C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas и C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+function GetOrgFilter: Boolean;
+procedure SetOrgFilter(value: Boolean);
+
+function GetLastExport: TDateTime;
+procedure SetLastExport(value: TDateTime);
+function GetExpAgg: Boolean;
+procedure SetExpAgg(value: Boolean);
+function GetExpBron: Boolean;
+procedure SetExpBron(value: Boolean);
+
+function GetLastLogin: string;
+procedure SetLastLogin(value: string);
+
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+function GetExtMenu: Boolean;
+procedure SetExtMenu(value: Boolean);
+
+function GetLastLogin: String;
+procedure SetLastLogin(value: String);
+
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+function GetSubjCode: string;
+procedure SetSubjCode(value: string);
+
+function GetBackUpPeriod: Integer;
+
+type
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+type
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+procedure SetForm6Recalc(ACols, ARows: Boolean);
+
+function GetForm6FastMode: Boolean;
+procedure SetForm6FastMode(Value: Boolean);
+
+function GetReportDate: TDateTime;
+procedure SetReportDate(Value: TDateTime);
+
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+procedure SetForm6Recalc(ACols, ARows: Boolean);
+function GetForm6Year: Integer;
+procedure SetForm6Year(Value: Integer);
+
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+function GetAfterNY: Boolean;
+procedure SetAfterNY(Value: Boolean);
+function GetVUOAfterNY: Boolean;
+procedure SetVUOAfterNY(Value: Boolean);
+function GetMainVUOAfterNY: Boolean;
+procedure SetMainVUOAfterNY(Value: Boolean);
+
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+uses Forms, SysUtils, IniFiles, Windows, Registry, Classes, SHFolder;
+
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+uses Forms, SysUtils, Registry, Windows, Classes, StrUtils, IniFiles, SHFolder;
+
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+    if SHGetFolderPath(0, CSIDL_APPDATA {CSIDL_LOCAL_APPDATA}, 0, 0, P) = S_OK then
+      Result := P + '\GranVUS2\Reports'
+    else
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+    if SHGetFolderPath(0, CSIDL_APPDATA {CSIDL_LOCAL_APPDATA}, 0, 0, P) = S_OK then
+      Result := P + '\GranVUS\Reports'
+    else
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+begin
+  if adoConn.Connected then adoConn.Connected := false;
+  with TIniFile.Create(_IniName) do begin
+    adoConn.ConnectionString := ReadString('CONNECTION','CONNECTION_STRING',EmptyStr);
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+begin
+  if adoConn.Connected then adoConn.Connected := False;
+
+  with TRegistryIniFile.Create(_IniName) do begin
+    adoConn.ConnectionString := ReadString('CONNECTION','CONNECTION_STRING',EmptyStr);
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+    adoConn.CommandTimeout := ReadInteger('CONNECTION','COMMAND_TIMEOUT',300);
+    Free;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+    adoConn.CommandTimeout := ReadInteger('CONNECTION','COMMAND_TIMEOUT',300);
+    adoConn.Properties['Jet OLEDB:Database Password'].Value := ReverseString('9011ets18q54');
+    Free;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+  if adoConn.Connected then adoConn.Connected := false;
+  with TIniFile.Create(_IniName) do begin
+    WriteString('CONNECTION','CONNECTION_STRING',adoConn.ConnectionString);
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+  if adoConn.Connected then adoConn.Connected := false;
+
+  with TRegistryIniFile.Create(_IniName) do begin
+    adoConn.Properties['Jet OLEDB:Database Password'].Value := '';
+    WriteString('CONNECTION','CONNECTION_STRING',adoConn.ConnectionString);
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+begin
+  with TIniFile.Create(_IniName) do begin
+    Result := IncludeTrailingPathDelimiter(
+      ReadString('PATHS','PLUGINS',ExtractFilePath(Application.ExeName)+'PlugIns'));
+    Free;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+begin
+  with TRegistryIniFile.Create(_IniName) do begin
+    Result :=
+      ReadString('PATHS','PLUGINS','');
+    Free;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+  end;
+end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+  end;
+  if Result = '' then
+    with TIniFile.Create(ExtractFilePath(Application.ExeName)+__IniName) do begin
+      Result :=
+        ReadString('PATHS','PLUGINS',ExtractFilePath(Application.ExeName)+'PlugIns');
+      Free;
+    end;
+  Result := IncludeTrailingPathDelimiter(Result);
+end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+begin
+  with TIniFile.Create(_IniName) do begin
+    WriteString('PATHS','PLUGINS',value);
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+begin
+  with TRegistryIniFile.Create(_IniName) do begin
+    WriteString('PATHS','PLUGINS',value);
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+begin
+  with TIniFile.Create(_IniName) do begin
+    Result := IncludeTrailingPathDelimiter(
+      ReadString('PATHS','TEMPLATES',ExtractFilePath(Application.ExeName)+'Templates'));
+    Free;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+begin
+  with TRegistryIniFile.Create(_IniName) do begin
+    Result := 
+      ReadString('PATHS','TEMPLATES','');
+    Free;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+  end;
+end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+  end;
+  if Result = '' then
+    with TIniFile.Create(ExtractFilePath(Application.ExeName)+__IniName) do begin
+      Result :=
+        ReadString('PATHS','TEMPLATES',ExtractFilePath(Application.ExeName)+'Templates');
+      Free;
+    end;
+  Result := IncludeTrailingPathDelimiter(Result);
+end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+begin
+  with TIniFile.Create(_IniName) do begin
+    WriteString('PATHS','TEMPLATES',value);
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+begin
+  with TRegistryIniFile.Create(_IniName) do begin
+    WriteString('PATHS','TEMPLATES',value);
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+begin
+  with TIniFile.Create(_IniName) do begin
+    Result := IncludeTrailingPathDelimiter(
+      ReadString('PATHS','REPORTS',GetAppDataFolder));
+    Free;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+begin
+  with TRegistryIniFile.Create(_IniName) do begin
+    Result :=
+      ReadString('PATHS','REPORTS','');
+    Free;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+  end;
+end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+  end;
+  if Result = '' then
+    with TIniFile.Create(ExtractFilePath(Application.ExeName)+__IniName) do begin
+      Result :=
+        ReadString('PATHS','REPORTS',GetAppDataFolder);
+      Free;
+    end;
+  Result := IncludeTrailingPathDelimiter(Result);
+end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+begin
+  with TIniFile.Create(_IniName) do begin
+    WriteString('PATHS','REPORTS',value);
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+begin
+  with TRegistryIniFile.Create(_IniName) do begin
+    WriteString('PATHS','REPORTS',value);
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+begin
+  with TIniFile.Create(_IniName) do begin
+    Result := ReadInteger('COMMON','TIME_OUT',0);
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+begin
+  with TRegistryIniFile.Create(_IniName) do begin
+    Result := ReadInteger('COMMON','TIME_OUT',0);
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+begin
+  with TIniFile.Create(_IniName) do begin
+    WriteInteger('COMMON','TIME_OUT',value);
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+begin
+  with TRegistryIniFile.Create(_IniName) do begin
+    WriteInteger('COMMON','TIME_OUT',value);
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+function GetOrgFilter: Boolean;
+begin
+  with TIniFile.Create(_IniName) do begin
+    Result := ReadBool('COMMON','ORG_FILTER',False);
+    Free;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+function GetBackUpDir: string;
+begin
+  with TRegistryIniFile.Create(_IniName) do begin
+    Result := 
+      ReadString('PATHS','BACKUPS','');
+    Free;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+  end;
+end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+  end;
+  if Result = '' then
+    with TIniFile.Create(ExtractFilePath(Application.ExeName)+__IniName) do begin
+      Result :=
+        ReadString('PATHS','BACKUPS',ExtractFilePath(Application.ExeName)+'BackUp');
+      Free;
+    end;
+  Result := IncludeTrailingPathDelimiter(Result);
+end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+procedure SetOrgFilter(value: Boolean);
+begin
+  with TIniFile.Create(_IniName) do begin
+    WriteBool('COMMON','ORG_FILTER',value);
+    Free;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+procedure SetBackUpDir(value: string);
+begin
+  with TRegistryIniFile.Create(_IniName) do begin
+    WriteString('PATHS','BACKUPS',value);
+    Free;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+function GetLastExport: TDateTime;
+begin
+  with TIniFile.Create(_IniName) do begin
+    Result := ReadDate('EXPORT','LAST_DATE',0);
+    Free;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+function GetExtMenu: Boolean;
+begin
+  with TRegistryIniFile.Create(_IniName) do begin
+    Result := ReadBool('COMMON','EXT_MENU',true);
+    Free;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+procedure SetLastExport(value: TDateTime);
+begin
+  with TIniFile.Create(_IniName) do begin
+    WriteDate('EXPORT','LAST_DATE',value);
+    Free;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+procedure SetExtMenu(value: Boolean);
+begin
+  with TRegistryIniFile.Create(_IniName) do begin
+    WriteBool('COMMON','EXT_MENU',value);
+    Free;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+function GetExpAgg: Boolean;
+begin
+  with TIniFile.Create(_IniName) do begin
+    Result := ReadBool('EXPORT','EXP_AGG',True);
+    Free;
+  end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+function GetLastLogin: String;
+begin
+  with TRegistryIniFile.Create(_IniName) do
+  try
+    Result := ReadString('COMMON','LAST_LOGIN','ADMIN');
+  finally  Free;
+  end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+procedure SetExpAgg(value: Boolean);
+begin
+  with TIniFile.Create(_IniName) do begin
+    WriteBool('EXPORT','EXP_AGG',value);
+    Free;
+  end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+procedure SetLastLogin(value: String);
+begin
+  with TRegistryIniFile.Create(_IniName) do
+  try
+    WriteString('COMMON','LAST_LOGIN',value);
+  finally  Free;
+  end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+function GetExpBron: Boolean;
+begin
+  with TIniFile.Create(_IniName) do begin
+    Result := ReadBool('EXPORT','EXP_BRON',False);
+    Free;
+  end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+function GetEventFilter: TEventFilter;
+begin
+  with TRegistryIniFile.Create(_IniName), Result do
+  try
+    efWho           := ReadInteger('EventFilter','Who'          , 0);
+    efNotEvents     := ReadString ('EventFilter','NotEvents'    , '');
+    efNotObjects    := ReadString ('EventFilter','NotObjects'   , '');
+    efFromDateCheck := ReadBool   ('EventFilter','FromDateCheck', False);
+    efFromDateValue := ReadDate   ('EventFilter','FromDateValue', Date);
+    efFromTimeCheck := ReadBool   ('EventFilter','FromTimeCheck', False);
+    efFromTimeValue := ReadTime   ('EventFilter','FromTimeValue', Time);
+    efToDateCheck   := ReadBool   ('EventFilter','ToDateCheck'  , False);
+    efToDateValue   := ReadDate   ('EventFilter','ToDateValue'  , Date);
+    efToTimeCheck   := ReadBool   ('EventFilter','ToTimeCheck'  , False);
+    efToTimeValue   := ReadTime   ('EventFilter','ToTimeValue'  , Time);
+  finally  Free;
+  end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+procedure SetExpBron(value: Boolean);
+begin
+  with TIniFile.Create(_IniName) do begin
+    WriteBool('EXPORT','EXP_BRON',value);
+    Free;
+  end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+procedure SetEventFilter(value: TEventFilter);
+begin
+  with TRegistryIniFile.Create(_IniName), value do
+  try
+    WriteInteger('EventFilter','Who'          ,efWho);
+    WriteString ('EventFilter','NotEvents'    ,efNotEvents);
+    WriteString ('EventFilter','NotObjects'   ,efNotObjects);
+    WriteBool   ('EventFilter','FromDateCheck',efFromDateCheck);
+    WriteDate   ('EventFilter','FromDateValue',efFromDateValue);
+    WriteBool   ('EventFilter','FromTimeCheck',efFromTimeCheck);
+    WriteTime   ('EventFilter','FromTimeValue',efFromTimeValue);
+    WriteBool   ('EventFilter','ToDateCheck'  ,efToDateCheck);
+    WriteDate   ('EventFilter','ToDateValue'  ,efToDateValue);
+    WriteBool   ('EventFilter','ToTimeCheck'  ,efToTimeCheck);
+    WriteTime   ('EventFilter','ToTimeValue'  ,efToTimeValue);
+  finally  Free;
+  end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+function GetLastLogin: string;
+begin
+  with TIniFile.Create(_IniName) do begin
+    Result := ReadString('COMMON','LAST_LOGIN','└фьшэ');
+    Free;
+  end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+function GetEventFilterSQL: String;
+//
+  function DateTime2SQL(dt: TDateTime): string;
+  begin
+    Result := '#'+FormatDateTime('mm"/"dd"/"yyyy hh:nn',dt)+'#';
+  end;
+//
+var
+  dt : TDateTime;
+  I  : Integer;
+begin
+  Result := '';
+  with GetEventFilter do begin
+    if efWho>0 then Result := Result + ' AND [Who]='+IntToStr(efWho);
+    if efFromDateCheck then begin
+      dt := efFromDateValue;
+      if efFromTimeCheck then dt := dt+efFromTimeValue;
+      Result := Result + ' AND [When]>='+DateTime2SQL(dt);
+    end;
+    if efToDateCheck then begin
+      dt := efToDateValue;
+      if efToTimeCheck then dt := dt+efToTimeValue;
+      Result := Result + ' AND [When]<='+DateTime2SQL(dt);
+    end;
+    with TStringList.Create do
+    try
+      Text := efNotEvents;
+      for I := 0 to Count-1 do Result := Result +
+        ' AND [Type]<>'+QuotedStr(Strings[I]);
+      Text := efNotObjects;
+      for I := 0 to Count-1 do Result := Result +
+        ' AND [Object]<>'+QuotedStr(Strings[I]);
+    finally Free;
+    end;
+  end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+procedure SetLastLogin(value: string);
+begin
+  with TIniFile.Create(_IniName) do begin
+    WriteString('COMMON','LAST_LOGIN',value);
+    Free;
+  end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+function GetForm6Recalc: TForm6Recalc;
+begin
+  with TRegistryIniFile.Create(_IniName), Result do
+  try
+    f6rCols := ReadBool('FORM6','RECALC_COLS',false);
+    f6rRows := ReadBool('FORM6','RECALC_ROWS',true);
+  finally Free;
+  end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+function GetBackUpDir: string;
+begin
+  with TIniFile.Create(_IniName) do begin
+    Result := IncludeTrailingPathDelimiter(
+      ReadString('PATHS','BACKUPS',ExtractFilePath(Application.ExeName)+'BackUp'));
+    Free;
+  end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+procedure SetForm6Recalc(ACols, ARows: Boolean);
+begin
+  with TRegistryIniFile.Create(_IniName) do
+  try
+    WriteBool('FORM6','RECALC_COLS',ACols);
+    WriteBool('FORM6','RECALC_ROWS',ARows);
+  finally Free;
+  end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+procedure SetBackUpDir(value: string);
+begin
+  with TIniFile.Create(_IniName) do begin
+    WriteString('PATHS','BACKUPS',value);
+    Free;
+  end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+function GetForm6Year: Integer;
+begin
+  with TRegistryIniFile.Create(_IniName) do
+  try
+    Result := ReadInteger('FORM6','Year',CurrentYear);
+  finally Free;
+  end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+function GetBackUpPeriod: Integer;
+begin
+  with TIniFile.Create(_IniName) do begin
+    Result := ReadInteger('BACKUP','PERIOD',7);
+    Free;
+  end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+procedure SetForm6Year(Value: Integer);
+begin
+  with TRegistryIniFile.Create(_IniName) do
+  try
+    WriteInteger('FORM6','Year', Value);
+  finally Free;
+  end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+function GetEventFilter: TEventFilter;
+begin
+  with TRegistryIniFile.Create('Software\Granit\GranVus2'), Result do
+  try
+    efWho           := ReadInteger('EventFilter','Who'          , 0);
+    efNotEvents     := ReadString ('EventFilter','NotEvents'    , '');
+    efNotObjects    := ReadString ('EventFilter','NotObjects'   , '');
+    efFromDateCheck := ReadBool   ('EventFilter','FromDateCheck', False);
+    efFromDateValue := ReadDate   ('EventFilter','FromDateValue', Date);
+    efFromTimeCheck := ReadBool   ('EventFilter','FromTimeCheck', False);
+    efFromTimeValue := ReadTime   ('EventFilter','FromTimeValue', Time);
+    efToDateCheck   := ReadBool   ('EventFilter','ToDateCheck'  , False);
+    efToDateValue   := ReadDate   ('EventFilter','ToDateValue'  , Date);
+    efToTimeCheck   := ReadBool   ('EventFilter','ToTimeCheck'  , False);
+    efToTimeValue   := ReadTime   ('EventFilter','ToTimeValue'  , Time);
+  finally  Free;
+  end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+function GetFltrNeWnd: Boolean;
+begin
+  with TRegistryIniFile.Create(_IniName) do
+  try
+    Result := ReadBool('Filter','NewWindow',false);
+  finally Free;
+  end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+procedure SetEventFilter(value: TEventFilter);
+begin
+  with TRegistryIniFile.Create('Software\Granit\GranVus2'), value do
+  try
+    WriteInteger('EventFilter','Who'          ,efWho);
+    WriteString ('EventFilter','NotEvents'    ,efNotEvents);
+    WriteString ('EventFilter','NotObjects'   ,efNotObjects);
+    WriteBool   ('EventFilter','FromDateCheck',efFromDateCheck);
+    WriteDate   ('EventFilter','FromDateValue',efFromDateValue);
+    WriteBool   ('EventFilter','FromTimeCheck',efFromTimeCheck);
+    WriteTime   ('EventFilter','FromTimeValue',efFromTimeValue);
+    WriteBool   ('EventFilter','ToDateCheck'  ,efToDateCheck);
+    WriteDate   ('EventFilter','ToDateValue'  ,efToDateValue);
+    WriteBool   ('EventFilter','ToTimeCheck'  ,efToTimeCheck);
+    WriteTime   ('EventFilter','ToTimeValue'  ,efToTimeValue);
+  finally  Free;
+  end;
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+procedure SetFltrNeWnd(Value: Boolean);
+begin
+  with TRegistryIniFile.Create(_IniName) do
+  try
+    WriteBool('Filter','NewWindow', Value);
+  finally Free;
+  end;
+*****
+
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+
+function GetEventFilterSQL: String;
+//
+  function DateTime2SQL(dt: TDateTime): string;
+  begin
+    Result := 'CONVERT(DateTime,'''+FormatDateTime('dd.mm.yyyy hh:nn',dt)+''',104)';
+  end;
+//
+var
+  dt : TDateTime;
+  I  : Integer;
+begin
+  Result := '';
+  with GetEventFilter do begin
+    if efWho>0 then Result := Result + ' AND [Who]='+IntToStr(efWho);
+    if efFromDateCheck then begin
+      dt := efFromDateValue;
+      if efFromTimeCheck then dt := dt+efFromTimeValue;
+      Result := Result + ' AND [When]>='+DateTime2SQL(dt);
+    end;
+    if efToDateCheck then begin
+      dt := efToDateValue;
+      if efToTimeCheck then dt := dt+efToTimeValue;
+      Result := Result + ' AND [When]<='+DateTime2SQL(dt);
+    end;
+    with TStringList.Create do
+    try
+      Text := efNotEvents;
+      for I := 0 to Count-1 do Result := Result +
+        ' AND [Type]<>'+QuotedStr(Strings[I]);
+      Text := efNotObjects;
+      for I := 0 to Count-1 do Result := Result +
+        ' AND [Object]<>'+QuotedStr(Strings[I]);
+    finally Free;
+    end;
+  end;
+end;
+
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+
+
+initialization
+//  _IniName := ExtractFilePath(Application.ExeName)+__IniName;
+  _IniName := 'Software\Granit\GranVus\Settings';
+end.
+
+
+*****
+
+Не удается выполнить синхронизацию строк. Слишком много различий между файлами.
+***** C:\WORK\GRANVUS\BRON\COMMON\IniSupport.pas
+function GetSubjCode: string;
+begin
+  with TIniFile.Create(_IniName) do begin
+    Result := Copy(ReadString('COMMON','SUBJ_CODE',EmptyStr),1,9);
+    Free;
+  end;
+end;
+
+procedure SetSubjCode(value: string);
+begin
+  with TIniFile.Create(_IniName) do begin
+    WriteString('COMMON','SUBJ_CODE',value);
+    Free;
+  end;
+end;
+
+function GetForm6Recalc: TForm6Recalc;
+begin
+  with TIniFile.Create(_IniName), Result do
+  try
+    f6rCols := ReadBool('FORM6','RECALC_COLS',false);
+    f6rRows := ReadBool('FORM6','RECALC_ROWS',true);
+  finally Free;
+  end;
+end;
+
+procedure SetForm6Recalc(ACols, ARows: Boolean);
+begin
+  with TIniFile.Create(_IniName) do
+  try
+    WriteBool('FORM6','RECALC_COLS',ACols);
+    WriteBool('FORM6','RECALC_ROWS',ARows);
+  finally Free;
+  end;
+end;
+
+function GetForm6FastMode: Boolean;
+begin
+  with TIniFile.Create(_IniName) do
+  try     Result := ReadBool('FORM6', 'FastMode', False);
+  finally Free;
+  end;
+end;
+
+procedure SetForm6FastMode(Value: Boolean);
+begin
+  with TIniFile.Create(_IniName) do
+  try     WriteBool('FORM6', 'FastMode', Value);
+  finally Free;
+  end;
+end;
+
+
+function GetReportDate: TDateTime;
+begin
+  with TIniFile.Create(_IniName) do
+  try     Result := ReadDate('COMMON', 'ReportDate', Date);
+  finally Free;
+  end;
+end;
+
+procedure SetReportDate(Value: TDateTime);
+begin
+  with TIniFile.Create(_IniName) do
+  try     WriteDate('COMMON', 'ReportDate', Value);
+  finally Free;
+  end;
+end;
+
+function GetFltrNeWnd: Boolean;
+begin
+  with TIniFile.Create(_IniName) do
+  try
+    Result := ReadBool('Filter','NewWindow',false);
+  finally Free;
+  end;
+end;
+
+procedure SetFltrNeWnd(Value: Boolean);
+begin
+  with TIniFile.Create(_IniName) do
+  try
+    WriteBool('Filter','NewWindow', Value);
+  finally Free;
+  end;
+end;
+
+
+function GetAfterNY: Boolean;
+begin
+  with TIniFile.Create(_IniName) do
+  try
+    Result := ReadBool('COMMON','AfterNY',false);
+  finally Free;
+  end;
+end;
+
+procedure SetAfterNY(Value: Boolean);
+begin
+  with TIniFile.Create(_IniName) do
+***** C:\WORK\GRANVUS\VUR\COMMON\INISUPPORT.PAS
+*****
+

@@ -1,0 +1,23 @@
+1 VERSIONINFO
+FileVersion 1,0,3,0
+ProductVersion 1,0,3,0
+BEGIN
+  BLOCK "STRINGFILEINFO"
+  BEGIN
+    BLOCK "041904E3"
+    BEGIN
+      VALUE "CompanyName", "ГНПП \"Гранит-Центр\"\000"
+      VALUE "FileDescription", "Активация программного обеспечения\000"
+      VALUE "FileVersion", "1.0.3.0\000"
+      VALUE "ProductName", "\000"
+      VALUE "LegalCopyright", "ГНПП \"Гранит-Центр\" © 2003\000"
+      VALUE "ProductVersion", "1.0\000"
+      VALUE "Developer", "Алексей Е. Матвеев <matveev@granit.ru>\000"
+      VALUE "PrivateBuild", "\000"
+    END
+  END
+  BLOCK "VARFILEINFO"
+  BEGIN
+    VALUE "TRANSLATION", 0x0419, 1251
+  END
+END

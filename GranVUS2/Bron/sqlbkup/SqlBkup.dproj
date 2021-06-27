@@ -1,0 +1,133 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{51FDEC05-C1B5-473F-9C29-20E188D1500F}</ProjectGuid>
+			<ProjectVersion>12.3</ProjectVersion>
+			<MainSource>SqlBkup.dpr</MainSource>
+			<Base>True</Base>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Platform>Win32</Platform>
+			<AppType>Application</AppType>
+			<FrameworkType>VCL</FrameworkType>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_UnitSearchPath>$(DELPHI)\Spy;$(DELPHI)\EkRTF;Common;C:\Program Files\Developer Express Inc\ExpressBars\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressCommon\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressDBTree\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressEditors Library\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressInplaceEditors\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressMemData\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressOrgChart\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressPageControl\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressPrinting System\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressQuantumGrid\Delphi 7\Sources;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_UsePackage>Vcl50;Vclx50;VclSmp50;Vcldb50;vclado50;ibevnt50;Vclbde50;vcldbx50;Qrpt50;TeeUI50;TeeDB50;Tee50;Dss50;TeeQR50;VCLIB50;Vclmid50;vclie50;Inetdb50;Inet50;NMFast50;webmid50;dclocx50;dclaxserver50;dxEdtrD5;dxcomnD5;EQTLD5;ECQDBCD5;EQDBTLD5;EQGridD5;dxGrEdD5;dxExELD5;dxELibD5;ZCommon5;ZDbware5;ZMsSql5;dxBarD5;dxBarDBNavD5;dxBarExtItemsD5;dxBarExtDBItemsD5;dxsbd5;GLSS_FMOD5;GLSS_BASS5;ANIMATEDFORMD5;vcl;rtl;vclx;VclSmp;dbrtl;dxBarD10;dxBarDBNavD10</DCC_UsePackage>
+			<DCC_UNIT_DEPRECATED>false</DCC_UNIT_DEPRECATED>
+			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
+			<DCC_SYMBOL_PLATFORM>false</DCC_SYMBOL_PLATFORM>
+			<DCC_Define>BackDoors_;$(DCC_Define)</DCC_Define>
+			<DCC_ExeOutput>C:\Program Files\GranVUS</DCC_ExeOutput>
+			<DCC_Platform>x86</DCC_Platform>
+			<DCC_SYMBOL_DEPRECATED>false</DCC_SYMBOL_DEPRECATED>
+			<DCC_WriteableConstants>true</DCC_WriteableConstants>
+			<DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
+			<DCC_DcuOutput>DCU</DCC_DcuOutput>
+			<DCC_UNIT_PLATFORM>false</DCC_UNIT_PLATFORM>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_ExeOutput>C:\Program Files\GranVUS2</DCC_ExeOutput>
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="SqlBkup.dpr">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="Main.pas">
+				<Form>Form1</Form>
+			</DCCReference>
+			<DCCReference Include="AddDev.pas">
+				<Form>fAddDev</Form>
+			</DCCReference>
+			<DCCReference Include="DelDev.pas">
+				<Form>fDelDev</Form>
+			</DCCReference>
+			<DCCReference Include="DoBackup.pas">
+				<Form>fDoBackup</Form>
+			</DCCReference>
+			<DCCReference Include="DoRestore.pas">
+				<Form>fDoRestore</Form>
+			</DCCReference>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')" Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Delphi.Personality>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">3</VersionInfo>
+						<VersionInfo Name="MinorVer">7</VersionInfo>
+						<VersionInfo Name="Release">7</VersionInfo>
+						<VersionInfo Name="Build">159</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1049</VersionInfo>
+						<VersionInfo Name="CodePage">1251</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName">НПП &quot;Гранит-Центр&quot;</VersionInfoKeys>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">3.7.7.159</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName">Гран-ВУР</VersionInfoKeys>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName">Гран-ВУР 3.77</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">3.7.7.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k150.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+					<Source>
+						<Source Name="MainSource">SqlBkup.dpr</Source>
+					</Source>
+					<Parameters>
+						<Parameters Name="RunParams">localhost xxx</Parameters>
+					</Parameters>
+				</Delphi.Personality>
+				<Platforms>
+					<Platform value="Win32">True</Platform>
+				</Platforms>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>

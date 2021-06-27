@@ -1,0 +1,3 @@
+[Default]
+SCDB=\\fileserver\VSS\srcsafe.ini
+SCPATH=$/GranVUS/Source/Bron

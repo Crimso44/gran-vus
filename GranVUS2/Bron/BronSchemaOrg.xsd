@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by Aleksey V. Meleschenin (State Unitary Enterprise of Moscow “GNPP “Granit-Center) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Import" type="ImportType">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ImportType">
+		<xs:sequence>
+			<xs:element name="SUBJ" type="SUBJType">
+				<xs:annotation>
+					<xs:documentation>Территориальные органы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KTERRType">
+		<xs:sequence>
+			<xs:element name="KODTERR" type="str20" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Код территории</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NAME" type="str150" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Наименование территории</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IS_OKATO" type="xs:boolean" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Терр.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KFSType">
+		<xs:sequence>
+			<xs:element name="KOD" type="kod2" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Код формы собственности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FS_NAME" type="str100" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Наименование формы собственности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FORFORM" type="xs:boolean" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Для сведений по ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KOPFType">
+		<xs:sequence>
+			<xs:element name="KOD" type="kod2" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Код ОКОПФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KOPF_NAME" type="str100" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ORGType">
+		<xs:sequence>
+			<xs:element name="ORGID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PARENT" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вышестоящая организация</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FS_ID" type="kod2" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код формы собственности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="INN" type="str15" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKPO" type="str8" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКПО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKONH" type="OkonhPattern" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список ОКВЭД через запятую</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SOOGU" type="str5" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКОГУ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KOPF_ID" type="kod2" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код ОКОПФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KODREG" type="str11" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вышестоящий ВУО курирует</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="REGDATE" type="xs:date" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="REGNUM" type="str20" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ORGNAME" type="str250" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Наименование организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ORGSNAME" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сокращенное наименование организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="COMMENT" type="str500" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Примечание</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIZADDR" type="str250" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Фактический адрес</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="URADDR" type="str250" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Юридический адрес</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="POSTADDR" type="str250" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Почтовый адрес</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PHONE" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Телефон</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FAX" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Факс</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMAIL" type="str100" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>E-mail</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WWW" type="str100" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес веб-сайта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CONFDATE" type="xs:date" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата заполнения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MAINOKONH" type="str15" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основной ОКВЭД</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKBV" type="str12" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер в ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OCCUPATION" type="str150" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Деятельность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIRST_DATE" type="xs:date" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации в ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LAST_DATE" type="xs:date" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата посл. прихода в ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OUT_REASON" type="str60" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основание снятия с учета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OUT_DATE" type="xs:date" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата снятия с учета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SBM_ID" type="int4" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Подчиненность
+1. Федеральные органы гос.власти (ФОГВ)
+2. Органы исп. власти Субъекта (ОИВС)
+3. Органы местного самоуправления (ОМСУ)
+4. Другие органы (ведомств.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TERR_ID" type="str20" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Код территории</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SUBJType">
+		<xs:sequence>
+			<xs:element name="SUBJ_ID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор территориального органа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TYPE_ID" type="int3" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Тип ВУО
+1 - район/дочерняя компания
+2 - округ/хозяйственное объединение
+3 - Субъект Федерации/отрасли</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TERR_ID" type="str20" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Код территории</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="int3">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="3"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GUID">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str150">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="150"/>
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str20">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str100">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="kod2">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:length value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str15">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str8">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="8"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OkonhPattern">
+		<xs:restriction base="str500">
+			<xs:pattern value="[0-9\.]+(\,[0-9\.]+)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str5">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="5"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str11">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="11"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str50">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str250">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="250"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str500">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str12">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str60">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="60"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="int4">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="4"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

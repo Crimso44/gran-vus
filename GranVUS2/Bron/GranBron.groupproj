@@ -1,0 +1,72 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{1736A3EA-B9E2-4887-8761-25EEC05153BA}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="GranVUS2.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="ExpDLL\expdata.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\Fixer\Fixer.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\Bron - patch 3.5+\Source\patch.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="GranVUS2">
+			<MSBuild Projects="GranVUS2.dproj"/>
+		</Target>
+		<Target Name="GranVUS2:Clean">
+			<MSBuild Projects="GranVUS2.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="GranVUS2:Make">
+			<MSBuild Projects="GranVUS2.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="expdata">
+			<MSBuild Projects="ExpDLL\expdata.dproj"/>
+		</Target>
+		<Target Name="expdata:Clean">
+			<MSBuild Projects="ExpDLL\expdata.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="expdata:Make">
+			<MSBuild Projects="ExpDLL\expdata.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Fixer">
+			<MSBuild Projects="..\Fixer\Fixer.dproj"/>
+		</Target>
+		<Target Name="Fixer:Clean">
+			<MSBuild Projects="..\Fixer\Fixer.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="Fixer:Make">
+			<MSBuild Projects="..\Fixer\Fixer.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="patch">
+			<MSBuild Projects="..\Bron - patch 3.5+\Source\patch.dproj"/>
+		</Target>
+		<Target Name="patch:Clean">
+			<MSBuild Projects="..\Bron - patch 3.5+\Source\patch.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="patch:Make">
+			<MSBuild Projects="..\Bron - patch 3.5+\Source\patch.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="GranVUS2;expdata;Fixer;patch"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="GranVUS2:Clean;expdata:Clean;Fixer:Clean;patch:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="GranVUS2:Make;expdata:Make;Fixer:Make;patch:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>

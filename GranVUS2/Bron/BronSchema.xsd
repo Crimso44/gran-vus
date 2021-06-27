@@ -1,0 +1,1086 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by Aleksey V. Meleschenin (State Unitary Enterprise of Moscow “GNPP “Granit-Center) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="MVKVBG" type="MVKVBGType" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент</xs:documentation>
+		</xs:annotation>
+		<xs:key name="KTERRKey">
+			<xs:selector xpath=".//KTERR"/>
+			<xs:field xpath="KODTERR"/>
+		</xs:key>
+		<xs:key name="KFSKey">
+			<xs:selector xpath=".//KFS"/>
+			<xs:field xpath="KOD"/>
+		</xs:key>
+		<xs:key name="KOPFKey">
+			<xs:selector xpath=".//KOPF"/>
+			<xs:field xpath="KOD"/>
+		</xs:key>
+		<xs:key name="KOVKKey">
+			<xs:selector xpath=".//KOVK"/>
+			<xs:field xpath="OVK_ID"/>
+		</xs:key>
+		<xs:key name="ORGKey">
+			<xs:selector xpath=".//ORG"/>
+			<xs:field xpath="ORGID"/>
+		</xs:key>
+		<xs:keyref name="ORGKFSKeyRef" refer="KFSKey">
+			<xs:selector xpath=".//ORG"/>
+			<xs:field xpath="FS_ID"/>
+		</xs:keyref>
+		<xs:keyref name="ORGKOPFKeyRef" refer="KOPFKey">
+			<xs:selector xpath=".//ORG"/>
+			<xs:field xpath="KOPF_ID"/>
+		</xs:keyref>
+		<xs:keyref name="ORGKTERRKeyRef" refer="KTERRKey">
+			<xs:selector xpath=".//ORG"/>
+			<xs:field xpath="TERR_ID"/>
+		</xs:keyref>
+		<xs:keyref name="ORGKOVKKeyRef" refer="KOVKKey">
+			<xs:selector xpath=".//ORG"/>
+			<xs:field xpath="OVK_ID"/>
+		</xs:keyref>
+		<xs:unique name="ORG_CONTUnique">
+			<xs:selector xpath=".//ORG_CONT"/>
+			<xs:field xpath="ORGID"/>
+			<xs:field xpath="IS_GEN"/>
+		</xs:unique>
+		<xs:keyref name="ORG_CONTKeyRef" refer="ORGKey">
+			<xs:selector xpath=".//ORG_CONT"/>
+			<xs:field xpath="ORGID"/>
+		</xs:keyref>
+		<xs:keyref name="PERKeyRef" refer="ORGKey">
+			<xs:selector xpath=".//PER"/>
+			<xs:field xpath="ORGID"/>
+		</xs:keyref>
+		<xs:keyref name="OSNKeyRef" refer="ORGKey">
+			<xs:selector xpath=".//OSN"/>
+			<xs:field xpath="ORGID"/>
+		</xs:keyref>
+		<xs:key name="SUBJKey">
+			<xs:selector xpath=".//SUBJ"/>
+			<xs:field xpath="SUBJ_ID"/>
+		</xs:key>
+		<xs:keyref name="SUBJKTERRKeyRef" refer="KTERRKey">
+			<xs:selector xpath=".//SUBJ"/>
+			<xs:field xpath="TERR_ID"/>
+		</xs:keyref>
+		<xs:unique name="SUBJ_INFOUnique">
+			<xs:selector xpath=".//SUBJ_INFO"/>
+			<xs:field xpath="SUBJ_ID"/>
+			<xs:field xpath="SUBJ_INFO_ID"/>
+		</xs:unique>
+		<xs:keyref name="SUBJ_INFOKeyRef" refer="SUBJKey">
+			<xs:selector xpath=".//SUBJ_INFO"/>
+			<xs:field xpath="SUBJ_ID"/>
+		</xs:keyref>
+		<xs:unique name="SUBJ_PARAMUnique">
+			<xs:selector xpath=".//SUBJ_PARAM"/>
+			<xs:field xpath="SUBJ_ID"/>
+			<xs:field xpath="SUBJ_PARAM_ID"/>
+		</xs:unique>
+		<xs:keyref name="SUBJ_PARAMKeyRef" refer="SUBJKey">
+			<xs:selector xpath=".//SUBJ_PARAM"/>
+			<xs:field xpath="SUBJ_ID"/>
+		</xs:keyref>
+		<xs:key name="FORM6HDRKey">
+			<xs:selector xpath=".//FORM6HDR"/>
+			<xs:field xpath="F6_ID"/>
+		</xs:key>
+		<xs:keyref name="FORM6ORGKeyRef" refer="FORM6HDRKey">
+			<xs:selector xpath=".//ORG"/>
+			<xs:field xpath="ORGID"/>
+		</xs:keyref>
+		<xs:keyref name="FORM6SUBJKeyRef" refer="FORM6HDRKey">
+			<xs:selector xpath=".//SUBJ"/>
+			<xs:field xpath="SUBJ_ID"/>
+		</xs:keyref>
+		<xs:unique name="FORM6Unique">
+			<xs:selector xpath=".//FORM6"/>
+			<xs:field xpath="F6_ID"/>
+			<xs:field xpath="ROW_NO"/>
+			<xs:field xpath="COL_NO"/>
+		</xs:unique>
+		<xs:keyref name="FORM6KeyRef" refer="FORM6HDRKey">
+			<xs:selector xpath=".//FORM6"/>
+			<xs:field xpath="F6_ID"/>
+		</xs:keyref>
+		<xs:unique name="FFSUnique">
+			<xs:selector xpath=".//FFS"/>
+			<xs:field xpath="SUBJ_ID"/>
+			<xs:field xpath="FS_ID"/>
+		</xs:unique>
+		<xs:keyref name="FFSSUBJKeyRef" refer="SUBJKey">
+			<xs:selector xpath=".//FFS"/>
+			<xs:field xpath="SUBJ_ID"/>
+		</xs:keyref>
+		<xs:keyref name="FFSKFSKeyRef" refer="KFSKey">
+			<xs:selector xpath=".//FFS"/>
+			<xs:field xpath="FS_ID"/>
+		</xs:keyref>
+		<xs:unique name="FOKVEDUnique">
+			<xs:selector xpath=".//FOKVED"/>
+			<xs:field xpath="SUBJ_ID"/>
+			<xs:field xpath="OKVED_SECTION"/>
+		</xs:unique>
+		<xs:keyref name="FOKVEDSUBJKeyRef" refer="SUBJKey">
+			<xs:selector xpath=".//FOKVED"/>
+			<xs:field xpath="SUBJ_ID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:complexType name="MVKVBGType">
+		<xs:sequence>
+			<xs:element name="KTERR" type="KTERRType" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Справочник военно-учетных органов (ВУО) и территорий</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KFS" type="KFSType" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Справочник форм собственности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KOPF" type="KOPFType" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Справочник организационно-правовых форм</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KOVK" type="KOVKType" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Справочник военкоматов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ORG" type="ORGType" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ORG_CONT" type="ORG_CONTType" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Руководитель, Военно-учетный работник организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PER" type="PERType" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о бронировании организации (перечни)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OSN" type="OSNType" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о бронировании организации (основания)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SUBJ" type="SUBJType" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Территориальные/отраслевые ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SUBJ_INFO" type="SUBJ_INFOType" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Органы управления ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SUBJ_PARAM" type="SUBJ_PARAMType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Количественные характеристики ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FORM6HDR" type="FORM6HDRType" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Список агрегированных Форм № 6 ВУО и форм 6 организаций</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FORM6" type="FORM6Type" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Формы № 6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FFS" type="FFSType" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Распределение организаций по видам собственности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FOKVED" type="FOKVEDType" nillable="false" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Распределение персонала подотчетных организаций по видам экономической деятельности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="VERSION" type="str20" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия формата предоставления данных</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="KTERRType">
+		<xs:sequence>
+			<xs:element name="KODTERR" type="str20" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Код ВУО и/или территории</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NAME" type="str150" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Наименование ВУО и/или территории</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IS_OKATO" type="xs:boolean" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак: совпадает с кодом ОКАТО (т.е. является кодом территории и, возможно, кодом соответствующего территориального ВУО)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KFSType">
+		<xs:sequence>
+			<xs:element name="KOD" type="kod2" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Код формы собственности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FS_NAME" type="str100" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Наименование формы собственности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FORFORM" type="xs:boolean" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Признак: отдельной строкой фигурирует в документе  о распределении организаций ВУО по формам собственности </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KOPFType">
+		<xs:sequence>
+			<xs:element name="KOD" type="kod2" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Код ОКОПФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KOPF_NAME" type="str100" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KOVKType">
+		<xs:sequence>
+			<xs:element name="OVK_ID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор военкомата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OVK_NAME" type="str100" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Наименование военкомата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OVK_ADDR" type="str250" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес военкомата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OVK_PHONE" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Телефон военкомата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ORGType">
+		<xs:sequence>
+			<xs:element name="ORGID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ORGNAME" type="str250" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Наименование организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HAS_BRON" type="xs:boolean" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Ведет бронирование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TERR_ID" type="str20" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Код территории</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FS_ID" type="kod2" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Код формы собственности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="INN" type="str15" nillable="false">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KOPF_ID" type="kod2" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Код ОКОПФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ORGSNAME" type="str50" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Сокращенное наименование организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="URADDR" type="str250" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Юридический адрес</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MAINOKONH" type="str15" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Основной ОКВЭД</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="F6_SHIFR" type="kod2" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Шифр Формы № 6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIZADDR" type="str250" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Фактический адрес</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PARENT" type="str100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вышестоящая организация</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKPO" type="str8" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКПО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKONH" type="OkonhPattern" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список ОКВЭД через запятую</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SOOGU" type="str5" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКОГУ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KODREG" type="str11" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вышестоящий ВУО курирует</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="REGDATE" type="xs:date" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="REGNUM" type="str20" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="COMMENT" type="str500" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Примечание</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="POSTADDR" type="str250" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Почтовый адрес</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PHONE" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Телефон</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FAX" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Факс</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMAIL" type="str100" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>E-mail</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WWW" type="str100" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес веб-сайта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CONFDATE" type="xs:date" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата заполнения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKBV" type="str12" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер, присвоенный организации в ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OCCUPATION" type="str150" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Словесное уточнение вида деятельности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIRST_DATE" type="xs:date" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации в ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LAST_DATE" type="xs:date" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата посл. прихода отчета в ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OUT_REASON" type="str60" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основание снятия с учета организации в ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OUT_DATE" type="xs:date" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата снятия с учета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SBM_ID" type="int4" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Подчиненность
+1. Федеральные органы гос.власти (ФОГВ)
+2. Органы исп. власти Субъекта (ОИВС)
+3. Органы местного самоуправления (ОМСУ)
+4. Другие органы (ведомств.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CHK_DATE" type="xs:date" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата сверки в ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKATO2" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКАТО фактического адреса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKATO3" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКАТО почтового адреса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Feature1" type="str30" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак 1 (дополнительный)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Feature2" type="str30" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак 2 (дополнительный)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Feature3" type="str30" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак 3 (дополнительный)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OVK_ID" type="GUID" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор военкомата (по KOVK)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ORG_CONTType">
+		<xs:sequence>
+			<xs:element name="ORGID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FAM" type="str50" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IM" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OTCH" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DEPART" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование структурного подразделения, в котором работает</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="POST" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Должность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PHONE" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Телефон</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FAX" type="str50" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Факс</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMAIL" type="str100" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>E-mail</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IS_GEN" type="xs:boolean" nillable="false">
+				<xs:annotation>
+					<xs:documentation>true=Руководитель
+false=Военно-учетный работник</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PERType">
+		<xs:sequence>
+			<xs:element name="ORGID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PER_NO" type="str10" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер перечня</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RAZD_NO" type="str10" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер раздела</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OSNType">
+		<xs:sequence>
+			<xs:element name="ORGID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BASE_ID" type="int6" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основание
+1.Моб.задание Федеральных органов
+2. Моб.задание Субъекта РФ
+3. Моб.задание Органа самоуправления
+4. Моб.задание по кооперации
+5. Наличие задач на военное время
+6. Обеспечение жизнедеятельности населения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DOC_ID" type="int6" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Документ
+1. Протокол РКБГПЗ
+2. Протокол ОКБГПЗ
+3. Протокол КБГПЗ
+4. Решение СЗ префектуры
+5. Постановление МВК
+6. Протокол Министерства</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DOC_NO" type="str15" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DOC_DATE" type="xs:date" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SUBJType">
+		<xs:sequence>
+			<xs:element name="SUBJ_ID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TYPE_ID" type="int3" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Тип ВУО
+1 - район/дочерняя компания
+2 - округ/хозяйственное объединение
+3 - Субъект Федерации/отрасли</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TERR_ID" type="str20" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Код ВУО по KTERR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SUBJ_NAME" type="str250" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Краткое наименование ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SUBJ_FULLNAME" type="str250" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Полное наименование ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SUBJ_ADDRESS" type="str250" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SUBJ_INFOType">
+		<xs:sequence>
+			<xs:element name="SUBJ_ID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SUBJ_INFO_ID" type="int4" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Вид органа управления. Принимает следующие значения:
+1 - Руководящий орган
+2 - Орган по бронированию граждан, пребывающих в запасе
+3 - Мобилизационный орган
+4 - Подразделение по бронированию граждан, пребывающих в запасе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ORG_NAME" type="str60" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование органа управления</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="POSITION_NAME" type="str60" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Должность руководителя органа управления</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIO" type="str100" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ФИО руководителя органа управления</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PHONE" type="str100" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Телефоны органа управления</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SUBJ_PARAMType">
+		<xs:sequence>
+			<xs:element name="SUBJ_ID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SUBJ_PARAM_ID" type="int11" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Вид количественной характеристики. Принимает следующие значения:
+1 - Численность населения (тыс.);
+2 - Кол-во работающего населения (тыс.);
+3 - Количество округов;
+4 - Количество районов;
+5 - Количество городов;
+6 - Органы по брон-ю гр.,преб.в запасе – всего;
+7 - Окружные комиссии;
+8 - Районные комиссии;
+9 - Городские комиссии;
+10 - Общее количество организаций;
+11 - Количество негосударственных</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PARAM_VALUE" type="xs:float" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Количественная характеристика (значение)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FORM6HDRType">
+		<xs:sequence>
+			<xs:element name="F6_ID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор Формы № 6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="ORGID" type="GUID" nillable="false">
+					<xs:annotation>
+						<xs:documentation>Идентификатор организации</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="SUBJ_ID" type="GUID" nillable="false">
+					<xs:annotation>
+						<xs:documentation>Идентификатор ВУО</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="F6_SHIFR" type="kod2" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Шифр Формы № 6 (01 или 02 или 03)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RAB_COUNT" type="xs:int" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Всего работающих в организации/организациях, подотчетных ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZAP_COUNT" type="xs:int" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Всего в запасе в организации/организациях, подотчетных ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZAB_COUNT" type="xs:int" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Всего забронировано в организации/организациях, подотчетных ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="F6_COUNT" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Число обобщенных Форм № 6 организаций, ведущих бронирование (для организации, ведущей бронирование = 1; для органиации, не ведущей бронирование,  не заполняется)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KUO_COUNT" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Число обобщенных Форм № 18 организаций, не ведущих бронирование (для организации, ведущей бронирование = 1; для органиации, не ведущей бронирование,  не заполняется)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CONF_DATE" type="xs:date" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата заполнения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FORM6Type">
+		<xs:sequence>
+			<xs:element name="F6_ID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор формы № 6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ROWNO" type="IntNo" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Номер строки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="COLNO" type="IntNo" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Номер колонки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="VALUE" type="xs:int" nillable="false">
+					<xs:annotation>
+						<xs:documentation>Числовое значение</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="STRVALUE" type="str250" nillable="false">
+					<xs:annotation>
+						<xs:documentation>Строковое значение</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FFSType">
+		<xs:sequence>
+			<xs:element name="SUBJ_ID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FS_ID" type="kod2" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Код формы собственности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WHOLE" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Курирует организаций – Всего</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WU" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Курирует организаций – Ведущих воинский учет</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BRON" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Курирует организаций – Ведущих бронирование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TOWN_WHOLE" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Организаций в поселениях – Городских – Всего</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TOWN_WU" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Организаций в поселениях – Городских – Ведущих воинский учет</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TOWN_BRON" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Организаций в поселениях – Городских – Ведущих бронирование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VILLAGE_WHOLE" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Организаций в поселениях – Сельских – Всего</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VILLAGE_WU" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Организаций в поселениях – Сельских – Ведущих воинский учет</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VILLAGE_BRON" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Организаций в поселениях – Сельских – Ведущих бронирование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FOKVEDType">
+		<xs:sequence>
+			<xs:element name="SUBJ_ID" type="GUID" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Идентификатор ВУО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKVED_SECTION" type="OkvedPattern" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Раздел ОКВЭД (только буква)
+A. Сельское хозяйство, охота и лесное хозяйство.
+B. Рыболовство, рыбоводство.
+C. Добыча полезных ископаемых.
+D. Обрабатывающие производства.
+E. Производство и распределение электроэнергии, газа и воды.
+F. Строительство.
+G. Торговля автотранспортными средствами и мотоциклами и их техническое обслуживание и ремонт. Оптовая торговля. Розничная торговля. Ремонт бытовых изделий и предметов личного пользования.
+H. Гостиницы и рестораны.
+I. Транспорт и связь.
+J. Финансовая деятельность.
+K. Операции с недвижимым имуществом, аренда и предоставление услуг.
+L. Государственное управление и обеспечение военной безопасности; обязательное социальное обеспечение.
+M. Образование.
+N. Здравоохранение и предоставление социальных услуг.
+O. Предоставление прочих коммунальных, социальных и персональных услуг.
+P. Предоставление услуг по ведению домашнего хозяйтва.
+Q. Деятельность экстерриториальных организаций.
+_. Прочее</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ORG_COUNT" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Организаций – Всего</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ORG_BRON_COUNT" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Организаций – Ведущих бронирование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ORG_WU_COUNT" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Организаций – Ведущих воинский учет</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RAB_COUNT" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Всего работающих</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZAP_COUNT" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Граждан запаса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZAB_COUNT" type="xs:int" nillable="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Забронировано</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="GUID">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IntNo">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="int3">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="3"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="int4">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="4"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="int6">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="6"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="int11">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="11"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="kod2">
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str5">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="5"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str8">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="8"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str10">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str11">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="11"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str12">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str15">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str20">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str30">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str50">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str60">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="60"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str100">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str150">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="150"/>
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str250">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="250"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str500">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OkonhPattern">
+		<xs:restriction base="str500">
+			<xs:pattern value="[0-9\.]+(\,[0-9\.]+)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OkvedPattern">
+		<xs:restriction base="xs:string">
+			<xs:length value="1"/>
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="[A-Q_]"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

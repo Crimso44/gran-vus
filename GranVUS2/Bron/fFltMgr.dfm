@@ -1,0 +1,802 @@
+object fmFltMgr: TfmFltMgr
+  Left = 264
+  Top = 182
+  HelpContext = 5
+  BorderStyle = bsDialog
+  Caption = #1052#1072#1089#1090#1077#1088' '#1092#1086#1088#1084#1080#1088#1086#1074#1072#1085#1080#1103' '#1074#1099#1073#1086#1088#1082#1080
+  ClientHeight = 370
+  ClientWidth = 559
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  DesignSize = (
+    559
+    370)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object dxtParams: TdxTreeList
+    Left = 0
+    Top = 0
+    Width = 559
+    Height = 317
+    Bands = <
+      item
+      end>
+    DefaultLayout = True
+    HeaderPanelRowCount = 1
+    DoNotAddFormNameToRegistryPath = False
+    TabOrder = 0
+    Images = ImageList1
+    Options = [aoColumnSizing, aoColumnMoving, aoEditing, aoTabThrough, aoAutoWidth]
+    OptionsEx = [aoUseBitmap, aoBandHeaderWidth, aoAutoCalcPreviewLines, aoBandSizing, aoBandMoving, aoDragScroll, aoDragExpand, aoRowSizing, aoShowButtonAlways]
+    PaintStyle = psOutlook
+    TreeLineColor = clGrayText
+    ShowGrid = True
+    ShowLines = False
+    OnChangeNode = dxtParamsChangeNode
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    object dxtParamsColumn1: TdxTreeListColumn
+      Caption = #1055#1072#1088#1072#1084#1077#1090#1088
+      DisableEditor = True
+      Width = 212
+      BandIndex = 0
+      RowIndex = 0
+    end
+    object dxtParamsValueColumn: TdxTreeListButtonColumn
+      Alignment = taLeftJustify
+      Caption = #1047#1085#1072#1095#1077#1085#1080#1077
+      DisableEditor = True
+      ReadOnly = True
+      Sizing = False
+      VertAlignment = tlCenter
+      Width = 250
+      BandIndex = 0
+      RowIndex = 0
+      OnEditButtonClick = dxtParamsValueColumnEditButtonClick
+      Buttons = <
+        item
+          Default = True
+          Visible = False
+        end>
+      HideEditCursor = True
+    end
+  end
+  object pnlEditSet: TPanel
+    Left = 196
+    Top = 136
+    Width = 317
+    Height = 141
+    BevelOuter = bvNone
+    TabOrder = 6
+    Visible = False
+    object chkSetEnable: TCheckBox
+      Left = 8
+      Top = 8
+      Width = 161
+      Height = 17
+      Caption = #1048#1089#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100' '#1092#1080#1083#1100#1090#1088#1072#1094#1080#1102
+      TabOrder = 0
+      OnClick = chkSetEnableClick
+    end
+    object chkSetNULL: TCheckBox
+      Left = 36
+      Top = 28
+      Width = 201
+      Height = 17
+      Caption = #1042#1099#1074#1077#1089#1090#1080' '#1085#1077#1079#1072#1087#1086#1083#1085#1077#1085#1085#1099#1077' '#1079#1085#1072#1095#1077#1085#1080#1103
+      Enabled = False
+      TabOrder = 1
+    end
+    object mmSetValue: TMemo
+      Left = 0
+      Top = 48
+      Width = 317
+      Height = 93
+      Align = alBottom
+      Color = clBtnFace
+      Enabled = False
+      ScrollBars = ssVertical
+      TabOrder = 2
+      OnKeyPress = mmSetValueKeyPress
+    end
+  end
+  object pnlEditCompare: TPanel
+    Left = 88
+    Top = 139
+    Width = 250
+    Height = 78
+    BevelOuter = bvNone
+    TabOrder = 13
+    Visible = False
+    object chkCompareEnable: TCheckBox
+      Left = 8
+      Top = 8
+      Width = 165
+      Height = 17
+      Caption = #1048#1089#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100' '#1092#1080#1083#1100#1090#1088#1072#1094#1080#1102
+      TabOrder = 0
+      OnClick = chkCompareEnableClick
+    end
+    object rbCompareEqu: TRadioButton
+      Left = 32
+      Top = 32
+      Width = 161
+      Height = 17
+      Caption = #1079#1085#1072#1095#1077#1085#1080#1103' '#1088#1072#1074#1085#1099
+      Checked = True
+      Enabled = False
+      TabOrder = 1
+      TabStop = True
+      OnClick = rbIntNotNullClick
+    end
+    object rbCompareNotEqu: TRadioButton
+      Left = 32
+      Top = 52
+      Width = 161
+      Height = 17
+      Caption = #1079#1085#1072#1095#1077#1085#1080#1103' '#1085#1077' '#1088#1072#1074#1085#1099
+      Enabled = False
+      TabOrder = 2
+      OnClick = rbIntNotNullClick
+    end
+    object memSQL: TMemo
+      Left = 84
+      Top = 64
+      Width = 65
+      Height = 57
+      Lines.Strings = (
+        'SELECT *'
+        '  FROM (SELECT v_Org.*'
+        
+          '             , Wrong_KodReg = CASE WHEN SubString(ISNULL(v_Org.K' +
+          'ODREG,'#39#39'),6,1) IN ('#39'3'#39','#39'5'#39','#39'6'#39','#39'8'#39','#39'9'#39') THEN 0 ELSE 1 END'
+        
+          '             , Wrong_OKVED  = CASE WHEN (v_Org.MainOKONH LIKE '#39'[' +
+          '0-9][0-9]'#39' OR v_Org.MainOKONH LIKE '#39'[0-9][0-9].%%'#39') '
+        
+          '                                    AND EXISTS( SELECT * FROM KO' +
+          'KVED WHERE'
+        
+          '                                                CAST(SUBSTRING(v' +
+          '_Org.MainOKONH,1,2) AS Int) BETWEEN OKVED_BEGIN AND OKVED_END)'
+        '                              THEN 0 ELSE 1 END     '
+        
+          '             , GPZGPPNone = CASE WHEN F6_26.GPZGPP>0 THEN 0 ELSE' +
+          ' 1 END'
+        
+          '             , ReportNone = CASE WHEN v_Org.LAST_DATE>=CONVERT(D' +
+          'ateTime,'#39'%s'#39',112) THEN 0 ELSE 1 END'
+        '          FROM v_Org'
+        '          LEFT OUTER JOIN (SELECT F6_OrgID = H.OrgID'
+        
+          '                                , GPZGPP = ISNULL(F.COL_2,0)+ISN' +
+          'ULL(F.COL_11,0)'
+        '                             FROM FORM6HDR H, FORM6 F'
+        
+          '                            WHERE H.F6_ID = F.F6_ID AND F.CPROF_' +
+          'ID = 1000) F6_26'
+        '            ON F6_26.F6_OrgID = v_Org.OrgID) AS v_Org'
+        ''
+        ' WHERE 1=1')
+      TabOrder = 3
+      Visible = False
+      WordWrap = False
+    end
+  end
+  object pnlEditDate: TPanel
+    Left = 32
+    Top = 180
+    Width = 329
+    Height = 121
+    BevelOuter = bvNone
+    TabOrder = 2
+    Visible = False
+    object chkDateEnable: TCheckBox
+      Left = 8
+      Top = 8
+      Width = 169
+      Height = 17
+      Caption = #1048#1089#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100' '#1092#1080#1083#1100#1090#1088#1072#1094#1080#1102
+      TabOrder = 0
+      OnClick = chkDateEnableClick
+    end
+    object rbDateNotNull: TRadioButton
+      Left = 32
+      Top = 32
+      Width = 100
+      Height = 17
+      Caption = #1079#1072#1087#1086#1083#1085#1077#1085#1086
+      Enabled = False
+      TabOrder = 1
+      OnClick = rbDateNotNullClick
+    end
+    object rbDateNull: TRadioButton
+      Left = 32
+      Top = 52
+      Width = 100
+      Height = 17
+      Caption = #1085#1077' '#1079#1072#1087#1086#1083#1085#1077#1085#1086
+      Enabled = False
+      TabOrder = 2
+      OnClick = rbDateNotNullClick
+    end
+    object rbDateFromTo: TRadioButton
+      Left = 32
+      Top = 72
+      Width = 100
+      Height = 17
+      Caption = #1076#1080#1072#1087#1072#1079#1086#1085
+      Checked = True
+      Enabled = False
+      TabOrder = 3
+      TabStop = True
+      OnClick = rbDateNotNullClick
+    end
+    object chkDateFrom: TCheckBox
+      Left = 48
+      Top = 96
+      Width = 37
+      Height = 17
+      Caption = 'c'
+      Enabled = False
+      TabOrder = 4
+      OnClick = chkDateFromClick
+    end
+    object chkDateTo: TCheckBox
+      Left = 188
+      Top = 96
+      Width = 37
+      Height = 17
+      Caption = #1087#1086
+      Enabled = False
+      TabOrder = 6
+      OnClick = chkDateToClick
+    end
+    object dtDateFrom: TdxDateEdit
+      Left = 84
+      Top = 94
+      Width = 97
+      Enabled = False
+      TabOrder = 5
+      OnChange = dtDateFromChange
+      Date = -700000.000000000000000000
+      DateButtons = [btnToday]
+    end
+    object dtDateTo: TdxDateEdit
+      Left = 224
+      Top = 94
+      Width = 97
+      Enabled = False
+      TabOrder = 7
+      OnChange = dtDateFromChange
+      Date = -700000.000000000000000000
+      DateButtons = [btnToday]
+    end
+  end
+  object pnlEditBool: TPanel
+    Left = 16
+    Top = 132
+    Width = 250
+    Height = 69
+    BevelOuter = bvNone
+    TabOrder = 5
+    Visible = False
+    object chkBoolEnable: TCheckBox
+      Left = 8
+      Top = 8
+      Width = 161
+      Height = 17
+      Caption = #1048#1089#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100' '#1092#1080#1083#1100#1090#1088#1072#1094#1080#1102
+      TabOrder = 0
+      OnClick = chkBoolEnableClick
+    end
+    object rbBoolYes: TRadioButton
+      Left = 32
+      Top = 28
+      Width = 113
+      Height = 17
+      Caption = #1044#1072
+      Checked = True
+      Enabled = False
+      TabOrder = 1
+      TabStop = True
+    end
+    object rbBoolNo: TRadioButton
+      Left = 32
+      Top = 48
+      Width = 113
+      Height = 17
+      Caption = #1053#1077#1090
+      Enabled = False
+      TabOrder = 2
+    end
+  end
+  object pnlEditList: TPanel
+    Left = 96
+    Top = 72
+    Width = 369
+    Height = 209
+    BevelOuter = bvNone
+    TabOrder = 3
+    Visible = False
+    object lvList: TListView
+      Left = 0
+      Top = 48
+      Width = 369
+      Height = 161
+      Align = alBottom
+      Checkboxes = True
+      Color = clBtnFace
+      Columns = <>
+      ColumnClick = False
+      Enabled = False
+      ReadOnly = True
+      RowSelect = True
+      TabOrder = 2
+      ViewStyle = vsReport
+      OnDblClick = lvListDblClick
+      OnResize = lvListResize
+    end
+    object chkListEnable: TCheckBox
+      Left = 8
+      Top = 8
+      Width = 165
+      Height = 17
+      Caption = #1048#1089#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100' '#1092#1080#1083#1100#1090#1088#1072#1094#1080#1102
+      TabOrder = 0
+      OnClick = chkListEnableClick
+    end
+    object chkListNULL: TCheckBox
+      Left = 36
+      Top = 28
+      Width = 193
+      Height = 17
+      Caption = #1042#1099#1074#1077#1089#1090#1080' '#1085#1077#1079#1072#1087#1086#1083#1085#1077#1085#1085#1099#1077' '#1079#1072#1087#1080#1089#1080
+      Enabled = False
+      TabOrder = 1
+    end
+  end
+  object pnlEditInt: TPanel
+    Left = 36
+    Top = 44
+    Width = 329
+    Height = 121
+    BevelOuter = bvNone
+    TabOrder = 4
+    Visible = False
+    object chkIntEnable: TCheckBox
+      Left = 8
+      Top = 8
+      Width = 165
+      Height = 17
+      Caption = #1048#1089#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100' '#1092#1080#1083#1100#1090#1088#1072#1094#1080#1102
+      TabOrder = 0
+      OnClick = chkIntEnableClick
+    end
+    object rbIntNotNull: TRadioButton
+      Left = 32
+      Top = 32
+      Width = 113
+      Height = 17
+      Caption = #1079#1072#1087#1086#1083#1085#1077#1085#1085#1099#1077
+      Enabled = False
+      TabOrder = 1
+      OnClick = rbIntNotNullClick
+    end
+    object rbIntNull: TRadioButton
+      Left = 32
+      Top = 52
+      Width = 113
+      Height = 17
+      Caption = #1085#1077' '#1079#1072#1087#1086#1083#1085#1077#1085#1085#1099#1077
+      Enabled = False
+      TabOrder = 2
+      OnClick = rbIntNotNullClick
+    end
+    object rbIntFromTo: TRadioButton
+      Left = 32
+      Top = 72
+      Width = 113
+      Height = 17
+      Caption = #1076#1080#1072#1087#1072#1079#1086#1085
+      Checked = True
+      Enabled = False
+      TabOrder = 3
+      TabStop = True
+      OnClick = rbIntNotNullClick
+    end
+    object chkIntFrom: TCheckBox
+      Left = 48
+      Top = 96
+      Width = 29
+      Height = 17
+      Caption = 'c'
+      Enabled = False
+      TabOrder = 4
+      OnClick = chkIntFromClick
+    end
+    object edIntFrom: TdxEdit
+      Left = 84
+      Top = 94
+      Width = 97
+      Enabled = False
+      TabOrder = 5
+      OnKeyPress = edIntFromKeyPress
+      Alignment = taRightJustify
+      MaxLength = 10
+      StoredValues = 3
+    end
+    object edIntTo: TdxEdit
+      Left = 224
+      Top = 94
+      Width = 97
+      Enabled = False
+      TabOrder = 7
+      OnKeyPress = edIntFromKeyPress
+      Alignment = taRightJustify
+      MaxLength = 10
+      StoredValues = 3
+    end
+    object chkIntTo: TCheckBox
+      Left = 188
+      Top = 96
+      Width = 33
+      Height = 17
+      Caption = #1087#1086
+      Enabled = False
+      TabOrder = 6
+      OnClick = chkIntToClick
+    end
+  end
+  object pnlEditStr: TPanel
+    Left = 24
+    Top = 32
+    Width = 277
+    Height = 81
+    BevelOuter = bvNone
+    TabOrder = 1
+    Visible = False
+    DesignSize = (
+      277
+      81)
+    object Label1: TLabel
+      Left = 24
+      Top = 32
+      Width = 66
+      Height = 13
+      Caption = #1058#1080#1087' '#1091#1089#1083#1086#1074#1080#1103':'
+    end
+    object Label2: TLabel
+      Left = 24
+      Top = 56
+      Width = 51
+      Height = 13
+      Caption = #1047#1085#1072#1095#1077#1085#1080#1077':'
+    end
+    object cbStrType: TComboBox
+      Left = 108
+      Top = 28
+      Width = 157
+      Height = 21
+      Style = csDropDownList
+      Anchors = [akLeft, akTop, akRight]
+      Color = clBtnFace
+      Enabled = False
+      TabOrder = 1
+      OnChange = cbStrTypeChange
+      Items.Strings = (
+        #1057#1054#1044#1045#1056#1046#1048#1058
+        #1053#1045' '#1057#1054#1044#1045#1056#1046#1048#1058
+        #1053#1040#1063#1048#1053#1040#1045#1058#1057#1071' '#1057
+        #1047#1040#1050#1040#1053#1063#1048#1042#1040#1045#1058#1057#1071' '#1053#1040
+        #1056#1040#1042#1053#1054
+        #1053#1045' '#1056#1040#1042#1053#1054
+        #1047#1040#1055#1054#1051#1053#1045#1053#1054
+        #1053#1045' '#1047#1040#1055#1054#1051#1053#1045#1053#1054)
+    end
+    object edStrValue: TEdit
+      Left = 108
+      Top = 52
+      Width = 157
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      Color = clBtnFace
+      Enabled = False
+      TabOrder = 2
+      OnKeyPress = edStrValueKeyPress
+    end
+    object chkStrEnable: TCheckBox
+      Left = 8
+      Top = 8
+      Width = 169
+      Height = 17
+      Caption = #1048#1089#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100' '#1092#1080#1083#1100#1090#1088#1072#1094#1080#1102
+      TabOrder = 0
+      OnClick = chkStrEnableClick
+    end
+  end
+  object btnSaveFlt: TButton
+    Left = 8
+    Top = 343
+    Width = 75
+    Height = 25
+    Anchors = [akLeft, akBottom]
+    Caption = '&'#1057#1086#1093#1088#1072#1085#1080#1090#1100
+    TabOrder = 7
+    OnClick = btnSaveFltClick
+  end
+  object btnOpenFlt: TButton
+    Left = 88
+    Top = 343
+    Width = 75
+    Height = 25
+    Anchors = [akLeft, akBottom]
+    Caption = '&'#1047#1072#1075#1088#1091#1079#1080#1090#1100
+    TabOrder = 8
+    OnClick = btnOpenFltClick
+  end
+  object btnOk: TButton
+    Left = 397
+    Top = 343
+    Width = 75
+    Height = 25
+    Anchors = [akRight, akBottom]
+    Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1100
+    Default = True
+    ModalResult = 1
+    TabOrder = 11
+    OnClick = btnOkClick
+  end
+  object btnCancel: TButton
+    Left = 477
+    Top = 343
+    Width = 75
+    Height = 25
+    Anchors = [akRight, akBottom]
+    Cancel = True
+    Caption = #1054#1090#1084#1077#1085#1080#1090#1100
+    ModalResult = 2
+    TabOrder = 12
+  end
+  object btnClear: TButton
+    Left = 168
+    Top = 343
+    Width = 75
+    Height = 25
+    Anchors = [akLeft, akBottom]
+    Caption = '&'#1054#1095#1080#1089#1090#1080#1090#1100
+    TabOrder = 9
+    OnClick = btnClearClick
+  end
+  object btnCard: TButton
+    Left = 248
+    Top = 343
+    Width = 75
+    Height = 25
+    Anchors = [akLeft, akBottom]
+    Caption = '&'#1050#1072#1088#1090#1086#1095#1082#1072
+    TabOrder = 10
+    OnClick = btnCardClick
+  end
+  object pnlEditOk: TPanel
+    Left = 340
+    Top = 224
+    Width = 185
+    Height = 41
+    BevelOuter = bvNone
+    TabOrder = 14
+    Visible = False
+    DesignSize = (
+      185
+      41)
+    object Bevel1: TBevel
+      Left = 0
+      Top = 0
+      Width = 185
+      Height = 9
+      Align = alTop
+      Shape = bsTopLine
+    end
+    object btnEditOk: TButton
+      Left = 23
+      Top = 8
+      Width = 75
+      Height = 25
+      Anchors = [akRight, akBottom]
+      Caption = 'OK'
+      Default = True
+      ModalResult = 1
+      TabOrder = 0
+    end
+    object btnEditCancel: TButton
+      Left = 104
+      Top = 8
+      Width = 75
+      Height = 25
+      Anchors = [akRight, akBottom]
+      Cancel = True
+      Caption = #1054#1090#1084#1077#1085#1080#1090#1100
+      ModalResult = 2
+      TabOrder = 1
+    end
+  end
+  object chkNewWindow: TCheckBox
+    Left = 396
+    Top = 320
+    Width = 133
+    Height = 17
+    Anchors = [akRight, akBottom]
+    Caption = #1054#1090#1082#1088#1099#1090#1100' '#1085#1086#1074#1086#1077' '#1086#1082#1085#1086
+    TabOrder = 15
+  end
+  object ImageList1: TImageList
+    Left = 420
+    Top = 68
+    Bitmap = {
+      494C010103000500400010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      0000000000003600000028000000400000001000000001002000000000000010
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF0000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000008080000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000FCB500000000000000000000000000000000000000000000FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF0000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000C0C0C0008080000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF0000000000000000000000000000000000000000000000
+      00000000000000000000FF000000FF000000FF000000FF000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000C0C0C0008080000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF0000000000FCB50000FCB5000000000000FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF0000000000000000000000000000000000000000000000
+      000000000000FF000000FF000000FF000000FF000000FF000000FF0000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000C0C0C0008080000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF0000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000FF000000FF000000FF000000FF000000FF000000FF0000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000FF800000FF800000FF800000FF000000FF000000FF0000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000C0C0C000808000008080000080800000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000FCB5
+      0000000000000000000000000000FCB500000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000FF800000FF800000FF800000FF800000FF000000FF0000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000C0C0C00080800000808000008080000080800000808000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000FCB5
+      000000000000000000000000000000000000FCB5000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000FF800000FF800000FF800000FF000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000C0C0C000C0C0C00080800000808000008080000080800000808000008080
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000FCB5
+      0000000000000000000000000000000000000000000000000000FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000C0C0
+      C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
+      C000C0C0C0000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000424D3E000000000000003E000000
+      2800000040000000100000000100010000000000800000000000000000000000
+      000000000000000000000000FFFFFF00C3FFFFFFFFFF0000C381FFFFFF3F0000
+      C381FFFFFE3F0000F781FFFFFC3F00008181FC3FFC3F00008001F81FFC3F0000
+      8181F81FFC3F000081FFF81FF81F0000EEFFF81FF00F0000EF03FC3FE0070000
+      EF83FFFFC00300008383FFFF800100008383FFFFE007000083FFFFFFFFFF0000
+      83FFFFFFFFFF0000FFFFFFFFFFFF000000000000000000000000000000000000
+      000000000000}
+  end
+  object FrmKeep1: TFrmKeep
+    IniName = 'frmdata.ini'
+    IniSection = 'FORMS'
+    AutoLoad = True
+    Left = 368
+    Top = 64
+  end
+  object dlgOpen: TOpenDialog
+    DefaultExt = 'flt'
+    Filter = #1060#1072#1081#1083#1099' '#1092#1080#1083#1100#1090#1088#1086#1074' (*.flt)|*.flt'
+    Options = [ofHideReadOnly, ofFileMustExist, ofEnableSizing]
+    Left = 356
+    Top = 28
+  end
+  object dlgSave: TSaveDialog
+    DefaultExt = 'flt'
+    Filter = #1060#1072#1081#1083#1099' '#1092#1080#1083#1100#1090#1088#1086#1074' (*.flt)|*.flt'
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofPathMustExist, ofEnableSizing]
+    Left = 416
+    Top = 28
+  end
+end
