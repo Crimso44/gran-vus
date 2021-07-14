@@ -1711,10 +1711,6 @@ object fmExportOrg: TfmExportOrg
       Caption = 'tshParams'
       ImageIndex = 1
       OnShow = tshParamsShow
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object bvTop: TBevel
         Left = 0
         Top = 65
@@ -2064,10 +2060,6 @@ object fmExportOrg: TfmExportOrg
       Caption = 'tshProcess'
       ImageIndex = 2
       OnShow = tshProcessShow
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label7: TLabel
         Left = 152
         Top = 80
@@ -2089,10 +2081,6 @@ object fmExportOrg: TfmExportOrg
       Caption = 'tshDone'
       ImageIndex = 3
       OnShow = tshDoneShow
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label6: TLabel
         Left = 80
         Top = 96
@@ -2333,7 +2321,9 @@ object fmExportOrg: TfmExportOrg
         Value = Null
       end>
     SQL.Strings = (
-      'SELECT DOC_ID,DOC_NO,START_DATE,END_DATE,PER_NO,RAZD_NO'
+      
+        'SELECT DOC_ID,DOC_NO,START_DATE,END_DATE,PER_NO,RAZD_NO, org_nam' +
+        'e'
       'FROM PER'
       'WHERE ORGID=:OrgId')
     Left = 384

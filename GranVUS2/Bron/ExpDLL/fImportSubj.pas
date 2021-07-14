@@ -89,6 +89,8 @@ type
     qrFOKVED2010: TADOQuery;
     qrFSVT2012: TADOQuery;
     qrFAnaliz: TADOQuery;
+    bPreview: TButton;
+    bPreviewOrg: TButton;
     procedure btnCancelClick(Sender: TObject);
     procedure btnHelpClick(Sender: TObject);
     procedure rbFloppyClick(Sender: TObject);
@@ -106,16 +108,19 @@ type
     procedure actDummyExecute(Sender: TObject);
     procedure actShiftDummyExecute(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure bPreviewClick(Sender: TObject);
+    procedure bPreviewOrgClick(Sender: TObject);
   private
     path: string;
     SubjLst, SubjFLst: TStringList;
+    procedure DoPreview(fileName, caption, nameField: string);
   public
   end;
 
 
 implementation
 
-uses msg, FileCtrl, Dates, StrUtils;
+uses msg, FileCtrl, Dates, StrUtils, fPreview;
 
 {$R *.DFM}
 
@@ -172,6 +177,91 @@ begin
   btnCancel.Default := true;
   pnlTop.Parent := tshDone;
   bvTop.Parent := tshDone;
+end;
+
+procedure TfmImportSubj.DoPreview(fileName, caption, nameField: string);
+var
+  fpr: TfrmPreview;
+  buf: Array[0..MAX_PATH-1] of char;
+  F: TextFile;
+  flst,lst : TStringList;
+  s: String;
+  iKodTerr, iSubjName: integer;
+  first: boolean;
+begin
+  fpr := TfrmPreview.Create(self);
+  fpr.Caption := caption;
+  fpr.StringGrid1.Cells[0,0] := 'Наименование';
+  fpr.StringGrid1.Cells[1,0] := 'ВУО курирует';
+  qrTerr.Open;
+  try
+
+  if rbFloppy.Checked then path := 'A:\'
+  else
+    if rbPath.Checked then path := Trim(edPath.Text)
+    else begin
+      GetTempPath(MAX_PATH,buf);
+      path := string(buf)+'\'+'GranVUS';
+    end;
+    path := IncludeTrailingPathDelimiter(path);
+
+    if not FileExists(path+fileName) then
+      raise Exception.Create('Файлы данных источника не найдены!');
+
+    AssignFile(F,path+fileName);
+    ReSet(F);
+    flst:= TStringList.Create;
+    first := true;
+    try
+      ReadLn(F,s);
+      if Trim(s) <> '' then begin
+        flst.CommaText := AnsiUpperCase(s);
+        iKodterr := flst.IndexOf('KODTERR');
+        iSubjName := flst.IndexOf(nameField);
+        if (iKodTerr < 0) or (iSubjName < 0) then
+          raise Exception.Create('Файлы данных источника повреждены или имеют некорректный формат!');
+        lst := TStringList.Create;
+        try
+          while not EOF(F) do begin
+            ReadLn(F,s);
+            lst.CommaText := s;
+            if not first then
+              fpr.StringGrid1.RowCount := fpr.StringGrid1.RowCount + 1;
+            first := false;
+            if (lst.Count < (iKodTerr+1)) or (lst.Count < (iSubjName+1)) then
+                raise Exception.Create('Файлы данных источника повреждены или имеют некорректный формат!');
+            fpr.StringGrid1.Cells[0, fpr.StringGrid1.RowCount - 1] := lst[iSubjName];
+            if qrTerr.Locate('KODTERR', lst[iKodTerr], []) then
+              fpr.StringGrid1.Cells[1, fpr.StringGrid1.RowCount - 1] := qrTerr.FieldByName('Name').AsString + ' (' + lst[iKodTerr] + ')'
+            else
+              fpr.StringGrid1.Cells[1, fpr.StringGrid1.RowCount - 1] := lst[iKodTerr];
+            Application.ProcessMessages;
+          end;
+        finally
+          lst.Free;
+        end;
+      end;
+
+      fpr.ShowModal;
+
+    finally
+      flst.Free;
+      CloseFile(F);
+    end;
+  finally
+    qrTerr.Close;
+    fpr.Free;
+  end;
+end;
+
+procedure TfmImportSubj.bPreviewClick(Sender: TObject);
+begin
+  DoPreview('subj.csv', 'Импортируемые ВУО, подотчетные загружаемому', 'SUBJ_NAME');
+end;
+
+procedure TfmImportSubj.bPreviewOrgClick(Sender: TObject);
+begin
+  DoPreview('org2.csv', 'Импортируемые организации', 'ORGNAME');
 end;
 
 procedure TfmImportSubj.btnBackClick(Sender: TObject);

@@ -186,7 +186,7 @@ begin
       '      PDP.Age > '+FullAges('P.BirthDay')+' And '#13+
       '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
       ')),0,1) AS DefPOST_Age, '#13+
-      'Iif(IsNull(PostStudy.Post_Id), 0, 1) as IsStudent, '#13+
+      'Iif((not IsNull(PostStudy.Post_Id)) and AppointmentLastAll.ID = AppointmentLastStudy.ID, 1, 0) as IsStudent, '#13+
       'Iif(P.WRNG_ID <> 1 and P.WRNG_ID <> 37, 1, 0) as StudWRangeOk '#13+
 
       'FROM (((((Person AS P '#13+

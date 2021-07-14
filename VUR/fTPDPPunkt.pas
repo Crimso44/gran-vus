@@ -552,7 +552,7 @@ var
 begin
   FChanged := True;
 
-  okved := Trim(edOKVED.Text);
+  okved := GetFullTrim(edOKVED.Text);
   if okved <> '' then begin
     with q do begin
       SQL.Text := Format('Select Code, Name From [KOKVED] Where Code = %s', [QuotedStr(okved)]);

@@ -77,6 +77,8 @@ type
     procedure OnPopup(Sender: TObject);
     procedure DoValidate(Sender: TObject; var ErrorText: string; var Accept: Boolean);
     procedure CheckColumnToggleClick(Sender: TObject; const Text: String; State: TdxCheckBoxState);
+    function GetFullTrim(s: String): String;
+    procedure GetText(Sender: TObject; ANode: TdxTreeListNode; var AText: string);
   end;
 
 
@@ -281,7 +283,10 @@ begin
       if ss = 'OKVED' then begin
         col := dbgData.CreateColumn(TdxDBGridMaskColumn);
         maskCol := TdxDBGridMaskColumn(col);
-        maskCOl.EditMask := '!00.99.99;1; '
+        maskCOl.EditMask := '!00.99.99;1; ';
+        maskCol.OnSetFieldText := GetText;
+        maskCol.OnGetFieldText := GetText;
+        maskCol.OnGetText := GetText;
       end else
         col := dbgData.CreateColumn(
           dbgData.GetDefaultFieldColumnClass(
@@ -388,6 +393,22 @@ begin
   except on e: Exception do begin
     ShowErr('Ошибка при загрузке сведений о справочнике!'#13#13+E.Message);
   end end;
+end;
+
+function TfmBaseLst.GetFullTrim(s: String): String;
+begin
+  Result := Trim(s);
+  while (Result <> '') and (Copy(Result, Length(Result), 1) = '.') do begin
+    Result := Trim(Copy(Result, 1, Length(Result)-1));
+  end;
+end;
+
+
+
+procedure TfmBaseLst.GetText(Sender: TObject; ANode: TdxTreeListNode;
+  var AText: string);
+begin
+  AText := GetFullTrim(AText);
 end;
 
 procedure TfmBaseLst.bMoveDownClick(Sender: TObject);

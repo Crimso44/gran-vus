@@ -6,7 +6,7 @@ uses
   DateUtils,
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   Db, ADODB, EkRtf, ImgList, ekbasereport, OleServer, dxTL, Variants, Excel2000, dxDBGrid, dxGrClms,
-  ExcelXP;
+  ExcelXP, ekfunc;
 
 type
   TdmMain = class(TDataModule)
@@ -26,8 +26,12 @@ type
     qrDataN01_10_12: TIntegerField;
     qrDataPerc: TStringField;
     qrDataN06: TIntegerField;
+    qrDataGr5: TStringField;
+    EkUDFList1: TEkUDFList;
     procedure DataModuleCreate(Sender: TObject);
     procedure qrDataCalcFields(DataSet: TDataSet);
+    procedure EkUDFList1Functions0Calculate(Sender: TObject; Args: TEkUDFArgs;
+      ArgCount: Integer; UDFResult: TObject);
   private
     FPrinting: Boolean;
     procedure FieldGetText(Sender: TField; var Text: String;
@@ -46,7 +50,7 @@ var
   FPrintOnly: Boolean;
 
 const
-  sEventObject = 'Форма № 19';
+  sEventObject = 'Форма № 19 ВУО';
 
 implementation
 
@@ -110,7 +114,7 @@ procedure TdmMain.PrintData(ID: Integer);
 //
 begin
   EkRTF1.Infile := tlPath + 'Analiz.rtf';
-  EkRTF1.Outfile := repPath + 'Форма № 19.rtf';
+  EkRTF1.Outfile := repPath + 'Форма № 19 организации.rtf';
 
   try
     try
@@ -169,11 +173,38 @@ begin
 
     if qrDataN12.AsInteger = 0 then
       qrDataPerc.AsString := '0'
+    else if (qrDataN01.AsInteger - qrDataN10.AsInteger) > qrDataN12.AsInteger then
+      qrDataPerc.AsString := '100'
     else
       qrDataPerc.AsString := FloatToStr(Round(100*
         (1.0*(qrDataN01.AsInteger - qrDataN10.AsInteger)) /
           qrDataN12.AsInteger));
 
+    if qrDataN02.AsInteger = 0 then
+      qrDataGr5.AsString := '0'
+    else
+      qrDataGr5.AsString := FloatToStr(Round(100*
+        (1.0*qrDataN06.AsInteger) / qrDataN02.AsInteger));
+
+
+end;
+
+procedure TdmMain.EkUDFList1Functions0Calculate(Sender: TObject;
+  Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
+  function GetString(O: TObject): String;
+  begin
+    if O is TField then Result := TField(O).AsString else Result := TEkReportVariable(O).AsString;
+  end;
+var
+  i: Integer;
+begin
+  (UDFResult as TEkReportVariable).AsBoolean := False;
+  for i:=1 to ArgCount-1 do
+    if GetString(Args[0])=GetString(Args[i]) then
+    begin
+      (UDFResult as TEkReportVariable).AsBoolean := True;
+      Exit;
+    end;
 end;
 
 procedure TdmMain.FieldGetText(Sender: TField; var Text: String;

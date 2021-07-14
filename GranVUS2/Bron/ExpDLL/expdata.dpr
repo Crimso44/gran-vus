@@ -9,7 +9,8 @@ uses
   fImportOrg in 'fImportOrg.pas' {fmImportOrg},
   fImportSubj in 'fImportSubj.pas' {fmImportSubj},
   Dates in 'Dates.pas',
-  fExportOrg in 'fExportOrg.pas' {fmExportOrg};
+  fExportOrg in 'fExportOrg.pas' {fmExportOrg},
+  fPreview in 'fPreview.pas' {frmPreview};
 
 function ExportSubjData(AppHandle: Cardinal; Conn: _Connection): Integer; stdcall;
 var old_conn: _Connection;

@@ -160,7 +160,7 @@ var
 
 implementation
 
-uses msg, FileCtrl, Dates, StrUtils;
+uses msg, FileCtrl, Dates, StrUtils, fPreview;
 
 {$R *.DFM}
 

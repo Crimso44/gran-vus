@@ -262,6 +262,10 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[sp_FAnaliz
 drop procedure [dbo].[sp_FAnalizGenerate]
 GO
 
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[sp_FOrgAnalizGenerate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[sp_FOrgAnalizGenerate]
+GO
+
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[sp_FFS2010Clear]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
 drop procedure [dbo].[sp_FFS2010Clear]
 GO
@@ -979,7 +983,8 @@ CREATE TABLE [dbo].[PER] (
         [START_DATE] [datetime] NULL ,
         [END_DATE] [datetime] NULL ,
         [PER_NO] [varchar] (10)  NULL ,
-        [RAZD_NO] [varchar] (4000)  NULL
+        [RAZD_NO] [varchar] (4000) NULL,
+        Okved_Name varchar(255)
 ) ON [PRIMARY]
 GO
 
@@ -5612,7 +5617,7 @@ GO
 SET ANSI_NULLS ON
 GO
 
-Create  PROCEDURE [dbo].[sp_ImportOrg]
+Create PROCEDURE [dbo].[sp_ImportOrg]
         @EXT_ID int     out
 AS
 SET NOCOUNT ON
@@ -5650,7 +5655,7 @@ declare
                 WHERE F6_ID in (select F6_ID from FORM6HDR where ORGID = @EXT_ID)
                 if @@ERROR != 0
                 begin
-                        raiserror ('Невозможно произвести импорт организации.', 16, 1)
+                        raiserror 51400 'Невозможно произвести импорт организации.'
                         ROLLBACK TRANSACTION
                         return
                 end
@@ -5658,7 +5663,7 @@ declare
                 WHERE ORGID = @EXT_ID
                 if @@ERROR != 0
                 begin
-                        raiserror ('Невозможно произвести импорт организации.', 16, 1)
+                        raiserror 51401 'Невозможно произвести импорт организации.'
                         ROLLBACK TRANSACTION
                         return
                 end
@@ -5666,7 +5671,7 @@ declare
                 WHERE ORGID = @EXT_ID
                 if @@ERROR != 0
                 begin
-                        raiserror ('Невозможно произвести импорт организации.', 16, 1)
+                        raiserror 51402 'Невозможно произвести импорт организации.'
                         ROLLBACK TRANSACTION
                         return
                 end
@@ -5674,7 +5679,7 @@ declare
                 WHERE ORGID = @EXT_ID
                 if @@ERROR != 0
                 begin
-                        raiserror ('Невозможно произвести импорт организации.', 16, 1)
+                        raiserror 51403 'Невозможно произвести импорт организации.'
                         ROLLBACK TRANSACTION
                         return
                 end
@@ -5730,7 +5735,7 @@ declare
                 WHERE ORG.ORGID = @EXT_ID
                 if @@ERROR != 0
                 begin
-                        raiserror ('Невозможно произвести импорт организации.', 16, 1)
+                        raiserror 51404 'Невозможно произвести импорт организации.'
                         ROLLBACK TRANSACTION
                         return
                 end
@@ -5851,7 +5856,7 @@ declare
                 FROM [dbo].[#ORG]
                 if @@ERROR != 0
                 begin
-                        raiserror ('Невозможно произвести импорт организации.', 16, 1)
+                        raiserror 51405 'Невозможно произвести импорт организации.'
                         ROLLBACK TRANSACTION
                         return
                 end
@@ -5876,7 +5881,7 @@ declare
         WHERE ORGID = @ORG_ID
         if @@ERROR != 0
         begin
-                raiserror ('Невозможно произвести импорт организации.', 16, 1)
+                raiserror 51406 'Невозможно произвести импорт организации.'
                 ROLLBACK TRANSACTION
                 return
         end
@@ -5909,7 +5914,7 @@ declare
         WHERE ORGID = @ORG_ID
         if @@ERROR != 0
         begin
-                raiserror ('Невозможно произвести импорт организации.', 16, 1)
+                raiserror 51407 'Невозможно произвести импорт организации.'
                 ROLLBACK TRANSACTION
                 return
         end
@@ -5944,7 +5949,7 @@ declare
         WHERE ORGID = @ORG_ID
         if @@ERROR != 0
         begin
-                raiserror ('Невозможно произвести импорт организации.', 16, 1)
+                raiserror 51408 'Невозможно произвести импорт организации.'
                 ROLLBACK TRANSACTION
                 return
         end
@@ -6004,7 +6009,7 @@ declare
         WHERE F6_ID = (SELECT TOP 1 F6_ID FROM [dbo].[#FORM6HDR])
         if @@ERROR != 0
         begin
-                raiserror ('Невозможно произвести импорт организации.', 16, 1)
+                raiserror 51409 'Невозможно произвести импорт организации.'
                 ROLLBACK TRANSACTION
                 return
         end
@@ -6021,7 +6026,7 @@ declare
              and  (doc_id is null or doc_id in (select [id] from VV4))
         if @@ERROR != 0
         begin
-                raiserror ('Невозможно произвести импорт организации.', 16, 1)
+                raiserror 51410 'Невозможно произвести импорт организации.'
                 ROLLBACK TRANSACTION
                 return
         end
@@ -6033,12 +6038,13 @@ declare
               from PER
               where OrgId=@EXT_ID
 
-              declare @per_no varchar(4000), @razd_no varchar(4000), @r_no varchar(4000)
+              declare @per_no varchar(4000), @okved_name varchar(255), @razd_no varchar(4000), @r_no varchar(4000)
               declare xx cursor for 
-              select distinct per_no  
+              select per_no, max(Okved_Name)  
               from [dbo].[#ORG_PER]
+			  group by per_no
               open xx
-              fetch next from xx into @per_no
+              fetch next from xx into @per_no, @okved_name
               while @@fetch_status = 0 begin
 
               	  set @razd_no = ''
@@ -6057,17 +6063,16 @@ declare
 
 				  if len(@razd_no) > 0 set @razd_no = SUBSTRING(@razd_no, 1, len(@razd_no)-1)
 
-	              insert into PER (orgid, per_no, razd_no)
-		          Values (@EXT_ID, @per_no, @razd_no)
+	              insert into PER (orgid, per_no, razd_no, okved_name)
+		          Values (@EXT_ID, @per_no, @razd_no, @okved_name)
 
-	              fetch next from xx into @per_no
+	              fetch next from xx into @per_no, @okved_name
               end
 			  close xx
 			  deallocate xx
 
 
 COMMIT TRANSACTION
-
 
 
 GO
@@ -7312,4 +7317,73 @@ COMMIT TRANSACTION
 
 
 GO
+
+
+
+Create PROCEDURE [dbo].[sp_FOrgAnalizGenerate]
+--declare
+        @ORG_ID        int
+--set @Org_Id = 36
+AS
+SET NOCOUNT ON
+
+CREATE TABLE #FAnaliz(
+	[NUM] [int] NOT NULL,
+	[N01] [int] NULL,
+	[N02] [int] NULL,
+	[N06] [int] NULL,
+	[N10] [int] NULL,
+	[N12] [int] NULL
+)
+
+
+        INSERT INTO #FAnaliz(NUM)
+        SELECT CProf_Id
+        From KCProf
+        WHERE CPROF_ID in (100,200,300,400,410,1000)
+
+        
+
+Update #FAnaliz set
+	N01 = IsNull(y.Col_1, 0), 
+	N02 = IsNull(y.Col_2, 0), 
+	N06 = IsNull(y.Col_6, 0), 
+	N10 = IsNull(y.Col_10, 0), 
+	N12 = IsNull(y.Col_12, 0)
+from #FAnaliz F
+left join (
+	select CProf_Id Num, Sum(Col_1) Col_1, Sum(Col_2) Col_2, Sum(Col_6) Col_6, Sum(Col_10) Col_10, Sum(Col_12) Col_12
+	
+	  FROM ORG oo
+	     join SUBJ s on oo.TERR_ID = s.TERR_ID
+	     join FORM6HDR h on h.ORGID = oo.ORGID
+	     join Form6 f on f.f6_id = h.f6_id
+
+		WHERE f.CPROF_ID in (100,200,300,400,410,1000)
+		and h.ORGID = @Org_Id
+	   and s.Subj_Agg_Id = 1
+	   AND oo.OUT_DATE IS NULL
+	   AND oo.HAs_Bron = 1
+    group by CProf_Id
+) y on y.Num = F.Num
+        if @@ERROR != 0
+        begin
+                raiserror 50300 'Невозможно создать форму по анализу обеспеченности.'
+                ROLLBACK TRANSACTION
+                return
+        end
+
+select 
+	case when SubString(ff.PRINT_NAME,1,5)='ВСЕГО' then 'ВСЕГО' 
+		else ff.PRINT_NAME end As PRINT_NAME,
+  F.*
+from #FAnaliz F
+join KCProf ff on f.num = ff.cprof_id
+order by f.NUM
+
+
+Drop TABLE #FAnaliz
+
+GO
+
 

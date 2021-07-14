@@ -16,6 +16,7 @@ object dmMain: TdmMain
     OutFile = 'outfile.doc'
     TrueValue = 'True'
     FalseValue = 'False'
+    UDFList = EkUDFList1
     Charset = DEFAULT_CHARSET
     Lang = 1049
     Options = [eoGraphicsBinary, eoClearMissedFields, eoDotAsColon]
@@ -27,7 +28,7 @@ object dmMain: TdmMain
     Left = 84
     Top = 72
     Bitmap = {
-      494C01012C002E002C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01012C002E00340010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000C0000000010020000000000000C0
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1694,5 +1695,23 @@ object dmMain: TdmMain
       Size = 50
       Calculated = True
     end
+    object qrDataGr5: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'Gr5'
+      Size = 255
+      Calculated = True
+    end
+  end
+  object EkUDFList1: TEkUDFList
+    Functions = <
+      item
+        OnCalculate = EkUDFList1Functions0Calculate
+        Name = 'Equal'
+        ArgMinCount = 2
+        ArgMaxCount = 10
+        ResultType = 1
+      end>
+    Left = 71
+    Top = 129
   end
 end

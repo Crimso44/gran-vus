@@ -146,15 +146,20 @@ object fmOrgPropOsnPer: TfmOrgPropOsnPer
     OnEnter = dxtOSNEnter
     OnExit = dxtOSNExit
     OnEdited = dxtOSNEdited
+    object colpOkvedName: TdxTreeListColumn
+      Caption = #1056#1072#1089#1096#1080#1092#1088#1086#1074#1082#1072' '#1082#1086#1076#1072' '#1054#1050#1042#1069#1044
+      BandIndex = 0
+      RowIndex = 0
+    end
     object colpPER_NO: TdxTreeListColumn
       Caption = #1054#1050#1042#1069#1044
-      Width = 121
+      Width = 50
       BandIndex = 0
       RowIndex = 0
     end
     object colpRAZD_NO: TdxTreeListColumn
       Caption = #1054#1050#1055#1044#1058#1056
-      Width = 121
+      Width = 50
       BandIndex = 0
       RowIndex = 0
     end

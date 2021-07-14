@@ -1,0 +1,106 @@
+library FAnalizOrg;
+
+uses
+  Forms,
+  SysUtils,
+  Windows,
+  ADOdb,
+  dxDBGrid,
+  dMain in 'dMain.pas' {dmMain: TDataModule},
+  SaveEvents in '..\..\Common\SaveEvents.pas',
+  IniSupport in '..\..\Common\IniSupport.pas',
+  msg in '..\..\Common\msg.pas';
+
+{$R ResData.RES}
+
+function PlugInInfo(
+  szName: PChar;
+  szAuthor: PChar): Integer; stdcall;
+// szName - заполняется наименованием плагина
+// szAuthor - копирайт плагина
+// ReturnValue - тип плагина
+//    0 - общее назначение
+//        function PlugInExec(AppHandle: THandle; szConn: _Connection): Integer; stdcall;
+//    1 - для работы с карточкой организации
+//        function PlugInExec(AppHandle: THandle; szConn: _Connection; nOrgID: Integer): Integer; stdcall;
+//    2 - для работы с карточкой сотрудника
+//        function PlugInExec(AppHandle: THandle; szConn: _Connection; nManID: Integer): Integer; stdcall;
+
+begin
+  Result := 1;
+  StrCopy(szName, sEventObject);
+  StrCopy(szAuthor,'(с) 2010, ГУП г.Москвы "ГНПП "Гранит-Центр"');
+end;
+
+function Execute(
+  AppHandle: THandle;
+  Conn: _Connection; nOrgID: Integer): Integer;
+//  szConn - строка подключения к БД
+var
+  old_conn : _Connection;
+  rEdit    : Boolean;
+begin
+  Result:= 0;
+  Application.Handle := AppHandle;
+  try
+    Application.CreateForm(TdmMain, dmMain);
+  try
+      old_conn := dmMain.dbMain.ConnectionObject;
+      dmMain.dbMain.ConnectionObject := Conn;
+      try
+        with TADOQuery.Create(nil) do
+        try
+          Connection := dmMain.dbMain;
+          SQL.Text := 'SELECT * FROM USERS WHERE Login='+QuotedStr(GetLastLogin);
+          Open;
+          dmMain.rPrint  := FieldbyName('rPrint').AsBoolean;
+        finally Free;
+        end;
+        dmMain.PrintData(nOrgId);
+      except
+        SaveEvent(dmMain.dbMain,
+          evs_Report_Error,
+          sEventObject,
+          ['Ошибка при создании.']);
+        MessageBox(Application.Handle,
+          'Ошибка при создании окна!', sEventObject,
+          MB_OK or MB_ICONERROR);
+        Result := -2;
+      end;
+    finally
+      dmMain.dbMain.ConnectionObject := old_conn;
+      dmMain.Free;
+    end;
+  finally Application.Handle := 0;
+  end;
+end;
+
+function PlugInExec(
+  AppHandle: THandle;
+  Conn: _Connection;
+  nSubjID: Integer): Integer; stdcall;
+begin
+  FPrintOnly := True;
+  Result := Execute(AppHandle, Conn, nSubjID);
+end;
+
+function PlugInExecForm(
+  AppHandle: THandle;
+  Conn: _Connection;
+  nSubjID: Integer): Integer; stdcall;
+begin
+  FPrintOnly := False;
+  Result := Execute(AppHandle, Conn, nSubjID);
+end;
+
+procedure PlugInUnicode;
+begin
+  // Просто заглушка - если эта процедура есть, то ДЛЛ-ка хорошая
+end;
+
+
+exports
+  PlugInInfo, PlugInExec, PlugInExecForm, PlugInUnicode;
+
+begin
+end.

@@ -2860,7 +2860,8 @@ object fmImportOrg: TfmImportOrg
       #9'[START_DATE] [datetime] NULL ,'
       #9'[END_DATE] [datetime] NULL ,'
       #9'[PER_NO] [varchar] (10) NULL ,'
-      #9'[RAZD_NO] [varchar] (4000) NULL '
+      #9'[RAZD_NO] [varchar] (4000) NULL,'
+      '    [okved_name] varchar(255) null'
       ')')
     Left = 460
     Top = 200

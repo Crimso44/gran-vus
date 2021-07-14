@@ -16,6 +16,7 @@ type
     qrSubj: TADOQuery;
     qrOSN: TADOQuery;
     EkUDFList1: TEkUDFList;
+    qrPer: TADOQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure qrDataFullCalcFields(DataSet: TDataSet);
     procedure qrOKATOAfterScroll(DataSet: TDataSet);
@@ -153,7 +154,7 @@ begin
         qrSubj.Open;
         x := '';
         FPrinting:= True;
-        EkRTF1.ExecuteOpen([qrDataFull, qrOkato, qrSubj, qrOsn],SW_SHOWDEFAULT);
+        EkRTF1.ExecuteOpen([qrDataFull, qrOkato, qrSubj, qrOsn, qrPer],SW_SHOWDEFAULT);
         SaveEvent(dmMain.dbMain, evs_Report_Print, sEventObject,[]);
       finally
         FPrinting:= False;
@@ -182,6 +183,9 @@ begin
   x := 'qrOsn.Open';
   qrOsn.Open;
   x := '';
+  qrPer.Close;
+  qrPer.Parameters[0].Value := qrDataFull.FieldByName('OrgId').Value;
+  qrPer.Open;
 end;
 
 procedure TdmMain.qrDataFullCalcFields(DataSet: TDataSet);

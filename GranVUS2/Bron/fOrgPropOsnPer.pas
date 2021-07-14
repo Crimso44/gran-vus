@@ -34,6 +34,7 @@ type
     pbOSNDel: TButton;
     pbPerAdd: TButton;
     pbPerDel: TButton;
+    colpOkvedName: TdxTreeListColumn;
     procedure FormShow(Sender: TObject);
     procedure N1Click(Sender: TObject);
     procedure N2Click(Sender: TObject);

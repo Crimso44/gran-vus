@@ -62,13 +62,17 @@ object fmImportSubj: TfmImportSubj
     Top = -23
     Width = 529
     Height = 301
-    ActivePage = tshProcess
+    ActivePage = tshSubjInfo
     Anchors = [akLeft, akRight, akBottom]
     Style = tsFlatButtons
     TabOrder = 0
     object tshInfo: TTabSheet
       Caption = 'tshInfo'
       OnShow = tshInfoShow
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -82,7 +86,7 @@ object fmImportSubj: TfmImportSubj
           Left = 0
           Top = 0
           Width = 250
-          Height = 270
+          Height = 200
           Align = alLeft
           AutoSize = True
           Picture.Data = {
@@ -1695,7 +1699,6 @@ object fmImportSubj: TfmImportSubj
             0101010101010101010101010101010101010101010101010101010101010101
             0101010101010101010101010101010101010101010101010101010101010101
             0101010101010101010101010101010101010101010101019900}
-          ExplicitHeight = 200
         end
         object Label1: TLabel
           Left = 180
@@ -1739,6 +1742,10 @@ object fmImportSubj: TfmImportSubj
       Caption = 'tshParams'
       ImageIndex = 1
       OnShow = tshParamsShow
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object bvTop: TBevel
         Left = 0
         Top = 65
@@ -2118,9 +2125,9 @@ object fmImportSubj: TfmImportSubj
       object Label28: TLabel
         Left = 340
         Top = 76
-        Width = 61
+        Width = 48
         Height = 13
-        Caption = #1055#1086#1083#1086#1078#1077#1085#1080#1077':'
+        Caption = #1050#1086#1076' '#1042#1059#1054':'
       end
       object Label29: TLabel
         Left = 16
@@ -2234,10 +2241,32 @@ object fmImportSubj: TfmImportSubj
         TabOrder = 5
         Text = 'edFullName'
       end
+      object bPreview: TButton
+        Left = 205
+        Top = 243
+        Width = 313
+        Height = 25
+        Caption = #1048#1084#1087#1086#1088#1090#1080#1088#1091#1077#1084#1099#1077' '#1042#1059#1054', '#1087#1086#1076#1086#1090#1095#1077#1090#1085#1099#1077' '#1079#1072#1075#1088#1091#1078#1072#1077#1084#1086#1084#1091
+        TabOrder = 6
+        OnClick = bPreviewClick
+      end
+      object bPreviewOrg: TButton
+        Left = 0
+        Top = 243
+        Width = 199
+        Height = 25
+        Caption = #1048#1084#1087#1086#1088#1090#1080#1088#1091#1077#1084#1099#1077' '#1086#1088#1075#1072#1085#1080#1079#1072#1094#1080#1080
+        TabOrder = 7
+        OnClick = bPreviewOrgClick
+      end
     end
     object tshWrng: TTabSheet
       Caption = 'tshWrng'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label4: TLabel
         Left = 144
         Top = 16
@@ -2266,6 +2295,10 @@ object fmImportSubj: TfmImportSubj
       Caption = 'tshProcess'
       ImageIndex = 2
       OnShow = tshProcessShow
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label7: TLabel
         Left = 152
         Top = 80
@@ -2288,6 +2321,10 @@ object fmImportSubj: TfmImportSubj
       Caption = 'tshDone'
       ImageIndex = 3
       OnShow = tshDoneShow
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label6: TLabel
         Left = 80
         Top = 96
@@ -2591,7 +2628,8 @@ object fmImportSubj: TfmImportSubj
       #9'[START_DATE] [datetime] NULL ,'
       #9'[END_DATE] [datetime] NULL ,'
       #9'[PER_NO] [varchar] (10) NULL ,'
-      #9'[RAZD_NO] [varchar] (4000) NULL '
+      #9'[RAZD_NO] [varchar] (4000) NULL,'
+      '    [okved_name] varchar(255) null'
       ')'
       ''
       'CREATE TABLE [dbo].[#SUBJ] ('
@@ -2778,8 +2816,8 @@ object fmImportSubj: TfmImportSubj
     SQL.Strings = (
       'SELECT *'
       'FROM KOPF')
-    Left = 360
-    Top = 39
+    Left = 448
+    Top = 15
   end
   object qrOrg: TADOQuery
     Connection = dbMain
@@ -2799,8 +2837,8 @@ object fmImportSubj: TfmImportSubj
       'SELECT C.*'
       'FROM [dbo].[#ORG_CONT] C'
       '')
-    Left = 188
-    Top = 9
+    Left = 172
+    Top = 1
   end
   object qrOrgPaym: TADOQuery
     Connection = dbMain
@@ -2810,8 +2848,8 @@ object fmImportSubj: TfmImportSubj
       'SELECT P.*'
       'FROM [dbo].[#ORG_PAYM] P'
       '')
-    Left = 188
-    Top = 61
+    Left = 164
+    Top = 133
   end
   object qrForm6Hdr: TADOQuery
     Connection = dbMain
@@ -2830,8 +2868,8 @@ object fmImportSubj: TfmImportSubj
     SQL.Strings = (
       'SELECT *'
       'FROM [dbo].[#FORM6]')
-    Left = 216
-    Top = 32
+    Left = 96
+    Top = 160
   end
   object qrOrgChk: TADOQuery
     Connection = dbMain
@@ -2840,8 +2878,8 @@ object fmImportSubj: TfmImportSubj
     SQL.Strings = (
       'SELECT *'
       'FROM ORG')
-    Left = 156
-    Top = 37
+    Left = 140
+    Top = 45
   end
   object DataSource1: TDataSource
     DataSet = qrOrgChk
@@ -2879,8 +2917,8 @@ object fmImportSubj: TfmImportSubj
     SQL.Strings = (
       'SELECT *'
       'FROM [dbo].[#SUBJ_INFO]')
-    Left = 252
-    Top = 37
+    Left = 260
+    Top = 53
   end
   object qrSubjParam: TADOQuery
     Connection = dbMain
@@ -2889,8 +2927,8 @@ object fmImportSubj: TfmImportSubj
     SQL.Strings = (
       'SELECT *'
       'FROM [dbo].[#SUBJ_PARAM]')
-    Left = 252
-    Top = 61
+    Left = 220
+    Top = 141
   end
   object qrOrgOsn: TADOQuery
     Connection = dbMain
@@ -2909,8 +2947,8 @@ object fmImportSubj: TfmImportSubj
     SQL.Strings = (
       'SELECT *'
       'FROM [dbo].[#PER]')
-    Left = 292
-    Top = 37
+    Left = 300
+    Top = 61
   end
   object qrTERR: TADOQuery
     Connection = dbMain
@@ -2919,8 +2957,8 @@ object fmImportSubj: TfmImportSubj
     SQL.Strings = (
       'SELECT *'
       'FROM KTERR')
-    Left = 392
-    Top = 31
+    Left = 440
+    Top = 47
   end
   object qrCurrSubj: TADOQuery
     Connection = dbMain
@@ -2929,8 +2967,8 @@ object fmImportSubj: TfmImportSubj
     SQL.Strings = (
       'SELECT *'
       'FROM [dbo].[#CURR_SUBJ]')
-    Left = 320
-    Top = 41
+    Left = 408
+    Top = 9
   end
   object qrFFS: TADOQuery
     Connection = dbMain

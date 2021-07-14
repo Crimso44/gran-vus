@@ -172,8 +172,6 @@ object fmTPDPPunkt: TfmTPDPPunkt
     Height = 232
     Align = alLeft
     TabOrder = 1
-    ExplicitTop = 53
-    ExplicitHeight = 186
     object Panel4: TPanel
       Left = 1
       Top = 1
@@ -199,7 +197,6 @@ object fmTPDPPunkt: TfmTPDPPunkt
       ItemHeight = 13
       Sorted = True
       TabOrder = 1
-      ExplicitHeight = 160
     end
   end
   object Panel3: TPanel
@@ -209,8 +206,6 @@ object fmTPDPPunkt: TfmTPDPPunkt
     Height = 232
     Align = alClient
     TabOrder = 2
-    ExplicitTop = 53
-    ExplicitHeight = 186
     object dbgData: TdxDBGrid
       Left = 1
       Top = 42
@@ -238,7 +233,6 @@ object fmTPDPPunkt: TfmTPDPPunkt
       RegistryPath = '\Software\Granit\GranVUS\TPDPDPunktGrid'
       OnChangedColumnsWidth = dbgDataChangedColumnsWidth
       OnCustomDrawCell = dbgDataCustomDrawCell
-      ExplicitHeight = 143
       object dbgDataWSosts: TdxDBGridMaskColumn
         Caption = #1057#1086#1089#1090#1072#1074'/'#1087#1088#1086#1092#1080#1083#1100
         Width = 71
@@ -328,7 +322,6 @@ object fmTPDPPunkt: TfmTPDPPunkt
     Height = 27
     Align = alBottom
     TabOrder = 3
-    ExplicitTop = 239
     object Panel7: TPanel
       Left = 536
       Top = 1

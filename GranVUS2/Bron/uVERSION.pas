@@ -2,7 +2,7 @@ unit uVERSION;
 
 interface
 const
-  sVersion = '3.81';
+  sVersion = '3.82';
   sAppTitle = 'Гран-Бронирование '+sVersion;
 implementation
 

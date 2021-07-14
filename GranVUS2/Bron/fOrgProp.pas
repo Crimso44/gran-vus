@@ -836,6 +836,7 @@ begin
     Open;
     while not EOF do begin
       with FOsnPer.dxtPer.Add do begin
+        Values[FOsnPer.colpOkvedName.Index] := FieldByName('Okved_Name').Value;
         Values[FOsnPer.colpPER_NO.Index] := FieldByName('Per_No').Value;
         Values[FOsnPer.colpRAZD_NO.Index] := FieldByName('Razd_No').Value;
       end;
@@ -1471,6 +1472,7 @@ begin
         FieldByName('ORGID').Value := FId;
         FieldByName('PER_NO').Value := NULLIF(FOsnPer.dxtPer.Items[n].Strings[FOsnPer.colpPER_NO.Index],EmptyStr);
         FieldByName('RAZD_NO').Value := NULLIF(FOsnPer.dxtPer.Items[n].Strings[FOsnPer.colpRAZD_NO.Index],EmptyStr);
+        FieldByName('Okved_Name').Value := NULLIF(FOsnPer.dxtPer.Items[n].Strings[FOsnPer.colpOkvedName.Index],EmptyStr);
         Post;
       end;
       Close;

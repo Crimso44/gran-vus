@@ -31,7 +31,7 @@ object dmMain: TdmMain
     Left = 80
     Top = 24
     Bitmap = {
-      494C0101070009001C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107000900200010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000080800000000000000000000000000000000000000000000000
@@ -393,5 +393,25 @@ object dmMain: TdmMain
       end>
     Left = 320
     Top = 216
+  end
+  object qrPer: TADOQuery
+    Connection = dbMain
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'OrgId'
+        Attributes = [paSigned]
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end>
+    SQL.Strings = (
+      'select Per_No, Okved_Name'
+      'from Per'
+      'where OrgId = :OrgId'
+      'order by Per_No')
+    Left = 440
+    Top = 160
   end
 end

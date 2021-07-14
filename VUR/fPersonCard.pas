@@ -8,7 +8,8 @@ uses
   dxDBELib, dxDBEdtr, dxCntner, dxEditor, AEdit, dxTL, dxTLClms, ADOdb, Db,
   FrmKeep, fNav, Variants, fPersLst, dxDBTLCl, dxGrClms, dxDBCtrl, dxDBGrid,
   frmWUch1, frmWUch2,
-  Mask, ActnList, ADOInt;
+  Mask, ActnList, ADOInt, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters,
+  cxButtons;
 
 type
   TfmPersonForm = class(TForm)
@@ -466,9 +467,6 @@ type
     dxtPersDeps: TdxTreeList;
     colDepName: TdxTreeListPickColumn;
     qrPersDeps: TADOQuery;
-    pmPersDeps: TPopupMenu;
-    MenuItem11: TMenuItem;
-    MenuItem12: TMenuItem;
     dtWBDate: TdxDateEdit;
     Label167: TLabel;
     dtADDR_DATE_END1: TdxDateEdit;
@@ -476,6 +474,8 @@ type
     Label169: TLabel;
     dtMobContract: TdxDateEdit;
     bDriver: TCheckBox;
+    SpeedButton2: TSpeedButton;
+    bNonStudent: TcxButton;
     procedure PCChanging(Sender: TObject; var AllowChange: Boolean);
     procedure PCDrawTab(Control: TCustomTabControl; TabIndex: Integer;
       const Rect: TRect; Active: Boolean);
@@ -541,6 +541,7 @@ type
     procedure MenuItem11Click(Sender: TObject);
     procedure MenuItem12Click(Sender: TObject);
     procedure bDriverClick(Sender: TObject);
+    procedure bNonStudentClick(Sender: TObject);
   private
     { Private declarations }
     PrevTab: Integer;
@@ -685,6 +686,7 @@ begin
       end;
     LoadStrings(edDegree.Items,true,'SELECT * FROM KSCIENCE WHERE SC_FLAG = 1 ORDER BY SC_NAME','SC_ID','SC_NAME');
     LoadStrings(edKval4.Items,true,'SELECT KVAL_ID, KVAL_NAME FROM KKVAL ORDER BY KVAL_NAME','KVAL_ID','KVAL_NAME');
+    bNonStudent.Visible := true;
   end
   else if rbAspirant.Checked then begin
     for i := 0 to dxtStudyHistory.Count - 1 do
@@ -701,9 +703,10 @@ begin
       end;
     LoadStrings(edDegree.Items,true,'SELECT * FROM KSCIENCE WHERE SC_FLAG = 2 ORDER BY SC_NAME','SC_ID','SC_NAME');
     LoadStrings(edKval4.Items,true,'SELECT KVAL_ID, KVAL_NAME FROM KKVAL ORDER BY KVAL_NAME','KVAL_ID','KVAL_NAME');
+    bNonStudent.Visible := true;
   end;
   edDegree.ItemIndex := edDegree.Items.IndexOfObject(TObject(0));
-  edKval4.ItemIndex := edKval4.Items.IndexOfObject(TObject(0));;
+  edKval4.ItemIndex := edKval4.Items.IndexOfObject(TObject(0));
 
   Application.ProcessMessages;
   edFamChange(nil);
@@ -1778,10 +1781,12 @@ begin
     // Сведения об учащемся
     rbAspirant.Checked := False;
     rbStudent.Checked := False;
+    bNonStudent.Visible := false;
     if not qrData.FieldByName('IsAspirant').IsNull then
     begin
       rbAspirant.Checked := qrData.FieldByName('IsAspirant').AsInteger = 1;
       rbStudent.Checked := not rbAspirant.Checked;
+      bNonStudent.Visible := true;
     end;
     //dtBeginStudy
 //    LoadText(edOrder,'StudyOrder');
@@ -2649,7 +2654,8 @@ begin  //StoreData
 
     //Сведения об учащемся
     if rbAspirant.Checked then qrData.FieldByName('IsAspirant').Value := 1
-    else if rbStudent.Checked then qrData.FieldByName('IsAspirant').Value := 0;
+    else if rbStudent.Checked then qrData.FieldByName('IsAspirant').Value := 0
+    else qrData.FieldByName('IsAspirant').Clear;
     //dtBeginStudy
 //    AssignStr(edOrder,'StudyOrder');
 //    AssignDate(dtOrder,'StudyOrder_date');
@@ -2870,6 +2876,14 @@ begin
   Accept := True;
   dxtStudyHistory.Items[dxtStudyHistory.FocusedNumber].Data := colStudyForm.Items.Objects[
     colStudyForm.Items.IndexOf(VarToStr(Value))];
+end;
+
+procedure TfmPersonForm.bNonStudentClick(Sender: TObject);
+begin
+  rbStudent.Checked := false;
+  rbAspirant.Checked := false;
+  bNonStudent.Visible := false;
+  edFamChange(nil);
 end;
 
 procedure TfmPersonForm.FormCloseQuery(Sender: TObject;

@@ -162,12 +162,18 @@ object fmPersonForm: TfmPersonForm
     Anchors = [akLeft, akBottom]
     Caption = '12.12.1999'
   end
+  object SpeedButton2: TSpeedButton
+    Left = 392
+    Top = 248
+    Width = 23
+    Height = 22
+  end
   object PC: TPageControl
     Left = 0
     Top = 55
     Width = 797
     Height = 406
-    ActivePage = tabSheetX0
+    ActivePage = TabSheet2
     HotTrack = True
     MultiLine = True
     RaggedRight = True
@@ -1997,7 +2003,6 @@ object fmPersonForm: TfmPersonForm
         DefaultLayout = True
         HeaderPanelRowCount = 1
         DoNotAddFormNameToRegistryPath = False
-        PopupMenu = pmPersDeps
         TabOrder = 0
         LookAndFeel = lfFlat
         Options = [aoColumnSizing, aoEditing, aoTabThrough, aoImmediateEditor, aoDrawEndEllipsis, aoCaseInsensitive]
@@ -3416,6 +3421,15 @@ object fmPersonForm: TfmPersonForm
         Date = -700000.000000000000000000
         SaveTime = False
       end
+      object bNonStudent: TcxButton
+        Left = 140
+        Top = 2
+        Width = 157
+        Height = 19
+        Caption = #1089#1085#1103#1090#1100' '#1086#1090#1084#1077#1090#1082#1091' '#1086#1073' '#1086#1073#1091#1095#1077#1085#1080#1080
+        TabOrder = 12
+        OnClick = bNonStudentClick
+      end
     end
     object tabSheetX2: TTabSheet
       Caption = #1040#1057#1060' ('#1053#1040#1057#1060')'
@@ -4292,8 +4306,8 @@ object fmPersonForm: TfmPersonForm
     Top = 287
   end
   object pmStudyHistory: TPopupMenu
-    Left = 170
-    Top = 47
+    Left = 514
+    Top = 327
     object MenuItem3: TMenuItem
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
       ShortCut = 45
@@ -4306,8 +4320,8 @@ object fmPersonForm: TfmPersonForm
     end
   end
   object pmN26History: TPopupMenu
-    Left = 226
-    Top = 43
+    Left = 570
+    Top = 323
     object MenuItem5: TMenuItem
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
       ShortCut = 45
@@ -4421,8 +4435,8 @@ object fmPersonForm: TfmPersonForm
     Top = 19
   end
   object pmAssign: TPopupMenu
-    Left = 192
-    Top = 47
+    Left = 536
+    Top = 327
     object MenuItem7: TMenuItem
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
       ShortCut = 45
@@ -4441,7 +4455,7 @@ object fmPersonForm: TfmPersonForm
     Top = 12
   end
   object psASAssing: TPopupMenu
-    Left = 80
+    Left = 360
     Top = 79
     object MenuItem9: TMenuItem
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
@@ -4488,19 +4502,5 @@ object fmPersonForm: TfmPersonForm
       'SELECT * FROM Pers_Deps WHERE PERS_ID=:PERS_ID')
     Left = 633
     Top = 121
-  end
-  object pmPersDeps: TPopupMenu
-    Left = 432
-    Top = 67
-    object MenuItem11: TMenuItem
-      Caption = #1044#1086#1073#1072#1074#1080#1090#1100
-      ShortCut = 45
-      OnClick = MenuItem11Click
-    end
-    object MenuItem12: TMenuItem
-      Caption = #1059#1076#1072#1083#1080#1090#1100
-      ShortCut = 16430
-      OnClick = MenuItem12Click
-    end
   end
 end
