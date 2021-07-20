@@ -196,7 +196,7 @@ procedure TfmOrgList.actAddExecute(Sender: TObject);
       Open;
       d := Fields[0].Value;
       Close;
-      SQL.Text := 'exec master..xp_crypt_list 1546';
+      SQL.Text := 'exec master..xp_crypt_list 1547';
       try
         Open;
         while not EOF do begin

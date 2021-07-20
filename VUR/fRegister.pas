@@ -88,13 +88,13 @@ function IsDemoVersion(FShowCard: boolean = false; FForceShowCard: boolean = fal
 begin
   Result := False;
   //!!! для отключения проверки лицензий комментить тут
-  (*with TfmRegister.Create(nil) do
+  with TfmRegister.Create(nil) do
   try
     if (lbDemoVersion.Visible and FShowCard) or (FForceShowCard) then ShowModal;
     Result := lbDemoVersion.Visible;
   finally
     Free;
-  end;*)
+  end;
 end;
 
 procedure TfmRegister.lbCompanyUrlMouseEnter(Sender: TObject);

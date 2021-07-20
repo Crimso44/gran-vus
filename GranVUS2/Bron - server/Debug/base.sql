@@ -2926,7 +2926,8 @@ declare
                 START_DATE,
                 END_DATE,
                 PER_NO,
-                RAZD_NO
+                RAZD_NO,
+                Okved_Name
         )
         SELECT
                 OO.ORGID,
@@ -2935,7 +2936,8 @@ declare
                 P.START_DATE,
                 P.END_DATE,
                 P.PER_NO,
-                P.RAZD_NO
+                P.RAZD_NO,
+                Okved_Name
         FROM [dbo].[#PER] P JOIN [dbo].[#ORG] O ON P.ORGID = O.ORGID JOIN ORG OO ON OO.TERR_ID = O.TERR_ID AND OO.EXT_ID = O.ORGID
         if @@ERROR != 0
         begin
@@ -5655,7 +5657,7 @@ declare
                 WHERE F6_ID in (select F6_ID from FORM6HDR where ORGID = @EXT_ID)
                 if @@ERROR != 0
                 begin
-                        raiserror 51400 'Невозможно произвести импорт организации.'
+                        raiserror ('Невозможно произвести импорт организации.', 16, 1)
                         ROLLBACK TRANSACTION
                         return
                 end
@@ -5663,7 +5665,7 @@ declare
                 WHERE ORGID = @EXT_ID
                 if @@ERROR != 0
                 begin
-                        raiserror 51401 'Невозможно произвести импорт организации.'
+                        raiserror ('Невозможно произвести импорт организации.', 16, 1)
                         ROLLBACK TRANSACTION
                         return
                 end
@@ -5671,7 +5673,7 @@ declare
                 WHERE ORGID = @EXT_ID
                 if @@ERROR != 0
                 begin
-                        raiserror 51402 'Невозможно произвести импорт организации.'
+                        raiserror ('Невозможно произвести импорт организации.', 16, 1)
                         ROLLBACK TRANSACTION
                         return
                 end
@@ -5679,7 +5681,7 @@ declare
                 WHERE ORGID = @EXT_ID
                 if @@ERROR != 0
                 begin
-                        raiserror 51403 'Невозможно произвести импорт организации.'
+                        raiserror ('Невозможно произвести импорт организации.', 16, 1)
                         ROLLBACK TRANSACTION
                         return
                 end
@@ -5735,7 +5737,7 @@ declare
                 WHERE ORG.ORGID = @EXT_ID
                 if @@ERROR != 0
                 begin
-                        raiserror 51404 'Невозможно произвести импорт организации.'
+                        raiserror ('Невозможно произвести импорт организации.', 16, 1)
                         ROLLBACK TRANSACTION
                         return
                 end
@@ -5856,7 +5858,7 @@ declare
                 FROM [dbo].[#ORG]
                 if @@ERROR != 0
                 begin
-                        raiserror 51405 'Невозможно произвести импорт организации.'
+                        raiserror ('Невозможно произвести импорт организации.', 16, 1)
                         ROLLBACK TRANSACTION
                         return
                 end
@@ -5881,7 +5883,7 @@ declare
         WHERE ORGID = @ORG_ID
         if @@ERROR != 0
         begin
-                raiserror 51406 'Невозможно произвести импорт организации.'
+                raiserror ('Невозможно произвести импорт организации.', 16, 1)
                 ROLLBACK TRANSACTION
                 return
         end
@@ -5914,7 +5916,7 @@ declare
         WHERE ORGID = @ORG_ID
         if @@ERROR != 0
         begin
-                raiserror 51407 'Невозможно произвести импорт организации.'
+                raiserror ('Невозможно произвести импорт организации.', 16, 1)
                 ROLLBACK TRANSACTION
                 return
         end
@@ -5949,7 +5951,7 @@ declare
         WHERE ORGID = @ORG_ID
         if @@ERROR != 0
         begin
-                raiserror 51408 'Невозможно произвести импорт организации.'
+                raiserror ('Невозможно произвести импорт организации.', 16, 1)
                 ROLLBACK TRANSACTION
                 return
         end
@@ -6009,7 +6011,7 @@ declare
         WHERE F6_ID = (SELECT TOP 1 F6_ID FROM [dbo].[#FORM6HDR])
         if @@ERROR != 0
         begin
-                raiserror 51409 'Невозможно произвести импорт организации.'
+                raiserror ('Невозможно произвести импорт организации.', 16, 1)
                 ROLLBACK TRANSACTION
                 return
         end
@@ -6026,7 +6028,7 @@ declare
              and  (doc_id is null or doc_id in (select [id] from VV4))
         if @@ERROR != 0
         begin
-                raiserror 51410 'Невозможно произвести импорт организации.'
+                raiserror ('Невозможно произвести импорт организации.', 16, 1)
                 ROLLBACK TRANSACTION
                 return
         end
@@ -7368,7 +7370,7 @@ left join (
 ) y on y.Num = F.Num
         if @@ERROR != 0
         begin
-                raiserror 50300 'Невозможно создать форму по анализу обеспеченности.'
+                raiserror ('Невозможно создать форму по анализу обеспеченности.', 16, 1)
                 ROLLBACK TRANSACTION
                 return
         end

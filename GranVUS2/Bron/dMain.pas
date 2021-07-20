@@ -480,7 +480,7 @@ begin
     Open;
     d := Fields[0].Value;
     Close;
-    SQL.Text := 'exec master..xp_crypt_list 1546';
+    SQL.Text := 'exec master..xp_crypt_list 1547';
     try
       Open;
       while not EOF do begin
@@ -530,13 +530,13 @@ function TdmMain.IsDemoMode: Boolean;
 begin
   Result := False;
   //!!! Комментить тут для отключения лицензии
-  (*if not IsCryptInstalled then begin
+  if not IsCryptInstalled then begin
     ShowErr('На сервере БД не установлена система лицензирования!'#13+
             'Работа с системой запрещена.');
     dbMain.Connected := false;
     Exit;
   end;
-  Result := GetLicenceCount <= 0;*)
+  Result := GetLicenceCount <= 0;
 end;
 
 function TdmMain.ShowActivationCard: Integer;
