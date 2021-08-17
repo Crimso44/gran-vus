@@ -206,6 +206,9 @@
 				<Form>fmOrgPropContacts</Form>
 			</DCCReference>
 			<DCCReference Include="Common\Num2Str.pas"/>
+			<DCCReference Include="fCorrectOkved.pas">
+				<Form>fmCorrectOkved</Form>
+			</DCCReference>
 			<None Include="SQL\PersonMob.SQL">
 				<ContainerId>File</ContainerId>
 			</None>

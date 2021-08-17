@@ -34,15 +34,18 @@ type
     Label11: TLabel;
     edWUch2_Motiv: TEdit;
     Label12: TLabel;
+    edWUOKVEDCombo: TComboBox;
     procedure edWUch2Change(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure edWUOKVEDComboChange(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     q: TADOQuery;
-    OldPDPCode, NewPDPCode, ClearedNewPDPCode: String;
+    OldPDPCode, NewPDPCode, ClearedNewPDPCode, OKVED: String;
+    OKVEDChoice: TStringList;
     OnChange: procedure (Sender: TObject) of object;
     function DecodePDPCode(PDPCode: String): String;
     procedure DoCalcPDP(var msg: TMessage); message WM_CalcPDP;
@@ -118,6 +121,15 @@ begin
   OnChange(nil);
 end;
 
+procedure TfWUch2.edWUOKVEDComboChange(Sender: TObject);
+begin
+  if edWUOKVEDCombo.ItemIndex < 1 then
+    OKVED := ''
+  else
+    OKVED := OKVEDChoice[edWUOKVEDCombo.ItemIndex - 1];
+  OnChange(nil);
+end;
+
 procedure TfWUch2.FormCreate(Sender: TObject);
 begin
   q := TADOQuery.Create(Self);
@@ -150,6 +162,22 @@ begin
     q.Open;
     edWUOKPDTRName.Text := q.Fields[0].AsString;
     q.Close;
+  end;
+
+  edWUOKVED.Visible := true;
+  edWUOKVEDCombo.Visible := false;
+  if OKVEDChoice.Count > 0 then begin
+    edWUOKVEDCombo.Items.Clear;
+    edWUOKVEDCombo.Items.Add('<выбрать>');
+    for i := 0 to OKVEDChoice.Count - 1 do
+      edWUOKVEDCombo.Items.Add(OKVEDChoice[i]);
+    edWUOKVEDCombo.ItemIndex := 0;
+    i := OKVEDChoice.IndexOf(OKVED);
+    if i >= 0 then
+      edWUOKVEDCombo.ItemIndex := i + 1;
+
+    edWUOKVED.Visible := false;
+    edWUOKVEDCombo.Visible := true;
   end;
 
   PostMessage(Handle, WM_CalcPDP, 0, 0);

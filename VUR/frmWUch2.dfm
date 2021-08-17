@@ -125,7 +125,6 @@ object fWUch2: TfWUch2
     Height = 41
     Align = alBottom
     TabOrder = 3
-    ExplicitTop = 304
     object btnOk: TButton
       Left = 322
       Top = 8
@@ -223,5 +222,15 @@ object fWUch2: TfWUch2
     MaxLength = 255
     TabOrder = 9
     OnChange = edWUch2Change
+  end
+  object edWUOKVEDCombo: TComboBox
+    Left = 95
+    Top = 267
+    Width = 101
+    Height = 21
+    Style = csDropDownList
+    TabOrder = 10
+    Visible = False
+    OnChange = edWUOKVEDComboChange
   end
 end

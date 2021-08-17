@@ -72,6 +72,7 @@ begin
       AddField('Person', 'MobContract', 'datetime null');
       AddField('Person', 'Driver', 'int NULL');
       AddField('Person', 'WUCHET2_Motiv', 'varchar(255) null');
+      AddField('Person', 'OKVED', 'varchar(8) null');
 
 
       DoSQL('Create table KOKVED (' +
@@ -79,7 +80,7 @@ begin
             'Name Varchar(255) NULL' +
             ')', True);
       DoSQL('INSERT INTO KL_DATA (KL_ID, KL_NAME, DISP_NAME, IS_EDIT, CHK_DEL) ' +
-            'VALUES (48, "KOKVED", "ÂÝÄ-û èç ÏÄÏ", 1, ' +
+            'VALUES (48, "KOKVED", "Âûïèñêà èç ÎÊÂÝÄ", 1, ' +
             'null)', True);
       DoSQL('INSERT INTO KL_FLD (FLD_ID, KL_ID, FLD_NAME, DISP_NAME, DISP_SIZE, IS_KEY, IS_EDIT, VISIBLE, '+
             'DEF_VALUE, HAS_NULL) VALUES (181, 48, "Code", "Êîä ÎÊÂÝÄ", 99, 1, 1, 1, ' +
@@ -114,7 +115,8 @@ begin
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
       '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
-      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
+      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) And '#13+
+      '      (IsNull(P.OKVED) or P.OKVED=PDP.OKVED) '#13+
       '    ),1,0) AS DefPOST, '#13+
 
 
@@ -124,7 +126,8 @@ begin
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
       '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
-      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
+      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) And '#13+
+      '      (IsNull(P.OKVED) or P.OKVED=PDP.OKVED) '#13+
       '    ) '#13+
       'and ((not Exists (SELECT * FROM PDP   WHERE (PDP.POST_ID = AppointmentLast.POST_ID)) or '#13+
       'Exists (SELECT * FROM PDP   WHERE '#13+
@@ -132,7 +135,8 @@ begin
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
       '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
-      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
+      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) And '#13+
+      '      (IsNull(P.OKVED) or P.OKVED=PDP.OKVED) '#13+
       '))),0,1) AS DefPOST_Post, '#13+
 
       'IIf(not Exists (SELECT * FROM PDP   WHERE '#13+
@@ -141,7 +145,8 @@ begin
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
       '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
-      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
+      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) And '#13+
+      '      (IsNull(P.OKVED) or P.OKVED=PDP.OKVED) '#13+
       '    ) '#13+
       'and ((not Exists (SELECT * FROM PDP   WHERE  (PDP.WRange=0 OR PDP.CHE >= R.CHE)) or '#13+
       'Exists (SELECT * FROM PDP   WHERE '#13+
@@ -149,7 +154,8 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
-      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
+      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) And '#13+
+      '      (IsNull(P.OKVED) or P.OKVED=PDP.OKVED) '#13+
       '))),0,1) AS DefPOST_WRange, '#13+
 
       'IIf(not Exists (SELECT * FROM PDP   WHERE '#13+
@@ -166,7 +172,8 @@ begin
       '      (PDP.Limited = 0 OR P.WCAT="Â") AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
       '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
-      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
+      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) And '#13+
+      '      (IsNull(P.OKVED) or P.OKVED=PDP.OKVED) '#13+
       '))),0,1) AS DefPOST_WSost, '#13+
 
       'IIf(not Exists (SELECT * FROM PDP   WHERE '#13+
@@ -175,7 +182,8 @@ begin
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
       '      PDP.Age <= '+FullAges('P.BirthDay')+' And '#13+
-      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
+      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) And '#13+
+      '      (IsNull(P.OKVED) or P.OKVED=PDP.OKVED) '#13+
       '    ) '#13+
       'and ('#13+
       'Exists (SELECT * FROM PDP   WHERE '#13+
@@ -184,7 +192,8 @@ begin
       '      InStr(PDP.WSOST, "."&P.WSOST_ID&".")>0 AND '#13+
       '      (PDP.WRange=0 OR PDP.CHE >= R.CHE) AND '#13+
       '      PDP.Age > '+FullAges('P.BirthDay')+' And '#13+
-      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) '#13+
+      '      ((PDP.Sex=1 and P.Male=1) or (PDP.Sex=2 and P.Male<>1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) And '#13+
+      '      (IsNull(P.OKVED) or P.OKVED=PDP.OKVED) '#13+
       ')),0,1) AS DefPOST_Age, '#13+
       'Iif((not IsNull(PostStudy.Post_Id)) and P.AppLastAll = P.AppLastStudy, 1, 0) as IsStudent, '#13+
       'Iif(P.WRNG_ID <> 1 and P.WRNG_ID <> 37, 1, 0) as StudWRangeOk '#13+

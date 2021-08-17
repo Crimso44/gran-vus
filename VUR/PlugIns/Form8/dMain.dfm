@@ -64,6 +64,7 @@ object dmMain: TdmMain
       
         '  (p.MALE=0 and (KWR.FEM_LIMIT is not NULL) and  (#FullAges#p.BI' +
         'RTHDAY#)>KWR.FEM_LIMIT)))'
+      'and (IsNull(p.OKVED) or p.OKVED = pdp.OKVED)'
       'and (p.Wuchet2_IsWork is null or p.Wuchet2_IsWork = 0)'
       ' AND '
       '((P.AppLast IS NOT NULL AND P.OUT_ORD_DATE IS NULL)'

@@ -371,6 +371,10 @@ object fmMain: TfmMain
         item
           Visible = True
           ItemName = 'dxBarButton21'
+        end
+        item
+          Visible = True
+          ItemName = 'bCorrectOkved'
         end>
     end
     object dxsiPlugIns: TdxBarSubItem
@@ -592,6 +596,13 @@ object fmMain: TfmMain
     object bForm6_2014: TdxBarButton
       Action = actForm6_2015
       Category = 2
+    end
+    object bCorrectOkved: TdxBarButton
+      Caption = #1053#1077#1086#1073#1093#1086#1076#1080#1084#1086' '#1091#1090#1086#1095#1085#1077#1085#1080#1077' '#1042#1069#1044' '#1088#1072#1073#1086#1090#1085#1080#1082#1086#1074' '#1076#1083#1103' '#1080#1093' '#1073#1088#1086#1085#1080#1088#1086#1074#1072#1085#1080#1103
+      Category = 2
+      Hint = #1053#1077#1086#1073#1093#1086#1076#1080#1084#1086' '#1091#1090#1086#1095#1085#1077#1085#1080#1077' '#1042#1069#1044' '#1088#1072#1073#1086#1090#1085#1080#1082#1086#1074' '#1076#1083#1103' '#1080#1093' '#1073#1088#1086#1085#1080#1088#1086#1074#1072#1085#1080#1103
+      Visible = ivAlways
+      OnClick = bCorrectOkvedClick
     end
     object dxbReScan: TdxBarButton
       Action = actReScanPlugIns

@@ -1286,8 +1286,8 @@ object fmPersonList: TfmPersonList
         '[Person].[Mob_Hours],[Person].[Mob_Mins],[Person].[Mob_CardDate]' +
         ',[Person].[Mob_MissReason],[Person].[WUCHET2_Ser],'
       
-        '[Person].[WUCHET2_IsWork],[Person].[PDPCode],[Person].[WRNG_Date' +
-        '], [Person].[Driver], [Person].[MobContract],'
+        '[Person].[WUCHET2_IsWork],[Person].[WRNG_Date], [Person].[Driver' +
+        '], [Person].[MobContract],'
       'Left([Person].[Comments], 255) as Comments,'
       'iif(Person.Male=1,'#39#1052#39','#39#1046#39') as PersonMale,'
       '  SGN(LEN([Person].WUchet2)),'
@@ -1575,6 +1575,9 @@ object fmPersonList: TfmPersonList
       
         '  ((PDP.Sex=1 and Person.Male=1) or (PDP.Sex=2 and Person.Male<>' +
         '1) or IsNull(PDP.Sex) or (PDP.Sex<>1 and PDP.Sex <>2)) --PDPCode' +
+        ' ???'
+      
+        '  and (IsNull(Person.OKVED) or Person.OKVED=PDP.OKVED) --PDPCode' +
         ' ???')
     TabOrder = 1
     Visible = False

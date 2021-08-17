@@ -44,8 +44,8 @@ object dmMain: TdmMain
     SQL.Strings = (
       
         'SELECT P.*, Year(Birthday) as BirthYear, KWsost.Wsost_Name, KWRa' +
-        'nge.WRng_Name, Post.Post_Name, Post.Degree as AssignText, KOkpDt' +
-        'r.KOkpDtr_Code, TPDP.OKVED,'
+        'nge.WRng_Name, Post.Post_Name, Post.Degree as AssignText,'
+      ' KOkpDtr.KOkpDtr_Code, TPDP.OKVED as PDP_OKVED,'
       
         'Day(Mvk.DocDate) as MvkDay, Month(Mvk.DocDate) as MvkMonth, Year' +
         '(Mvk.DocDate) as MvkYear, '
@@ -69,7 +69,8 @@ object dmMain: TdmMain
       'left join KOVK on KOVK.OVK_ID = P.OVK_Id)'
       
         'WHERE P.PERS_ID=:ID and (IsNull(Addr.Addr_Type) or Addr.Addr_Typ' +
-        'e = 0)')
+        'e = 0)'
+      'and (IsNull(p.OKVED) or p.OKVED = TPdp.OKVED)')
     Left = 80
     Top = 16
   end

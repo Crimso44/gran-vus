@@ -11,6 +11,8 @@ uses
   Mask, ActnList, ADOInt, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters,
   cxButtons;
 
+const WM_OPEN_WUCH2 = WM_User + 2;
+
 type
   TfmPersonForm = class(TForm)
     PC: TPageControl;
@@ -559,6 +561,8 @@ type
     cbEduc_Saved: Integer;
 
     Post_Id, Dep_Id: Integer;
+    OKVED: string;
+    OKVEDChoice: TStringList;
 
     procedure WM_NavNotify(var msg: TMEssage); message WM_NAV_NOTIFY;
     procedure WM_OnMove(var msg: TMessage); message WM_MOVE;
@@ -590,6 +594,8 @@ type
     function GetWSOST_IDstr: String;
     function GetWRng_IdStr: String;
     procedure LoadWStateList(force_all: Boolean);
+    procedure SetWarPageActive;
+    procedure OpenWuch2(var msg: TMessage); message WM_OPEN_WUCH2;
   end;
 
   procedure ShowPersonCard(id: Integer; ParentList: TfmPersonList);
@@ -835,6 +841,7 @@ begin
   fWUch2 := TfWUch2.Create(self);
   fWUch2.Visible := False;
   fWUch2.OnChange := edFamChange;
+  OKVEDChoice := TStringList.Create;
   (*cbDocumentZero := 0;*)
 
 // Loading base lists
@@ -1127,6 +1134,11 @@ begin
   end;
 end;
 
+procedure TfmPersonForm.OpenWuch2(var msg: TMessage);
+begin
+  bWUch2Click(Self);
+end;
+
 procedure TfmPersonForm.MenuItem10Click(Sender: TObject);
 begin
   if dxtASAssign.FocusedNode<>nil then begin
@@ -1305,7 +1317,7 @@ end;
 function TfmPersonForm.GetPdpCode: String;
 var
   q: TADOQuery;
-  Male: Integer;
+  Male, i: Integer;
   XPDPCode1, XPDPCode2, XPDPCode3, XPDPCode4: String;
 begin
   Result := ''; XPDPCode1 := ''; XPDPCode2 := ''; XPDPCode3 := ''; XPDPCode4 := '';
@@ -1329,9 +1341,29 @@ begin
                 ' And a.PERS_ID = '+IntToStr(ID)+' '#13+
                 ' Order by 1';
     Open;
+    OKVEDChoice.Clear;
     if not Eof then begin
       XPDPCode1 := FieldByName('XPDPCode1').AsString;
       XPDPCode3 := FieldByName('XPDPCode3').AsString;
+      Next;
+      if not Eof then begin
+        OKVEDChoice.Add(XPDPCode1);
+        XPDPCode1 := '???';
+        while not Eof do begin
+          OKVEDChoice.Add(FieldByName('XPDPCode1').AsString);
+          Next;
+        end;
+        if OKVED <> '' then begin
+          i := OKVEDChoice.IndexOf(OKVED);
+          if i >= 0 then begin
+            XPDPCode1 := OKVEDChoice[i];
+          end else begin
+            OKVED := '';
+            edFamChange(self);
+            ShowMessage('Для корректного бронирования работника необходимо в карточке параметров «б). специальный» выбрать код ОКВЭД из выписки из ПДП');
+          end;
+        end;
+      end;
     end;
     Close;
     SQL.Text := 'SELECT '#13+
@@ -1523,6 +1555,7 @@ begin
 
     IsStudent := GetIsStudent;
 
+    OKVED := Trim(qrData.FieldByName('OKVED').AsString);
     LoadText(edFam  ,'FAM');
     LoadText(edIm   ,'IM');
     LoadText(edOtch ,'OTCH');
@@ -1955,7 +1988,7 @@ begin
     for i:=0 to dxtLang.Count-1 do
       if (dxtLang.Items[i].Strings[0]=EmptyStr) or (dxtLang.Items[i].Strings[1]=EmptyStr) then
       begin
-        ShowErrAt(dxtLang,'Некорректно заполнены сведения о знаниях инстранных языков!');
+        ShowErrAt(dxtLang,'Некорректно заполнены сведения о знаниях иностранных языков!');
         dxtLang.Items[i].Selected := true;
         Abort;
       end;
@@ -2109,6 +2142,11 @@ begin
         Abort;
     end;
 
+    if (OKVEDChoice.Count > 0) and (OKVED = '') then begin
+        ShowErrAt(edWUch2_IsWork, 'Для корректного бронирования работника необходимо в карточке параметров «б). специальный» выбрать код ОКВЭД из выписки из ПДП');
+        Abort;
+    end;
+
   except Exit;
   end;
   Result := true;
@@ -2223,6 +2261,13 @@ begin
     Study.Free; NoStudy.Free;
   finally Free;
   end;
+end;
+
+procedure TfmPersonForm.SetWarPageActive;
+begin
+  PC.ActivePage := TabSheetX0;
+  edWUch2Info.SetFocus;
+  PostMessage(Handle, WM_OPEN_WUCH2, 0, 0);
 end;
 
 function TfmPersonForm.StoreData: boolean;
@@ -2413,6 +2458,10 @@ begin  //StoreData
     IsStudent := GetIsStudent;
 
     qrData.FieldByName('ORG_ID').Value := dmMain.GetOrgID;
+    if OKVED = '' then
+      qrData.FieldByName('OKVED').Clear
+    else
+      qrData.FieldByName('OKVED').Value := OKVED;
     AssignStr(qrData.FieldByName('FAM'),edFam);
     AssignStr(qrData.FieldByName('IM'),edIM);
     AssignStr(qrData.FieldByName('OTCH'),edOtch);
@@ -2983,9 +3032,12 @@ begin
   fWUch2.OldPDPCode := PDPCode;
   fWUch2.NewPDPCode := GetPDPCode;
   fWUch2.ClearedNewPDPCode := ClearPDPCode(GetPDPCode);
+  fWUch2.OKVED := OKVED;
+  fWUch2.OKVEDChoice := OKVEDChoice;
   fWUch2.ShowModal;
   CalcWUch2Info;
   PDPCode := fWUch2.NewPDPCode;
+  OKVED := fWUch2.OKVED;
 end;
 
 procedure TfmPersonForm.CalcWuch1Info;

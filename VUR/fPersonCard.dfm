@@ -173,7 +173,7 @@ object fmPersonForm: TfmPersonForm
     Top = 55
     Width = 797
     Height = 406
-    ActivePage = TabSheet2
+    ActivePage = tabSheetX0
     HotTrack = True
     MultiLine = True
     RaggedRight = True
@@ -1471,7 +1471,7 @@ object fmPersonForm: TfmPersonForm
         OnClick = bWUch2Click
       end
       object Label88: TLabel
-        Left = 502
+        Left = 505
         Top = 228
         Width = 67
         Height = 39
@@ -1687,7 +1687,7 @@ object fmPersonForm: TfmPersonForm
         OnChange = edFamChange
       end
       object edWCat: TEdit
-        Left = 528
+        Left = 529
         Top = 136
         Width = 41
         Height = 21
@@ -1701,14 +1701,14 @@ object fmPersonForm: TfmPersonForm
         Top = 288
         Width = 533
         Height = 21
-        TabOrder = 14
+        TabOrder = 17
         OnChange = edFamChange
       end
       object dtWEnd: TdxDateEdit
         Left = 336
         Top = 248
         Width = 101
-        TabOrder = 13
+        TabOrder = 16
         OnChange = edFamChange
         Date = -700000.000000000000000000
         DateOnError = deToday
@@ -1737,7 +1737,7 @@ object fmPersonForm: TfmPersonForm
         Left = 159
         Top = 311
         Width = 101
-        TabOrder = 15
+        TabOrder = 18
         OnChange = edFamChange
         Date = -700000.000000000000000000
         DateOnError = deToday
@@ -1746,7 +1746,7 @@ object fmPersonForm: TfmPersonForm
         Left = 468
         Top = 311
         Width = 101
-        TabOrder = 16
+        TabOrder = 19
         OnChange = edFamChange
         Date = -700000.000000000000000000
         DateOnError = deToday
@@ -1806,7 +1806,7 @@ object fmPersonForm: TfmPersonForm
         Width = 202
         Height = 146
         Caption = #1054#1090#1089#1088#1086#1095#1082#1072' '#1086#1090' '#1087#1088#1080#1079#1099#1074#1072
-        TabOrder = 18
+        TabOrder = 21
         object Label122: TLabel
           Left = 5
           Top = 46
@@ -1863,7 +1863,7 @@ object fmPersonForm: TfmPersonForm
         Width = 202
         Height = 146
         Caption = #1057#1086#1089#1090#1086#1103#1085#1080#1077' '#1079#1076#1086#1088#1086#1074#1100#1103
-        TabOrder = 19
+        TabOrder = 22
         object Label128: TLabel
           Left = 5
           Top = 46
@@ -1915,7 +1915,7 @@ object fmPersonForm: TfmPersonForm
         Width = 410
         Height = 21
         MaxLength = 255
-        TabOrder = 17
+        TabOrder = 20
         OnChange = edFamChange
       end
       object edWUch1Info: TEdit
@@ -1926,7 +1926,7 @@ object fmPersonForm: TfmPersonForm
         Color = clBtnFace
         Enabled = False
         ReadOnly = True
-        TabOrder = 20
+        TabOrder = 13
       end
       object edWUch2Info: TEdit
         Left = 125
@@ -1936,14 +1936,14 @@ object fmPersonForm: TfmPersonForm
         Color = clBtnFace
         Enabled = False
         ReadOnly = True
-        TabOrder = 21
+        TabOrder = 14
       end
       object edWUch2_IsWork: TCheckBox
         Left = 486
         Top = 228
         Width = 13
         Height = 13
-        TabOrder = 22
+        TabOrder = 15
         WordWrap = True
         OnClick = edWUch2_IsWorkClick
       end
@@ -1961,7 +1961,7 @@ object fmPersonForm: TfmPersonForm
         Left = 468
         Top = 356
         Width = 101
-        TabOrder = 23
+        TabOrder = 24
         OnChange = edFamChange
         Date = -700000.000000000000000000
         DateOnError = deToday
@@ -1972,7 +1972,7 @@ object fmPersonForm: TfmPersonForm
         Width = 249
         Height = 17
         Caption = #1042#1086#1076#1080#1090#1077#1083#1100' '#1084#1086#1073'. '#1090#1088#1072#1085#1089#1087#1086#1088#1090#1072
-        TabOrder = 24
+        TabOrder = 23
         OnClick = bDriverClick
       end
     end

@@ -96,6 +96,7 @@ type
     dxScaleMinus: TdxBarButton;
     dxBarSeparator1: TdxBarSeparator;
     dxBBMvkOrder: TdxBarButton;
+    bCorrectOkved: TdxBarButton;
     procedure aBadDatesCheckExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
@@ -133,6 +134,7 @@ type
     procedure actForm6_2015Execute(Sender: TObject);
     procedure dxScalePlusClick(Sender: TObject);
     procedure dxScaleMinusClick(Sender: TObject);
+    procedure bCorrectOkvedClick(Sender: TObject);
   private
     { Private declarations }
     fStarted: boolean;
@@ -156,7 +158,7 @@ implementation
 
 uses fAbout, msg, IniSupport, fBaseLst, fOrgProp, fCfgPlugIns,
   fPersLst, fKbdMouHk, fConfig, fStaffList, fASStaffList, fAsfMtrList, fRegister, SaveEvents,
-  fEventList, fUsers, fTPDP, dSPOBron, fMsgConfirm
+  fEventList, fUsers, fTPDP, dSPOBron, fMsgConfirm, fCorrectOkved
   {SQLEDIT},InpDlg, AEMSQLEDIT{SQLEDIT}
   ,StrUtils, fSplashProgress, uVERSION, WinHelpViewer, SHFolder, uCrypt, fPersChangesLst;
 
@@ -237,7 +239,7 @@ begin
     SQL.Text := 'SELECT 1 FROM KOKVED WHERE Name = ""';
     Open;
     if not Eof then begin
-      Dialogs.ShowMessage('Необходимо ввести расшифровку кодов ОКВЭД в словаре “ВЭД-ы из ПДП”');
+      Dialogs.ShowMessage('Необходимо ввести расшифровку кодов ОКВЭД в словаре “Выписка из ОКВЭД”');
     end;
     Close;
   finally
@@ -762,6 +764,11 @@ begin
     end;
   end
   else ShowMessage('Библиотека ' + uFile + ' не найдена!');
+end;
+
+procedure TfmMain.bCorrectOkvedClick(Sender: TObject);
+begin
+  ShowCorrectOkved;
 end;
 
 procedure TfmMain.actEventsExecute(Sender: TObject);

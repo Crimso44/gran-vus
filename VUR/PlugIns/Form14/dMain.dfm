@@ -97,6 +97,7 @@ object dmMain: TdmMain
       '  /*PERS_SET*/'
       'AND '
       '(P.AppLast IS NOT NULL AND P.OUT_ORD_DATE IS NULL)'
+      'and (IsNull(p.OKVED) or p.OKVED = pdp.OKVED)'
       'ORDER BY P.FAM, P.IM, P.OTCH')
     Left = 96
     Top = 85

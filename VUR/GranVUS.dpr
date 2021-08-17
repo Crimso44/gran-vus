@@ -60,7 +60,8 @@ uses
   BirthDay in 'Common\BirthDay.pas',
   uMemoTable in 'uMemoTable.pas',
   fOrgPropContacts in 'fOrgPropContacts.pas' {fmOrgPropContacts},
-  Num2Str in 'Common\Num2Str.pas';
+  Num2Str in 'Common\Num2Str.pas',
+  fCorrectOkved in 'fCorrectOkved.pas' {fmCorrectOkved};
 
 {$R *.RES}
 
