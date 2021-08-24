@@ -234,7 +234,7 @@ begin
     '        (MobContract is null or MobContract < Date()) and'#13 +
     '        (DefPOST=1)) or '#13 +
 
-    '  (MvkPost_Id = AppPost_Id and not IsNull(MvkOrdDocDate) or '#13 +
+    '  ((MvkPost_Id = AppPost_Id and not IsNull(MvkOrdDocDate)) or '#13 +
     '  (IsStudent=1 and StudWRangeOk=1 and Document<2 and DefVUS=0 and IsNull(WUchet1) and IsIgnore=0))'#13 +
     '),1,0)) AS IS_BAD'#13 +
     'FROM PersonReservChkInfoBase;', True);
