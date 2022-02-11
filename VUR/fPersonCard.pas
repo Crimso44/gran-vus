@@ -5,11 +5,11 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, Buttons, ComCtrls, Menus, ExtCtrls, dxExEdtr, dxEdLib,
-  dxDBELib, dxDBEdtr, dxCntner, dxEditor, AEdit, dxTL, dxTLClms, ADOdb, Db,
-  FrmKeep, fNav, Variants, fPersLst, dxDBTLCl, dxGrClms, dxDBCtrl, dxDBGrid,
+  dxDBELib, dxDBEdtr, dxCntner, dxEditor, dxTL, dxTLClms, ADOdb, Db,
+  fNav, Variants, fPersLst, dxDBTLCl, dxGrClms, dxDBCtrl, dxDBGrid,
   frmWUch1, frmWUch2,
   Mask, ActnList, ADOInt, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters,
-  cxButtons;
+  cxButtons, System.Actions;
 
 const WM_OPEN_WUCH2 = WM_User + 2;
 
@@ -35,10 +35,10 @@ type
     dtPspDate: TdxDateEdit;
     Label11: TLabel;
     Label12: TLabel;
-    edIndex1: TAEdit;
+    edIndex1: TEdit;
     edAddr1: TEdit;
     Label10: TLabel;
-    edIndex2: TAEdit;
+    edIndex2: TEdit;
     edAddr2: TEdit;
     Label13: TLabel;
     Label14: TLabel;
@@ -134,7 +134,6 @@ type
     qrLangs: TADOQuery;
     qrFam: TADOQuery;
     qrEduc: TADOQuery;
-    FrmKeep1: TFrmKeep;
     edWDiscl: TEdit;
     Label61: TLabel;
     dtWEnd: TdxDateEdit;

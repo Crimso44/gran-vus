@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, ComCtrls, FrmKeep, CheckLst;
+  StdCtrls, ExtCtrls, Buttons, ComCtrls, CheckLst;
 
 type
   TfmConfig = class(TForm)
@@ -20,7 +20,6 @@ type
     Bevel1: TBevel;
     Button1: TButton;
     Button2: TButton;
-    FrmKeep1: TFrmKeep;
     chkTimeOut: TCheckBox;
     lbTimeOut: TLabel;
     edTimeOut: TEdit;

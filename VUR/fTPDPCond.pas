@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, Buttons, dxCntner, dxEditor, dxExEdtr, dxEdLib, Mask,
-  CheckLst, ExtCtrls, FrmKeep, ADODB, DB;
+  CheckLst, ExtCtrls, ADODB, DB;
 
 type
   TfmTPDPCond = class(TForm)
@@ -20,7 +20,6 @@ type
     pbOk: TBitBtn;
     BitBtn2: TBitBtn;
     Bevel1: TBevel;
-    FrmKeep1: TFrmKeep;
     edSex: TdxPickEdit;
     Label1: TLabel;
     procedure FormCreate(Sender: TObject);

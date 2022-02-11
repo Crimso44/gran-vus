@@ -105,6 +105,7 @@ object fmTPDPCond: TfmTPDPCond
     Top = 180
     Width = 249
     TabOrder = 4
+    Text = ''
     DropDownListStyle = True
   end
   object pbOk: TBitBtn
@@ -114,10 +115,8 @@ object fmTPDPCond: TfmTPDPCond
     Height = 25
     Caption = 'OK'
     Default = True
-    DoubleBuffered = True
     ModalResult = 1
     NumGlyphs = 2
-    ParentDoubleBuffered = False
     TabOrder = 5
     OnClick = pbOkClick
   end
@@ -128,10 +127,8 @@ object fmTPDPCond: TfmTPDPCond
     Height = 25
     Cancel = True
     Caption = #1054#1090#1084#1077#1085#1080#1090#1100
-    DoubleBuffered = True
     ModalResult = 2
     NumGlyphs = 2
-    ParentDoubleBuffered = False
     TabOrder = 6
   end
   object edSex: TdxPickEdit
@@ -139,17 +136,11 @@ object fmTPDPCond: TfmTPDPCond
     Top = 135
     Width = 81
     TabOrder = 7
+    Text = ''
     DropDownListStyle = True
     Items.Strings = (
       #1052' '#1080' '#1046
       #1052
       #1046)
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 188
-    Top = 32
   end
 end

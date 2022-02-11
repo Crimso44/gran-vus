@@ -4,13 +4,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, FrmKeep, dxBar, dxBarDBNav, StdCtrls, ExtCtrls, dxExEdtr,
+  Dialogs, dxBar, dxBarDBNav, StdCtrls, ExtCtrls, dxExEdtr,
   ImgList, ToolWin, ComCtrls, ActnList, dxCntner, dxTL, dxDBCtrl, dxDBGrid,
-  DB, ADODB, Menus, dxDBTLCl, dxGrClms;
+  DB, ADODB, Menus, dxDBTLCl, dxGrClms, System.Actions;
 
 type
   TfmEventList = class(TForm)
-    FrmKeep: TFrmKeep;
     paTop: TPanel;
     paBottom: TPanel;
     Splitter1: TSplitter;

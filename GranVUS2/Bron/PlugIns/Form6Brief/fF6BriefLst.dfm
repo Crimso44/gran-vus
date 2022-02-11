@@ -35,7 +35,6 @@ object fmF6BriefList: TfmF6BriefList
       end>
     DefaultLayout = False
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'ID'
     SummaryGroups = <>
     SummarySeparator = ', '

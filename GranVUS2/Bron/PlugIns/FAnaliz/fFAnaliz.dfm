@@ -77,7 +77,6 @@ object fmFSVT: TfmFSVT
       end>
     DefaultLayout = False
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'NUM'
     SummaryGroups = <>
     SummarySeparator = ', '

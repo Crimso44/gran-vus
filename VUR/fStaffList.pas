@@ -5,20 +5,20 @@ interface
 uses
   uMemoTable, Contnrs,
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  FrmKeep, dxCntner, dxTL, dxBar, ComCtrls, Db, ADODB, dxTLClms, ActnList,dxExEdtr,
+  dxCntner, dxTL, dxBar, ComCtrls, Db, ADODB, dxTLClms, ActnList, dxExEdtr,
   StdCtrls, Variants, dxDBCtrl, dxDBGrid, dxmdaset, Menus, cxClasses,
   ExtCtrls, Buttons, CheckLst, dxSkinsCore, dxSkinsDefaultPainters,
   dxSkinsdxBarPainter, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxStyles, cxCustomData, cxFilter, cxData,
   cxDataStorage, cxEdit, cxDBData, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
-  cxGridBandedTableView, cxGridExportLink;
+  cxGridBandedTableView, cxGridExportLink, cxNavigator, dxDateRanges,
+  dxScrollbarAnnotations, System.Actions;
 
 type
   TfmStaffList = class(TForm)
     StatusBar: TStatusBar;
     dxBarManager1: TdxBarManager;
-    FrmKeep1: TFrmKeep;
     qrData: TADOQuery;
     ActionList1: TActionList;
     actStore: TAction;

@@ -22,8 +22,8 @@ object fmStaffList: TfmStaffList
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 185
-    Top = 26
-    Height = 305
+    Top = 28
+    Height = 303
     ExplicitLeft = 200
     ExplicitTop = 216
     ExplicitHeight = 100
@@ -46,9 +46,9 @@ object fmStaffList: TfmStaffList
   end
   object TabControl: TTabControl
     Left = 188
-    Top = 26
+    Top = 28
     Width = 469
-    Height = 305
+    Height = 303
     Align = alClient
     MultiLine = True
     TabOrder = 2
@@ -56,16 +56,20 @@ object fmStaffList: TfmStaffList
       '')
     TabIndex = 0
     OnChange = TabControlChange
+    ExplicitTop = 26
+    ExplicitHeight = 305
     object GridX: TcxGrid
       Left = 4
       Top = 24
       Width = 461
-      Height = 277
+      Height = 275
       Align = alClient
       PopupMenu = mnuGrid
       TabOrder = 0
+      ExplicitHeight = 277
       object GridXDBTableView1: TcxGridDBTableView
-        NavigatorButtons.ConfirmDelete = False
+        Navigator.Buttons.CustomButtons = <>
+        ScrollbarAnnotations.CustomAnnotations = <>
         DataController.Summary.DefaultGroupSummaryItems = <>
         DataController.Summary.FooterSummaryItems = <
           item
@@ -112,7 +116,8 @@ object fmStaffList: TfmStaffList
         end
       end
       object GridXView: TcxGridBandedTableView
-        NavigatorButtons.ConfirmDelete = False
+        Navigator.Buttons.CustomButtons = <>
+        ScrollbarAnnotations.CustomAnnotations = <>
         OnCustomDrawCell = GridXViewCustomDrawCell
         OnEditValueChanged = GridXViewEditValueChanged
         DataController.Summary.DefaultGroupSummaryItems = <>
@@ -189,12 +194,14 @@ object fmStaffList: TfmStaffList
   end
   object Panel1: TPanel
     Left = 0
-    Top = 26
+    Top = 28
     Width = 185
-    Height = 305
+    Height = 303
     Align = alLeft
     TabOrder = 7
     Visible = False
+    ExplicitTop = 26
+    ExplicitHeight = 305
     object Splitter2: TSplitter
       Left = 1
       Top = 201
@@ -232,13 +239,11 @@ object fmStaffList: TfmStaffList
           Hint = #1057#1085#1103#1090#1100' '#1074#1089#1077' '#1087#1086#1084#1077#1090#1082#1080
           Align = alRight
           Caption = '-'
-          DoubleBuffered = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -16
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
-          ParentDoubleBuffered = False
           ParentFont = False
           TabOrder = 0
           OnClick = bPostsNoneClick
@@ -251,13 +256,11 @@ object fmStaffList: TfmStaffList
           Hint = #1054#1090#1084#1077#1090#1080#1090#1100' '#1074#1089#1077
           Align = alRight
           Caption = '+'
-          DoubleBuffered = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -16
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
-          ParentDoubleBuffered = False
           ParentFont = False
           TabOrder = 1
           OnClick = bPostsAllClick
@@ -277,10 +280,11 @@ object fmStaffList: TfmStaffList
       Left = 1
       Top = 204
       Width = 183
-      Height = 100
+      Height = 98
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
+      ExplicitHeight = 100
       object Panel5: TPanel
         Left = 0
         Top = 0
@@ -300,13 +304,11 @@ object fmStaffList: TfmStaffList
           Hint = #1057#1085#1103#1090#1100' '#1074#1089#1077' '#1087#1086#1084#1077#1090#1082#1080
           Align = alRight
           Caption = '-'
-          DoubleBuffered = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -16
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
-          ParentDoubleBuffered = False
           ParentFont = False
           TabOrder = 0
           OnClick = bDepsNoneClick
@@ -319,13 +321,11 @@ object fmStaffList: TfmStaffList
           Hint = #1054#1090#1084#1077#1090#1080#1090#1100' '#1074#1089#1077
           Align = alRight
           Caption = '+'
-          DoubleBuffered = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -16
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
-          ParentDoubleBuffered = False
           ParentFont = False
           TabOrder = 1
           OnClick = bDepsAllClick
@@ -361,10 +361,11 @@ object fmStaffList: TfmStaffList
     UseSystemFont = True
     Left = 96
     Top = 72
+    PixelsPerInch = 96
     DockControlHeights = (
       0
       0
-      26
+      28
       0)
     object dxBarManager1Bar1: TdxBar
       AllowClose = False
@@ -542,13 +543,6 @@ object fmStaffList: TfmStaffList
       ImageIndex = 13
       OnClick = dxBBHideOldClick
     end
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 24
-    Top = 128
   end
   object qrData: TADOQuery
     Connection = dmMain.dbMain

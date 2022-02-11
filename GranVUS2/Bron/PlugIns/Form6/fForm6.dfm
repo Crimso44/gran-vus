@@ -68,7 +68,6 @@ object Form6List: TForm6List
     DefaultLayout = False
     HeaderMinRowCount = 9
     HeaderPanelMaxRowCount = 9
-    DoNotAddFormNameToRegistryPath = False
     SummaryGroups = <>
     SummarySeparator = ', '
     Align = alClient

@@ -442,7 +442,6 @@ object fmFltMgr: TfmFltMgr
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     TabOrder = 0
     Images = ImageList1
     Options = [aoColumnSizing, aoColumnMoving, aoEditing, aoTabThrough, aoAutoWidth]
@@ -677,7 +676,7 @@ object fmFltMgr: TfmFltMgr
     Left = 420
     Top = 68
     Bitmap = {
-      494C010103000500E40010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000500040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -829,12 +828,5 @@ object fmFltMgr: TfmFltMgr
     Options = [ofOverwritePrompt, ofHideReadOnly, ofPathMustExist, ofEnableSizing]
     Left = 272
     Top = 196
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 372
-    Top = 28
   end
 end

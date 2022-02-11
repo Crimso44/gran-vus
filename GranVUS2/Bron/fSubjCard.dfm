@@ -211,7 +211,6 @@ object fmSubjCard: TfmSubjCard
           end>
         DefaultLayout = True
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         TabOrder = 6
         Visible = False
         LookAndFeel = lfFlat
@@ -257,7 +256,6 @@ object fmSubjCard: TfmSubjCard
           end>
         DefaultLayout = True
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         TabOrder = 0
         LookAndFeel = lfFlat
         Options = [aoColumnSizing, aoEditing, aoTabThrough, aoImmediateEditor, aoDrawEndEllipsis, aoCaseInsensitive]
@@ -469,7 +467,6 @@ object fmSubjCard: TfmSubjCard
           end>
         DefaultLayout = True
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         TabOrder = 0
         LookAndFeel = lfFlat
         Options = [aoColumnSizing, aoEditing, aoTabThrough, aoImmediateEditor, aoDrawEndEllipsis, aoCaseInsensitive]
@@ -522,7 +519,6 @@ object fmSubjCard: TfmSubjCard
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     PopupMenu = pmKTerr
     TabOrder = 5
     Visible = False

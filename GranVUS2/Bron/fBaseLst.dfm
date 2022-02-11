@@ -35,7 +35,6 @@ object fmBaseLst: TfmBaseLst
       end>
     DefaultLayout = False
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     SummaryGroups = <>
     SummarySeparator = ', '
     Align = alClient

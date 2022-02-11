@@ -3,7 +3,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  Db, ADODB, ImgList, OleServer, dxTL, Variants, Excel2000, ExcelXP;
+  Db, ADODB, ImgList, OleServer, dxTL, Variants, Excel2000, ExcelXP,
+  System.ImageList;
 
 type
   TPlugInInfo =
@@ -326,8 +327,10 @@ procedure TdmMain.dbMainWillExecute(Connection: TADOConnection;
   var ExecuteOptions: TExecuteOptions; var EventStatus: TEventStatus;
   const Command: _Command; const Recordset: _Recordset);
 begin
-  Screen.Cursor := crSQLWait;
-  Command.CommandTimeout := Connection.CommandTimeout;
+  if Command <> nil then begin
+    Screen.Cursor := crSQLWait;
+    Command.CommandTimeout := Connection.CommandTimeout;
+  end;
 end;
 
 procedure TdmMain.dbMainExecuteComplete(Connection: TADOConnection;

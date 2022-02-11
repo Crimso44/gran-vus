@@ -72,7 +72,6 @@ object fmImportSPOOrg: TfmImportSPOOrg
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     TabOrder = 2
     Options = [aoColumnSizing, aoEditing, aoTabThrough, aoAutoWidth]
     OptionsEx = [aoUseBitmap, aoBandHeaderWidth, aoAutoCalcPreviewLines, aoBandSizing, aoBandMoving, aoDragScroll, aoDragExpand, aoRowSizing]

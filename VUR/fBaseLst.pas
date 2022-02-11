@@ -5,8 +5,9 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, Contnrs, dxCntner, dxTL, dxDBCtrl, dxDBGrid, Db, ADODB, dxBar,
-  dxBarDBNav, FrmKeep, Variants, dxExEdtr, dxDBTLCl, dxGrClms, ActnList,
-  cxClasses, dxSkinsCore, dxSkinsDefaultPainters, dxSkinsdxBarPainter;
+  dxBarDBNav, Variants, dxExEdtr, dxDBTLCl, dxGrClms, ActnList,
+  cxClasses, dxSkinsCore, dxSkinsDefaultPainters, dxSkinsdxBarPainter,
+  System.Actions;
 
 type
   TLuData = class
@@ -35,7 +36,6 @@ type
     qrData: TADOQuery;
     dsData: TDataSource;
     dbgData: TdxDBGrid;
-    FrmKeep1: TFrmKeep;
     TmpFields: TADOQuery;
     ActionList: TActionList;
     actExcel: TAction;
@@ -51,7 +51,6 @@ type
       var Allow: Boolean);
     procedure dsDataDataChange(Sender: TObject; Field: TField);
     procedure actExcelExecute(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure dbgDataNumGetText(Sender: TObject; ANode: TdxTreeListNode;
       var AText: string);
@@ -284,9 +283,10 @@ begin
         col := dbgData.CreateColumn(TdxDBGridMaskColumn);
         maskCol := TdxDBGridMaskColumn(col);
         maskCOl.EditMask := '!00.99.99;1; ';
+
         maskCol.OnSetFieldText := GetText;
         maskCol.OnGetFieldText := GetText;
-        maskCol.OnGetText := GetText;
+
       end else
         col := dbgData.CreateColumn(
           dbgData.GetDefaultFieldColumnClass(
@@ -737,11 +737,6 @@ end;
 procedure TfmBaseLst.actExcelExecute(Sender: TObject);
 begin
   dmMain.GridToExcel(dbgData,Caption,true,true);
-end;
-
-procedure TfmBaseLst.FormShow(Sender: TObject);
-begin
-  FrmKeep1.LoadFrmData;
 end;
 
 procedure TfmBaseLst.OnPopup(Sender: TObject);

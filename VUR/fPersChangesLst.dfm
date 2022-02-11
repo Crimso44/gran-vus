@@ -25,9 +25,9 @@ object fmPersonChangesList: TfmPersonChangesList
   TextHeight = 13
   object dbgData: TdxDBGrid
     Left = 0
-    Top = 26
+    Top = 28
     Width = 716
-    Height = 450
+    Height = 448
     Bands = <
       item
         Fixed = bfLeft
@@ -48,7 +48,6 @@ object fmPersonChangesList: TfmPersonChangesList
     DefaultLayout = False
     HeaderMinRowCount = 3
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'CHANGE_ID'
     SummaryGroups = <>
     SummarySeparator = ', '
@@ -86,6 +85,8 @@ object fmPersonChangesList: TfmPersonChangesList
     PreviewFont.Style = []
     ShowBands = True
     OnColumnSorting = dbgDataColumnSorting
+    ExplicitTop = 26
+    ExplicitHeight = 450
     object dbgDataNum: TdxDBGridColumn
       Alignment = taLeftJustify
       Caption = '          '#8470' '#1087'/'#1087
@@ -352,13 +353,6 @@ object fmPersonChangesList: TfmPersonChangesList
       OnUpdate = actSaveUpdate
     end
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 32
-    Top = 272
-  end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -379,10 +373,11 @@ object fmPersonChangesList: TfmPersonChangesList
     UseSystemFont = True
     Left = 328
     Top = 104
+    PixelsPerInch = 96
     DockControlHeights = (
       0
       0
-      26
+      28
       0)
     object dxBarManager1Bar1: TdxBar
       AllowClose = False
@@ -448,14 +443,14 @@ object fmPersonChangesList: TfmPersonChangesList
       ShortCut = 45
     end
     object dxBarDBNavEdit1: TdxBarDBNavButton
-      Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
       Category = 0
-      Hint = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
       Visible = ivNever
       ImageIndex = 9
       ShortCut = 13
       OnClick = actEditExecute
       NavButton = dxbnEdit
+      CaptionEx = ''
+      HintEx = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
     end
     object dxBarButton3: TdxBarButton
       Action = actDel
@@ -488,13 +483,13 @@ object fmPersonChangesList: TfmPersonChangesList
       ShortCut = 120
     end
     object dxBarDBNavPost1: TdxBarDBNavButton
-      Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
       Category = 0
       Enabled = False
-      Hint = #1057#1086#1093#1088#1072#1085#1080#1090#1100
       Visible = ivAlways
       ImageIndex = 38
       NavButton = dxbnPost
+      CaptionEx = ''
+      HintEx = #1057#1086#1093#1088#1072#1085#1080#1090#1100
     end
     object dxBarButton2: TdxBarButton
       Action = actSave
@@ -697,5 +692,6 @@ object fmPersonChangesList: TfmPersonChangesList
     UseOwnFont = False
     Left = 184
     Top = 140
+    PixelsPerInch = 96
   end
 end

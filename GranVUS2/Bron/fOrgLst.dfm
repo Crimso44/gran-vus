@@ -40,7 +40,6 @@ object fmOrgList: TfmOrgList
     DefaultLayout = False
     HeaderMinRowCount = 3
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'ORGID'
     PartialLoadBufferCount = 50
     SummaryGroups = <>

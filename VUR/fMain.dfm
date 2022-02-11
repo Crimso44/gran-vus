@@ -204,7 +204,6 @@ object fmMain: TfmMain
     object aSecret: TAction
       Caption = 'aSecret'
       ShortCut = 57382
-      OnExecute = aSecretExecute
     end
     object aBadDatesCheck: TAction
       Caption = #1042#1099#1103#1074#1083#1077#1085#1080#1077' '#1080' '#1080#1089#1087#1088#1072#1074#1083#1077#1085#1080#1077' '#1085#1077#1082#1086#1088#1088#1077#1082#1090#1085#1099#1093' '#1082#1072#1083#1077#1085#1076#1072#1088#1085#1099#1093' '#1076#1072#1090
@@ -263,6 +262,7 @@ object fmMain: TfmMain
     UseSystemFont = False
     Left = 24
     Top = 36
+    PixelsPerInch = 96
     DockControlHeights = (
       0
       0

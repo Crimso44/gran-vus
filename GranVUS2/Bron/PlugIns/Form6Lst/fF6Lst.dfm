@@ -36,7 +36,6 @@ object fmF6List: TfmF6List
     DefaultLayout = False
     HeaderMinRowCount = 3
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'F6_ID'
     SummaryGroups = <>
     SummarySeparator = ', '

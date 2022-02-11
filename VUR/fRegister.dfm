@@ -292,7 +292,6 @@ object fmRegister: TfmRegister
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'RecId'
     SummaryGroups = <>
     SummarySeparator = ', '

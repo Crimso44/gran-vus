@@ -30,7 +30,6 @@ object fmFltMgr: TfmFltMgr
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     TabOrder = 0
     Images = ImageList1
     Options = [aoColumnSizing, aoColumnMoving, aoEditing, aoTabThrough, aoAutoWidth]

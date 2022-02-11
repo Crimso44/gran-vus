@@ -264,7 +264,6 @@ object fmReg: TfmReg
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'CertificateKey'
     SummaryGroups = <>
     SummarySeparator = ', '

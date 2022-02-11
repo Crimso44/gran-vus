@@ -4,8 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls, dxExEdtr, dxTLClms, dxTL, dxCntner, FrmKeep,
-  Menus, ActnList;
+  Dialogs, ExtCtrls, StdCtrls, dxExEdtr, dxTLClms, dxTL, dxCntner,
+  Menus, ActnList, System.Actions;
 
 type
   TfmOrgPropOsnPer = class(TForm)

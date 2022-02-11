@@ -54,7 +54,6 @@ object Form6NoBron: TForm6NoBron
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     ParentColor = True
     TabOrder = 0
     Options = [aoEditing, aoTabThrough, aoImmediateEditor, aoAutoWidth]

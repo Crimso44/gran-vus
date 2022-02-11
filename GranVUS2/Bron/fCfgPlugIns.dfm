@@ -30,7 +30,6 @@ object fmCfgPlugIns: TfmCfgPlugIns
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     Align = alTop
     TabOrder = 0
     HideSelection = False

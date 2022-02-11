@@ -128,11 +128,10 @@ object fmEventList: TfmEventList
       object laLeft: TLabel
         Left = 0
         Top = 0
-        Width = 448
+        Width = 47
         Height = 13
         Align = alTop
         Caption = #1057#1086#1073#1099#1090#1080#1103':'
-        ExplicitWidth = 47
       end
       object gridMaster: TdxDBGrid
         Left = 0
@@ -144,7 +143,6 @@ object fmEventList: TfmEventList
           end>
         DefaultLayout = True
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         KeyField = 'Event_id'
         SummaryGroups = <>
         SummarySeparator = ', '
@@ -221,11 +219,10 @@ object fmEventList: TfmEventList
       object laDetail: TLabel
         Left = 0
         Top = 0
-        Width = 448
+        Width = 116
         Height = 13
         Align = alTop
         Caption = #1055#1086#1076#1088#1086#1073#1085#1086#1089#1090#1080' '#1089#1086#1073#1099#1090#1080#1103':'
-        ExplicitWidth = 116
       end
       object gridDetail: TdxDBGrid
         Left = 0
@@ -237,7 +234,6 @@ object fmEventList: TfmEventList
           end>
         DefaultLayout = True
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         KeyField = 'EventDetail_id'
         SummaryGroups = <>
         SummarySeparator = ', '
@@ -258,13 +254,6 @@ object fmEventList: TfmEventList
         end
       end
     end
-  end
-  object FrmKeep: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 32
-    Top = 232
   end
   object qryMaster: TADOQuery
     Connection = dmMain.dbMain

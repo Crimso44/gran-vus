@@ -4,8 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ExtCtrls, dxCntner, dxTL, ImgList, dxTLClms, StdCtrls, FrmKeep, dxTLClEx,
-  ComCtrls, dxEditor, dxExEdtr, dxEdLib, ADOdb;
+  ExtCtrls, dxCntner, dxTL, ImgList, dxTLClms, StdCtrls, dxTLClEx,
+  ComCtrls, dxEditor, dxExEdtr, dxEdLib, ADOdb, System.ImageList;
 
 type
   TFilterForm = (ffPersons, ffPersChanges);
@@ -63,7 +63,6 @@ type
     btnEditOk: TButton;
     btnEditCancel: TButton;
     chkNewWindow: TCheckBox;
-    FrmKeep1: TFrmKeep;
     pnlEditBoolnDate: TPanel;
     chkBoolnDate: TCheckBox;
     rbBoolnDateYes: TRadioButton;

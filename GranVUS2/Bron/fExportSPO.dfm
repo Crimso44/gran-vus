@@ -51,7 +51,6 @@ object fmExportSPO: TfmExportSPO
     DefaultLayout = True
     HeaderMinRowCount = 2
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'F6_ID'
     SummaryGroups = <>
     SummarySeparator = ', '

@@ -7,7 +7,7 @@ uses
   ComCtrls, dxBar, ActnList, ADOdb, ExtCtrls, StdCtrls, dMain, Menus, cxClasses,
   ShellAPI,
   dxSkinsCore, dxSkinsDefaultPainters, dxSkinsdxBarPainter,
-  fParamDlg, fAsfMtr;
+  fParamDlg, fAsfMtr, System.Actions;
 
 const
   WM_ShowInfo = WM_User+1;
@@ -125,7 +125,6 @@ type
     procedure actForm6Execute(Sender: TObject);
     procedure actStaffListROExecute(Sender: TObject);
     procedure actSPOBronExportExecute(Sender: TObject);
-    procedure aSecretExecute(Sender: TObject);
     procedure bbUpdateClick(Sender: TObject);
     procedure aPersonChangesExecute(Sender: TObject);
     procedure actASStaffListStoredExecute(Sender: TObject);
@@ -158,9 +157,8 @@ implementation
 
 uses fAbout, msg, IniSupport, fBaseLst, fOrgProp, fCfgPlugIns,
   fPersLst, fKbdMouHk, fConfig, fStaffList, fASStaffList, fAsfMtrList, fRegister, SaveEvents,
-  fEventList, fUsers, fTPDP, dSPOBron, fMsgConfirm, fCorrectOkved
-  {SQLEDIT},InpDlg, AEMSQLEDIT{SQLEDIT}
-  ,StrUtils, fSplashProgress, uVERSION, WinHelpViewer, SHFolder, uCrypt, fPersChangesLst;
+  fEventList, fUsers, fTPDP, dSPOBron, fMsgConfirm, fCorrectOkved,
+  StrUtils, fSplashProgress, uVERSION, WinHelpViewer, SHFolder, uCrypt, fPersChangesLst;
 
 procedure Go; stdcall; external 'backup.dll';
 
@@ -853,15 +851,6 @@ begin
     Exit;
   end;
   dSPOBron.DoExport;
-end;
-
-procedure TfmMain.aSecretExecute(Sender: TObject);
-var
-  pwd: string;
-begin
-  pwd := InputPassword('','');
-  if pwd = 'ENTERSQL' then
-     EditSQL(dmMain.dbMain, '', True, True, False);
 end;
 
 procedure TfmMain.FormClose(Sender: TObject; var Action: TCloseAction);

@@ -568,11 +568,4 @@ object fmConfig: TfmConfig
     TabOrder = 2
     OnClick = Button2Click
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 332
-    Top = 95
-  end
 end

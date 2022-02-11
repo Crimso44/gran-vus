@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ActnList, Buttons, FrmKeep, Menus, ADODB;
+  Dialogs, StdCtrls, ActnList, Buttons, Menus, ADODB, System.Actions;
 
 type
   TfmTPDPPost = class(TForm)
@@ -14,7 +14,6 @@ type
     actAdd: TAction;
     actDel: TAction;
     actSelectAll: TAction;
-    FrmKeep1: TFrmKeep;
     edOKPDTR: TEdit;
     Label2: TLabel;
     edOKPDTRName: TEdit;

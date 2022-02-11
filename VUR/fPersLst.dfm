@@ -25,9 +25,9 @@ object fmPersonList: TfmPersonList
   TextHeight = 13
   object dbgData: TdxDBGrid
     Left = 0
-    Top = 26
+    Top = 28
     Width = 716
-    Height = 450
+    Height = 448
     Bands = <
       item
         Fixed = bfLeft
@@ -67,7 +67,6 @@ object fmPersonList: TfmPersonList
     DefaultLayout = False
     HeaderMinRowCount = 3
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'PERS_ID'
     ShowSummaryFooter = True
     SummaryGroups = <>
@@ -110,6 +109,8 @@ object fmPersonList: TfmPersonList
     OnColumnSorting = dbgDataColumnSorting
     OnCompare = dbgDataCompare
     OnCustomDrawCell = dbgDataCustomDrawCell
+    ExplicitTop = 26
+    ExplicitHeight = 450
     object dbgDataNum: TdxDBGridColumn
       Alignment = taLeftJustify
       Caption = #8470' '#1087'/'#1087
@@ -1649,13 +1650,6 @@ object fmPersonList: TfmPersonList
       OnExecute = actWhyIsBadExecute
     end
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 32
-    Top = 272
-  end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -1676,10 +1670,11 @@ object fmPersonList: TfmPersonList
     UseSystemFont = True
     Left = 328
     Top = 104
+    PixelsPerInch = 96
     DockControlHeights = (
       0
       0
-      26
+      28
       0)
     object dxBarManager1Bar1: TdxBar
       AllowClose = False
@@ -2744,5 +2739,6 @@ object fmPersonList: TfmPersonList
     UseOwnFont = False
     Left = 184
     Top = 140
+    PixelsPerInch = 96
   end
 end

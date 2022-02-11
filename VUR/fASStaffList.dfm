@@ -38,9 +38,9 @@ object fmASStaffList: TfmASStaffList
   end
   object TabControl: TTabControl
     Left = 0
-    Top = 26
+    Top = 28
     Width = 657
-    Height = 305
+    Height = 303
     Align = alClient
     MultiLine = True
     TabOrder = 2
@@ -48,11 +48,13 @@ object fmASStaffList: TfmASStaffList
       '')
     TabIndex = 0
     OnChange = TabControlChange
+    ExplicitTop = 26
+    ExplicitHeight = 305
     object Grid: TdxDBGrid
       Left = 4
       Top = 24
       Width = 649
-      Height = 277
+      Height = 275
       Bands = <
         item
           Fixed = bfLeft
@@ -64,7 +66,6 @@ object fmASStaffList: TfmASStaffList
       DefaultLayout = False
       HeaderMinRowCount = 2
       HeaderPanelRowCount = 1
-      DoNotAddFormNameToRegistryPath = False
       KeyField = 'ASPost_ID'
       ShowSummaryFooter = True
       SummaryGroups = <>
@@ -84,6 +85,7 @@ object fmASStaffList: TfmASStaffList
       OnCustomDrawCell = GridCustomDrawCell
       OnCustomDrawColumnHeader = GridCustomDrawColumnHeader
       OnEdited = GridEdited
+      ExplicitHeight = 277
       object GridNum: TdxDBGridColumn
         Caption = #8470' '#1087'/'#1087
         DisableDragging = True
@@ -143,10 +145,11 @@ object fmASStaffList: TfmASStaffList
     UseSystemFont = True
     Left = 96
     Top = 72
+    PixelsPerInch = 96
     DockControlHeights = (
       0
       0
-      26
+      28
       0)
     object dxBarManager1Bar1: TdxBar
       AllowClose = False
@@ -308,13 +311,6 @@ object fmASStaffList: TfmASStaffList
       ImageIndex = 34
       OnClick = bFilterClick
     end
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 24
-    Top = 128
   end
   object qrData: TADOQuery
     Connection = dmMain.dbMain

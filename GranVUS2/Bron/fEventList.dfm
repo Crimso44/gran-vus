@@ -146,7 +146,6 @@ object fmEventList: TfmEventList
           end>
         DefaultLayout = True
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         KeyField = 'Event_id'
         SummaryGroups = <>
         SummarySeparator = ', '
@@ -228,7 +227,6 @@ object fmEventList: TfmEventList
           end>
         DefaultLayout = True
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         KeyField = 'EventDetail_id'
         SummaryGroups = <>
         SummarySeparator = ', '

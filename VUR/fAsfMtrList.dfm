@@ -38,9 +38,9 @@ object fmAsfMtrList: TfmAsfMtrList
   end
   object TabControl: TTabControl
     Left = 0
-    Top = 26
+    Top = 28
     Width = 732
-    Height = 360
+    Height = 358
     Align = alClient
     MultiLine = True
     TabOrder = 2
@@ -48,11 +48,13 @@ object fmAsfMtrList: TfmAsfMtrList
       '')
     TabIndex = 0
     OnChange = TabControlChange
+    ExplicitTop = 26
+    ExplicitHeight = 360
     object Grid: TdxDBGrid
       Left = 4
       Top = 24
       Width = 724
-      Height = 332
+      Height = 330
       Bands = <
         item
           Fixed = bfLeft
@@ -63,7 +65,6 @@ object fmAsfMtrList: TfmAsfMtrList
         end>
       DefaultLayout = False
       HeaderMinRowCount = 4
-      DoNotAddFormNameToRegistryPath = False
       KeyField = 'AsfMtr_Id'
       ShowSummaryFooter = True
       SummaryGroups = <>
@@ -83,6 +84,7 @@ object fmAsfMtrList: TfmAsfMtrList
       OnCustomDrawCell = GridCustomDrawCell
       OnCustomDrawColumnHeader = GridCustomDrawColumnHeader
       OnEdited = GridEdited
+      ExplicitHeight = 332
       object GridNum: TdxDBGridColumn
         Caption = #8470' '#1087'/'#1087
         DisableDragging = True
@@ -180,10 +182,11 @@ object fmAsfMtrList: TfmAsfMtrList
     UseSystemFont = True
     Left = 96
     Top = 72
+    PixelsPerInch = 96
     DockControlHeights = (
       0
       0
-      26
+      28
       0)
     object dxBarManager1Bar1: TdxBar
       AllowClose = False
@@ -342,13 +345,6 @@ object fmAsfMtrList: TfmAsfMtrList
       ImageIndex = 34
       OnClick = bFilterClick
     end
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 24
-    Top = 128
   end
   object qrData: TADOQuery
     Connection = dmMain.dbMain

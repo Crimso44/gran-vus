@@ -5,12 +5,11 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, dxExEdtr, DB, ADODB, dxDBTLCl, dxGrClms, dxTL, dxDBCtrl,
-  dxDBGrid, dxCntner, dxBar, dxBarDBNav, FrmKeep, ComCtrls, cxClasses,
+  dxDBGrid, dxCntner, dxBar, dxBarDBNav, ComCtrls, cxClasses,
   dxSkinsCore, dxSkinsDefaultPainters, dxSkinsdxBarPainter;
 
 type
   TfmAppointments = class(TForm)
-    FrmKeep1: TFrmKeep;
     dxBarManager1: TdxBarManager;
     dxBarDBNavigator: TdxBarDBNavigator;
     dxBarDBNavFirst1: TdxBarDBNavButton;

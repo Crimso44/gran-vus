@@ -25,15 +25,14 @@ object fmTPDP: TfmTPDP
   end
   object dbgData: TdxDBGrid
     Left = 0
-    Top = 26
+    Top = 28
     Width = 589
-    Height = 221
+    Height = 219
     Bands = <
       item
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'ID'
     SummaryGroups = <>
     SummarySeparator = ', '
@@ -49,6 +48,8 @@ object fmTPDP: TfmTPDP
     OptionsView = [edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoRowAutoHeight, edgoRowSelect, edgoUseBitmap]
     RegistryPath = '\Software\Granit\GranVUS\TPDPDGrid'
     OnCustomDrawCell = dbgDataCustomDrawCell
+    ExplicitTop = 26
+    ExplicitHeight = 221
     object dbgDataTPDP_ID: TdxDBGridMaskColumn
       Visible = False
       Width = 24
@@ -246,10 +247,11 @@ object fmTPDP: TfmTPDP
     UseSystemFont = True
     Left = 160
     Top = 104
+    PixelsPerInch = 96
     DockControlHeights = (
       0
       0
-      26
+      28
       0)
     object dxBarManager1Bar1: TdxBar
       AllowClose = False
@@ -362,12 +364,5 @@ object fmTPDP: TfmTPDP
     object N5: TMenuItem
       Action = actRefresh
     end
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 144
-    Top = 56
   end
 end

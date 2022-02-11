@@ -5,8 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ActnList, dxBar, DB, ComCtrls, ADODB, dxExEdtr, dxCntner, dxTL,
-  dxDBCtrl, dxDBGrid, Menus, dxDBTLCl, dxGrClms, FrmKeep, Grids, DBGrids,
-  cxClasses;
+  dxDBCtrl, dxDBGrid, Menus, dxDBTLCl, dxGrClms, Grids, DBGrids,
+  cxClasses, System.Actions;
 
 type
   TfmTPDP = class(TForm)
@@ -41,7 +41,6 @@ type
     dbgDataAge: TdxDBGridMaskColumn;
     dbgDataWRange: TdxDBGridMaskColumn;
     dbgDataWSosts: TdxDBGridMaskColumn;
-    FrmKeep1: TFrmKeep;
     qrDataID2: TStringField;
     qrDataTPDP_ID: TIntegerField;
     qrDataSexName: TWideStringField;

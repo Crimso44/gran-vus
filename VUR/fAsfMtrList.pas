@@ -5,16 +5,15 @@ interface
 uses
   fSetFilter,
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  FrmKeep, dxCntner, dxTL, dxBar, ComCtrls, Db, ADODB, dxTLClms, ActnList,dxExEdtr,
+  dxCntner, dxTL, dxBar, ComCtrls, Db, ADODB, dxTLClms, ActnList, dxExEdtr,
   StdCtrls, Variants, dxDBCtrl, dxDBGrid, dxmdaset, Menus, cxClasses,
   ExtCtrls, Buttons, CheckLst, dxSkinsCore, dxSkinsDefaultPainters,
-  dxSkinsdxBarPainter;
+  dxSkinsdxBarPainter, System.Actions;
 
 type
   TfmAsfMtrList = class(TForm)
     StatusBar: TStatusBar;
     dxBarManager1: TdxBarManager;
-    FrmKeep1: TFrmKeep;
     qrData: TADOQuery;
     ActionList1: TActionList;
     actStore: TAction;

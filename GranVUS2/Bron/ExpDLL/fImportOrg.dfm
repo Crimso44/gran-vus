@@ -2437,7 +2437,6 @@ object fmImportOrg: TfmImportOrg
           end>
         DefaultLayout = True
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         KeyField = 'ORGID'
         SummaryGroups = <>
         SummarySeparator = ', '

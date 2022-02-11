@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, dxCntner, dxTL, FrmKeep, dxExEdtr;
+  StdCtrls, dxCntner, dxTL, dxExEdtr;
 
 type
   TfmCfgPlugIns = class(TForm)
@@ -15,7 +15,6 @@ type
     dxtDataColumn2: TdxTreeListColumn;
     dxtDataColumn3: TdxTreeListColumn;
     dxtDataColumn4: TdxTreeListColumn;
-    FrmKeep1: TFrmKeep;
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

@@ -81,7 +81,6 @@ object fmFFS: TfmFFS
     DefaultLayout = False
     HeaderMinRowCount = 3
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'KOD'
     ShowSummaryFooter = True
     SummaryGroups = <>

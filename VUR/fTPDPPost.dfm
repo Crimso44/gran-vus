@@ -127,10 +127,8 @@ object fmTPDPPost: TfmTPDPPost
     Anchors = [akLeft, akBottom]
     Caption = 'OK'
     Default = True
-    DoubleBuffered = True
     ModalResult = 1
     NumGlyphs = 2
-    ParentDoubleBuffered = False
     TabOrder = 0
     OnClick = BitBtn1Click
     ExplicitTop = 153
@@ -143,10 +141,8 @@ object fmTPDPPost: TfmTPDPPost
     Anchors = [akLeft, akBottom]
     Cancel = True
     Caption = #1054#1090#1084#1077#1085#1072
-    DoubleBuffered = True
     ModalResult = 2
     NumGlyphs = 2
-    ParentDoubleBuffered = False
     TabOrder = 1
     ExplicitTop = 153
   end
@@ -212,12 +208,5 @@ object fmTPDPPost: TfmTPDPPost
       Caption = #1042#1099#1076#1077#1083#1080#1090#1100' '#1074#1089#1105
       ShortCut = 16449
     end
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 336
-    Top = 8
   end
 end

@@ -29,15 +29,14 @@ object fmUsers: TfmUsers
   end
   object dbgData: TdxDBGrid
     Left = 0
-    Top = 26
+    Top = 28
     Width = 571
-    Height = 193
+    Height = 191
     Bands = <
       item
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'ID'
     SummaryGroups = <>
     SummarySeparator = ', '
@@ -54,6 +53,8 @@ object fmUsers: TfmUsers
     OptionsView = [edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoRowSelect, edgoUseBitmap]
     RegistryPath = '\Software\Granit\GranVUS\UsersGrid'
     OnColumnSorting = dbgDataColumnSorting
+    ExplicitTop = 26
+    ExplicitHeight = 193
     object dbgDataNum: TdxDBGridColumn
       Caption = #8470' '#1087'/'#1087
       DisableDragging = True
@@ -133,13 +134,6 @@ object fmUsers: TfmUsers
       ValueChecked = '1'
       ValueUnchecked = '0'
     end
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 12
-    Top = 124
   end
   object dsData: TDataSource
     DataSet = qrData
@@ -244,10 +238,11 @@ object fmUsers: TfmUsers
     UseSystemFont = True
     Left = 324
     Top = 36
+    PixelsPerInch = 96
     DockControlHeights = (
       0
       0
-      26
+      28
       0)
     object dxBarManager1Bar1: TdxBar
       AllowCustomizing = False

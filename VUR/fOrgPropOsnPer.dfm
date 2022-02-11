@@ -71,7 +71,6 @@ object fmOrgPropOsnPer: TfmOrgPropOsnPer
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     PopupMenu = pmOsn
     TabOrder = 3
     LookAndFeel = lfFlat

@@ -30,7 +30,6 @@ object fmCfgPlugIns: TfmCfgPlugIns
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     Align = alTop
     TabOrder = 0
     HideSelection = False
@@ -88,12 +87,5 @@ object fmCfgPlugIns: TfmCfgPlugIns
     Caption = #1047#1072#1082#1088#1099#1090#1100
     TabOrder = 2
     OnClick = Button2Click
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 32
-    Top = 184
   end
 end

@@ -104,7 +104,6 @@ object fmGeneralQty: TfmGeneralQty
       end>
     DefaultLayout = False
     HeaderMinRowCount = 2
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'ID'
     SummaryGroups = <>
     SummarySeparator = ', '

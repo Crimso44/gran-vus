@@ -370,16 +370,16 @@ object fmPersonForm: TfmPersonForm
         Date = -700000.000000000000000000
         SaveTime = False
       end
-      object edIndex1: TAEdit
+      object edIndex1: TEdit
         Left = 224
         Top = 147
         Width = 61
         Height = 21
         AutoSize = False
         MaxLength = 6
+        NumbersOnly = True
         TabOrder = 9
         OnChange = edFamChange
-        EditStyle = aesInteger
       end
       object edAddr1: TEdit
         Left = 21
@@ -390,16 +390,16 @@ object fmPersonForm: TfmPersonForm
         TabOrder = 10
         OnChange = edFamChange
       end
-      object edIndex2: TAEdit
+      object edIndex2: TEdit
         Left = 224
         Top = 192
         Width = 61
         Height = 21
         AutoSize = False
         MaxLength = 6
+        NumbersOnly = True
         TabOrder = 11
         OnChange = edFamChange
-        EditStyle = aesInteger
       end
       object edAddr2: TEdit
         Left = 21
@@ -420,7 +420,6 @@ object fmPersonForm: TfmPersonForm
           end>
         DefaultLayout = True
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         PopupMenu = pmLang
         TabOrder = 14
         LookAndFeel = lfFlat
@@ -469,7 +468,6 @@ object fmPersonForm: TfmPersonForm
         DefaultLayout = True
         HeaderMinRowCount = 2
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         PopupMenu = pmFamily
         TabOrder = 16
         LookAndFeel = lfFlat
@@ -563,7 +561,6 @@ object fmPersonForm: TfmPersonForm
         DefaultLayout = False
         HeaderMinRowCount = 3
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         KeyField = 'CHANGE_ID'
         SummaryGroups = <>
         SummarySeparator = ', '
@@ -1033,6 +1030,7 @@ object fmPersonForm: TfmPersonForm
         Width = 445
         TabOrder = 1
         MaxLength = 100
+        Text = ''
         OnChange = edFamChange
         DropDownRows = 20
         StoredValues = 2
@@ -1053,6 +1051,7 @@ object fmPersonForm: TfmPersonForm
         Width = 445
         TabOrder = 9
         MaxLength = 100
+        Text = ''
         OnChange = edFamChange
         DropDownRows = 20
         StoredValues = 2
@@ -1146,6 +1145,7 @@ object fmPersonForm: TfmPersonForm
         Width = 349
         TabOrder = 19
         MaxLength = 100
+        Text = ''
         OnChange = edFamChange
         DropDownRows = 20
         StoredValues = 2
@@ -1156,6 +1156,7 @@ object fmPersonForm: TfmPersonForm
         Width = 242
         TabOrder = 25
         MaxLength = 50
+        Text = ''
         OnChange = edFamChange
         DropDownRows = 20
         DropDownListStyle = True
@@ -1198,6 +1199,7 @@ object fmPersonForm: TfmPersonForm
         Width = 97
         TabOrder = 2
         MaxLength = 100
+        Text = ''
         OnChange = edFamChange
         DropDownRows = 20
         StoredValues = 2
@@ -1226,6 +1228,7 @@ object fmPersonForm: TfmPersonForm
         Width = 97
         TabOrder = 10
         MaxLength = 100
+        Text = ''
         OnChange = edFamChange
         DropDownRows = 20
         StoredValues = 2
@@ -1254,6 +1257,7 @@ object fmPersonForm: TfmPersonForm
         Width = 97
         TabOrder = 20
         MaxLength = 100
+        Text = ''
         OnChange = edFamChange
         DropDownRows = 20
         StoredValues = 2
@@ -1264,6 +1268,7 @@ object fmPersonForm: TfmPersonForm
         Width = 242
         TabOrder = 17
         MaxLength = 100
+        Text = ''
         OnChange = edFamChange
         DropDownRows = 20
         StoredValues = 2
@@ -1766,6 +1771,7 @@ object fmPersonForm: TfmPersonForm
         Width = 309
         TabOrder = 12
         MaxLength = 50
+        Text = ''
         OnChange = edFamChange
         DropDownRows = 20
         DropDownListStyle = True
@@ -1829,6 +1835,7 @@ object fmPersonForm: TfmPersonForm
           Width = 191
           TabOrder = 0
           MaxLength = 50
+          Text = ''
           OnChange = edFamChange
           DropDownRows = 20
           DropDownListStyle = True
@@ -2002,7 +2009,6 @@ object fmPersonForm: TfmPersonForm
           end>
         DefaultLayout = True
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         TabOrder = 0
         LookAndFeel = lfFlat
         Options = [aoColumnSizing, aoEditing, aoTabThrough, aoImmediateEditor, aoDrawEndEllipsis, aoCaseInsensitive]
@@ -2448,7 +2454,6 @@ object fmPersonForm: TfmPersonForm
           end>
         DefaultLayout = True
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         Enabled = False
         PopupMenu = pmAssign
         TabOrder = 18
@@ -2499,6 +2504,7 @@ object fmPersonForm: TfmPersonForm
         Width = 247
         TabOrder = 16
         MaxLength = 100
+        Text = ''
         OnChange = edFamChange
         DropDownRows = 20
         DropDownListStyle = True
@@ -2526,6 +2532,7 @@ object fmPersonForm: TfmPersonForm
         Width = 182
         TabOrder = 17
         MaxLength = 50
+        Text = ''
         OnChange = edFamChange
         DropDownRows = 20
         CanDeleteText = True
@@ -2677,7 +2684,6 @@ object fmPersonForm: TfmPersonForm
         DefaultLayout = False
         HeaderMinRowCount = 2
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         PopupMenu = pmStudyHistory
         TabOrder = 9
         LookAndFeel = lfFlat
@@ -2749,7 +2755,6 @@ object fmPersonForm: TfmPersonForm
         DefaultLayout = False
         HeaderMinRowCount = 2
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         PopupMenu = pmN26History
         TabOrder = 10
         LookAndFeel = lfFlat
@@ -2985,6 +2990,7 @@ object fmPersonForm: TfmPersonForm
             Width = 111
             TabOrder = 2
             MaxLength = 50
+            Text = ''
             OnChange = edFamChange
             DropDownListStyle = True
             OnButtonClick = edKval3ButtonClick
@@ -2996,6 +3002,7 @@ object fmPersonForm: TfmPersonForm
             Width = 111
             TabOrder = 3
             MaxLength = 50
+            Text = ''
             OnChange = edFamChange
             DropDownListStyle = True
             OnButtonClick = edKval3ButtonClick
@@ -3644,7 +3651,6 @@ object fmPersonForm: TfmPersonForm
           end>
         DefaultLayout = True
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         Enabled = False
         PopupMenu = psASAssing
         TabOrder = 0
@@ -4259,13 +4265,6 @@ object fmPersonForm: TfmPersonForm
       'SELECT * FROM EDUC WHERE PERS_ID=:PERS_ID')
     Left = 356
     Top = 14
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 16
-    Top = 12
   end
   object qrStudyHistory: TADOQuery
     Connection = dmMain.dbMain

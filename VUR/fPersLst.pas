@@ -5,9 +5,10 @@ interface
 uses
   ColumnCustomize,
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls, ActnList, dxCntner, dxTL, dxDBCtrl, dxDBGrid, ToolWin, FrmKeep,
+  ComCtrls, ActnList, dxCntner, dxTL, dxDBCtrl, dxDBGrid, ToolWin,
   dxBar, Db, ADODB, Menus, dxDBTLCl, dxGrClms, dxExEdtr, Variants, dMain,
-  StdCtrls, cxClasses, dxSkinsCore, dxSkinsDefaultPainters, dxSkinsdxBarPainter;
+  StdCtrls, cxClasses, dxSkinsCore, dxSkinsDefaultPainters, dxSkinsdxBarPainter,
+  System.Actions;
 
 type
   TfmPersonList = class(TForm)
@@ -17,7 +18,6 @@ type
     actEdit: TAction;
     actDel: TAction;
     actFiltr: TAction;
-    FrmKeep1: TFrmKeep;
     dxBarManager1: TdxBarManager;
     dxBarButton1: TdxBarButton;
     dxBarButton2: TdxBarButton;

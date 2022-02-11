@@ -4,9 +4,9 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, dxExEdtr, Menus, ActnList, FrmKeep, DB,
+  Dialogs, StdCtrls, ExtCtrls, dxExEdtr, Menus, ActnList, DB,
   ADODB, dxDBTLCl, dxGrClms, dxTL, dxDBCtrl, dxDBGrid, dxCntner, ComCtrls,
-  ToolWin, Buttons, dxmdaset, Mask, Grids, DBGrids, DBCtrls;
+  ToolWin, Buttons, dxmdaset, Mask, Grids, DBGrids, DBCtrls, System.Actions;
 
 type
   TfmTPDPPunkt = class(TForm)
@@ -23,7 +23,6 @@ type
     dbgDataLimited: TdxDBGridCheckColumn;
     dbgDataWRange_Name: TdxDBGridMaskColumn;
     dbgDataAge: TdxDBGridMaskColumn;
-    FrmKeep1: TFrmKeep;
     ActionList: TActionList;
     actAdd: TAction;
     actEdit: TAction;

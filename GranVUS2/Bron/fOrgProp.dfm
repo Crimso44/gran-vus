@@ -883,7 +883,6 @@ object fmOrgProp: TfmOrgProp
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     PopupMenu = pmOKATO
     TabOrder = 39
     Visible = False
@@ -998,7 +997,6 @@ object fmOrgProp: TfmOrgProp
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     PopupMenu = pmOKTMO
     TabOrder = 42
     Visible = False

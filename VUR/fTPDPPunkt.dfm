@@ -216,7 +216,6 @@ object fmTPDPPunkt: TfmTPDPPunkt
         end>
       DefaultLayout = True
       HeaderPanelRowCount = 1
-      DoNotAddFormNameToRegistryPath = False
       KeyField = 'RecId'
       SummaryGroups = <>
       SummarySeparator = ', '
@@ -337,8 +336,6 @@ object fmTPDPPunkt: TfmTPDPPunkt
         Height = 25
         Caption = 'OK'
         Default = True
-        DoubleBuffered = True
-        ParentDoubleBuffered = False
         TabOrder = 0
         OnClick = pbOkClick
       end
@@ -349,9 +346,7 @@ object fmTPDPPunkt: TfmTPDPPunkt
         Height = 25
         Cancel = True
         Caption = #1054#1090#1084#1077#1085#1080#1090#1100
-        DoubleBuffered = True
         ModalResult = 2
-        ParentDoubleBuffered = False
         TabOrder = 1
       end
     end
@@ -360,13 +355,6 @@ object fmTPDPPunkt: TfmTPDPPunkt
     DataSet = taCond
     Left = 384
     Top = 128
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 120
-    Top = 100
   end
   object ActionList: TActionList
     Images = dmMain.ilSmall

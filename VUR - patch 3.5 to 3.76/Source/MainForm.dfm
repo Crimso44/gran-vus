@@ -107,10 +107,6 @@ object fmMain: TfmMain
       Caption = 'tshInfo'
       ImageIndex = 1
       OnShow = tshCommonShow
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label3: TLabel
         Left = 148
         Top = 20
@@ -216,10 +212,6 @@ object fmMain: TfmMain
       Caption = 'tshProcess'
       ImageIndex = 2
       OnShow = tshCommonShow
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label7: TLabel
         Left = 180
         Top = 40

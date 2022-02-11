@@ -40,7 +40,6 @@ object fmSubjList: TfmSubjList
     DefaultLayout = False
     HeaderMinRowCount = 2
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'SUBJ_ID'
     PartialLoadBufferCount = 50
     SummaryGroups = <>

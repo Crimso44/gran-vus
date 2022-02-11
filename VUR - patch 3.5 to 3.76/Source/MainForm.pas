@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, DB, ADODB, AppEvnts,
-  ActnList, XPMan, ComObj, ShlObj, ActiveX;
+  ActnList, XPMan, ComObj, ShlObj, ActiveX, System.Actions;
 const
   WM_MY_CHKINFO = WM_USER + 100;
   WM_MY_START = WM_USER + 101;

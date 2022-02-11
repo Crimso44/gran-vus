@@ -327,6 +327,7 @@ object fmOrgPropCommon: TfmOrgPropCommon
     TabOrder = 13
     OnKeyPress = edOKPOKeyPress
     MaxLength = 11
+    Text = ''
     OnChange = mmNameChange
     PopupFormBorderStyle = pbsSimple
     PopupClientEdge = True
@@ -358,6 +359,7 @@ object fmOrgPropCommon: TfmOrgPropCommon
     TabOrder = 15
     OnKeyPress = edOKPOKeyPress
     MaxLength = 11
+    Text = ''
     OnChange = mmNameChange
     PopupFormBorderStyle = pbsSimple
     PopupClientEdge = True
@@ -379,6 +381,7 @@ object fmOrgPropCommon: TfmOrgPropCommon
     TabOrder = 17
     OnKeyPress = edOKPOKeyPress
     MaxLength = 11
+    Text = ''
     OnChange = mmNameChange
     PopupFormBorderStyle = pbsSimple
     PopupClientEdge = True

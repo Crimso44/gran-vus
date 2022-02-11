@@ -27,10 +27,8 @@ object frmASF: TfrmASF
       Top = 8
       Width = 75
       Height = 25
-      DoubleBuffered = True
       Kind = bkOK
       NumGlyphs = 2
-      ParentDoubleBuffered = False
       TabOrder = 0
     end
     object BitBtn2: TBitBtn
@@ -39,10 +37,8 @@ object frmASF: TfrmASF
       Width = 75
       Height = 25
       Caption = #1054#1090#1084#1077#1085#1072
-      DoubleBuffered = True
       Kind = bkCancel
       NumGlyphs = 2
-      ParentDoubleBuffered = False
       TabOrder = 1
     end
   end
@@ -56,7 +52,6 @@ object frmASF: TfrmASF
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'ASF_ID'
     SummaryGroups = <>
     SummarySeparator = ', '
@@ -71,12 +66,15 @@ object frmASF: TfrmASF
     object dxDBGrid1Selected: TdxDBGridCheckColumn
       Caption = '.'
       ReadOnly = True
+      Sorted = csUp
+      Visible = False
       Width = 20
       BandIndex = 0
       RowIndex = 0
       FieldName = 'Selected'
       ValueChecked = '1'
-      ValueUnchecked = '0'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
     object dxDBGrid1ASF_ID: TdxDBGridMaskColumn
       ReadOnly = True
@@ -84,6 +82,7 @@ object frmASF: TfrmASF
       BandIndex = 0
       RowIndex = 0
       FieldName = 'ASF_ID'
+      GroupIndex = 0
     end
     object dxDBGrid1OrgSName: TdxDBGridColumn
       Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
@@ -92,6 +91,7 @@ object frmASF: TfrmASF
       BandIndex = 0
       RowIndex = 0
       FieldName = 'OrgSName'
+      GroupIndex = 0
     end
     object dxDBGrid1OrgName: TdxDBGridColumn
       Caption = #1055#1086#1083#1085#1086#1077' '#1085#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
@@ -100,6 +100,7 @@ object frmASF: TfrmASF
       BandIndex = 0
       RowIndex = 0
       FieldName = 'OrgName'
+      GroupIndex = 0
     end
     object dxDBGrid1RecId: TdxDBGridColumn
       ReadOnly = True
@@ -107,6 +108,7 @@ object frmASF: TfrmASF
       BandIndex = 0
       RowIndex = 0
       FieldName = 'RecId'
+      GroupIndex = 0
     end
   end
   object qASF: TADOQuery

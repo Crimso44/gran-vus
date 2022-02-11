@@ -211,9 +211,9 @@ object fmUserCard: TfmUserCard
     Caption = 'OK'
     Default = True
     ModalResult = 1
+    NumGlyphs = 2
     TabOrder = 12
     OnClick = pbOkClick
-    NumGlyphs = 2
   end
   object pbCancel: TBitBtn
     Left = 200
@@ -223,14 +223,7 @@ object fmUserCard: TfmUserCard
     Cancel = True
     Caption = #1054#1090#1084#1077#1085#1072
     ModalResult = 2
-    TabOrder = 13
     NumGlyphs = 2
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 92
-    Top = 34
+    TabOrder = 13
   end
 end

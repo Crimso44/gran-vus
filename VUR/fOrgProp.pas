@@ -4,11 +4,11 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Buttons, ComCtrls, FrmKeep, ExtCtrls, dxExEdtr,
+  Dialogs, StdCtrls, Buttons, ComCtrls, ExtCtrls, dxExEdtr,
   dxEdLib, dxCntner, dxEditor, fOrgPropCommon, fOrgPropContacts, fOrgPropVoenkom, fOrgPropOsnPer,
   fOrgPropOKONH, fOrgVUZOnly, dxTL, Menus, DB, dxmdaset, dxDBCtrl, dxDBGrid,
   dxDBTLCl, dxGrClms, ADODB, dxBar, dxBarDBNav, cxClasses, dxSkinsCore,
-  dxSkinsDefaultPainters, dxSkinsdxBarPainter;
+  dxSkinsDefaultPainters, dxSkinsdxBarPainter, cxControls;
 
 type
   TfmOrgProp = class(TForm)
