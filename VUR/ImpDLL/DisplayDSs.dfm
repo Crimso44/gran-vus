@@ -23,7 +23,6 @@ object Form1: TForm1
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     SummaryGroups = <>
     SummarySeparator = ', '
     Align = alClient
@@ -41,7 +40,6 @@ object Form1: TForm1
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     SummaryGroups = <>
     SummarySeparator = ', '
     Align = alTop

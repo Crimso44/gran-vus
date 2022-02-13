@@ -61,7 +61,9 @@ uses
   uMemoTable in 'uMemoTable.pas',
   fOrgPropContacts in 'fOrgPropContacts.pas' {fmOrgPropContacts},
   Num2Str in 'Common\Num2Str.pas',
-  fCorrectOkved in 'fCorrectOkved.pas' {fmCorrectOkved};
+  fCorrectOkved in 'fCorrectOkved.pas' {fmCorrectOkved},
+  dxExEdtr in 'E:\Granit\DevExOld\ExpressEditors Library 3\Sources\dxExEdtr.pas',
+  dxGrDate in 'E:\Granit\DevExOld\ExpressEditors Library 3\Sources\dxGrDate.pas';
 
 {$R *.RES}
 

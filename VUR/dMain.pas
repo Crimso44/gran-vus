@@ -3,7 +3,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  Db, ADODB, ImgList, OleServer, dxTL, Variants, Excel2000, ExcelXP,
+  Db, ADODB, ImgList, OleServer, dxTL, Variants, Excel2000,
   System.ImageList;
 
 type
@@ -167,6 +167,8 @@ end;
 
 procedure TdmMain.DataModuleCreate(Sender: TObject);
 begin
+  System.Variants.DispatchUnsignedAsSigned := True;
+
   slPlugIns := TStringList.Create;
   time_out := IniSupport.GetTimeOut;
   ListMTR := TStringList.Create;

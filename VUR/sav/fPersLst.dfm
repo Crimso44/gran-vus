@@ -66,7 +66,6 @@ object fmPersonList: TfmPersonList
     DefaultLayout = False
     HeaderMinRowCount = 3
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'PERS_ID'
     ShowSummaryFooter = True
     SummaryGroups = <>

@@ -57,7 +57,6 @@ object frmSelectPerson: TfrmSelectPerson
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     SummaryGroups = <>
     SummarySeparator = ', '
     Align = alClient

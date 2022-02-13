@@ -173,7 +173,7 @@ object fmPersonForm: TfmPersonForm
     Top = 55
     Width = 797
     Height = 406
-    ActivePage = tabSheetX0
+    ActivePage = TabSheet1
     HotTrack = True
     MultiLine = True
     RaggedRight = True
@@ -594,10 +594,13 @@ object fmPersonForm: TfmPersonForm
         PreviewFont.Name = 'MS Sans Serif'
         PreviewFont.Style = []
         object dbgDataColumn1: TdxDBGridDateColumn
+          Sorted = csUp
+          Visible = False
           Width = 65
           BandIndex = 0
           RowIndex = 0
           FieldName = 'BEGIN_DATE'
+          GroupIndex = 0
         end
         object dbgDataColumn2: TdxDBGridMaskColumn
           Caption = 
@@ -607,12 +610,14 @@ object fmPersonForm: TfmPersonForm
           BandIndex = 0
           RowIndex = 0
           FieldName = 'NOTBEGINREASON'
+          GroupIndex = 0
         end
         object dbgDataColumn3: TdxDBGridDateColumn
           Width = 65
           BandIndex = 0
           RowIndex = 0
           FieldName = 'END_DATE'
+          GroupIndex = 0
         end
       end
       object GroupBox3: TGroupBox

@@ -51,7 +51,6 @@ object fmParamDlg: TfmParamDlg
       end>
     DefaultLayout = True
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     SummaryGroups = <>
     SummarySeparator = ', '
     TabOrder = 2

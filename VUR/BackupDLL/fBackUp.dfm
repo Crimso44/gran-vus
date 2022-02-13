@@ -2254,7 +2254,6 @@ object fmBackUp: TfmBackUp
           end>
         DefaultLayout = False
         HeaderPanelRowCount = 1
-        DoNotAddFormNameToRegistryPath = False
         Align = alBottom
         TabOrder = 0
         HideSelection = False

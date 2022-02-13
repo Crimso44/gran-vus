@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   dxCntner, dxTL, dxDBCtrl, dxDBGrid, Db, ADODB, dMain, ActnList,  Menus, rdialogs, ComCtrls, ToolWin,
-  StdCtrls, dxExEdtr, Variants, ExtCtrls;
+  StdCtrls, dxExEdtr, Variants, ExtCtrls, System.Actions;
 
 type
   TForm6List = class(TForm)

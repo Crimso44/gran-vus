@@ -28,7 +28,6 @@ object TfmAsfMtr: TTfmAsfMtr
     DefaultLayout = False
     HeaderMinRowCount = 2
     HeaderPanelRowCount = 1
-    DoNotAddFormNameToRegistryPath = False
     KeyField = 'ID'
     SummaryGroups = <>
     SummarySeparator = ', '
