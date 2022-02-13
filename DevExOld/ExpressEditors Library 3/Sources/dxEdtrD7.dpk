@@ -1,0 +1,51 @@
+package dxEdtrD7;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS OFF}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DELPHI3}
+{$DEFINE DELPHI4}
+{$DEFINE DELPHI5}
+{$DEFINE DELPHI6}
+{$DEFINE DELPHI7}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Express inplace editors'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  dxCoreD7,
+  dxComnD7;
+
+contains
+  dxUtils in 'dxUtils.pas',
+  dxCntner in 'dxCntner.pas',
+  dxEditor in 'dxEditor.pas',
+  dxEdStr,
+  dxExEdtr in 'dxExEdtr.pas',
+  dxGrDate in 'dxGrDate.pas',
+  dxCalc in 'dxCalc.pas';
+
+end.

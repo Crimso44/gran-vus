@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<versionStorage>
+  <auxPath value="net.tcp://vcsservice.devexpress.dev:9091/DXVCSService">
+    <projectPath value="$/VCL/OLD/Library/Core" date="0">
+      <fileName value="dxCore.pas" version="104" time="5246474832324468859" hash="null" writeTime="5246474832321656287" />
+    </projectPath>
+  </auxPath>
+</versionStorage>
