@@ -6,7 +6,7 @@ uses
   StrUtils, Variants,
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   EkRtf, Db, ADODB, ekbasereport, dxmdaset, ImgList, dxTL, OleServer, ExcelXP,
-  ekfunc;
+  ekfunc, Excel2000, System.ImageList;
 
 type
   TdmMain = class(TDataModule)
@@ -70,6 +70,8 @@ uses SaveEvents, IniSupport, msg;
 
 procedure TdmMain.DataModuleCreate(Sender: TObject);
 begin
+  System.Variants.DispatchUnsignedAsSigned := True;
+
   if dbMain.Connected then ShowMessage('Close default connection!');
   EkRTF1.Infile := GetTemplatesDir + 'ReplacePlan.rtf';
   EkRTF1.Outfile := GetReportsDir + 'План замены призываемых специалистов.rtf';
