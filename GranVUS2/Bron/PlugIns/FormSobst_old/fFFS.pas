@@ -34,7 +34,6 @@ type
     sp_FFSGenerate: TADOStoredProc;
     WHOLEColumn: TdxDBGridColumn;
     BRONColumn: TdxDBGridColumn;
-    FrmKeep1: TFrmKeep;
     actExcel: TAction;
     ToolButton5: TToolButton;
     WUColumn: TdxDBGridColumn;

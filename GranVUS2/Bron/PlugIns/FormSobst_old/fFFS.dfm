@@ -450,11 +450,4 @@ object fmFFS: TfmFFS
     Left = 364
     Top = 96
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 100
-    Top = 92
-  end
 end

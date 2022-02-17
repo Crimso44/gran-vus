@@ -9,7 +9,6 @@ uses
 
 type
   TfmOtrDlg = class(TForm)
-    FrmKeep1: TFrmKeep;
     rbAll: TRadioButton;
     rbFiltered: TRadioButton;
     bOK: TButton;

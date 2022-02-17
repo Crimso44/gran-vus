@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls, Buttons, FrmKeep;
+  Dialogs, ExtCtrls, StdCtrls, Buttons;
 
 type
   TfmUserCard = class(TForm)
@@ -30,7 +30,6 @@ type
     pbCancel: TBitBtn;
     Bevel1: TBevel;
     laRights: TLabel;
-    FrmKeep1: TFrmKeep;
     Bevel2: TBevel;
     Bevel3: TBevel;
     procedure FormCreate(Sender: TObject);

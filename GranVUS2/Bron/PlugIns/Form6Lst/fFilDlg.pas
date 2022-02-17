@@ -9,7 +9,6 @@ uses
 
 type
   TfmFilDlg = class(TForm)
-    FrmKeep1: TFrmKeep;
     GroupBox2: TGroupBox;
     rbAll: TRadioButton;
     rbFiltered: TRadioButton;

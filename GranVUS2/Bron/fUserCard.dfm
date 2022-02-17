@@ -209,10 +209,8 @@ object fmUserCard: TfmUserCard
     Height = 25
     Caption = 'OK'
     Default = True
-    DoubleBuffered = True
     ModalResult = 1
     NumGlyphs = 2
-    ParentDoubleBuffered = False
     TabOrder = 12
     OnClick = pbOkClick
   end
@@ -223,17 +221,8 @@ object fmUserCard: TfmUserCard
     Height = 25
     Cancel = True
     Caption = #1054#1090#1084#1077#1085#1072
-    DoubleBuffered = True
     ModalResult = 2
     NumGlyphs = 2
-    ParentDoubleBuffered = False
     TabOrder = 13
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 92
-    Top = 34
   end
 end

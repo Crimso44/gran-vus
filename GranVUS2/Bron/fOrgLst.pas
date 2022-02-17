@@ -4,9 +4,9 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls, ActnList, dxCntner, dxTL, dxDBCtrl, dxDBGrid, ToolWin, FrmKeep,
+  ComCtrls, ActnList, dxCntner, dxTL, dxDBCtrl, dxDBGrid, ToolWin,
   dxBar, Db, ADODB, Menus, dxDBTLCl, dxGrClms, DBCtrls,
-  dxEditor, dxExEdtr, dxDBEdtr, dxDBELib, Variants, cxClasses;
+  dxEditor, dxExEdtr, dxDBEdtr, dxDBELib, Variants, cxClasses, System.Actions;
 
 type
   TfmOrgList = class(TForm)
@@ -17,7 +17,6 @@ type
     actEdit: TAction;
     actDel: TAction;
     actFiltr: TAction;
-    FrmKeep1: TFrmKeep;
     dxBarManager1: TdxBarManager;
     dxBarButton1: TdxBarButton;
     dxBarButton2: TdxBarButton;
@@ -546,6 +545,8 @@ end;
 
 procedure TfmOrgList.FormActivate(Sender: TObject);
 begin
+  //while dbgData.GroupColumnCount > 0 do
+  //  dbgData.DeleteGroupColumn(0);
   if FMaximized then ShowWindow(handle, sw_ShowMaximized);
 end;
 

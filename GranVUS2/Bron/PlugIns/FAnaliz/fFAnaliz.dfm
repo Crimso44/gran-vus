@@ -400,13 +400,6 @@ object fmFSVT: TfmFSVT
     Left = 384
     Top = 104
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 100
-    Top = 92
-  end
   object qrKAnaliz: TADOQuery
     Connection = dmMain.dbMain
     CursorType = ctStatic

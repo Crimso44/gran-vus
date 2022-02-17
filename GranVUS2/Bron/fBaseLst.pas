@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, dxCntner, dxTL, dxDBCtrl, dxDBGrid, Db, ADODB, dxBar,
-  dxBarDBNav, FrmKeep, dxExEdtr, Variants, cxClasses, dxGrClms;
+  dxBarDBNav, dxExEdtr, Variants, cxClasses, dxGrClms;
 
 type
   TfmBaseLst = class(TForm)
@@ -26,7 +26,6 @@ type
     qrData: TADOQuery;
     dsData: TDataSource;
     dbgData: TdxDBGrid;
-    FrmKeep1: TFrmKeep;
     dxBarExcel: TdxBarButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qrDataBeforePost(DataSet: TDataSet);
@@ -35,7 +34,6 @@ type
     procedure dbgDataEditing(Sender: TObject; Node: TdxTreeListNode;
       var Allow: Boolean);
     procedure dxBarExcelClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -169,11 +167,6 @@ end;
 procedure TfmBaseLst.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
-end;
-
-procedure TfmBaseLst.FormShow(Sender: TObject);
-begin
-  FrmKeep1.LoadFrmData;
 end;
 
 procedure TfmBaseLst.qrDataBeforePost(DataSet: TDataSet);

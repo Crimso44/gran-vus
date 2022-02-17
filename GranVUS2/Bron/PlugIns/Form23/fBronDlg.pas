@@ -9,7 +9,6 @@ uses
 
 type
   TfmBronDlg = class(TForm)
-    FrmKeep1: TFrmKeep;
     bPrint: TButton;
     bCancel: TButton;
     rgFilter: TRadioGroup;

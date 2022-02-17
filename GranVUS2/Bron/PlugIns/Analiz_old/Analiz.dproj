@@ -24,7 +24,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_DependencyCheckOutputName>C:\Program Files\GranVus2\Plugins\Form6.dll</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>e:\Program Files\GranVus2\Plugins\Form6.dll</DCC_DependencyCheckOutputName>
 			<DCC_UnitSearchPath>$(DELPHI)\Spy;$(DELPHI)\EkRTF;..\..\Common;C:\Program Files\Developer Express Inc\ExpressBars\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressCommon\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressDBTree\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressEditors Library\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressInplaceEditors\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressMemData\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressOrgChart\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressPageControl\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressPrinting System\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressQuantumGrid\Delphi 7\Sources;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_UsePackage>Vcl50;Vclx50;VclSmp50;Vcldb50;vclado50;ibevnt50;Vclbde50;vcldbx50;Qrpt50;TeeUI50;TeeDB50;Tee50;Dss50;TeeQR50;VCLIB50;Vclmid50;vclie50;Inetdb50;Inet50;NMFast50;webmid50;dclocx50;dclaxserver50;dxEdtrD5;dxcomnD5;EQTLD5;ECQDBCD5;EQDBTLD5;EQGridD5;dxGrEdD5;dxExELD5;dxELibD5;ZCommon5;ZDbware5;ZMsSql5;dxBarD5;dxBarDBNavD5;dxBarExtItemsD5;dxBarExtDBItemsD5;dxsbd5;GLSS_FMOD5;GLSS_BASS5;ANIMATEDFORMD5</DCC_UsePackage>
@@ -32,7 +32,7 @@
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
 			<DCC_SYMBOL_PLATFORM>false</DCC_SYMBOL_PLATFORM>
 			<DCC_Optimize>false</DCC_Optimize>
-			<DCC_ExeOutput>C:\Program Files\GranVus2\Plugins</DCC_ExeOutput>
+			<DCC_ExeOutput>e:\Program Files\GranVus2\Plugins</DCC_ExeOutput>
 			<DCC_Platform>x86</DCC_Platform>
 			<DCC_K>false</DCC_K>
 			<DCC_F>false</DCC_F>
@@ -85,7 +85,7 @@
 						<Source Name="MainSource">Analiz.dpr</Source>
 					</Source>
 					<Parameters>
-						<Parameters Name="HostApplication">C:\Program Files\GranVUS2\GranVUS2.exe</Parameters>
+						<Parameters Name="HostApplication">e:\Program Files\GranVUS2\GranVUS2.exe</Parameters>
 					</Parameters>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>

@@ -235,7 +235,6 @@ object fmMain: TfmMain
     object aSecret: TAction
       Caption = 'aSecret'
       ShortCut = 57382
-      OnExecute = aSecretExecute
     end
   end
   object dxBarManager1: TdxBarManager
@@ -279,6 +278,7 @@ object fmMain: TfmMain
     UseSystemFont = True
     Left = 44
     Top = 44
+    PixelsPerInch = 96
     DockControlHeights = (
       0
       0

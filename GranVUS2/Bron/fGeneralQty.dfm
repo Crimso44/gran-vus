@@ -77,7 +77,6 @@ object fmGeneralQty: TfmGeneralQty
     Height = 25
     Anchors = [akLeft, akBottom]
     Caption = #1042#1099#1075#1088#1091#1079#1080#1090#1100
-    DoubleBuffered = True
     Glyph.Data = {
       42010000424D4201000000000000760000002800000011000000110000000100
       040000000000CC000000C40E0000C40E00001000000000000000000000000000
@@ -90,7 +89,6 @@ object fmGeneralQty: TfmGeneralQty
       2222F2FF7F70700000002F22FF22F2777F70700000002FFFFFFFF2FF00007000
       00002222222222FF8F07700000007778FFFFFFFF807770000000777888888888
       877770000000}
-    ParentDoubleBuffered = False
     TabOrder = 1
     OnClick = BitBtn1Click
   end
@@ -119,11 +117,13 @@ object fmGeneralQty: TfmGeneralQty
     Anchors = [akLeft, akTop, akRight, akBottom]
     object colpID: TdxDBGridColumn
       DisableEditor = True
+      Sorted = csUp
       Visible = False
       Width = 195
       BandIndex = 0
       RowIndex = 0
       FieldName = 'ID'
+      GroupIndex = 0
     end
     object colpPARAM_NAME: TdxDBGridColumn
       Alignment = taLeftJustify
@@ -134,6 +134,7 @@ object fmGeneralQty: TfmGeneralQty
       BandIndex = 0
       RowIndex = 0
       FieldName = 'PARAM_NAME'
+      GroupIndex = 0
     end
     object colpVALUE2: TdxDBGridColumn
       Alignment = taRightJustify
@@ -144,6 +145,7 @@ object fmGeneralQty: TfmGeneralQty
       RowIndex = 0
       OnValidate = colpVALUE2Validate
       FieldName = 'PARAM_VALUE'
+      GroupIndex = 0
     end
     object colpVALUE3: TdxDBGridColumn
       Alignment = taRightJustify
@@ -154,6 +156,7 @@ object fmGeneralQty: TfmGeneralQty
       RowIndex = 0
       OnValidate = colpVALUE2Validate
       FieldName = 'value3'
+      GroupIndex = 0
     end
     object colpVALUE4: TdxDBGridColumn
       Alignment = taRightJustify
@@ -164,6 +167,7 @@ object fmGeneralQty: TfmGeneralQty
       RowIndex = 0
       OnValidate = colpVALUE2Validate
       FieldName = 'value4'
+      GroupIndex = 0
     end
     object colpVALUE5: TdxDBGridColumn
       Alignment = taRightJustify
@@ -174,6 +178,7 @@ object fmGeneralQty: TfmGeneralQty
       RowIndex = 0
       OnValidate = colpVALUE2Validate
       FieldName = 'value5'
+      GroupIndex = 0
     end
     object colpVALUE6: TdxDBGridColumn
       Alignment = taRightJustify
@@ -184,6 +189,7 @@ object fmGeneralQty: TfmGeneralQty
       RowIndex = 0
       OnValidate = colpVALUE2Validate
       FieldName = 'value6'
+      GroupIndex = 0
     end
     object colpVALUE7: TdxDBGridColumn
       Alignment = taRightJustify
@@ -194,6 +200,7 @@ object fmGeneralQty: TfmGeneralQty
       RowIndex = 0
       OnValidate = colpVALUE2Validate
       FieldName = 'value7'
+      GroupIndex = 0
     end
     object colpVALUE8: TdxDBGridColumn
       Alignment = taRightJustify
@@ -204,6 +211,7 @@ object fmGeneralQty: TfmGeneralQty
       RowIndex = 0
       OnValidate = colpVALUE2Validate
       FieldName = 'value8'
+      GroupIndex = 0
     end
   end
   object qrPARAMload: TADOQuery
@@ -266,13 +274,6 @@ object fmGeneralQty: TfmGeneralQty
       'WHERE SUBJ_ID = :SUBJ_ID')
     Left = 128
     Top = 88
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 28
-    Top = 80
   end
   object mData: TdxMemData
     Indexes = <>

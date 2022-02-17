@@ -4,13 +4,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Buttons, ComCtrls, FrmKeep, ExtCtrls, dxExEdtr,
+  Dialogs, StdCtrls, Buttons, ComCtrls, ExtCtrls, dxExEdtr,
   dxEdLib, dxCntner, dxEditor, fOrgPropCommon, fOrgPropContacts, fOrgPropOsnPer,
   fOrgPropOKONH, dxTL, Menus, fOrgLst, DB;
 
 type
   TfmOrgProp = class(TForm)
-    FrmKeep1: TFrmKeep;
     Label1: TLabel;
     mmName: TMemo;
     Label2: TLabel;

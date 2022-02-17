@@ -37,7 +37,6 @@ type
     sp_FOKVEDGenerate: TADOStoredProc;
     ORG_COUNTColumn: TdxDBGridColumn;
     ORG_BRON_COUNTColumn: TdxDBGridColumn;
-    FrmKeep1: TFrmKeep;
     actExcel: TAction;
     ToolButton5: TToolButton;
     ORG_WU_COUNTColumn: TdxDBGridColumn;

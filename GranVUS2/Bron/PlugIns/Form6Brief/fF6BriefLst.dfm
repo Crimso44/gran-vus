@@ -101,13 +101,6 @@ object fmF6BriefList: TfmF6BriefList
       OnUpdate = PrintActionUpdate
     end
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 32
-    Top = 272
-  end
   object qrData: TADOQuery
     Connection = dmMain.dbMain
     CursorType = ctStatic

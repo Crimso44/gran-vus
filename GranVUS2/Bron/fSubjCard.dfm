@@ -83,10 +83,6 @@ object fmSubjCard: TfmSubjCard
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = #1054#1073#1097#1080#1077' '#1089#1074#1077#1076#1077#1085#1080#1103
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label3: TLabel
         Left = 8
         Top = 8
@@ -179,6 +175,7 @@ object fmSubjCard: TfmSubjCard
         Width = 329
         TabOrder = 1
         ReadOnly = True
+        Text = ''
         OnChange = edNameChange
         PopupAlignment = taRightJustify
         PopupControl = dxtKTerr
@@ -193,6 +190,7 @@ object fmSubjCard: TfmSubjCard
         TabOrder = 5
         OnKeyPress = cbOKATO1KeyPress
         MaxLength = 11
+        Text = ''
         OnChange = edNameChange
         PopupControl = dxtOKATO
         PopupFormBorderStyle = pbsSimple
@@ -242,10 +240,6 @@ object fmSubjCard: TfmSubjCard
     object TabSheet2: TTabSheet
       Caption = #1054#1088#1075#1072#1085#1099' '#1091#1087#1088#1072#1074#1083#1077#1085#1080#1103
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object dxtInfo: TdxTreeList
         Left = 4
         Top = 4
@@ -446,10 +440,6 @@ object fmSubjCard: TfmSubjCard
       Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1077#1085#1085#1099#1077' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080
       ImageIndex = 2
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label7: TLabel
         Left = 8
         Top = 8
@@ -574,13 +564,6 @@ object fmSubjCard: TfmSubjCard
     DataSet = qrData
     Left = 44
     Top = 159
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 212
-    Top = 128
   end
   object qrINFOload: TADOQuery
     Connection = dmMain.dbMain

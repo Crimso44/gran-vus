@@ -33,7 +33,6 @@ type
     sp_FFSGenerate: TADOStoredProc;
     ALLColumn: TdxDBGridColumn;
     ALLTOWNVILLAGEColumn: TdxDBGridColumn;
-    FrmKeep1: TFrmKeep;
     actExcel: TAction;
     ToolButton5: TToolButton;
     CITYColumn: TdxDBGridColumn;

@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls, dxExEdtr, dxTLClms, dxTL, dxCntner, FrmKeep,
+  Dialogs, ExtCtrls, StdCtrls, dxExEdtr, dxTLClms, dxTL, dxCntner,
   Menus;
 
 type

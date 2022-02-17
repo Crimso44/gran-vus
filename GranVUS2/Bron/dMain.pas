@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   Db, ADODB, ImgList, OleServer, Excel2000, dxTL, Variants, dxDBGrid, dxGrClms,
-  ExcelXP;
+  ExcelXP, System.ImageList;
 
 type
   TPlugInInfo =
@@ -306,7 +306,8 @@ procedure TdmMain.dbMainWillExecute(Connection: TADOConnection;
   const Command: _Command; const Recordset: _Recordset);
 begin
   Screen.Cursor:=crSQLWait;
-  Command.CommandTimeout:= Connection.CommandTimeout;
+  if Command <> nil then
+    Command.CommandTimeout:= Connection.CommandTimeout;
 end;
 
 procedure TdmMain.dbMainExecuteComplete(Connection: TADOConnection;

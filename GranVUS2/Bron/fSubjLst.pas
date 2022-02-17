@@ -4,9 +4,9 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls, ActnList, dxCntner, dxTL, dxDBCtrl, dxDBGrid, ToolWin, FrmKeep,
+  ComCtrls, ActnList, dxCntner, dxTL, dxDBCtrl, dxDBGrid, ToolWin,
   dxBar, Db, ADODB, Menus, dxDBTLCl, dxGrClms, dxExEdtr, Variants, Grids,
-  DBGrids, cxClasses;
+  DBGrids, cxClasses, System.Actions;
 
 type
   TfmSubjList = class(TForm)
@@ -16,7 +16,6 @@ type
     actAdd: TAction;
     actEdit: TAction;
     actDel: TAction;
-    FrmKeep1: TFrmKeep;
     dxBarManager1: TdxBarManager;
     dxBarButton1: TdxBarButton;
     dxBarButton2: TdxBarButton;

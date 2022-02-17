@@ -4,8 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ExtCtrls, dxCntner, dxTL, ImgList, dxTLClms, StdCtrls, FrmKeep, dxTLClEx,
-  ComCtrls, dxEditor, dxExEdtr, dxEdLib, ADOdb;
+  ExtCtrls, dxCntner, dxTL, ImgList, dxTLClms, StdCtrls, dxTLClEx,
+  ComCtrls, dxEditor, dxExEdtr, dxEdLib, ADOdb, System.ImageList;
 
 type
   TfmFltMgr = class(TForm)
@@ -16,7 +16,6 @@ type
     btnOpenFlt: TButton;
     btnOk: TButton;
     btnCancel: TButton;
-    FrmKeep1: TFrmKeep;
     pnlEditStr: TPanel;
     chkStrEnable: TCheckBox;
     Label1: TLabel;

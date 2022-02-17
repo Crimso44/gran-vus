@@ -9,7 +9,6 @@ uses
 
 type
   TfmFilDlg = class(TForm)
-    FrmKeep1: TFrmKeep;
     bOK: TButton;
     bCancel: TButton;
     rgShifr: TRadioGroup;

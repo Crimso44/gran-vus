@@ -108,11 +108,4 @@ object fmBronDlg: TfmBronDlg
     ItemHeight = 13
     TabOrder = 6
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 172
-    Top = 20
-  end
 end

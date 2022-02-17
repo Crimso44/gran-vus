@@ -100,13 +100,6 @@ object fmOKBVList: TfmOKBVList
       OnUpdate = PrintActionUpdate
     end
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 192
-    Top = 188
-  end
   object qrData: TADOQuery
     Connection = dmMain.dbMain
     Parameters = <>

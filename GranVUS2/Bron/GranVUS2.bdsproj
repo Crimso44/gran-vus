@@ -119,7 +119,7 @@
 			<Linker Name="GenerateHpps">False</Linker>
 		</Linker>
 		<Directories>
-			<Directories Name="OutputDir">C:\Program Files\GranVus2\</Directories>
+			<Directories Name="OutputDir">e:\Program Files\GranVus2\</Directories>
 			<Directories Name="UnitOutputDir">DCU</Directories>
 			<Directories Name="PackageDLLOutputDir"></Directories>
 			<Directories Name="PackageDCPOutputDir"></Directories>

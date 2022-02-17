@@ -99,11 +99,4 @@ object fmFilDlg: TfmFilDlg
       '06')
     TabOrder = 0
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 176
-    Top = 92
-  end
 end

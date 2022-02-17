@@ -41,10 +41,6 @@ object fmConfig: TfmConfig
     object TabSheet3: TTabSheet
       Caption = #1054#1073#1097#1080#1077
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label3: TLabel
         Left = 8
         Top = 36
@@ -123,10 +119,6 @@ object fmConfig: TfmConfig
     end
     object TabSheet1: TTabSheet
       Caption = #1041#1077#1079#1086#1087#1072#1089#1085#1086#1089#1090#1100
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lbTimeOut: TLabel
         Left = 36
         Top = 32
@@ -168,10 +160,6 @@ object fmConfig: TfmConfig
     object TabSheet2: TTabSheet
       Caption = #1060#1072#1081#1083#1099' '#1080' '#1087#1072#1087#1082#1080
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label1: TLabel
         Left = 4
         Top = 4
@@ -397,12 +385,5 @@ object fmConfig: TfmConfig
     Caption = #1054#1090#1084#1077#1085#1080#1090#1100
     ModalResult = 2
     TabOrder = 2
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 28
-    Top = 191
   end
 end

@@ -51,11 +51,4 @@ object fmFilDlg: TfmFilDlg
       #1055#1086' '#1079#1072#1076#1072#1085#1085#1086#1084#1091' '#1085#1072#1073#1086#1088#1091)
     TabOrder = 0
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 176
-    Top = 4
-  end
 end

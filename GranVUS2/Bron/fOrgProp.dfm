@@ -620,6 +620,7 @@ object fmOrgProp: TfmOrgProp
     TabOrder = 8
     OnKeyPress = edOKPOKeyPress
     MaxLength = 11
+    Text = ''
     OnChange = mmNameChange
     PopupControl = dxtOKATO
     PopupFormBorderStyle = pbsSimple
@@ -707,6 +708,7 @@ object fmOrgProp: TfmOrgProp
     TabOrder = 25
     OnExit = cbRegPlaceExit
     Alignment = taCenter
+    Text = ''
     OnChange = mmNameChange
     Items.Strings = (
       '01'
@@ -724,6 +726,7 @@ object fmOrgProp: TfmOrgProp
     TabOrder = 27
     OnExit = cbRegPlaceExit
     ReadOnly = False
+    Text = ''
     OnChange = mmNameChange
     StoredValues = 64
   end
@@ -777,6 +780,7 @@ object fmOrgProp: TfmOrgProp
     TabOrder = 16
     OnExit = cbRegPlaceExit
     ReadOnly = False
+    Text = ''
     OnChange = cbOKFSChange
     StoredValues = 64
   end
@@ -787,6 +791,7 @@ object fmOrgProp: TfmOrgProp
     TabOrder = 18
     OnExit = cbRegPlaceExit
     ReadOnly = False
+    Text = ''
     OnChange = mmNameChange
     StoredValues = 64
   end
@@ -871,6 +876,7 @@ object fmOrgProp: TfmOrgProp
     Width = 495
     TabOrder = 28
     OnExit = cbRegPlaceExit
+    Text = ''
     OnChange = mmNameChange
   end
   object dxtOKATO: TdxTreeList
@@ -967,6 +973,7 @@ object fmOrgProp: TfmOrgProp
     TabOrder = 26
     OnExit = cbRegPlaceExit
     MaxLength = 50
+    Text = ''
     OnChange = mmNameChange
     DropDownListStyle = True
     OnButtonClick = cbOVKButtonClick
@@ -979,6 +986,7 @@ object fmOrgProp: TfmOrgProp
     TabOrder = 41
     OnKeyPress = edOKPOKeyPress
     MaxLength = 11
+    Text = ''
     OnChange = mmNameChange
     PopupControl = dxtOKTMO
     PopupFormBorderStyle = pbsSimple
@@ -1034,6 +1042,7 @@ object fmOrgProp: TfmOrgProp
     TabOrder = 43
     OnKeyPress = edOKPOKeyPress
     MaxLength = 11
+    Text = ''
     OnChange = mmNameChange
     PopupControl = dxtOKATO
     PopupFormBorderStyle = pbsSimple
@@ -1058,6 +1067,7 @@ object fmOrgProp: TfmOrgProp
     TabOrder = 45
     OnKeyPress = edOKPOKeyPress
     MaxLength = 11
+    Text = ''
     OnChange = mmNameChange
     PopupControl = dxtOKTMO
     PopupFormBorderStyle = pbsSimple
@@ -1073,13 +1083,6 @@ object fmOrgProp: TfmOrgProp
     Height = 21
     TabOrder = 6
     OnChange = mmNameChange
-  end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 288
-    Top = 443
   end
   object pmOKATO: TPopupMenu
     Left = 752

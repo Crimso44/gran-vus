@@ -1,4 +1,4 @@
-object fmEventList: TfmEventList
+﻿object fmEventList: TfmEventList
   Left = 324
   Top = 134
   HelpContext = 42
@@ -130,11 +130,10 @@ object fmEventList: TfmEventList
       object laLeft: TLabel
         Left = 0
         Top = 0
-        Width = 440
+        Width = 47
         Height = 13
         Align = alTop
         Caption = #1057#1086#1073#1099#1090#1080#1103':'
-        ExplicitWidth = 47
       end
       object gridMaster: TdxDBGrid
         Left = 0
@@ -163,11 +162,13 @@ object fmEventList: TfmEventList
         object gridMasterWhen: TdxDBGridColumn
           Caption = #1050#1086#1075#1076#1072
           Sorted = csUp
+          Visible = False
           Width = 113
           BandIndex = 0
           RowIndex = 0
           DisableGrouping = True
           FieldName = 'When'
+          GroupIndex = 0
         end
         object gridMasterType: TdxDBGridColumn
           Caption = #1063#1090#1086
@@ -175,6 +176,7 @@ object fmEventList: TfmEventList
           BandIndex = 0
           RowIndex = 0
           FieldName = 'Type'
+          GroupIndex = 0
         end
         object gridMasterObject: TdxDBGridColumn
           Caption = #1043#1076#1077
@@ -182,6 +184,7 @@ object fmEventList: TfmEventList
           BandIndex = 0
           RowIndex = 0
           FieldName = 'Object'
+          GroupIndex = 0
         end
         object gridMasterEvent_id: TdxDBGridColumn
           Caption = #1053#1086#1084#1077#1088
@@ -190,6 +193,7 @@ object fmEventList: TfmEventList
           BandIndex = 0
           RowIndex = 0
           FieldName = 'Event_id'
+          GroupIndex = 0
         end
         object gridMasterWhoLogin: TdxDBGridColumn
           Caption = #1050#1090#1086
@@ -197,6 +201,7 @@ object fmEventList: TfmEventList
           BandIndex = 0
           RowIndex = 0
           FieldName = 'WhoLogin'
+          GroupIndex = 0
         end
       end
     end
@@ -211,11 +216,10 @@ object fmEventList: TfmEventList
       object laDetail: TLabel
         Left = 0
         Top = 0
-        Width = 440
+        Width = 116
         Height = 13
         Align = alTop
         Caption = #1055#1086#1076#1088#1086#1073#1085#1086#1089#1090#1080' '#1089#1086#1073#1099#1090#1080#1103':'
-        ExplicitWidth = 116
       end
       object gridDetail: TdxDBGrid
         Left = 0
@@ -240,20 +244,18 @@ object fmEventList: TfmEventList
         OptionsView = [edgoAutoWidth, edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoRowAutoHeight, edgoRowSelect, edgoUseBitmap]
         ShowHeader = False
         object gridDetailValue: TdxDBGridMemoColumn
+          Sorted = csUp
+          Visible = False
           BandIndex = 0
           RowIndex = 0
           HeaderMaxLineCount = 1
           FieldName = 'Value'
+	  ScrollBars = ssVertical
+          SelectionBar = True
+          GroupIndex = 0
         end
       end
     end
-  end
-  object FrmKeep: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 32
-    Top = 232
   end
   object qryMaster: TADOQuery
     Connection = dmMain.dbMain

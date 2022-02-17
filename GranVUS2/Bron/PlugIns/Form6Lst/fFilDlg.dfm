@@ -71,11 +71,4 @@ object fmFilDlg: TfmFilDlg
     ModalResult = 2
     TabOrder = 2
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 176
-    Top = 4
-  end
 end

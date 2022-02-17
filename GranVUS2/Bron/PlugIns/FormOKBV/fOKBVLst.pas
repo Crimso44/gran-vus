@@ -12,7 +12,6 @@ type
     StatusBar1: TStatusBar;
     dbgData: TdxDBGrid;
     ActionList1: TActionList;
-    FrmKeep1: TFrmKeep;
     qrData: TADOQuery;
     DataSource1: TDataSource;
     PopupMenu1: TPopupMenu;

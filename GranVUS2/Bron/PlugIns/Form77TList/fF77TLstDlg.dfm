@@ -69,11 +69,4 @@ object fmF77TLstDlg: TfmF77TLstDlg
     TabOrder = 3
     Text = '  .  .  '
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 180
-    Top = 72
-  end
 end

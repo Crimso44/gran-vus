@@ -30,7 +30,6 @@ type
     sp_FOKVEDCreate: TADOStoredProc;
     sp_FOKVEDClear: TADOStoredProc;
     sp_FOKVEDGenerate: TADOStoredProc;
-    FrmKeep1: TFrmKeep;
     actExcel: TAction;
     ToolButton5: TToolButton;
     qrKOKVED: TADOQuery;

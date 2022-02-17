@@ -20,8 +20,8 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_ExeOutput>C:\Program Files\GranVus2\Plugins</DCC_ExeOutput>
-			<DCC_DependencyCheckOutputName>C:\Program Files\GranVus2\Plugins\form18lst.dll</DCC_DependencyCheckOutputName>
+			<DCC_ExeOutput>e:\Program Files\GranVus2\Plugins</DCC_ExeOutput>
+			<DCC_DependencyCheckOutputName>e:\Program Files\GranVus2\Plugins\form18lst.dll</DCC_DependencyCheckOutputName>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
 			<GenDll>true</GenDll>
 			<DCC_ImageBase>00400000</DCC_ImageBase>

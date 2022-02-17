@@ -30,7 +30,6 @@ type
     sp_FSVTCreate: TADOStoredProc;
     sp_FSVTClear: TADOStoredProc;
     sp_FSVTGenerate: TADOStoredProc;
-    FrmKeep1: TFrmKeep;
     actExcel: TAction;
     ToolButton5: TToolButton;
     qrKSVT: TADOQuery;

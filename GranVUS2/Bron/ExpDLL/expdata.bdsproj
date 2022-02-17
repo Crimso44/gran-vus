@@ -131,7 +131,7 @@
     </Directories>
     <Parameters>
       <Parameters Name="RunParams"></Parameters>
-      <Parameters Name="HostApplication">C:\Program Files\GranVus2\GranVUS2.exe</Parameters>
+      <Parameters Name="HostApplication">e:\Program Files\GranVus2\GranVUS2.exe</Parameters>
       <Parameters Name="Launcher"></Parameters>
       <Parameters Name="UseLauncher">False</Parameters>
       <Parameters Name="DebugCWD"></Parameters>

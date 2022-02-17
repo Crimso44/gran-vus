@@ -9,7 +9,6 @@ uses
 
 type
   TfmF77TLstDlg = class(TForm)
-    FrmKeep1: TFrmKeep;
     bPrint: TButton;
     bCancel: TButton;
     rgFilter: TRadioGroup;

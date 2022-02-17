@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, dxBar, dxExEdtr, StdCtrls, dxTL, dxCntner, ADODB,
-  FrmKeep, DB, Buttons, dxmdaset, dxDBCtrl, dxDBGrid;
+  DB, Buttons, dxmdaset, dxDBCtrl, dxDBGrid;
 
 type
   TfmGeneralQty = class(TForm)
@@ -14,7 +14,6 @@ type
     pbCancel: TButton;
     qrPARAMload: TADOQuery;
     qrPARAMsave: TADOQuery;
-    FrmKeep1: TFrmKeep;
     edName: TEdit;
     Label1: TLabel;
     BitBtn1: TBitBtn;

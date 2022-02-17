@@ -24,8 +24,8 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_ExeOutput>C:\Program Files\GranVus2\Plugins</DCC_ExeOutput>
-			<DCC_DependencyCheckOutputName>C:\Program Files\GranVus2\Plugins\formbron.dll</DCC_DependencyCheckOutputName>
+			<DCC_ExeOutput>e:\Program Files\GranVus2\Plugins</DCC_ExeOutput>
+			<DCC_DependencyCheckOutputName>e:\Program Files\GranVus2\Plugins\formbron.dll</DCC_DependencyCheckOutputName>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
 			<GenDll>true</GenDll>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
@@ -78,7 +78,7 @@
 						<Source Name="MainSource">formbron.dpr</Source>
 					</Source>
 					<Parameters>
-						<Parameters Name="HostApplication">C:\Program Files\GranVus2\GranVUS2.exe</Parameters>
+						<Parameters Name="HostApplication">e:\Program Files\GranVus2\GranVUS2.exe</Parameters>
 					</Parameters>
 					<Language>
 						<Language Name="ProjectLang">$00000419</Language>

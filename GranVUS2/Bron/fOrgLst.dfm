@@ -31,9 +31,9 @@ object fmOrgList: TfmOrgList
   end
   object dbgData: TdxDBGrid
     Left = 0
-    Top = 26
+    Top = 28
     Width = 902
-    Height = 453
+    Height = 451
     Bands = <
       item
       end>
@@ -57,12 +57,14 @@ object fmOrgList: TfmOrgList
     RegistryPath = '\Software\GRANVUS2\TfmOrgList'
     OnCustomDrawCell = dbgDataCustomDrawCell
     OnColumnClick = dbgDataColumnClick
+    ExplicitTop = 22
     object gridTERR: TdxDBGridColumn
       Caption = #1042#1099#1096#1077#1089#1090#1086#1103#1097#1080#1081' '#1042#1059#1054' '#1082#1091#1088#1080#1088#1091#1077#1090
       HeaderAlignment = taCenter
       Width = 88
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'TERR'
     end
     object gridORGNAME: TdxDBGridColumn
@@ -71,7 +73,9 @@ object fmOrgList: TfmOrgList
       Width = 248
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'ORGNAME'
+      GroupIndex = 0
     end
     object gridORGSNAME: TdxDBGridColumn
       Caption = #1050#1088#1072#1090#1082#1086#1077' '#1085#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
@@ -80,7 +84,9 @@ object fmOrgList: TfmOrgList
       Width = 248
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'ORGSNAME'
+      GroupIndex = 0
     end
     object gridOKPO: TdxDBGridColumn
       Caption = #1054#1050#1055#1054
@@ -88,7 +94,9 @@ object fmOrgList: TfmOrgList
       Width = 60
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'OKPO'
+      GroupIndex = 0
     end
     object gridOKTMO: TdxDBGridColumn
       Caption = #1054#1050#1058#1052#1054
@@ -97,7 +105,9 @@ object fmOrgList: TfmOrgList
       Width = 60
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'KODOKTMO'
+      GroupIndex = 0
     end
     object gridINN: TdxDBGridColumn
       Caption = #1048#1053#1053'/'#1050#1055#1055
@@ -105,7 +115,9 @@ object fmOrgList: TfmOrgList
       Width = 73
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'INN'
+      GroupIndex = 0
     end
     object gridOKBV: TdxDBGridColumn
       Caption = #1054#1050#1041#1042
@@ -113,14 +125,18 @@ object fmOrgList: TfmOrgList
       Width = 72
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'OKBV'
+      GroupIndex = 0
     end
     object gridURADDR: TdxDBGridColumn
       Caption = #1070#1088'. '#1072#1076#1088#1077#1089
       Width = 250
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'URADDR'
+      GroupIndex = 0
     end
     object gridFIZADDR: TdxDBGridColumn
       Caption = #1060#1072#1082#1090'. '#1072#1076#1088#1077#1089
@@ -128,7 +144,9 @@ object fmOrgList: TfmOrgList
       Width = 251
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'FIZADDR'
+      GroupIndex = 0
     end
     object gridPOSTADDR: TdxDBGridColumn
       Caption = #1055#1086#1095#1090'. '#1072#1076#1088#1077#1089
@@ -136,7 +154,9 @@ object fmOrgList: TfmOrgList
       Width = 251
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'POSTADDR'
+      GroupIndex = 0
     end
     object gridPHONE: TdxDBGridColumn
       Caption = #1058#1077#1083#1077#1092#1086#1085
@@ -144,21 +164,27 @@ object fmOrgList: TfmOrgList
       Width = 60
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'PHONE'
+      GroupIndex = 0
     end
     object gridEmail: TdxDBGridColumn
       Caption = 'E-mail'
       Width = 100
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'EMAIL'
+      GroupIndex = 0
     end
     object gridFIRST_DATE: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1087#1077#1088#1074#1080#1095#1085'. '#1088#1077#1075#1080#1089#1090#1088#1072#1094#1080#1080
       Width = 67
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'FIRST_DATE'
+      GroupIndex = 0
     end
     object gridLAST_DATE: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1087#1086#1089#1083#1077#1076#1085#1077#1075#1086' '#1087#1088#1080#1093#1086#1076#1072
@@ -166,7 +192,9 @@ object fmOrgList: TfmOrgList
       Width = 67
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'LAST_DATE'
+      GroupIndex = 0
     end
     object gridHAS_F6: TdxDBGridCheckColumn
       Caption = #1060'-6'
@@ -175,9 +203,11 @@ object fmOrgList: TfmOrgList
       Width = 31
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'HAS_F6'
       ValueChecked = '1'
-      ValueUnchecked = '0'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
     object gridPARENT: TdxDBGridColumn
       Caption = #1042#1099#1096#1077#1089#1090#1086#1103#1097#1072#1103' '#1086#1088#1075#1072#1085#1080#1079#1072#1094#1080#1103
@@ -185,7 +215,9 @@ object fmOrgList: TfmOrgList
       Width = 130
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'PARENT'
+      GroupIndex = 0
     end
     object gridMAINOKONH: TdxDBGridColumn
       Caption = #1054#1089#1085'. '#1054#1050#1042#1069#1044
@@ -193,7 +225,9 @@ object fmOrgList: TfmOrgList
       Width = 51
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'MAINOKONH'
+      GroupIndex = 0
     end
     object gridKFS: TdxDBGridColumn
       Caption = #1054#1050#1060#1057
@@ -201,7 +235,9 @@ object fmOrgList: TfmOrgList
       Width = 52
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'KFS'
+      GroupIndex = 0
     end
     object gridKOPF: TdxDBGridColumn
       Caption = #1054#1050#1054#1055#1060
@@ -209,14 +245,18 @@ object fmOrgList: TfmOrgList
       Width = 47
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'KOPF'
+      GroupIndex = 0
     end
     object gridREG_PLACE: TdxDBGridColumn
       Caption = #1052#1077#1089#1090#1086' '#1088#1077#1075#1080#1089#1090#1088#1072#1094#1080#1080
       Width = 105
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'REG_PLACE'
+      GroupIndex = 0
     end
     object gridCOMMENT: TdxDBGridColumn
       Caption = #1055#1088#1080#1084#1077#1095#1072#1085#1080#1103
@@ -224,7 +264,9 @@ object fmOrgList: TfmOrgList
       Width = 100
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'COMMENT'
+      GroupIndex = 0
     end
     object gridOUT_DATE: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1089#1085#1103#1090#1080#1103' '#1089' '#1091#1095#1077#1090#1072
@@ -232,7 +274,9 @@ object fmOrgList: TfmOrgList
       Width = 57
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'OUT_DATE'
+      GroupIndex = 0
     end
     object gridSUBMISSION: TdxDBGridColumn
       Caption = #1055#1086#1076#1095#1080#1085#1077#1085#1080#1077
@@ -240,7 +284,9 @@ object fmOrgList: TfmOrgList
       Width = 150
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'SUBMISSION'
+      GroupIndex = 0
     end
     object gridRAB_COUNT: TdxDBGridColumn
       Caption = #1042#1089#1077#1075#1086' '#1088#1072#1073#1086#1090#1072#1102#1097#1080#1093
@@ -248,7 +294,9 @@ object fmOrgList: TfmOrgList
       Width = 75
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'RAB_COUNT'
+      GroupIndex = 0
     end
     object gridZAP_COUNT: TdxDBGridColumn
       Caption = #1048#1079' '#1085#1080#1093' '#1074' '#1079#1072#1087#1072#1089#1077
@@ -256,7 +304,9 @@ object fmOrgList: TfmOrgList
       Width = 73
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'ZAP_COUNT'
+      GroupIndex = 0
     end
     object gridZAB_COUNT: TdxDBGridColumn
       Caption = #1048#1079' '#1085#1080#1093' '#1079#1072#1073#1088#1086#1085#1080#1088#1086#1074#1072#1085#1086
@@ -264,7 +314,9 @@ object fmOrgList: TfmOrgList
       Width = 82
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'ZAB_COUNT'
+      GroupIndex = 0
     end
     object gridF6CHECKED: TdxDBGridCheckColumn
       Alignment = taLeftJustify
@@ -273,9 +325,11 @@ object fmOrgList: TfmOrgList
       Width = 59
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'F6CHECKED'
       ValueChecked = '1'
-      ValueUnchecked = '0'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
     object gridHAS_BRON: TdxDBGridCheckColumn
       Caption = #1041#1088#1086#1085#1080#1088#1091#1077#1090
@@ -284,9 +338,11 @@ object fmOrgList: TfmOrgList
       Width = 58
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'HAS_BRON'
       ValueChecked = '1'
-      ValueUnchecked = '0'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
     object gridCHK_DATE: TdxDBGridDateColumn
       Caption = #1044#1072#1090#1072' '#1089#1074#1077#1088#1082#1080
@@ -294,84 +350,109 @@ object fmOrgList: TfmOrgList
       Width = 60
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'CHK_DATE'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object gridKodReg: TdxDBGridColumn
       Caption = #1054#1050#1040#1058#1054
       Width = 43
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'KodReg'
+      GroupIndex = 0
     end
     object gridHEADFAM: TdxDBGridColumn
       Caption = #1060#1048#1054' '#1088#1091#1082#1086#1074#1086#1076#1080#1090#1077#1083#1103
       Width = 106
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'HEADFAM'
+      GroupIndex = 0
     end
     object gridVURFAM: TdxDBGridColumn
       Caption = #1060#1048#1054' '#1042#1059#1056
       Width = 87
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'VURFAM'
+      GroupIndex = 0
     end
     object gridHEADPHONE: TdxDBGridColumn
       Caption = #1058#1077#1083#1077#1092#1086#1085' '#1088#1091#1082#1086#1074#1086#1076#1080#1090#1077#1083#1103
       Width = 103
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'HEADPHONE'
+      GroupIndex = 0
     end
     object gridVURPHONE: TdxDBGridColumn
       Caption = #1058#1077#1083#1077#1092#1086#1085' '#1042#1059#1056
       Width = 76
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'VURPHONE'
+      GroupIndex = 0
     end
     object gridKOPF_Changed: TdxDBGridColumn
       DisableCustomizing = True
       Visible = False
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'KOPF_Changed'
+      GroupIndex = 0
     end
     object gridOKVED_Changed: TdxDBGridColumn
       DisableCustomizing = True
       Visible = False
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'OKVED_Changed'
+      GroupIndex = 0
     end
     object dbgDataOrg_Id: TdxDBGridColumn
       DisableCustomizing = True
       Visible = False
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'ORGID'
+      GroupIndex = 0
     end
     object dbgDataCol_10: TdxDBGridColumn
       Caption = #1048#1084#1077#1102#1090' '#1084#1086#1073'. '#1087#1088#1077#1076#1087#1080#1089#1072#1085#1080#1077
       Width = 60
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'COL_10'
+      GroupIndex = 0
     end
     object dbgDataCol_11: TdxDBGridColumn
       Caption = #1055#1086#1076#1083#1077#1078#1072#1090' '#1087#1088#1080#1079#1099#1074#1091
       Width = 60
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'COL_11'
+      GroupIndex = 0
     end
     object dbgDataCol_12: TdxDBGridColumn
       Caption = #1055#1086#1090#1088#1077#1073#1085#1086#1089#1090#1100' '#1085#1072' '#1056#1043
       Width = 60
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'COL_12'
+      GroupIndex = 0
     end
   end
   object ActionList1: TActionList
@@ -464,13 +545,6 @@ object fmOrgList: TfmOrgList
       OnExecute = actExcelExecute
     end
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 32
-    Top = 272
-  end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -491,10 +565,11 @@ object fmOrgList: TfmOrgList
     UseSystemFont = True
     Left = 328
     Top = 104
+    PixelsPerInch = 96
     DockControlHeights = (
       0
       0
-      26
+      28
       0)
     object dxBarManager1Bar1: TdxBar
       AllowClose = False
@@ -915,5 +990,6 @@ object fmOrgList: TfmOrgList
     UseOwnFont = False
     Left = 252
     Top = 88
+    PixelsPerInch = 96
   end
 end

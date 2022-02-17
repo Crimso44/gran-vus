@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, dxExEdtr, dxEdLib, dxCntner, dxEditor, StdCtrls, ExtCtrls,
-  Buttons, FrmKeep, Spin;
+  Buttons, Spin;
 
 type
   TfmOrgPropCommon = class(TForm)

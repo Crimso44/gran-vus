@@ -31,9 +31,9 @@ object fmSubjList: TfmSubjList
   end
   object dbgData: TdxDBGrid
     Left = 0
-    Top = 26
+    Top = 28
     Width = 696
-    Height = 294
+    Height = 292
     Bands = <
       item
       end>
@@ -56,16 +56,21 @@ object fmSubjList: TfmSubjList
     OptionsView = [edgoBandHeaderWidth, edgoRowSelect, edgoUseBitmap]
     RegistryPath = '\Software\GRANVUS2\TfmSubjList'
     OnCustomDrawCell = dbgDataCustomDrawCell
+    ExplicitTop = 26
+    ExplicitHeight = 294
     object dbgDataColumn5: TdxDBGridCheckColumn
       Alignment = taCenter
       Caption = #1043#1083#1072#1074#1085#1099#1081
       HeaderAlignment = taCenter
+      Sorted = csUp
+      Visible = False
       Width = 51
       BandIndex = 0
       RowIndex = 0
       FieldName = 'IsCurrent'
       ValueChecked = '1'
-      ValueUnchecked = '0'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
     object dbgDataColumn3: TdxDBGridColumn
       Caption = #1042#1059#1054' '#1082#1091#1088#1080#1088#1091#1077#1090
@@ -74,6 +79,7 @@ object fmSubjList: TfmSubjList
       BandIndex = 0
       RowIndex = 0
       FieldName = 'TERRNAME'
+      GroupIndex = 0
     end
     object dbgDataColumn1: TdxDBGridColumn
       Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
@@ -82,6 +88,7 @@ object fmSubjList: TfmSubjList
       BandIndex = 0
       RowIndex = 0
       FieldName = 'SUBJ_NAME'
+      GroupIndex = 0
     end
     object dbgDataColumn10: TdxDBGridColumn
       Caption = #1058#1080#1087
@@ -90,6 +97,7 @@ object fmSubjList: TfmSubjList
       BandIndex = 0
       RowIndex = 0
       FieldName = 'TYPE_NAME'
+      GroupIndex = 0
     end
     object dbgDataColumn4: TdxDBGridColumn
       Alignment = taLeftJustify
@@ -99,6 +107,7 @@ object fmSubjList: TfmSubjList
       BandIndex = 0
       RowIndex = 0
       FieldName = 'SUBJ_AGG_NAME'
+      GroupIndex = 0
     end
     object dbgDataIsReported: TdxDBGridCheckColumn
       Alignment = taCenter
@@ -109,7 +118,8 @@ object fmSubjList: TfmSubjList
       RowIndex = 0
       FieldName = 'IsReported'
       ValueChecked = '1'
-      ValueUnchecked = '0'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
     object dbgDataChecked: TdxDBGridCheckColumn
       Alignment = taCenter
@@ -120,7 +130,8 @@ object fmSubjList: TfmSubjList
       RowIndex = 0
       FieldName = 'CHECKED'
       ValueChecked = '1'
-      ValueUnchecked = '0'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
   end
   object ActionList1: TActionList
@@ -177,13 +188,6 @@ object fmSubjList: TfmSubjList
       OnExecute = actExcelExecute
     end
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 32
-    Top = 272
-  end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -201,10 +205,11 @@ object fmSubjList: TfmSubjList
     UseSystemFont = True
     Left = 328
     Top = 104
+    PixelsPerInch = 96
     DockControlHeights = (
       0
       0
-      26
+      28
       0)
     object dxBarManager1Bar1: TdxBar
       AllowClose = False

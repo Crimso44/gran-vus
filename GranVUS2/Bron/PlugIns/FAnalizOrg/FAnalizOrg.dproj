@@ -25,7 +25,7 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<DCC_ImageBase>00400000</DCC_ImageBase>
-			<DCC_DependencyCheckOutputName>C:\Program Files\GranVus2\Plugins\FormVED.dll</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>e:\Program Files\GranVus2\Plugins\FormVED.dll</DCC_DependencyCheckOutputName>
 			<DCC_UNIT_DEPRECATED>false</DCC_UNIT_DEPRECATED>
 			<DCC_WriteableConstants>true</DCC_WriteableConstants>
 			<DCC_UsePackage>Vcl50;Vclx50;VclSmp50;Vcldb50;vclado50;ibevnt50;Vclbde50;vcldbx50;Qrpt50;TeeUI50;TeeDB50;Tee50;Dss50;TeeQR50;VCLIB50;Vclmid50;vclie50;Inetdb50;Inet50;NMFast50;webmid50;dclocx50;dclaxserver50;edsn;Ecomp</DCC_UsePackage>
@@ -33,7 +33,7 @@
 			<DCC_SYMBOL_PLATFORM>false</DCC_SYMBOL_PLATFORM>
 			<DCC_Platform>x86</DCC_Platform>
 			<DCC_UnitSearchPath>$(DELPHI)\Spy;$(DELPHI)\EkRTF;..\..\Common;C:\Program Files\Developer Express Inc\ExpressBars\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressCommon\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressDBTree\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressEditors Library\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressInplaceEditors\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressMemData\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressOrgChart\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressPageControl\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressPrinting System\Delphi 7\Sources;C:\Program Files\Developer Express Inc\ExpressQuantumGrid\Delphi 7\Sources;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-			<DCC_ExeOutput>C:\Program Files\GranVus2\Plugins</DCC_ExeOutput>
+			<DCC_ExeOutput>e:\Program Files\GranVus2\Plugins</DCC_ExeOutput>
 			<DCC_K>false</DCC_K>
 			<DCC_F>false</DCC_F>
 			<DCC_N>true</DCC_N>
@@ -88,7 +88,7 @@
 						<Source Name="MainSource">FAnalizOrg.dpr</Source>
 					</Source>
 					<Parameters>
-						<Parameters Name="HostApplication">C:\Program Files\GranVUS2\GranVUS2.exe</Parameters>
+						<Parameters Name="HostApplication">e:\Program Files\GranVUS2\GranVUS2.exe</Parameters>
 					</Parameters>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>

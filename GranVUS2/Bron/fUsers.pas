@@ -5,13 +5,12 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, dxExEdtr, DB, ActnList, dxCntner, dxTL, dxDBCtrl, dxDBGrid,
-  ADODB, FrmKeep, StdCtrls, Buttons, ComCtrls, ExtCtrls, dxDBTLCl, dxGrClms,
-  dxBar, Menus, cxClasses;
+  ADODB, StdCtrls, Buttons, ComCtrls, ExtCtrls, dxDBTLCl, dxGrClms,
+  dxBar, Menus, cxClasses, System.Actions;
 
 type
   TfmUsers = class(TForm)
     StatusBar: TStatusBar;
-    FrmKeep1: TFrmKeep;
     dsData: TDataSource;
     qrData: TADOQuery;
     dbgData: TdxDBGrid;

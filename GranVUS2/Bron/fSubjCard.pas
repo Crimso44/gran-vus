@@ -5,8 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, Buttons, ComCtrls, Menus, ExtCtrls, dxExEdtr, dxEdLib,
-  dxDBELib, dxDBEdtr, dxCntner, dxEditor, AEdit, dxTL, dxTLClms, ADOdb, Db,
-  FrmKeep, Variants;
+  dxDBELib, dxDBEdtr, dxCntner, dxEditor, dxTL, dxTLClms, ADOdb, Db,
+  Variants;
 
 type
   TfmSubjCard = class(TForm)
@@ -17,7 +17,6 @@ type
     edName: TEdit;
     qrData: TADOQuery;
     dsData: TDataSource;
-    FrmKeep1: TFrmKeep;
     qrINFOload: TADOQuery;
     qrINFOsave: TADOQuery;
     PC: TPageControl;

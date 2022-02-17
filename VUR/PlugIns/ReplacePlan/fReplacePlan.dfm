@@ -13,8 +13,8 @@ object frmReplacePlan: TfrmReplacePlan
   OldCreateOrder = False
   Position = poScreenCenter
   WindowState = wsMaximized
+  OnActivate = FormActivate
   OnCloseQuery = FormCloseQuery
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object ToolBar1: TToolBar
@@ -94,9 +94,12 @@ object frmReplacePlan: TfrmReplacePlan
       DisableEditor = True
       HeaderAlignment = taCenter
       ReadOnly = True
+      Sorted = csUp
+      Visible = False
       Width = 100
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'Pers_Dep'
       GroupIndex = 0
     end
@@ -108,6 +111,7 @@ object frmReplacePlan: TfrmReplacePlan
       Width = 100
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'Pers_id'
       GroupIndex = 0
     end
@@ -119,6 +123,7 @@ object frmReplacePlan: TfrmReplacePlan
       Width = 100
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'Pers_Post'
       GroupIndex = 0
     end
@@ -130,6 +135,7 @@ object frmReplacePlan: TfrmReplacePlan
       Width = 100
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'Pers_Fio'
       GroupIndex = 0
     end
@@ -141,6 +147,7 @@ object frmReplacePlan: TfrmReplacePlan
       Width = 133
       BandIndex = 1
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'Repl_Id'
       GroupIndex = 0
     end
@@ -150,6 +157,7 @@ object frmReplacePlan: TfrmReplacePlan
       Width = 133
       BandIndex = 1
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'Repl_Dep'
       GroupIndex = 0
     end
@@ -159,6 +167,7 @@ object frmReplacePlan: TfrmReplacePlan
       Width = 133
       BandIndex = 1
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'Repl_Post'
       GroupIndex = 0
     end
@@ -168,6 +177,7 @@ object frmReplacePlan: TfrmReplacePlan
       Width = 133
       BandIndex = 1
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'Repl_Fio'
       Buttons = <
         item
@@ -181,14 +191,15 @@ object frmReplacePlan: TfrmReplacePlan
       Width = 133
       BandIndex = 1
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'Repl_War'
       GroupIndex = 0
     end
     object MainGridRecId: TdxDBGridColumn
-      Sorted = csUp
       Visible = False
       BandIndex = 0
       RowIndex = 0
+      DisableGrouping = True
       FieldName = 'RecId'
       GroupIndex = 0
     end

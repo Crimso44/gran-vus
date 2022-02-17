@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, dxBar, ActnList, ADOdb, ExtCtrls, StdCtrls, cxClasses, Spin,
-  dxSkinsCore, dxSkinsDefaultPainters, dxSkinsdxBarPainter;
+  dxSkinsCore, dxSkinsDefaultPainters, dxSkinsdxBarPainter, System.Actions;
 
 type
   TfmMain = class(TForm)
@@ -123,7 +123,6 @@ type
     procedure actImportSPOExecute(Sender: TObject);
     procedure actImportSPOOrgExecute(Sender: TObject);
     procedure actFormSobstvExecute(Sender: TObject);
-    procedure aSecretExecute(Sender: TObject);
     procedure dxBarButton26Click(Sender: TObject);
     procedure actFormSVTExecute(Sender: TObject);
     procedure actFAnalizExecute(Sender: TObject);
@@ -152,8 +151,7 @@ implementation
 uses fAbout, msg, dMain, IniSupport, fBaseLst, fCfgPlugIns,
   fOrgLst, fKbdMouHk, fConfig, fSubjLst, fUsers, dberror, comobj, db, ShellAPI,
   exec, fOrgProp, SaveEvents, fEventList, Registry, fGeneralQty,
-  fExportSPO, fImportSPO, fImportSPOOrg
-  {SQLEDIT},InpDlg, AEMSQLEDIT{SQLEDIT}, uVERSION, WinHelpViewer;
+  fExportSPO, fImportSPO, fImportSPOOrg, uVERSION, WinHelpViewer;
 
 {$R *.DFM}
 
@@ -882,15 +880,6 @@ begin
     end;
     FreeLibrary(hDll);
   end;
-end;
-
-procedure TfmMain.aSecretExecute(Sender: TObject);
-var
-  pwd: string;
-begin
-  pwd := InputPassword('','');
-  if pwd = 'ENTERSQL' then
-     EditSQL(dmMain.dbMain, '', True, True, False);
 end;
 
 end.

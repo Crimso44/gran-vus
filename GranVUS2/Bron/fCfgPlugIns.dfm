@@ -88,11 +88,4 @@ object fmCfgPlugIns: TfmCfgPlugIns
     TabOrder = 2
     OnClick = Button2Click
   end
-  object FrmKeep1: TFrmKeep
-    IniName = 'frmdata.ini'
-    IniSection = 'FORMS'
-    AutoLoad = True
-    Left = 32
-    Top = 184
-  end
 end

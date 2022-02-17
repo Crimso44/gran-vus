@@ -30,7 +30,6 @@ type
     sp_FAnalizCreate: TADOStoredProc;
     sp_FAnalizClear: TADOStoredProc;
     sp_FAnalizGenerate: TADOStoredProc;
-    FrmKeep1: TFrmKeep;
     actExcel: TAction;
     ToolButton5: TToolButton;
     qrKAnaliz: TADOQuery;

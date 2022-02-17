@@ -13,7 +13,6 @@ type
     dbgData: TdxDBGrid;
     ActionList1: TActionList;
     actClear: TAction;
-    FrmKeep1: TFrmKeep;
     qrData: TADOQuery;
     DataSource1: TDataSource;
     PopupMenu1: TPopupMenu;

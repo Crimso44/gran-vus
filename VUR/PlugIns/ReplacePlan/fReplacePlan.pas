@@ -33,7 +33,7 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure bExcelClick(Sender: TObject);
     procedure bPrintClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -64,6 +64,17 @@ begin
   dmMain.SaveData;
 end;
 
+procedure TfrmReplacePlan.FormActivate(Sender: TObject);
+var
+  col: TdxDBGridColumn;
+  i: Integer;
+begin
+  for i := 0 to MainGrid.ColumnCount - 1 do begin
+    col := TdxDBGridColumn(MainGrid.Columns[i]);
+    col.GroupIndex := -1;
+  end;
+end;
+
 procedure TfrmReplacePlan.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
@@ -72,12 +83,6 @@ begin
     CanClose := Confirm('Данные были изменены и не сохранены!'#13'Все равно закрыть форму?')
   end else
     CanClose := True;
-end;
-
-procedure TfrmReplacePlan.FormShow(Sender: TObject);
-begin
-  while MainGrid.GroupColumnCount > 0 do
-    MainGrid.DeleteGroupColumn(0);
 end;
 
 procedure TfrmReplacePlan.MainGridRepl_FioButtonClick(Sender: TObject;
