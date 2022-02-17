@@ -49,7 +49,6 @@ type
   public
     { Public declarations }
     is_changed: Boolean;
-    IsJet: Boolean;
     function OpenData: boolean;
     function PrintData: boolean;
     procedure SaveData;
@@ -79,15 +78,6 @@ end;
 
 function TdmMain.OpenData: boolean;
 begin
-  IsJet := false;
-  if Pos(WideString('Provider=Microsoft.Jet'), dbMain.ConnectionString) > 0 then
-    IsJet := true;
-
-  if not IsJet then begin
-    qrPers.SQL.Text := StringReplace(qrPers.SQL.Text, 'Date()', 'GetDate()', [rfReplaceAll]);
-    qrSelectPerson.SQL.Text := StringReplace(qrSelectPerson.SQL.Text, 'Date()', 'GetDate()', [rfReplaceAll]);
-  end;
-
   try
     qrPers.Open;
     mReplacePlan.Open;

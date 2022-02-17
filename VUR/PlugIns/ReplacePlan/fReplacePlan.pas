@@ -6,14 +6,13 @@ uses
   dMain, msg,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, dxExEdtr, dxCntner, dxTL, dxDBCtrl, dxDBGrid, ToolWin, ComCtrls, DB,
-  dxDBTLCl, dxGrClms;
+  dxDBTLCl, dxGrClms, Vcl.Buttons;
 
 type
   TfrmReplacePlan = class(TForm)
     ToolBar1: TToolBar;
     MainGrid: TdxDBGrid;
     dsGrid: TDataSource;
-    MainGridRecId: TdxDBGridColumn;
     MainGridPers_id: TdxDBGridMaskColumn;
     MainGridPers_Fio: TdxDBGridMaskColumn;
     MainGridPers_Dep: TdxDBGridMaskColumn;
@@ -27,12 +26,14 @@ type
     bPrint: TToolButton;
     MainGridRepl_Fio: TdxDBGridButtonColumn;
     bExcel: TToolButton;
+    MainGridRecId: TdxDBGridColumn;
     procedure bSaveClick(Sender: TObject);
     procedure MainGridRepl_FioButtonClick(Sender: TObject;
       AbsoluteIndex: Integer);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure bExcelClick(Sender: TObject);
     procedure bPrintClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,6 +72,12 @@ begin
     CanClose := Confirm('Данные были изменены и не сохранены!'#13'Все равно закрыть форму?')
   end else
     CanClose := True;
+end;
+
+procedure TfrmReplacePlan.FormShow(Sender: TObject);
+begin
+  while MainGrid.GroupColumnCount > 0 do
+    MainGrid.DeleteGroupColumn(0);
 end;
 
 procedure TfrmReplacePlan.MainGridRepl_FioButtonClick(Sender: TObject;

@@ -14,6 +14,7 @@ object frmReplacePlan: TfrmReplacePlan
   Position = poScreenCenter
   WindowState = wsMaximized
   OnCloseQuery = FormCloseQuery
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object ToolBar1: TToolBar
@@ -88,13 +89,15 @@ object frmReplacePlan: TfrmReplacePlan
     OptionsCustomize = [edgoBandMoving, edgoBandSizing, edgoColumnMoving, edgoColumnSizing, edgoRowSizing]
     OptionsDB = [edgoCancelOnExit, edgoCanDelete, edgoCanInsert, edgoCanNavigation, edgoConfirmDelete, edgoLoadAllRecords, edgoUseBookmarks]
     ShowBands = True
-    object MainGridRecId: TdxDBGridColumn
-      Sorted = csUp
-      Visible = False
+    object MainGridPers_Dep: TdxDBGridMaskColumn
+      Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1089#1083#1091#1078#1073', '#1087#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074', '#1094#1077#1093#1086#1074
+      DisableEditor = True
+      HeaderAlignment = taCenter
+      ReadOnly = True
       Width = 100
       BandIndex = 0
       RowIndex = 0
-      FieldName = 'RecId'
+      FieldName = 'Pers_Dep'
       GroupIndex = 0
     end
     object MainGridPers_id: TdxDBGridMaskColumn
@@ -106,17 +109,6 @@ object frmReplacePlan: TfrmReplacePlan
       BandIndex = 0
       RowIndex = 0
       FieldName = 'Pers_id'
-      GroupIndex = 0
-    end
-    object MainGridPers_Dep: TdxDBGridMaskColumn
-      Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1089#1083#1091#1078#1073', '#1087#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074', '#1094#1077#1093#1086#1074
-      DisableEditor = True
-      HeaderAlignment = taCenter
-      ReadOnly = True
-      Width = 100
-      BandIndex = 0
-      RowIndex = 0
-      FieldName = 'Pers_Dep'
       GroupIndex = 0
     end
     object MainGridPers_Post: TdxDBGridMaskColumn
@@ -190,6 +182,14 @@ object frmReplacePlan: TfrmReplacePlan
       BandIndex = 1
       RowIndex = 0
       FieldName = 'Repl_War'
+      GroupIndex = 0
+    end
+    object MainGridRecId: TdxDBGridColumn
+      Sorted = csUp
+      Visible = False
+      BandIndex = 0
+      RowIndex = 0
+      FieldName = 'RecId'
       GroupIndex = 0
     end
   end

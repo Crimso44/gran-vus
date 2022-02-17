@@ -3,7 +3,7 @@ unit dMain;
 interface
 
 uses
-  SysUtils, Classes, Dialogs, OleServer, Excel2000, DB, ADODB
+  SysUtils, Classes, Dialogs, OleServer, Excel2000, DB, ADODB, Variants
   {$IFDEF OfficeXP}, ExcelXP{$ENDIF};
 
 type
@@ -39,6 +39,8 @@ uses IniSupport, Forms, Controls;
 
 procedure TdmMain.DataModuleCreate(Sender: TObject);
 begin
+  System.Variants.DispatchUnsignedAsSigned := True;
+
   LoadConnAttr(DBMain);
 end;
 
@@ -57,7 +59,8 @@ procedure TdmMain.DBMainWillExecute(Connection: TADOConnection;
   const Command: _Command; const Recordset: _Recordset);
 begin
   Screen.Cursor := crSQLWait;
-  Command.CommandTimeout := Connection.CommandTimeout;
+  if Command <> nil then
+    Command.CommandTimeout := Connection.CommandTimeout;
 end;
 
 end.
