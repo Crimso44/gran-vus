@@ -272,6 +272,10 @@
         </DCCReference>
         <DCCReference Include="E:\Granit\DevExOld\ExpressEditors Library 3\Sources\dxExEdtr.pas"/>
         <DCCReference Include="E:\Granit\DevExOld\ExpressEditors Library 3\Sources\dxGrDate.pas"/>
+        <DCCReference Include="frmAddr.pas">
+            <Form>fAddr</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="SQL\PersonMob.SQL">
             <ContainerId>File</ContainerId>
         </None>

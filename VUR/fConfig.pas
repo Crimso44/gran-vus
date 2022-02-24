@@ -58,6 +58,7 @@ type
     Label11: TLabel;
     cbAbcSort: TCheckBox;
     cbFillT2_9: TCheckBox;
+    cbFillF10: TCheckBox;
     procedure Button2Click(Sender: TObject);
     procedure sbTempClick(Sender: TObject);
     procedure sbRepClick(Sender: TObject);
@@ -167,6 +168,7 @@ begin
         12: eOvkKomissar.Text := Fields[1].AsString;
         13: eOvkAdmin.Text := Fields[1].AsString;
         14: cbFillT2_9.Checked := Fields[1].AsString = '1';
+        15: cbFillF10.Checked := Fields[1].AsString = '1';
       end;
       Next;
     end;
@@ -341,6 +343,18 @@ begin
     end else
       Edit;
     FieldByName('Param_Value').AsString := IfThen(cbFillT2_9.Checked, '1', '0');
+    Post;
+    Close;
+
+    SQL.Text := 'Select * From Params Where Param_Id = 15';
+    Open;
+    if Eof then begin
+      Append;
+      FieldByName('Param_Id').AsInteger := 15;
+      FieldByName('Param_Name').AsString := 'Заполнять в форме № 10 поля для заполнения карандашом';
+    end else
+      Edit;
+    FieldByName('Param_Value').AsString := IfThen(cbFillF10.Checked, '1', '0');
     Post;
     Close;
 

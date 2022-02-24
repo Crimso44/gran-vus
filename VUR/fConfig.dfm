@@ -14,6 +14,7 @@ object fmConfig: TfmConfig
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   Scaled = False
   OnShow = FormShow
   DesignSize = (
@@ -41,6 +42,8 @@ object fmConfig: TfmConfig
     Anchors = [akLeft, akTop, akRight, akBottom]
     Style = tsFlatButtons
     TabOrder = 0
+    ExplicitLeft = -4
+    ExplicitTop = 2
     object TabSheet1: TTabSheet
       Caption = #1041#1077#1079#1086#1087#1072#1089#1085#1086#1089#1090#1100
       DesignSize = (
@@ -451,7 +454,7 @@ object fmConfig: TfmConfig
       end
       object cbMedUst: TCheckBox
         Left = 3
-        Top = 137
+        Top = 131
         Width = 411
         Height = 17
         Caption = 
@@ -461,7 +464,7 @@ object fmConfig: TfmConfig
       end
       object cb6in18: TCheckBox
         Left = 3
-        Top = 160
+        Top = 152
         Width = 411
         Height = 17
         Caption = #1055#1086#1084#1077#1097#1072#1090#1100' '#1095#1080#1089#1083#1086#1074#1099#1077' '#1076#1072#1085#1085#1099#1077' '#1074' '#1087'.15 '#1092#1086#1088#1084#1099' '#8470' 18'
@@ -469,7 +472,7 @@ object fmConfig: TfmConfig
       end
       object cbAllGroups: TCheckBox
         Left = 3
-        Top = 183
+        Top = 173
         Width = 411
         Height = 17
         Caption = #1044#1086#1089#1090#1091#1087#1085#1099' '#1074#1089#1077' '#1075#1088#1091#1087#1087#1099' '#1091#1095#1077#1090#1072
@@ -477,7 +480,7 @@ object fmConfig: TfmConfig
       end
       object cbFillT2: TCheckBox
         Left = 3
-        Top = 206
+        Top = 194
         Width = 411
         Height = 17
         Caption = #1047#1072#1087#1086#1083#1085#1103#1090#1100' '#1087'.7 '#1088#1072#1079#1076#1077#1083#1072' II '#1092#1086#1088#1084#1099' '#1058'-2'
@@ -485,13 +488,21 @@ object fmConfig: TfmConfig
       end
       object cbFillT2_9: TCheckBox
         Left = 3
-        Top = 229
+        Top = 215
         Width = 411
         Height = 17
         Caption = 
           #1047#1072#1087#1086#1083#1085#1103#1090#1100' '#1087'.9 '#1088#1072#1079#1076#1077#1083#1072' II ('#1089#1074#1077#1076#1077#1085#1080#1103' '#1086' '#1074#1086#1080#1085#1089#1082#1086#1084' '#1091#1095#1077#1090#1077') '#1092#1086#1088#1084#1099' '#1058'-2 (' +
           #1042#1059#1057')'
         TabOrder = 7
+      end
+      object cbFillF10: TCheckBox
+        Left = 3
+        Top = 236
+        Width = 411
+        Height = 17
+        Caption = #1047#1072#1087#1086#1083#1085#1103#1090#1100' '#1074' '#1092#1086#1088#1084#1077' '#8470' 10 '#1087#1086#1083#1103' '#1076#1083#1103' '#1079#1072#1087#1086#1083#1085#1077#1085#1080#1103' '#1082#1072#1088#1072#1085#1076#1072#1096#1086#1084
+        TabOrder = 8
       end
     end
     object TabSheet6: TTabSheet

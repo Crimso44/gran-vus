@@ -58,7 +58,7 @@ var
   dmMain: TdmMain;
 
 const
-  sEventObject = 'Форма № 10';
+  sEventObject = 'Выдача ф.4 уполномоченным';
 
 implementation
 
@@ -66,15 +66,8 @@ implementation
 uses DateUtils, SaveEvents, IniSupport, StrUtils, BirthDay;
 
 function TdmMain.PrintData: boolean;
-var
-  IsJet: Boolean;
 begin
-  IsJet := false;
-  if Pos(WideString('Provider=Microsoft.Jet'), dbMain.ConnectionString) > 0 then
-    IsJet := true;
 //  try
-    if not IsJet then
-      ReportQuery.SQL.Text := StringReplace(ReportQuery.SQL.Text, 'Date()', 'GetDate()', [rfReplaceAll]);
     ReportQuery.SQL.Text := ReplaceFullAges(ReportQuery.SQL.Text);
 
     with TADOQuery.Create(nil) do

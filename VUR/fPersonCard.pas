@@ -7,9 +7,10 @@ uses
   StdCtrls, Buttons, ComCtrls, Menus, ExtCtrls, dxExEdtr, dxEdLib,
   dxDBELib, dxDBEdtr, dxCntner, dxEditor, dxTL, dxTLClms, ADOdb, Db,
   fNav, Variants, fPersLst, dxDBTLCl, dxGrClms, dxDBCtrl, dxDBGrid,
-  frmWUch1, frmWUch2,
+  frmWUch1, frmWUch2, frmAddr,
   Mask, ActnList, ADOInt, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters,
-  cxButtons, System.Actions;
+  cxButtons, System.Actions, cxControls, cxContainer, cxEdit, cxTextEdit,
+  cxMaskEdit, cxDropDownEdit, cxCheckBox, cxCheckComboBox;
 
 const WM_OPEN_WUCH2 = WM_User + 2;
 
@@ -26,22 +27,6 @@ type
     btnCancel: TButton;
     btnApply: TButton;
     dtBirth: TdxDateEdit;
-    Label6: TLabel;
-    edPspSer: TEdit;
-    Label7: TLabel;
-    edPspNum: TEdit;
-    Label8: TLabel;
-    Label9: TLabel;
-    dtPspDate: TdxDateEdit;
-    Label11: TLabel;
-    Label12: TLabel;
-    edIndex1: TEdit;
-    edAddr1: TEdit;
-    Label10: TLabel;
-    edIndex2: TEdit;
-    edAddr2: TEdit;
-    Label13: TLabel;
-    Label14: TLabel;
     Label19: TLabel;
     dxtLang: TdxTreeList;
     colLangName: TdxTreeListPickColumn;
@@ -49,14 +34,6 @@ type
     pmLang: TPopupMenu;
     N7: TMenuItem;
     N8: TMenuItem;
-    Label20: TLabel;
-    cbFamState: TComboBox;
-    dxtFamily: TdxTreeList;
-    colFamType: TdxTreeListPickColumn;
-    dxTreeListMaskColumn1: TdxTreeListMaskColumn;
-    pmFamily: TPopupMenu;
-    MenuItem1: TMenuItem;
-    MenuItem2: TMenuItem;
     Label21: TLabel;
     Label22: TLabel;
     edDipl1: TEdit;
@@ -83,7 +60,6 @@ type
     Label37: TLabel;
     edOtch: TEdit;
     edBirth: TEdit;
-    edPspPlace: TEdit;
     Label39: TLabel;
     cbNat: TComboBox;
     Label4: TLabel;
@@ -148,7 +124,6 @@ type
     Bevel3: TBevel;
     Label66: TLabel;
     edOKATO: TEdit;
-    dxTreeListMaskColumn2: TdxTreeListMaskColumn;
     edDate1: TEdit;
     edDate2: TEdit;
     Label5: TLabel;
@@ -195,7 +170,6 @@ type
     laWID: TLabel;
     edWID: TEdit;
     Label59: TLabel;
-    dtADDR_DATE1: TdxDateEdit;
     Label87: TLabel;
     cbBranch: TComboBox;
     Label86: TLabel;
@@ -470,21 +444,36 @@ type
     qrPersDeps: TADOQuery;
     dtWBDate: TdxDateEdit;
     Label167: TLabel;
-    dtADDR_DATE_END1: TdxDateEdit;
-    Label168: TLabel;
     Label169: TLabel;
     dtMobContract: TdxDateEdit;
     bDriver: TCheckBox;
     SpeedButton2: TSpeedButton;
     bNonStudent: TcxButton;
+    GroupBox6: TGroupBox;
+    Label171: TLabel;
+    Label172: TLabel;
+    dtVodUdDate: TdxDateEdit;
+    edVodUdNum: TEdit;
+    Label173: TLabel;
+    edVodUdSer: TEdit;
+    Label170: TLabel;
+    GroupBox7: TGroupBox;
+    dtPspDate: TdxDateEdit;
+    Label9: TLabel;
+    edPspPlace: TEdit;
+    Label8: TLabel;
+    edPspNum: TEdit;
+    Label7: TLabel;
+    edPspSer: TEdit;
+    cbKVodUd: TcxCheckComboBox;
+    Label6: TLabel;
+    bAddr: TButton;
     procedure PCChanging(Sender: TObject; var AllowChange: Boolean);
     procedure PCDrawTab(Control: TCustomTabControl; TabIndex: Integer;
       const Rect: TRect; Active: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure N7Click(Sender: TObject);
     procedure N8Click(Sender: TObject);
-    procedure MenuItem1Click(Sender: TObject);
-    procedure MenuItem2Click(Sender: TObject);
     procedure cbWRangeChange(Sender: TObject);
     procedure chkVoenClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -535,7 +524,6 @@ type
     procedure bWUch1Click(Sender: TObject);
     procedure bWUch2Click(Sender: TObject);
     procedure edWUch2_IsWorkClick(Sender: TObject);
-    procedure cbFamStateChange(Sender: TObject);
     procedure cbDocumentChange(Sender: TObject);
     procedure bNapr1Click(Sender: TObject);
     procedure bKval1Click(Sender: TObject);
@@ -543,6 +531,8 @@ type
     procedure MenuItem12Click(Sender: TObject);
     procedure bDriverClick(Sender: TObject);
     procedure bNonStudentClick(Sender: TObject);
+    procedure edVodUdSerKeyPress(Sender: TObject; var Key: Char);
+    procedure bAddrClick(Sender: TObject);
   private
     { Private declarations }
     PrevTab: Integer;
@@ -577,11 +567,13 @@ type
     ID: Integer;
     fWUch1: TfWUch1;
     fWUch2: TfWUch2;
+    fAddr: TfAddr;
     PDPCode: String;
     cbDocumentZero: integer;
     function GetIsStudent: Boolean;
     procedure LoadStrings(Items: TStrings; HasEmpty: boolean;
                           sSQL,FldID,FldData: string);
+    procedure LoadComboStrings(CheckCombo: TcxCheckComboBox; sSQL,FldID,FldData: string);
     function LoadData: boolean;
     function StoreData: boolean;
     function ChkData: boolean;
@@ -742,9 +734,11 @@ end;
 procedure TfmPersonForm.LoadStrings(Items: TStrings; HasEmpty: boolean;
                         sSQL,FldID,FldData: string);
 var DataOnly: Boolean;
+  qry: TADOQuery;
 begin
   DataOnly := FldID = EmptyStr;
-  with TADOQuery.Create(Self) do begin
+  qry := TADOQuery.Create(Self);
+  with qry do begin
     Items.Clear;
     if HasEmpty then Items.AddObject('<не указано>',nil);
     Connection := dmMain.dbMain;
@@ -756,6 +750,26 @@ begin
       else Items.AddObject(
         FieldByName(FldData).AsString,
         Pointer(FieldByName(FldID).AsInteger));
+      Next;
+    end;
+    Free;
+  end;
+end;
+
+procedure TfmPersonForm.LoadComboStrings(CheckCombo: TcxCheckComboBox; sSQL,FldID,FldData: string);
+var
+  qry: TADOQuery;
+begin
+  qry := TADOQuery.Create(Self);
+  with qry do begin
+    CheckCombo.ActiveProperties.Items.Clear;
+    Connection := dmMain.dbMain;
+    SQL.Text := sSQL;
+    Open;
+    while not EOF do begin
+      CheckCombo.ActiveProperties.Items.AddCheckItem(
+        FieldByName(FldData).AsString,
+        FieldByName(FldID).AsString);
       Next;
     end;
     Free;
@@ -840,6 +854,9 @@ begin
   fWUch2 := TfWUch2.Create(self);
   fWUch2.Visible := False;
   fWUch2.OnChange := edFamChange;
+  fAddr := TfAddr.Create(self);
+  fAddr.Visible := False;
+  fAddr.OnChange := edFamChange;
   OKVEDChoice := TStringList.Create;
   (*cbDocumentZero := 0;*)
 
@@ -877,9 +894,11 @@ begin
     LoadStrings(colLangName.Items,false,'SELECT * FROM KLANG ORDER BY LANG_NAME','LANG_ID','LANG_NAME');
     LoadStrings(colLangSkill.Items,false,'SELECT * FROM KLANGSK','LSK_ID','LSK_NAME');
     LoadStrings(colDepName.Items,false,'SELECT * FROM KDepart ORDER BY DEP_NAME','DEP_ID','DEP_NAME');
-    LoadStrings(cbFamState.Items,false,'SELECT * FROM KFSTATE Where OKIN is not null ORDER BY '+
+    LoadStrings(fAddr.cbFamState.Items,false,'SELECT * FROM KFSTATE Where OKIN is not null ORDER BY '+
       'iif(IsNull(OKIN),999999,OKIN)','FST_ID','FST_NAME');
-    LoadStrings(colFamType.Items,false,'SELECT * FROM KFAMTYPE ORDER BY FT_NAME','FT_ID','FT_NAME');
+    LoadComboStrings(cbKVodUd, 'SELECT Code, Code + '' '' + Name as Name FROM KVodUd ORDER BY Code ',
+      'Code','Name');
+    LoadStrings(fAddr.colFamType.Items,false,'SELECT * FROM KFAMTYPE ORDER BY FT_NAME','FT_ID','FT_NAME');
     LoadStrings(cbEduc.Items,false,'SELECT * FROM KEDUC Where Okin is not null Order by '+
       'iif(IsNull(OKIN),999999,OKIN)','ED_ID','ED_NAME');
     LoadStrings(cbUz1.Items,false,'SELECT * FROM KUZ ORDER BY UZ_NAME','UZ_ID','UZ_NAME');
@@ -956,6 +975,10 @@ begin
   dtConf.Enabled := dmMain.rEdit;
   cbNat.Enabled := dmMain.rEdit;
   edINN.Enabled := dmMain.rEdit;
+  edVodUdSer.Enabled := dmMain.rEdit;
+  dtVodUdDate.Enabled := dmMain.rEdit;
+  edVodUdNum.Enabled := dmMain.rEdit;
+  cbKVodUd.Enabled := dmMain.rEdit;
   edPspSer.Enabled := dmMain.rEdit;
   edPspNum.Enabled := dmMain.rEdit;
   edStrah.Enabled := dmMain.rEdit;
@@ -963,15 +986,18 @@ begin
   dtPspDate.Enabled := dmMain.rEdit;
   dxtLang.Enabled := dmMain.rEdit;
   dxtPersDeps.Enabled := dmMain.rEdit;
-  edIndex1.Enabled := dmMain.rEdit;
-  edAddr1.Enabled := dmMain.rEdit;
-  edIndex2.Enabled := dmMain.rEdit;
-  edAddr2.Enabled := dmMain.rEdit;
+  fAddr.edIndex1.Enabled := dmMain.rEdit;
+  fAddr.dtAddr_Date1.Enabled := dmMain.rEdit;
+  fAddr.dtAddr_Date_End1.Enabled := dmMain.rEdit;
+  fAddr.edAddr1.Enabled := dmMain.rEdit;
+  fAddr.edIndex2.Enabled := dmMain.rEdit;
+  fAddr.edAddr2.Enabled := dmMain.rEdit;
+  fAddr.dtAddr_Date2.Enabled := dmMain.rEdit;
   edPhone1.Enabled := dmMain.rEdit;
   edPhone2.Enabled := dmMain.rEdit;
   edPhone3.Enabled := dmMain.rEdit;
-  cbFamState.Enabled := dmMain.rEdit;
-  dxtFamily.Enabled := dmMain.rEdit;
+  fAddr.cbFamState.Enabled := dmMain.rEdit;
+  fAddr.dxtFamily.Enabled := dmMain.rEdit;
   cbEduc.Enabled := dmMain.rEdit;
   cbUz1.Enabled := dmMain.rEdit;
   cbObrDoc1.Enabled := dmMain.rEdit;
@@ -1160,20 +1186,6 @@ begin
   end;
 end;
 
-procedure TfmPersonForm.MenuItem1Click(Sender: TObject);
-begin
-  dxtFamily.Add.Focused := true;
-  edFam.OnChange(Self);
-end;
-
-procedure TfmPersonForm.MenuItem2Click(Sender: TObject);
-begin
-  if dxtFamily.FocusedNode<>nil then begin
-    dxtFamily.FocusedNode.Destroy;
-    edFam.OnChange(Self);
-  end;
-end;
-
 procedure TfmPersonForm.MenuItem3Click(Sender: TObject);
 begin
   dxtStudyHistory.Add.Focused := true;
@@ -1245,15 +1257,6 @@ procedure TfmPersonForm.cbDocumentChange(Sender: TObject);
 begin
   cbDocument.Hint := cbDocument.Text;
   cbWRangeChange(Sender);
-end;
-
-procedure TfmPersonForm.cbFamStateChange(Sender: TObject);
-begin
-  if cbFamState.ItemIndex = (cbFamState.Items.Count - 1) then
-    cbFamState.Font.Color := clRed
-  else
-    cbFamState.Font.Color := clBtnText;
-  edFamChange(Sender);
 end;
 
 procedure TfmPersonForm.cbGosClick(Sender: TObject);
@@ -1417,9 +1420,9 @@ begin
 end;
 
 function TfmPersonForm.LoadData: boolean;
-var n: Integer;
+var n, nn: Integer;
     isStudent: Boolean;
-    NewPDPCode: String;
+    NewPDPCode, ss: String;
 
   function ListIndex(Items: TStrings; ID: Integer; DefVal: Integer=-1): Integer;
   begin
@@ -1572,24 +1575,25 @@ begin
     //loading addresses
     if qrAddr.Active then qrAddr.Requery else qrAddr.Open;
     if qrAddr.Locate('ADDR_TYPE',0,[]) then begin
-      LoadText(edIndex1      ,'POST_CODE',qrAddr);
-      LoadText(edAddr1       ,'ADDR_STR' ,qrAddr);
-      LoadDate(dtADDR_DATE1  ,'ADDR_DATE',qrAddr);
-      LoadDate(dtADDR_DATE_END1,'ADDR_DATE_END',qrAddr);
+      LoadText(fAddr.edIndex1      ,'POST_CODE',qrAddr);
+      LoadText(fAddr.edAddr1       ,'ADDR_STR' ,qrAddr);
+      LoadDate(fAddr.dtADDR_DATE1  ,'ADDR_DATE',qrAddr);
+      LoadDate(fAddr.dtADDR_DATE_END1,'ADDR_DATE_END',qrAddr);
     end
     else begin
-      edIndex1.Text := EmptyStr;
-      edAddr1.Text := EmptyStr;
-      dtADDR_DATE1.Text := EmptyStr;
-      dtADDR_DATE_END1.Text := EmptyStr;
+      fAddr.edIndex1.Text := EmptyStr;
+      fAddr.edAddr1.Text := EmptyStr;
+      fAddr.dtADDR_DATE1.Text := EmptyStr;
+      fAddr.dtADDR_DATE_END1.Text := EmptyStr;
     end;
     if qrAddr.Locate('ADDR_TYPE',1,[]) then begin
-      LoadText(edIndex2      ,'POST_CODE',qrAddr);
-      LoadText(edAddr2       ,'ADDR_STR' ,qrAddr);
+      LoadText(fAddr.edIndex2      ,'POST_CODE',qrAddr);
+      LoadText(fAddr.edAddr2       ,'ADDR_STR' ,qrAddr);
+      LoadDate(fAddr.dtADDR_DATE2  ,'ADDR_DATE',qrAddr);
     end
     else begin
-      edIndex2.Text := EmptyStr;
-      edAddr2.Text := EmptyStr;
+      fAddr.edIndex2.Text := EmptyStr;
+      fAddr.edAddr2.Text := EmptyStr;
     end;
     //loading phones
     if qrPhones.Active then qrPhones.Requery else qrPhones.Open;
@@ -1598,6 +1602,10 @@ begin
     LoadPhone(3);
     LoadText(edINN   ,'INN');
     LoadText(edStrah ,'STRAH');
+    LoadText(edVodUdSer, 'VodUdSer');
+    LoadText(edVodUdNum, 'VodUdNum');
+    LoadDate(dtVodUdDate, 'VodUdDate');
+    cbKVodUd.Value := Trim(qrData.FieldByName('KVodUd').AsString);
     //loading langs
     if qrLangs.Active then qrLangs.Requery else qrLangs.Open;
     qrLangs.First;
@@ -1620,21 +1628,21 @@ begin
       qrPersDeps.Next;
     end;
 
-    if (not qrData.FieldByName('FST_ID').IsNull) and (ListIndex(cbFamState.Items,qrData.FieldByName('FST_ID').AsInteger) < 0) then begin
-      cbFamState.Items.Clear;
-      LoadStrings(cbFamState.Items,false,'SELECT * FROM KFSTATE ORDER BY '+
+    if (not qrData.FieldByName('FST_ID').IsNull) and (ListIndex(fAddr.cbFamState.Items,qrData.FieldByName('FST_ID').AsInteger) < 0) then begin
+      fAddr.cbFamState.Items.Clear;
+      LoadStrings(fAddr.cbFamState.Items,false,'SELECT * FROM KFSTATE ORDER BY '+
         'iif(IsNull(OKIN),999999,OKIN)','FST_ID','FST_NAME');
     end;
-    cbFamState.ItemIndex := ListIndex(cbFamState.Items,qrData.FieldByName('FST_ID').AsInteger);
-    cbFamStateChange(Self);
+    fAddr.cbFamState.ItemIndex := ListIndex(fAddr.cbFamState.Items,qrData.FieldByName('FST_ID').AsInteger);
+    fAddr.cbFamStateChange(Self);
     //loadings family
     if qrFam.Active then qrFam.Requery else qrFam.Open;
     qrFam.First;
-    dxtFamily.ClearNodes;
+    fAddr.dxtFamily.ClearNodes;
     while not qrFam.EOF do begin
-      with dxtFamily.Add do begin
+      with fAddr.dxtFamily.Add do begin
         Data := Pointer(qrFam.FieldByName('FAM_ID').AsInteger);
-        Values[0] := colFamType.Items[ListIndex(colFamType.Items,qrFam.FieldByName('FT_ID').Value,0)];
+        Values[0] := fAddr.colFamType.Items[ListIndex(fAddr.colFamType.Items,qrFam.FieldByName('FT_ID').Value,0)];
         Values[1] := qrFam.FieldByName('FAM_NAME').Value;
         Values[2] := qrFam.FieldByName('FAM_BIRTH').Value;
       end;
@@ -1998,13 +2006,13 @@ begin
         dxtPersDeps.Items[i].Selected := true;
         Abort;
       end;
-    for i:=0 to dxtFamily.Count-1 do
-      if (dxtFamily.Items[i].Strings[0]=EmptyStr) or
-         (dxtFamily.Items[i].Strings[1]=EmptyStr) or
-         (not IsDateOrYear(dxtFamily.Items[i].Strings[2])) then
+    for i:=0 to fAddr.dxtFamily.Count-1 do
+      if (fAddr.dxtFamily.Items[i].Strings[0]=EmptyStr) or
+         (fAddr.dxtFamily.Items[i].Strings[1]=EmptyStr) or
+         (not IsDateOrYear(fAddr.dxtFamily.Items[i].Strings[2])) then
       begin
-        ShowErrAt(dxtFamily, 'Некорректно заполнены сведения о членах семьи!');
-        dxtFamily.Items[i].Focused := true;
+        ShowErrAt(fAddr.dxtFamily, 'Некорректно заполнены сведения о членах семьи!');
+        fAddr.dxtFamily.Items[i].Focused := true;
         Abort;
       end;
     ChkDateOrYear(edDate1);
@@ -2428,9 +2436,10 @@ function TfmPersonForm.StoreData: boolean;
     end;
   end;
 
-var n: Integer;
-IsStudent, IsNewCard: Boolean;
-dMax, d: TDateTime;
+var n, nn: Integer;
+  ss: string;
+  IsStudent, IsNewCard: Boolean;
+  dMax, d: TDateTime;
 begin  //StoreData
   Result := false;
   IsNewCard := false;
@@ -2476,11 +2485,16 @@ begin  //StoreData
     AssignStr(qrData.FieldByName('PSP_PLACE'),edPspPlace);
     AssignDate(qrData.FieldByName('PSP_DATE'),dtPspDate);
     AssignStr(qrData.FieldByName('INN'),edINN);
+    AssignStr(qrData.FieldByName('VodUdSer'),edVodUdSer);
+    AssignStr(qrData.FieldByName('VodUdNum'),edVodUdNum);
+    AssignDate(qrData.FieldByName('VodUdDate'),dtVodUdDate);
+    qrData.FieldByName('KVodUd').AsString := cbKVodUd.Value;
+    qrData.FieldByName('KVodUdTxt').AsString := cbKVodUd.Text;
     AssignStr(qrData.FieldByName('STRAH'),edStrah);
     AssignStr(qrData.FieldByName('Comments'),edComments);
-    if cbFamState.ItemIndex>=0 then
+    if fAddr.cbFamState.ItemIndex>=0 then
       qrData.FieldByName('FST_ID').Value :=
-        Integer(cbFamState.Items.Objects[cbFamState.ItemIndex])
+        Integer(fAddr.cbFamState.Items.Objects[fAddr.cbFamState.ItemIndex])
     else
       qrData.FieldByName('FST_ID').Value := NULL;
     if cbEduc.ItemIndex>=0 then begin
@@ -2759,18 +2773,19 @@ begin  //StoreData
       qrAddr.FieldByName('ADDR_ID').Value := GetID('ADDR','ADDR_ID');
     qrAddr.FieldByName('PERS_ID').Value := qrData.FieldByName('PERS_ID').AsInteger;
     qrAddr.FieldByName('ADDR_TYPE').Value := 0;
-    AssignStr(qrAddr.FieldByName('POST_CODE'),edIndex1);
-    AssignStr(qrAddr.FieldByName('ADDR_STR'),edAddr1);
-    AssignDate(qrAddr.FieldByName('ADDR_DATE'),dtADDR_DATE1);
-    AssignDate(qrAddr.FieldByName('ADDR_DATE_END'),dtADDR_DATE_END1);
+    AssignStr(qrAddr.FieldByName('POST_CODE'),fAddr.edIndex1);
+    AssignStr(qrAddr.FieldByName('ADDR_STR'),fAddr.edAddr1);
+    AssignDate(qrAddr.FieldByName('ADDR_DATE'),fAddr.dtADDR_DATE1);
+    AssignDate(qrAddr.FieldByName('ADDR_DATE_END'),fAddr.dtADDR_DATE_END1);
     qrAddr.Post;
     qrAddr.Append;
     if qrAddr.FieldByName('ADDR_ID').DataType<>ftAutoInc then
       qrAddr.FieldByName('ADDR_ID').Value := GetID('ADDR','ADDR_ID');
     qrAddr.FieldByName('PERS_ID').Value := qrData.FieldByName('PERS_ID').AsInteger;
     qrAddr.FieldByName('ADDR_TYPE').Value := 1;
-    AssignStr(qrAddr.FieldByName('POST_CODE'),edIndex2);
-    AssignStr(qrAddr.FieldByName('ADDR_STR'),edAddr2);
+    AssignDate(qrAddr.FieldByName('ADDR_DATE'),fAddr.dtADDR_DATE2);
+    AssignStr(qrAddr.FieldByName('POST_CODE'),fAddr.edIndex2);
+    AssignStr(qrAddr.FieldByName('ADDR_STR'),fAddr.edAddr2);
     qrAddr.Post;
 // store phones
     if not qrPhones.Active then qrPhones.Open;
@@ -2803,15 +2818,15 @@ begin  //StoreData
 // store family
     if not qrFam.Active then qrFam.Open;
     while not qrFam.IsEmpty do qrFam.Delete;
-    for n:=0 to dxtFamily.Count-1 do begin
+    for n:=0 to fAddr.dxtFamily.Count-1 do begin
       qrFam.Append;
       if qrFam.FieldByName('FAM_ID').DataType<>ftAutoInc then
         qrFam.FieldByName('FAM_ID').Value := GetID('FAMILY','FAM_ID');
       qrFam.FieldByName('PERS_ID').Value := qrData.FieldByName('PERS_ID').AsInteger;
       qrFam.FieldByName('FT_ID').Value :=
-        Integer(colFamType.Items.Objects[colFamType.Items.IndexOf(dxtFamily.Items[n].Values[0])]);
-      qrFam.FieldByName('FAM_NAME').Value := dxtFamily.Items[n].Strings[1];
-      qrFam.FieldByName('FAM_BIRTH').Value := dxtFamily.Items[n].Values[2];
+        Integer(fAddr.colFamType.Items.Objects[fAddr.colFamType.Items.IndexOf(fAddr.dxtFamily.Items[n].Values[0])]);
+      qrFam.FieldByName('FAM_NAME').Value := fAddr.dxtFamily.Items[n].Strings[1];
+      qrFam.FieldByName('FAM_BIRTH').Value := fAddr.dxtFamily.Items[n].Values[2];
       qrFam.Post;
     end;
 // store education data
@@ -2967,6 +2982,11 @@ begin
                           (dmMain.rPrint);
 end;
 
+procedure TfmPersonForm.bAddrClick(Sender: TObject);
+begin
+  fAddr.Show;
+end;
+
 procedure TfmPersonForm.bDriverClick(Sender: TObject);
 begin
   edFam.OnChange(edFam);
@@ -3113,6 +3133,11 @@ begin
   fAkadem := True;
 end;
 
+procedure TfmPersonForm.edVodUdSerKeyPress(Sender: TObject; var Key: Char);
+begin
+  if not (Key in [#0..#27,'0'..'9', 'A'..'Z', 'a'..'z', 'А'..'Я', 'а'..'я']) then Key := #0;
+end;
+
 procedure TfmPersonForm.edWUch2_IsWorkClick(Sender: TObject);
 begin
   ChkReserv(false);
@@ -3221,11 +3246,11 @@ var
   i: Integer;
   s: String;
 begin
-  values[1] := cbFamState.Text;
-  for i := 0 to dxtFamily.Count - 1 do begin
+  values[1] := fAddr.cbFamState.Text;
+  for i := 0 to fAddr.dxtFamily.Count - 1 do begin
     if values[1] <> '' then values[1] := values[1] + ', ';
-    values[1] := values[1] + dxtFamily.Items[i].Strings[0] + ' ' +
-      dxtFamily.Items[i].Strings[1] + ' д.р. ' + dxtFamily.Items[i].Strings[2] + ' г.';
+    values[1] := values[1] + fAddr.dxtFamily.Items[i].Strings[0] + ' ' +
+      fAddr.dxtFamily.Items[i].Strings[1] + ' д.р. ' + fAddr.dxtFamily.Items[i].Strings[2] + ' г.';
   end;
 
   values[2] := cbUz1.Text;
@@ -3308,15 +3333,15 @@ begin
     values[6] := stPost.Text;
   end;
 
-  values[7] := dtADDR_DATE1.Text;
-  if (values[7] <> '') and (Trim(edIndex1.Text) <> '') then values[7] := values[7] + ', ';
-  values[7] := values[7] + edIndex1.Text;
-  if (values[7] <> '') and (Trim(edAddr1.Text) <> '') then values[7] := values[7] + ', ';
-  values[7] := values[7] + edAddr1.Text;
+  values[7] := fAddr.dtADDR_DATE1.Text;
+  if (values[7] <> '') and (Trim(fAddr.edIndex1.Text) <> '') then values[7] := values[7] + ', ';
+  values[7] := values[7] + fAddr.edIndex1.Text;
+  if (values[7] <> '') and (Trim(fAddr.edAddr1.Text) <> '') then values[7] := values[7] + ', ';
+  values[7] := values[7] + fAddr.edAddr1.Text;
 
-  values[8] := edIndex2.Text;
-  if (values[8] <> '') and (Trim(edAddr2.Text) <> '') then values[8] := values[8] + ', ';
-  values[8] := values[8] + edAddr2.Text;
+  values[8] := fAddr.edIndex2.Text;
+  if (values[8] <> '') and (Trim(fAddr.edAddr2.Text) <> '') then values[8] := values[8] + ', ';
+  values[8] := values[8] + fAddr.edAddr2.Text;
 
   values[9] := edHealth.Text;
   if (values[9] <> '') and (Trim(edHealthDoc.Text) <> '') then values[9] := values[9] + ', ';
