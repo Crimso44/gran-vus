@@ -40,10 +40,7 @@ object fmAppointments: TfmAppointments
     RegistryPath = '\Software\Granit\GranVUS\Person_AppointmentGrid'
     OnChangedColumnsWidth = qridAppointmentChangedColumnsWidth
     OnColumnSorting = qridAppointmentColumnSorting
-    ExplicitTop = 26
-    ExplicitHeight = 252
     object qridAppointmentID: TdxDBGridColumn
-      Visible = False
       Width = 81
       BandIndex = 0
       RowIndex = 0
@@ -55,6 +52,7 @@ object fmAppointments: TfmAppointments
       BandIndex = 0
       RowIndex = 0
       FieldName = 'PERS_ID'
+      GroupIndex = 0
     end
     object qridAppointmentNum: TdxDBGridColumn
       Caption = #8470' '#1087'/'#1087
@@ -65,6 +63,7 @@ object fmAppointments: TfmAppointments
       BandIndex = 0
       RowIndex = 0
       OnGetText = qridAppointmentNumGetText
+      GroupIndex = 0
     end
     object qridAppointmentWTP: TdxDBGridLookupColumn
       Caption = #1042#1080#1076' '#1088#1072#1073#1086#1090#1099
@@ -73,6 +72,8 @@ object fmAppointments: TfmAppointments
       RowIndex = 0
       FieldName = 'WTP_NAME'
       DropDownRows = 20
+      CanDeleteText = True
+      GroupIndex = 0
     end
     object qridAppointmentWCH: TdxDBGridLookupColumn
       Caption = #1061#1072#1088#1072#1082#1090#1077#1088' '#1088#1072#1073#1086#1090#1099
@@ -81,6 +82,8 @@ object fmAppointments: TfmAppointments
       RowIndex = 0
       FieldName = 'WCH_NAME'
       DropDownRows = 20
+      CanDeleteText = True
+      GroupIndex = 0
     end
     object qridAppointmentPOST: TdxDBGridLookupColumn
       Caption = #1044#1086#1083#1078#1085#1086#1089#1090#1100
@@ -90,6 +93,8 @@ object fmAppointments: TfmAppointments
       FieldName = 'POST_NAME'
       DropDownRows = 20
       DropDownWidth = 350
+      CanDeleteText = True
+      GroupIndex = 0
     end
     object qridAppointmentDEP: TdxDBGridLookupColumn
       Caption = #1055#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1077
@@ -99,6 +104,8 @@ object fmAppointments: TfmAppointments
       FieldName = 'DEP_NAME'
       DropDownRows = 20
       DropDownWidth = 350
+      CanDeleteText = True
+      GroupIndex = 0
     end
     object qridAppointmentIN_ORD_NUMB: TdxDBGridColumn
       Caption = #1054#1089#1085#1086#1074#1072#1085#1080#1077
@@ -106,6 +113,7 @@ object fmAppointments: TfmAppointments
       BandIndex = 0
       RowIndex = 0
       FieldName = 'IN_ORD_NUMB'
+      GroupIndex = 0
     end
     object qridAppointmentIN_ORD_DATE: TdxDBGridDateColumn
       Caption = #1044#1072#1090#1072' '#1086#1089#1085#1086#1074#1072#1085#1080#1103
@@ -113,14 +121,17 @@ object fmAppointments: TfmAppointments
       BandIndex = 0
       RowIndex = 0
       FieldName = 'IN_ORD_DATE'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object qridAppointmentIN_DATE: TdxDBGridDateColumn
       Caption = #1044#1072#1090#1072' '#1085#1072#1079#1085#1072#1095#1077#1085#1080#1103
-      Sorted = csUp
       Width = 111
       BandIndex = 0
       RowIndex = 0
       FieldName = 'IN_DATE'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object qridAppointmentPROBATION_DATE: TdxDBGridDateColumn
       Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1099#1081' '#1089#1088#1086#1082' '#1076#1086
@@ -128,6 +139,33 @@ object fmAppointments: TfmAppointments
       BandIndex = 0
       RowIndex = 0
       FieldName = 'PROBATION_DATE'
+      UseEditMask = True
+      GroupIndex = 0
+    end
+    object qridAppointmentOVK_NAME: TdxDBGridLookupColumn
+      Caption = #1054#1042#1050' '#1087#1086' '#1084#1077#1089#1090#1091' '#1078#1080#1090#1077#1083#1100#1089#1090#1074#1072
+      Width = 200
+      BandIndex = 0
+      RowIndex = 0
+      FieldName = 'OVK_NAME'
+      CanDeleteText = True
+      GroupIndex = 0
+    end
+    object qridAppointmentOVK_DATE: TdxDBGridDateColumn
+      Caption = #1044#1072#1090#1072' '#1080#1089#1093'. '#1089#1086#1086#1073#1097#1077#1085#1080#1103
+      BandIndex = 0
+      RowIndex = 0
+      FieldName = 'OVK_DATE'
+      UseEditMask = True
+      GroupIndex = 0
+    end
+    object qridAppointmentOVK_NUM: TdxDBGridMaskColumn
+      Caption = #8470' '#1080#1089#1093'. '#1089#1086#1086#1073#1097#1077#1085#1080#1103
+      Width = 200
+      BandIndex = 0
+      RowIndex = 0
+      FieldName = 'OVK_NUM'
+      GroupIndex = 0
     end
   end
   object StatusBar1: TStatusBar
@@ -726,6 +764,26 @@ object fmAppointments: TfmAppointments
     object qrAppointmentPROBATION_DATE: TDateField
       FieldName = 'PROBATION_DATE'
     end
+    object qrAppointmentOVK_ID: TIntegerField
+      FieldName = 'XOVK_ID'
+    end
+    object qrAppointmentOVK_NAME: TStringField
+      FieldKind = fkLookup
+      FieldName = 'OVK_NAME'
+      LookupDataSet = qrKOVK
+      LookupKeyFields = 'OVK_ID'
+      LookupResultField = 'OVK_NAME'
+      KeyFields = 'XOVK_ID'
+      Size = 255
+      Lookup = True
+    end
+    object qrAppointmentOVK_DATE: TDateField
+      FieldName = 'OVK_DATE'
+    end
+    object qrAppointmentOVK_NUM: TStringField
+      FieldName = 'OVK_NUM'
+      Size = 255
+    end
   end
   object qrKWKTYPE: TADOQuery
     Connection = dmMain.dbMain
@@ -824,6 +882,25 @@ object fmAppointments: TfmAppointments
     end
     object qrKDEPARTKDEPART_Num: TIntegerField
       FieldName = 'KDEPART_Num'
+    end
+  end
+  object qrKOVK: TADOQuery
+    Connection = dmMain.dbMain
+    CursorType = ctStatic
+    ParamCheck = False
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT OVK_ID, OVK_NAME'
+      'FROM KOVK'
+      'Order By OVK_NAME')
+    Left = 364
+    Top = 155
+    object qrKOVKOVK_ID: TIntegerField
+      FieldName = 'OVK_ID'
+    end
+    object qrKOVKOVK_NAME: TWideStringField
+      FieldName = 'OVK_NAME'
+      Size = 250
     end
   end
 end

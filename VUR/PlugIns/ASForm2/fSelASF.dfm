@@ -72,7 +72,7 @@ object frmASF: TfrmASF
       BandIndex = 0
       RowIndex = 0
       FieldName = 'Selected'
-      ValueChecked = '1'
+      ValueChecked = 'True'
       GroupIndex = 0
       DisplayChecked = '0'
     end

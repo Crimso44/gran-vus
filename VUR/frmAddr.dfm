@@ -2,8 +2,8 @@ object fAddr: TfAddr
   Left = 0
   Top = 0
   Caption = #1040#1076#1088#1077#1089' '#1080' '#1089#1077#1084#1077#1081#1085#1086#1077' '#1087#1086#1083#1086#1078#1077#1085#1080#1077
-  ClientHeight = 274
-  ClientWidth = 679
+  ClientHeight = 399
+  ClientWidth = 737
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,8 +14,8 @@ object fAddr: TfAddr
   PixelsPerInch = 96
   TextHeight = 13
   object Label20: TLabel
-    Left = 379
-    Top = 12
+    Left = 8
+    Top = 132
     Width = 133
     Height = 13
     Caption = #1057#1077#1084#1077#1081#1085#1086#1077' '#1087#1086#1083#1086#1078#1077#1085#1080#1077':'
@@ -28,18 +28,18 @@ object fAddr: TfAddr
   end
   object Panel1: TPanel
     Left = 0
-    Top = 233
-    Width = 679
+    Top = 358
+    Width = 737
     Height = 41
     Align = alBottom
     TabOrder = 0
-    ExplicitTop = 245
-    ExplicitWidth = 418
+    ExplicitTop = 233
+    ExplicitWidth = 679
     DesignSize = (
-      679
+      737
       41)
     object btnOk: TButton
-      Left = 585
+      Left = 643
       Top = 8
       Width = 75
       Height = 25
@@ -49,13 +49,13 @@ object fAddr: TfAddr
       ModalResult = 1
       TabOrder = 0
       OnClick = btnOkClick
-      ExplicitLeft = 322
+      ExplicitLeft = 585
     end
   end
   object dxtFamily: TdxTreeList
-    Left = 379
-    Top = 62
-    Width = 281
+    Left = 8
+    Top = 182
+    Width = 720
     Height = 159
     Bands = <
       item
@@ -73,7 +73,7 @@ object fAddr: TfAddr
     ShowIndicator = True
     object colFamType: TdxTreeListPickColumn
       Caption = #1057#1086#1089#1090#1072#1074' '#1089#1077#1084#1100#1080
-      Width = 57
+      Width = 81
       BandIndex = 0
       RowIndex = 0
       DropDownListStyle = True
@@ -82,7 +82,7 @@ object fAddr: TfAddr
     object dxTreeListMaskColumn1: TdxTreeListMaskColumn
       Caption = #1060#1048#1054
       MaxLength = 100
-      Width = 116
+      Width = 219
       BandIndex = 0
       RowIndex = 0
     end
@@ -92,10 +92,16 @@ object fAddr: TfAddr
       BandIndex = 0
       RowIndex = 0
     end
+    object dxtFamilyColumn4: TdxTreeListMaskColumn
+      Caption = #1040#1076#1088#1077#1089
+      Width = 307
+      BandIndex = 0
+      RowIndex = 0
+    end
   end
   object cbFamState: TComboBox
-    Left = 379
-    Top = 35
+    Left = 8
+    Top = 155
     Width = 281
     Height = 21
     Style = csDropDownList
@@ -218,10 +224,10 @@ object fAddr: TfAddr
     end
   end
   object GroupBox2: TGroupBox
-    Left = 8
-    Top = 133
+    Left = 371
+    Top = 8
     Width = 357
-    Height = 94
+    Height = 119
     Caption = #1060#1072#1082#1090#1080#1095#1077#1089#1082#1080#1081' '#1072#1076#1088#1077#1089
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -232,7 +238,7 @@ object fAddr: TfAddr
     TabOrder = 4
     object Label14: TLabel
       Left = 210
-      Top = 11
+      Top = 30
       Width = 67
       Height = 13
       Caption = #1087#1086#1095#1090'. '#1080#1085#1076#1077#1082#1089
@@ -245,7 +251,7 @@ object fAddr: TfAddr
     end
     object Label6: TLabel
       Left = 169
-      Top = 66
+      Top = 85
       Width = 74
       Height = 13
       Caption = #1087#1088#1086#1078#1080#1074#1072#1085#1080#1077' '#1089':'
@@ -258,7 +264,7 @@ object fAddr: TfAddr
     end
     object edIndex2: TEdit
       Left = 283
-      Top = 8
+      Top = 27
       Width = 61
       Height = 21
       AutoSize = False
@@ -274,9 +280,9 @@ object fAddr: TfAddr
       OnChange = edIndex1Change
     end
     object edAddr2: TEdit
-      Left = 8
-      Top = 35
-      Width = 336
+      Left = 3
+      Top = 54
+      Width = 342
       Height = 21
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -290,7 +296,7 @@ object fAddr: TfAddr
     end
     object dtADDR_DATE2: TdxDateEdit
       Left = 251
-      Top = 62
+      Top = 81
       Width = 93
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText

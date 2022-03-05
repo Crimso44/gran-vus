@@ -16,6 +16,7 @@ object fmUsers: TfmUsers
   FormStyle = fsMDIChild
   OldCreateOrder = False
   Visible = True
+  OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
@@ -53,17 +54,18 @@ object fmUsers: TfmUsers
     OptionsView = [edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoRowSelect, edgoUseBitmap]
     RegistryPath = '\Software\Granit\GranVUS\UsersGrid'
     OnColumnSorting = dbgDataColumnSorting
-    ExplicitTop = 26
-    ExplicitHeight = 193
     object dbgDataNum: TdxDBGridColumn
       Caption = #8470' '#1087'/'#1087
       DisableDragging = True
       DisableEditor = True
       Sizing = False
+      Sorted = csUp
+      Visible = False
       Width = 40
       BandIndex = 0
       RowIndex = 0
       OnGetText = dbgDataNumGetText
+      GroupIndex = 0
     end
     object dbgDataFIO: TdxDBGridColumn
       Caption = #1060#1048#1054
@@ -71,6 +73,7 @@ object fmUsers: TfmUsers
       BandIndex = 0
       RowIndex = 0
       FieldName = 'FIO'
+      GroupIndex = 0
     end
     object dbgDataLOGIN: TdxDBGridColumn
       Caption = #1057#1080#1089#1090#1077#1084#1085#1086#1077' '#1080#1084#1103
@@ -78,6 +81,7 @@ object fmUsers: TfmUsers
       BandIndex = 0
       RowIndex = 0
       FieldName = 'LOGIN'
+      GroupIndex = 0
     end
     object dbgDatarLogin: TdxDBGridCheckColumn
       Caption = #1056#1072#1079#1088#1077#1096#1105#1085' '#1074#1093#1086#1076
@@ -85,8 +89,9 @@ object fmUsers: TfmUsers
       BandIndex = 0
       RowIndex = 0
       FieldName = 'rLogin'
-      ValueChecked = '1'
-      ValueUnchecked = '0'
+      ValueChecked = 'True'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
     object dbgDatarAdmin: TdxDBGridCheckColumn
       Caption = #1040#1076#1084#1080#1085#1080#1089#1090#1088#1080#1088#1086#1074#1072#1085#1080#1077
@@ -94,8 +99,9 @@ object fmUsers: TfmUsers
       BandIndex = 0
       RowIndex = 0
       FieldName = 'rAdmin'
-      ValueChecked = '1'
-      ValueUnchecked = '0'
+      ValueChecked = 'True'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
     object dbgDatarImport: TdxDBGridCheckColumn
       Caption = #1048#1084#1087#1086#1088#1090
@@ -104,8 +110,9 @@ object fmUsers: TfmUsers
       BandIndex = 0
       RowIndex = 0
       FieldName = 'rImport'
-      ValueChecked = '1'
-      ValueUnchecked = '0'
+      ValueChecked = 'True'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
     object dbgDatarExport: TdxDBGridCheckColumn
       Caption = #1069#1082#1089#1087#1086#1088#1090
@@ -113,8 +120,9 @@ object fmUsers: TfmUsers
       BandIndex = 0
       RowIndex = 0
       FieldName = 'rExport'
-      ValueChecked = '1'
-      ValueUnchecked = '0'
+      ValueChecked = 'True'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
     object dbgDatarPrint: TdxDBGridCheckColumn
       Caption = #1055#1077#1095#1072#1090#1100
@@ -122,8 +130,9 @@ object fmUsers: TfmUsers
       BandIndex = 0
       RowIndex = 0
       FieldName = 'rPrint'
-      ValueChecked = '1'
-      ValueUnchecked = '0'
+      ValueChecked = 'True'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
     object dbgDatarEdit: TdxDBGridCheckColumn
       Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1077
@@ -131,8 +140,9 @@ object fmUsers: TfmUsers
       BandIndex = 0
       RowIndex = 0
       FieldName = 'rEdit'
-      ValueChecked = '1'
-      ValueUnchecked = '0'
+      ValueChecked = 'True'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
   end
   object dsData: TDataSource

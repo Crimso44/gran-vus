@@ -35,6 +35,12 @@ type
     edWUch2_Motiv: TEdit;
     Label12: TLabel;
     edWUOKVEDCombo: TComboBox;
+    Label13: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    edWUch2ListNumb: TEdit;
+    edWUch2ListDate: TdxDateEdit;
+    Label14: TLabel;
     procedure edWUch2Change(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);

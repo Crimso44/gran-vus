@@ -71,7 +71,15 @@ begin
 end;
 
 procedure TfrmASF.FormActivate(Sender: TObject);
+var
+  col: TdxDBGridColumn;
+  i: Integer;
 begin
+  for i := 0 to dxDbGrid1.ColumnCount - 1 do begin
+    col := TdxDBGridColumn(dxDbGrid1.Columns[i]);
+    col.GroupIndex := -1;
+  end;
+
   qASF.Open;
   mASF.Open;
   while not qASF.Eof do begin

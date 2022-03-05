@@ -2289,7 +2289,7 @@ object fmBackUp: TfmBackUp
             DDDD70000007DDDDDD00DDDDDDD7777DDDDDDDDDDDDDDD7777DDDDDDDD00DDDD
             DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD00}
           GlyphCount = 2
-          ValueChecked = '1'
+	  ValueChecked = 'True'
           ValueUnchecked = '0'
         end
         object dxTreeList1Column2: TdxTreeListColumn

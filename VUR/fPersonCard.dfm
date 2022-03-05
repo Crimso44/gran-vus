@@ -173,7 +173,7 @@ object fmPersonForm: TfmPersonForm
     Top = 55
     Width = 797
     Height = 406
-    ActivePage = tabSheetX0
+    ActivePage = TabSheetUpol
     HotTrack = True
     MultiLine = True
     RaggedRight = True
@@ -693,6 +693,12 @@ object fmPersonForm: TfmPersonForm
           Left = 301
           Top = 16
           Width = 93
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 1
           OnChange = edFamChange
           Date = -700000.000000000000000000
@@ -703,7 +709,13 @@ object fmPersonForm: TfmPersonForm
           Top = 54
           Width = 391
           Height = 21
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
           MaxLength = 100
+          ParentFont = False
           TabOrder = 3
           OnChange = edFamChange
         end
@@ -712,7 +724,13 @@ object fmPersonForm: TfmPersonForm
           Top = 16
           Width = 73
           Height = 21
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
           MaxLength = 10
+          ParentFont = False
           TabOrder = 0
           OnChange = edFamChange
         end
@@ -721,7 +739,13 @@ object fmPersonForm: TfmPersonForm
           Top = 16
           Width = 49
           Height = 21
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
           MaxLength = 10
+          ParentFont = False
           TabOrder = 2
           OnChange = edFamChange
         end
@@ -960,14 +984,14 @@ object fmPersonForm: TfmPersonForm
       end
       object Label160: TLabel
         Left = 270
-        Top = 253
+        Top = 254
         Width = 11
         Height = 13
         Caption = #8470
       end
       object Label161: TLabel
         Left = 179
-        Top = 253
+        Top = 254
         Width = 31
         Height = 13
         Caption = #1057#1077#1088#1080#1103
@@ -1257,7 +1281,7 @@ object fmPersonForm: TfmPersonForm
       end
       object cbObrDoc3: TdxPickEdit
         Left = 76
-        Top = 250
+        Top = 252
         Width = 97
         TabOrder = 20
         MaxLength = 100
@@ -1316,6 +1340,33 @@ object fmPersonForm: TfmPersonForm
         Height = 21
         TabOrder = 24
         OnChange = edFamChange
+      end
+      object rbEduc1Main: TRadioButton
+        Left = 579
+        Top = 27
+        Width = 113
+        Height = 17
+        Caption = #1054#1089#1085#1086#1074#1085#1086#1077
+        TabOrder = 31
+        OnClick = edFamChange
+      end
+      object rbEduc2Main: TRadioButton
+        Left = 579
+        Top = 119
+        Width = 113
+        Height = 17
+        Caption = #1054#1089#1085#1086#1074#1085#1086#1077
+        TabOrder = 32
+        OnClick = edFamChange
+      end
+      object rbEduc3Main: TRadioButton
+        Left = 580
+        Top = 206
+        Width = 113
+        Height = 17
+        Caption = #1054#1089#1085#1086#1074#1085#1086#1077
+        TabOrder = 33
+        OnClick = edFamChange
       end
     end
     object tabSheetX0: TTabSheet
@@ -2013,6 +2064,7 @@ object fmPersonForm: TfmPersonForm
           end>
         DefaultLayout = True
         HeaderPanelRowCount = 1
+        PopupMenu = pmPersDeps
         TabOrder = 0
         LookAndFeel = lfFlat
         Options = [aoColumnSizing, aoEditing, aoTabThrough, aoImmediateEditor, aoDrawEndEllipsis, aoCaseInsensitive]
@@ -4295,8 +4347,8 @@ object fmPersonForm: TfmPersonForm
     Top = 287
   end
   object pmStudyHistory: TPopupMenu
-    Left = 514
-    Top = 327
+    Left = 314
+    Top = 335
     object MenuItem3: TMenuItem
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
       ShortCut = 45
@@ -4424,8 +4476,8 @@ object fmPersonForm: TfmPersonForm
     Top = 19
   end
   object pmAssign: TPopupMenu
-    Left = 536
-    Top = 327
+    Left = 416
+    Top = 335
     object MenuItem7: TMenuItem
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
       ShortCut = 45
@@ -4491,5 +4543,19 @@ object fmPersonForm: TfmPersonForm
       'SELECT * FROM Pers_Deps WHERE PERS_ID=:PERS_ID')
     Left = 641
     Top = 337
+  end
+  object pmPersDeps: TPopupMenu
+    Left = 168
+    Top = 319
+    object MenuItem1: TMenuItem
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+      ShortCut = 45
+      OnClick = MenuItem11Click
+    end
+    object MenuItem2: TMenuItem
+      Caption = #1059#1076#1072#1083#1080#1090#1100
+      ShortCut = 16430
+      OnClick = MenuItem12Click
+    end
   end
 end

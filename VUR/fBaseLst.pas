@@ -344,8 +344,8 @@ begin
         HeaderAlignment := taCenter;
       end;
       if col is TdxDBGridCheckColumn then begin
-        TdxDBGridCheckColumn(col).ValueChecked := '1';
-        TdxDBGridCheckColumn(col).ValueUnChecked := '0';
+        TdxDBGridCheckColumn(col).ValueChecked := 'True';
+        TdxDBGridCheckColumn(col).ValueUnChecked := 'False';
       end;
       i := Pos('{Valid:',def_value);
       if i > 0 then begin

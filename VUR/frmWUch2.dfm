@@ -2,7 +2,7 @@ object fWUch2: TfWUch2
   Left = 0
   Top = 0
   Caption = #1057#1087#1077#1094#1080#1072#1083#1100#1085#1099#1081' '#1074#1086#1080#1085#1089#1082#1080#1081' '#1091#1095#1077#1090
-  ClientHeight = 389
+  ClientHeight = 480
   ClientWidth = 418
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -118,13 +118,48 @@ object fWUch2: TfWUch2
     Height = 13
     Caption = #1052#1086#1090#1080#1074' '#1087#1077#1088#1089#1086#1085#1072#1083#1100#1085#1086#1075#1086' '#1073#1088#1086#1085#1080#1088#1086#1074#1072#1085#1080#1103
   end
+  object Label13: TLabel
+    Left = 8
+    Top = 352
+    Width = 132
+    Height = 13
+    Caption = #1041#1088#1086#1085#1080#1088#1086#1074#1072#1085#1080#1077' '#1089#1087#1080#1089#1082#1086#1084
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label15: TLabel
+    Left = 8
+    Top = 375
+    Width = 47
+    Height = 13
+    Caption = #1060#1086#1088#1084#1072' 14'
+  end
+  object Label16: TLabel
+    Left = 246
+    Top = 397
+    Width = 25
+    Height = 13
+    Caption = #1076#1072#1090#1072
+  end
+  object Label14: TLabel
+    Left = 18
+    Top = 397
+    Width = 73
+    Height = 13
+    Caption = #1080#1089#1093#1086#1076#1103#1097#1080#1081' '#8470
+  end
   object Panel1: TPanel
     Left = 0
-    Top = 348
+    Top = 439
     Width = 418
     Height = 41
     Align = alBottom
     TabOrder = 3
+    ExplicitTop = 348
     object btnOk: TButton
       Left = 322
       Top = 8
@@ -232,5 +267,24 @@ object fWUch2: TfWUch2
     TabOrder = 10
     Visible = False
     OnChange = edWUOKVEDComboChange
+  end
+  object edWUch2ListNumb: TEdit
+    Left = 97
+    Top = 394
+    Width = 128
+    Height = 21
+    MaxLength = 100
+    TabOrder = 11
+    OnChange = edWUch2Change
+  end
+  object edWUch2ListDate: TdxDateEdit
+    Left = 296
+    Top = 394
+    Width = 101
+    TabOrder = 12
+    OnChange = edWUch2Change
+    Date = -700000.000000000000000000
+    DateOnError = deToday
+    SaveTime = False
   end
 end

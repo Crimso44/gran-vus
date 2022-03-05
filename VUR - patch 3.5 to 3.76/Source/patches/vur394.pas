@@ -103,6 +103,14 @@ begin
             AddField('Person', 'KVodUd', 'varchar(50) NULL');
             AddField('Person', 'KVodUdTxt', 'varchar(255) NULL');
             AddField('Person', 'VodUdDate', 'DateTime NULL');
+            AddField('Person', 'WUch2_ListNumb', 'varchar(20) NULL');
+            AddField('Person', 'WUch2_ListDate', 'DateTime NULL');
+            AddField('Person', 'VodUdDate', 'DateTime NULL');
+            AddField('Appointment', 'XOVK_ID', 'int NULL');
+            AddField('Appointment', 'OVK_Date', 'DateTime NULL');
+            AddField('Appointment', 'OVK_Num', 'varchar(255) NULL');
+            AddField('Family', 'Fam_Place', 'varchar(255) NULL');
+            AddField('Educ', 'IsMain', 'bit NULL');
 
       DoSQL('Insert Into Params (Param_Id, Param_Name, Param_Value) Values ('+
           '15, ''Заполнять в форме № 10 поля для заполнения карандашом'',''1'')', True);

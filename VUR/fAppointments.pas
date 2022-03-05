@@ -66,6 +66,17 @@ type
     qrAppointmentIN_ORD_NUMB: TStringField;
     qrAppointmentPROBATION_DATE: TDateField;
     qridAppointmentPROBATION_DATE: TdxDBGridDateColumn;
+    qrKOVK: TADOQuery;
+    qrKOVKOVK_ID: TIntegerField;
+    qrKOVKOVK_NAME: TWideStringField;
+    qrAppointmentOVK_ID: TIntegerField;
+    qrAppointmentOVK_NAME: TStringField;
+    qrAppointmentOVK_DATE: TDateField;
+    qrAppointmentOVK_NUM: TStringField;
+    qridAppointmentOVK_ID: TdxDBGridMaskColumn;
+    qridAppointmentOVK_NAME: TdxDBGridLookupColumn;
+    qridAppointmentOVK_DATE: TdxDBGridDateColumn;
+    qridAppointmentOVK_NUM: TdxDBGridMaskColumn;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure qrAppointmentNewRecord(DataSet: TDataSet);
     procedure qrAppointmentBeforePost(DataSet: TDataSet);
@@ -82,7 +93,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    PERS_ID, Post_Id, Dep_Id: Integer;
+    PERS_ID, Post_Id, Dep_Id, OVK_Id: Integer;
     procedure GetPostAndDep;
     procedure SetPostAndDep;
   end;
@@ -90,7 +101,7 @@ type
 var
   fmAppointments: TfmAppointments;
 
-procedure ShowAppointments(pPERS_ID: Integer);
+procedure ShowAppointments(pPERS_ID, pOVK_ID: Integer);
 
 implementation
 
@@ -98,7 +109,7 @@ uses dMain, Rdialogs, msg;
 
 {$R *.dfm}
 
-procedure ShowAppointments(pPERS_ID: Integer);
+procedure ShowAppointments(pPERS_ID, pOVK_ID: Integer);
 var
   I: Integer;
   f: TfmAppointments;
@@ -116,6 +127,7 @@ begin
     then
       (Components[I] as TADOQuery).Open;
     PERS_ID := pPERS_ID;
+    OVK_ID := pOVK_ID;
     qrAppointment.Parameters[0].Value := PERS_ID;
     if not dmMain.rEdit then qrAppointment.LockType := ltReadOnly;
     qrAppointment.Open;
@@ -170,7 +182,10 @@ end;
 
 procedure TfmAppointments.qrAppointmentNewRecord(DataSet: TDataSet);
 begin
-  with qrAppointment do FieldByName('PERS_ID').Value := PERS_ID;
+  with qrAppointment do begin
+    FieldByName('PERS_ID').Value := PERS_ID;
+    FieldByName('XOVK_ID').Value := OVK_ID;
+  end;
 end;
 
 procedure TfmAppointments.qridAppointmentChangedColumnsWidth(Sender: TObject);

@@ -11,6 +11,7 @@ object dmMain: TdmMain
     Charset = DEFAULT_CHARSET
     Lang = 1049
     Options = [eoGraphicsBinary, eoClearMissedFields, eoDotAsColon]
+    OnScanRecord = EkRTF1ScanRecord
     DisableControls = True
     Left = 32
     Top = 68
@@ -188,7 +189,8 @@ object dmMain: TdmMain
       'Left Join KFormPrep On KFormPrep.KFormPrep_Id = E.FormPrep_Id)'
       'Left Join KKval on KKval.Kval_Id = E.Kval_Id)'
       'Left Join KNapr on KNapr.Napr_Id = E.Napr_Id'
-      'WHERE E.PERS_ID=:PERS_ID')
+      'WHERE E.PERS_ID=:PERS_ID'
+      'Order by E.IsMain')
     Left = 348
     Top = 120
   end
@@ -378,7 +380,8 @@ object dmMain: TdmMain
       '  IN_DATE,'
       '  CPROF2015_Id as CPROF_ID,'
       '  IN_ORD_NUMB,'
-      '  IN_ORD_DATE '
+      '  IN_ORD_DATE,'
+      '  XOVK_ID, OVK_NUM, OVK_DATE '
       'FROM (((Appointment'
       '   LEFT JOIN KWKTYPE ON Appointment.WTP_ID=KWKTYPE.WTP_ID)'
       '   LEFT JOIN KWKCHAR ON Appointment.WCH_ID=KWKCHAR.WCH_ID)'
@@ -453,5 +456,25 @@ object dmMain: TdmMain
       FieldName = 'FamYear1'
       Size = 255
     end
+  end
+  object qrOVKX: TADOQuery
+    Connection = dbMain
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'OVK_ID'
+        DataType = ftFloat
+        Value = Null
+      end>
+    SQL.Strings = (
+      'SELECT *,'
+      'IIF(ISOVK, '
+      '  '#39#1042#1086#1077#1085#1085#1099#1081' '#1082#1086#1084#1080#1089#1089#1072#1088#1080#1072#1090#39', '
+      '  '#39#1040#1076#1084#1080#1085#1080#1089#1090#1088#1072#1094#1080#1103#39
+      ') as OVK'
+      'FROM KOVK'
+      'WHERE OVK_ID=:OVK_ID')
+    Left = 228
+    Top = 284
   end
 end

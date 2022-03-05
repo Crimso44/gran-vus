@@ -468,6 +468,12 @@ type
     cbKVodUd: TcxCheckComboBox;
     Label6: TLabel;
     bAddr: TButton;
+    rbEduc1Main: TRadioButton;
+    rbEduc2Main: TRadioButton;
+    rbEduc3Main: TRadioButton;
+    pmPersDeps: TPopupMenu;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
     procedure PCChanging(Sender: TObject; var AllowChange: Boolean);
     procedure PCDrawTab(Control: TCustomTabControl; TabIndex: Integer;
       const Rect: TRect; Active: Boolean);
@@ -1069,7 +1075,12 @@ begin
   fWUch2.edWUch2_Ser.Enabled := dmMain.rEdit;
   fWUch2.edWUch2_Motiv.Enabled := dmMain.rEdit;
   fWUch2.dtWUch2_date.Enabled := dmMain.rEdit;
+  fWUch2.edWUch2ListNumb.Enabled := dmMain.rEdit;
+  fWUch2.edWUch2ListDate.Enabled := dmMain.rEdit;
   edWUch2_IsWork.Enabled := dmMain.rEdit;
+  rbEduc1Main.Enabled := dmMain.rEdit;
+  rbEduc2Main.Enabled := dmMain.rEdit;
+  rbEduc3Main.Enabled := dmMain.rEdit;
   dtWEnd.Enabled := dmMain.rEdit;
   edWDiscl.Enabled := dmMain.rEdit;
   edWarfare.Enabled := dmMain.rEdit;
@@ -1446,6 +1457,7 @@ var n, nn: Integer;
     edKval, edNapr: TComboBox;
     edKval3: TdxMRUEdit;
     edOKSO: TEdit;
+    rbEducMain: TRadioButton;
   begin
     cbUz   := FindComponent('cbUz'  +IntToStr(EduType)) as TdxPickEdit;
     cbObrDoc := FindComponent('cbObrDoc'  +IntToStr(EduType)) as TdxPickEdit;
@@ -1460,6 +1472,7 @@ var n, nn: Integer;
       edKval := FindComponent('edKval'+IntToStr(EduType)) as TComboBox;
     edNapr := FindComponent('edNapr'+IntToStr(EduType)) as TComboBox;
     edOKSO := FindComponent('edOKSO'+IntToStr(EduType)) as TEdit;
+    rbEducMain := FindComponent('rbEduc'+IntToStr(EduType)+'Main') as TRadioButton;
 
     if qrEduc.Locate('TYPE',EduType,[]) then begin
 
@@ -1501,6 +1514,7 @@ var n, nn: Integer;
       if n>=0 then edNapr.Text := edNapr.Items[n];
 
       edOKSO.Text := qrEduc.FieldByName('OKSO').AsString;
+      rbEducMain.Checked := qrEduc.FieldByName('IsMain').AsBoolean;
     end
     else begin
       cbUz.Tag := 0;
@@ -1520,6 +1534,7 @@ var n, nn: Integer;
       end;
       edNapr4.ItemIndex := 0;
       edOKSO.Text := EmptyStr;
+      rbEducMain.Checked := false;
     end;
   end;
 //
@@ -1645,6 +1660,7 @@ begin
         Values[0] := fAddr.colFamType.Items[ListIndex(fAddr.colFamType.Items,qrFam.FieldByName('FT_ID').Value,0)];
         Values[1] := qrFam.FieldByName('FAM_NAME').Value;
         Values[2] := qrFam.FieldByName('FAM_BIRTH').Value;
+        Values[3] := qrFam.FieldByName('FAM_PLACE').Value;
       end;
       qrFam.Next;
     end;
@@ -1732,6 +1748,8 @@ begin
     LoadDate(fWUch2.dtWUCH2_date  ,'WUCHET2_date');
     LoadText(fWUch2.edWUch2_Ser   ,'WUCHET2_Ser');
     LoadText(fWUch2.edWUch2_Motiv   ,'WUCHET2_Motiv');
+    LoadText(fWUch2.edWuch2ListNumb  ,'WUCH2_ListNumb');
+    LoadDate(fWUch2.edWuch2ListDate  ,'WUCH2_ListDate');
     edWUch2_IsWork.Checked := qrData.FieldByName('WUchet2_IsWork').AsInteger<>0;
     CalcWuch2Info;
     PDPCode := qrData.FieldByName('PDPCode').AsString;
@@ -1946,7 +1964,7 @@ function TfmPersonForm.ChkData: boolean;
     AParent := C.Parent;
     while (AParent<>Self) and not (AParent is TTabSheet) do AParent := AParent.Parent;
     if AParent is TTabSheet then PC.ActivePage := AParent as TTabSheet;
-    if C.CanFocus then C.SetFocus;
+    if C.CanFocus and not (C is TRadioButton) then C.SetFocus;
   end;
 
   procedure ShowErrAt(C: TWinControl; Msg: String);
@@ -1981,9 +1999,10 @@ function TfmPersonForm.ChkData: boolean;
     end;
   end;
 var
-  i          : Integer;
+  i, cnt     : Integer;
   lst        : TStringList;
   NewNUMB_T2 : String;
+  checked: Boolean;
 begin
   Result := false;
   try
@@ -2034,6 +2053,25 @@ begin
         end;
       finally Free;
       end;
+    end;
+
+    cnt := 0;
+    checked := false;
+    if cbUz1.ItemIndex >= 0 then begin
+      Inc(cnt);
+      if rbEduc1Main.Checked then checked := true;
+    end;
+    if cbUz2.ItemIndex >= 0 then begin
+      Inc(cnt);
+      if rbEduc2Main.Checked then checked := true;
+    end;
+    if cbUz3.ItemIndex >= 0 then begin
+      Inc(cnt);
+      if rbEduc3Main.Checked then checked := true;
+    end;
+    if (cnt > 1) and not checked then begin
+      ShowErrAt(rbEduc1Main,'Вы не указали, какое образование является основным!');
+      Abort;
     end;
 
     NewNUMB_T2 := GetNewNUMB_T2;
@@ -2144,7 +2182,7 @@ begin
 
     ChkFiled(dtConf, 'Не указана дата заполнения личной карточки сотрудника!');
 
-    if edWUch2_IsWork.Checked and (Trim(fWUch2.edWUch2.Text) = '') then begin
+    if edWUch2_IsWork.Checked and (Trim(fWUch2.edWUch2.Text) = '') and (Trim(fWUch2.edWUch2ListNumb.Text) = '') then begin
         ShowErrAt(edWUch2_IsWork, 'Не указан номер удостоверения об отсрочке!');
         Abort;
     end;
@@ -2335,6 +2373,7 @@ function TfmPersonForm.StoreData: boolean;
     edKval, edNapr: TComboBox;
     edKval3: TdxMRUEdit;
     edOKSO: TEdit;
+    rbEducMain: TRadioButton;
     d: TDateTime;
     sd: String;
     fmt: TFormatSettings;
@@ -2352,6 +2391,7 @@ function TfmPersonForm.StoreData: boolean;
     edDiplSer := FindComponent('edDiplSer'+IntToStr(EduType)) as TEdit;
     edDate := FindComponent('edDate'+IntToStr(EduType)) as TEdit;
     edDateGive := FindComponent('edDateGive'+IntToStr(EduType)) as TEdit;
+    rbEducMain := FindComponent('rbEduc'+IntToStr(EduType)+'Main') as TRadioButton;
     if EduType = 3 then
       edKval3 := FindComponent('edKval'+IntToStr(EduType)) as TdxMRUEdit
     else
@@ -2432,6 +2472,7 @@ function TfmPersonForm.StoreData: boolean;
 
       AssignStr(qrEduc.FieldByName('OKSO'),edOKSO);
       qrEduc.FieldByName('Type').AsInteger := EduType;
+      qrEduc.FieldByName('IsMain').AsBoolean := rbEducMain.Checked;
       qrEduc.Post;
     end;
   end;
@@ -2630,6 +2671,8 @@ begin  //StoreData
     AssignStr(qrData.FieldByName('WUCHET2_Ser'),fWUch2.edWUCH2_Ser);
     AssignStr(qrData.FieldByName('WUCHET2_Motiv'),fWUch2.edWUCH2_Motiv);
     AssignDate(qrData.FieldByName('WUCHET2_date'),fWUch2.dtWUCH2_date);
+    AssignStr(qrData.FieldByName('WUCH2_ListNumb'),fWUch2.edWuch2ListNumb);
+    AssignDate(qrData.FieldByName('WUCH2_ListDate'),fWUch2.edWuch2ListDate);
     if edWUch2_IsWork.Checked then begin
       qrData.FieldByName('WUchet2_IsWork').AsInteger := 1;
     end else begin
@@ -2827,6 +2870,7 @@ begin  //StoreData
         Integer(fAddr.colFamType.Items.Objects[fAddr.colFamType.Items.IndexOf(fAddr.dxtFamily.Items[n].Values[0])]);
       qrFam.FieldByName('FAM_NAME').Value := fAddr.dxtFamily.Items[n].Strings[1];
       qrFam.FieldByName('FAM_BIRTH').Value := fAddr.dxtFamily.Items[n].Values[2];
+      qrFam.FieldByName('FAM_PLACE').Value := fAddr.dxtFamily.Items[n].Values[3];
       qrFam.Post;
     end;
 // store education data
@@ -3670,7 +3714,7 @@ begin
   then
     ShowErr('Команда будет доступна после сохранения карточки сотрудника!')
   else begin
-    ShowAppointments(qrData.FieldByName('PERS_ID').AsInteger);
+    ShowAppointments(qrData.FieldByName('PERS_ID').AsInteger, qrData.FieldByName('OVK_ID').AsInteger);
     RefreshAppointment;
 
     NewValues := OldValues;

@@ -34,6 +34,7 @@ type
     pmFamily: TPopupMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    dxtFamilyColumn4: TdxTreeListMaskColumn;
     procedure edIndex1Change(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);

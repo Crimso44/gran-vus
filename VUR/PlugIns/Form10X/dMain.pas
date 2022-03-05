@@ -37,6 +37,7 @@ type
     dxFamilyFamName1: TStringField;
     dxFamilyFamYear1: TStringField;
     dxFamilytitle: TStringField;
+    qrOVKX: TADOQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure EkUDFList1Functions0Calculate(Sender: TObject; Args: TEkUDFArgs;
       ArgCount: Integer; UDFResult: TObject);
@@ -44,6 +45,7 @@ type
       ArgCount: Integer; UDFResult: TObject);
     procedure EkUDFList1Functions2Calculate(Sender: TObject; Args: TEkUDFArgs;
       ArgCount: Integer; UDFResult: TObject);
+    procedure EkRTF1ScanRecord(ScanInfo: TEkScanInfo);
   private
     procedure FillExecutor;
     { Private declarations }
@@ -67,13 +69,18 @@ implementation
 
 uses SaveEvents, StrUtils, dateUtils, IniSupport;
 
-function Date2Doc(ADate: TDateTime): string;
+function Date2Doc(ADate: TDateTime; template: boolean = false): string;
 const
   MonthName: Array [1..12] of string =
   ('января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря');
 var year,month,day: Word;
 begin
-  if ADate=0 then Result := '"     "              20     года' else begin
+  if ADate=0 then begin
+    if template then
+      Result := '"     "              20     года'
+    else
+      Result := ''
+  end else begin
     DecodeDate(ADate,year,month,day);
     Result := '"'+IntToStr(day)+'"   '+MonthName[month]+'   '+IntToStr(year)+' года';
   end;
@@ -114,19 +121,11 @@ end;
 
 function TdmMain.OpenData(ID: Integer): boolean;
 var i, AppointmentRowCount: Integer;
-  IsJet: Boolean;
 begin
-  IsJet := false;
-  if Pos(WideString('Provider=Microsoft.Jet'), dbMain.ConnectionString) > 0 then
-    IsJet := true;
   try
     qrPers.Close;
     qrPers.Parameters.ParamByName('ID').Value := ID;
     qrPers.Open;
-    if not IsJet then
-      qrAppointment.SQL.Text :=
-        StringReplace(qrAppointment.SQL.Text,
-          '&IN_ORD_DATE', '+convert(varchar,in_ord_Date,104)', [rfReplaceAll]);
     qrAppointment.Open;
     for i:=0 to ComponentCount-1 do
       if Components[i] is TADOQuery then
@@ -142,8 +141,10 @@ begin
       if not qrPers.FieldByName('Out_Date').IsNull then begin
         qrAppointment.Last;
         Append;
-        FieldByName('IN_ORD').AsString := 'УВОЛЕН';
-        FieldByName('POST_NAME').AsString := qrAppointment.FieldByName('POST_NAME').AsString;
+        FieldByName('IN_ORD').AsString := 'Приказ № ' +
+          qrPers.FieldByName('Out_Ord_Numb').AsString + ' от ' + ConfDate(qrPers.FieldByName('Out_Ord_Date').AsDateTime);
+        FieldByName('POST_NAME').AsString := 'УВОЛЕН с должности ' + qrAppointment.FieldByName('POST_NAME').AsString;
+        FieldByName('XOVK_ID').Value := qrOVK.FieldByName('OVK_ID').Value;
         Post;
       end;
       while RecordCount<AppointmentRowCount do begin
@@ -285,40 +286,37 @@ begin
     EkRTF1.CreateVar('Education',qrEduc.FieldByName('ED_NAME').AsString);
     EkRTF1.CreateVar('EdOKIN',qrEduc.FieldByName('OKIN').AsString);
     qrEdData.First;
-    while not qrEdData.EOF do begin
-      if qrEdData.FieldByName('Type').AsInteger<=3 then begin
-        EkRTF1.CreateVar(
-          'UchZav'+qrEdData.FieldByName('Type').AsString,
-          qrEdData.FieldByName('UZ_NAME').AsString);
-        EkRTF1.CreateVar(
-          'ObrDoc'+qrEdData.FieldByName('Type').AsString,
-          qrEdData.FieldByName('ObrDoc').AsString);
-        EkRTF1.CreateVar(
-          'FormPrep'+qrEdData.FieldByName('Type').AsString,
-          qrEdData.FieldByName('FormPrep').AsString);
-        EkRTF1.CreateVar(
-          'Diplom'+qrEdData.FieldByName('Type').AsString,
-          qrEdData.FieldByName('DIPLOM').AsString);
-        EkRTF1.CreateVar(
-          'DiplomSer'+qrEdData.FieldByName('Type').AsString,
-          qrEdData.FieldByName('DIPLOM_SER').AsString);
-        EkRTF1.CreateVar(
-          'EndDate'+qrEdData.FieldByName('Type').AsString,
-          qrEdData.FieldByName('END_DATE').AsString);
-        EkRTF1.CreateVar(
-          'EndDateGive'+qrEdData.FieldByName('Type').AsString,
-          qrEdData.FieldByName('END_DATE_GIVE').AsString);
-        EkRTF1.CreateVar(
-          'Kval'+qrEdData.FieldByName('Type').AsString,
-          qrEdData.FieldByName('KVAL').AsString);
-        EkRTF1.CreateVar(
-          'Napr'+qrEdData.FieldByName('Type').AsString,
-          qrEdData.FieldByName('NAPR').AsString);
-        EkRTF1.CreateVar(
-          'OKSO'+qrEdData.FieldByName('Type').AsString,
-          qrEdData.FieldByName('OKSO').AsString);
-      end;
-      qrEdData.Next;
+    if not qrEdData.EOF then begin
+      EkRTF1.CreateVar(
+        'UchZav1',
+        qrEdData.FieldByName('UZ_NAME').AsString);
+      EkRTF1.CreateVar(
+        'ObrDoc1',
+        qrEdData.FieldByName('ObrDoc').AsString);
+      EkRTF1.CreateVar(
+        'FormPrep1',
+        qrEdData.FieldByName('FormPrep').AsString);
+      EkRTF1.CreateVar(
+        'Diplom1',
+        qrEdData.FieldByName('DIPLOM').AsString);
+      EkRTF1.CreateVar(
+        'DiplomSer1',
+        qrEdData.FieldByName('DIPLOM_SER').AsString);
+      EkRTF1.CreateVar(
+        'EndDate1',
+        qrEdData.FieldByName('END_DATE').AsString);
+      EkRTF1.CreateVar(
+        'EndDateGive1',
+        qrEdData.FieldByName('END_DATE_GIVE').AsString);
+      EkRTF1.CreateVar(
+        'Kval1',
+        qrEdData.FieldByName('KVAL').AsString);
+      EkRTF1.CreateVar(
+        'Napr1',
+        qrEdData.FieldByName('NAPR').AsString);
+      EkRTF1.CreateVar(
+        'OKSO1',
+        qrEdData.FieldByName('OKSO').AsString);
     end;
     EkRTF1.CreateVar('Science',qrSc.FieldByName('SC_NAME').AsString);
     EkRTF1.CreateVar('ScOKIN',qrSc.FieldByName('SC_OKIN').AsString);
@@ -365,7 +363,7 @@ begin
     EkRTF1.CreateVar('VodUdSer',qrPErs.FieldByName('VodUdSer').AsString);
     EkRTF1.CreateVar('VodUdNum',qrPErs.FieldByName('VodUdNum').AsString);
     EkRTF1.CreateVar('KVodUd',qrPErs.FieldByName('KVodUdTxt').AsString);
-    EkRTF1.CreateVar('VodUdDate', Date2Doc(qrPers.FieldByName('VodUdDate').AsDateTime));
+    EkRTF1.CreateVar('VodUdDate', Date2Doc(qrPers.FieldByName('VodUdDate').AsDateTime, false));
     qrAddr.First;
     if GetParamValue(15) = '1' then begin
       EkRTF1.CreateVar('ADDR_DATE','        ');
@@ -377,9 +375,9 @@ begin
           'Address'+qrAddr.FieldByName('ADDR_TYPE').AsString,
           qrAddr.FieldByName('ADDR_STR').AsString);
         if (qrAddr.FieldByName('ADDR_TYPE').AsInteger=0) then
-          EkRTF1.VarByName('ADDR_DATE').AsString := Date2Doc(qrAddr.FieldByName('ADDR_DATE').AsDateTime);
+          EkRTF1.VarByName('ADDR_DATE').AsString := Date2Doc(qrAddr.FieldByName('ADDR_DATE').AsDateTime, false);
         if (qrAddr.FieldByName('ADDR_TYPE').AsInteger=1) then
-          EkRTF1.CreateVar('ADDR_DATE2', Date2Doc(qrAddr.FieldByName('ADDR_DATE').AsDateTime));
+          EkRTF1.CreateVar('ADDR_DATE2', Date2Doc(qrAddr.FieldByName('ADDR_DATE').AsDateTime, false));
         qrAddr.Next;
       end;
       qrPhones.First;
@@ -398,13 +396,18 @@ begin
       EkRTF1.CreateVar('CategGodn',qrPers.FieldByName('WCAT').AsString);
       EkRTF1.CreateVar('OVK',qrOVK.FieldByName('OVK').AsString);
       EkRTF1.CreateVar('OVK_NAME',qrOVK.FieldByName('OVK_NAME').AsString);
-      if GetParamValue(11) = '1' then begin
+      //if GetParamValue(11) = '1' then begin
         EkRTF1.CreateVar('WUch1',qrPers.FieldByName('WUCHET1').AsString);
         if qrPers.FieldByName('WUCHET2_IsWork').AsInteger <> 0 then begin
-          s := qrPers.FieldByName('WUCHET2').AsString;
-          if qrPers.FieldByName('WUCHET2_Ser').AsString <> '' then
-            s := 'Сер. ' + qrPers.FieldByName('WUCHET2_Ser').AsString + ' № ' + s +
-              ' от ' + Date2Doc(qrPers.FieldByName('WUCHET2_date').AsDateTime);
+          if qrPers.FieldByName('WUCH2_ListNumb').AsString <> '' then
+            s := 'Список № ' + qrPers.FieldByName('WUCH2_ListNumb').AsString +
+              ' от ' + Date2Doc(qrPers.FieldByName('WUCHET2_ListDate').AsDateTime);
+          if qrPers.FieldByName('WUCHET2').AsString <> '' then begin
+            s := qrPers.FieldByName('WUCHET2').AsString;
+            if qrPers.FieldByName('WUCHET2_Ser').AsString <> '' then
+              s := 'Сер. ' + qrPers.FieldByName('WUCHET2_Ser').AsString + ' № ' + s +
+                ' от ' + Date2Doc(qrPers.FieldByName('WUCHET2_date').AsDateTime);
+          end;
           EkRTF1.CreateVar('WUch2',s);
           s := qrPers.FieldByName('PDPCode').AsString;
           ii := Pos('/', s);
@@ -413,7 +416,7 @@ begin
             EkRTF1.CreateVar('WOKPDTR', '  ОКПДТР:'+Copy(s, ii+1, MaxInt));
           end;
         end;
-      end;
+      //end;
       EkRTF1.CreateVar('WDiscl',qrPers.FieldByName('WDISCL').AsString);
       EkRTF1.CreateVar('W_DEND', ShortDATE(qrPers.FieldByName('W_DEND').AsDateTime));
       if GetParamValue(14) = '1' then begin
@@ -480,12 +483,21 @@ begin
 
     FillExecutor;
 
-    EkRTF1.ExecuteOpen([taAppointment, qrAssign, dxFamily],SW_SHOWDEFAULT);
+    EkRTF1.ExecuteOpen([taAppointment, qrAssign, dxFamily, qrOvkX],SW_SHOWDEFAULT);
     SaveEvent(dbMain, evs_Report_Print, sEventObject,
       ['Номер сотрудника: '+IntToStr(qrPers.Parameters.ParamByName('ID').Value)]);
     Result := true;
   except
     Result := false;
+  end;
+end;
+
+procedure TdmMain.EkRTF1ScanRecord(ScanInfo: TEkScanInfo);
+begin
+  if ScanInfo.DataSet = taAppointment then begin
+    qrOvkX.Close;
+    qrOvkX.Parameters.ParamByName('OVK_Id').Value := taAppointment.FieldByName('XOVK_Id').Value;
+    qrOvkX.Open;
   end;
 end;
 

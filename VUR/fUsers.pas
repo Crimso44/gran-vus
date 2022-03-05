@@ -63,6 +63,7 @@ type
       var AText: string);
     procedure dbgDataColumnSorting(Sender: TObject; Column: TdxDBTreeListColumn;
       var Allow: Boolean);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -178,6 +179,17 @@ procedure TfmUsers.dbgDataNumGetText(Sender: TObject; ANode: TdxTreeListNode;
   var AText: string);
 begin
   AText := IntToStr(ANode.Index + 1);
+end;
+
+procedure TfmUsers.FormActivate(Sender: TObject);
+var
+  col: TdxDBGridColumn;
+  i: Integer;
+begin
+  for i := 0 to dbgData.ColumnCount - 1 do begin
+    col := TdxDBGridColumn(dbgData.Columns[i]);
+    col.GroupIndex := -1;
+  end;
 end;
 
 procedure TfmUsers.FormClose(Sender: TObject; var Action: TCloseAction);

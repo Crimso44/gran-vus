@@ -28,12 +28,11 @@ type
     bExcel: TToolButton;
     MainGridRecId: TdxDBGridColumn;
     procedure bSaveClick(Sender: TObject);
-    procedure MainGridRepl_FioButtonClick(Sender: TObject;
-      AbsoluteIndex: Integer);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure bExcelClick(Sender: TObject);
     procedure bPrintClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure MainGridRepl_FioEditButtonClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -85,8 +84,7 @@ begin
     CanClose := True;
 end;
 
-procedure TfrmReplacePlan.MainGridRepl_FioButtonClick(Sender: TObject;
-  AbsoluteIndex: Integer);
+procedure TfrmReplacePlan.MainGridRepl_FioEditButtonClick(Sender: TObject);
 var
   f: TfrmSelectPerson;
 begin

@@ -89,6 +89,7 @@ object frmReplacePlan: TfrmReplacePlan
     OptionsCustomize = [edgoBandMoving, edgoBandSizing, edgoColumnMoving, edgoColumnSizing, edgoRowSizing]
     OptionsDB = [edgoCancelOnExit, edgoCanDelete, edgoCanInsert, edgoCanNavigation, edgoConfirmDelete, edgoLoadAllRecords, edgoUseBookmarks]
     ShowBands = True
+    ExplicitTop = 30
     object MainGridPers_Dep: TdxDBGridMaskColumn
       Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1089#1083#1091#1078#1073', '#1087#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074', '#1094#1077#1093#1086#1074
       DisableEditor = True
@@ -179,6 +180,7 @@ object frmReplacePlan: TfrmReplacePlan
       RowIndex = 0
       DisableGrouping = True
       FieldName = 'Repl_Fio'
+      OnEditButtonClick = MainGridRepl_FioEditButtonClick
       Buttons = <
         item
           Default = True

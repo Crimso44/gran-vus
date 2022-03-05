@@ -6,7 +6,7 @@ object dmMain: TdmMain
   Width = 692
   object dbMain: TADOConnection
     ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=C:\Pr' +
+      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=e:\Pr' +
       'ogram Files\GranVUS\Data\granvus.mdb;Mode=Share Deny None;Jet OL' +
       'EDB:System database="";Jet OLEDB:Registry Path="";Jet OLEDB:Data' +
       'base Password=45q81ste1109;Jet OLEDB:Engine Type=5;Jet OLEDB:Dat' +

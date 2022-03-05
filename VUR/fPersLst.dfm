@@ -117,10 +117,13 @@ object fmPersonList: TfmPersonList
       DisableDragging = True
       HeaderAlignment = taCenter
       Sizing = False
+      Sorted = csUp
+      Visible = False
       Width = 30
       BandIndex = 0
       RowIndex = 0
       OnGetText = dbgDataNumGetText
+      GroupIndex = 0
     end
     object dbgDataPers_ID: TdxDBGridColumn
       Caption = 'ID'
@@ -128,6 +131,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 0
       RowIndex = 0
       FieldName = 'PERS_ID'
+      GroupIndex = 0
     end
     object dbgDataTAB_NUMB: TdxDBGridColumn
       Alignment = taLeftJustify
@@ -137,6 +141,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 0
       RowIndex = 0
       FieldName = 'TAB_NUMB'
+      GroupIndex = 0
     end
     object dbgDataColumnFIO: TdxDBGridColumn
       Caption = #1060#1072#1084#1080#1083#1080#1103' '#1080' '#1080#1085#1080#1094#1080#1072#1083#1099
@@ -147,6 +152,7 @@ object fmPersonList: TfmPersonList
       FieldName = 'FIO'
       SummaryFooterType = cstCount
       SummaryFooterFormat = '0'
+      GroupIndex = 0
     end
     object dbgDataPersonMale: TdxDBGridColumn
       Caption = #1055#1086#1083
@@ -154,6 +160,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 0
       RowIndex = 0
       FieldName = 'PersonMale'
+      GroupIndex = 0
     end
     object dbgDataBIRTHDAY: TdxDBGridDateColumn
       Caption = #1063#1080#1089#1083#1086' '#1084#1077#1089#1103#1094' '#1080' '#1075#1086#1076' '#1088#1086#1078#1076#1077#1085#1080#1103
@@ -162,6 +169,8 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'BIRTHDAY'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataBirthPlace: TdxDBGridColumn
       Caption = #1052#1077#1089#1090#1086' '#1088#1086#1078#1076#1077#1085#1080#1103
@@ -170,6 +179,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 0
       RowIndex = 0
       FieldName = 'BIRTHPLACE'
+      GroupIndex = 0
     end
     object dbgDataDEP_NAME: TdxDBGridColumn
       Caption = #1057#1090#1088#1091#1082#1090#1091#1088#1085#1086#1077' '#1087#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1077', '#1074' '#1082#1086#1090#1086#1088#1086#1084' '#1088#1072#1073#1086#1090#1072#1077#1090
@@ -178,6 +188,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'DEP_NAME'
+      GroupIndex = 0
     end
     object dbgDataDep_Full_Name: TdxDBGridColumn
       Caption = #1055#1086#1083#1085#1086#1077' '#1085#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1089#1090#1088#1091#1082#1090#1091#1088#1085#1086#1075#1086' '#1087#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1103
@@ -186,6 +197,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'Dep_Full_Name'
+      GroupIndex = 0
     end
     object dbgDataColumnBeginWork_Date: TdxDBGridDateColumn
       Caption = #1044#1072#1090#1072' '#1087#1086#1089#1083#1077#1076#1085#1077#1075#1086' '#1085#1072#1079#1085#1072#1095#1077#1085#1080#1103
@@ -194,6 +206,8 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'BeginWork_Date'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataIS_ASF: TdxDBGridCheckColumn
       Caption = #1055#1086#1076#1088'. '#1040#1057#1060
@@ -202,8 +216,9 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'IS_ASF'
-      ValueChecked = '1'
-      ValueUnchecked = '0'
+      ValueChecked = 'True'
+      GroupIndex = 0
+      DisplayChecked = '0'
     end
     object dbgDataColumnPOST_NAME: TdxDBGridColumn
       Alignment = taLeftJustify
@@ -213,6 +228,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'POST_NAME'
+      GroupIndex = 0
     end
     object dbgDataColumn3: TdxDBGridColumn
       Caption = #1042#1086#1080#1085#1089#1082#1086#1077' '#1079#1074#1072#1085#1080#1077
@@ -221,6 +237,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'WRANGE'
+      GroupIndex = 0
     end
     object dbgDataWrng_Date: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1087#1088#1080#1089#1074#1086#1077#1085#1080#1103
@@ -228,6 +245,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'WRng_Date'
+      GroupIndex = 0
     end
     object dbgDataColumn6: TdxDBGridColumn
       Alignment = taRightJustify
@@ -237,6 +255,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'VUS'
+      GroupIndex = 0
     end
     object dbgDataColumnFLD_A: TdxDBGridColumn
       Alignment = taRightJustify
@@ -248,16 +267,19 @@ object fmPersonList: TfmPersonList
       FieldName = 'FLD_A'
       SummaryFooterType = cstSum
       SummaryFooterFormat = '0'
+      GroupIndex = 0
     end
     object dbgDataWBSer: TdxDBGridMaskColumn
       BandIndex = 1
       RowIndex = 0
       FieldName = 'WBser'
+      GroupIndex = 0
     end
     object dbgDataWBNum: TdxDBGridMaskColumn
       BandIndex = 1
       RowIndex = 0
       FieldName = 'WBNum'
+      GroupIndex = 0
     end
     object dbgDataColumnW_DBEG: TdxDBGridDateColumn
       Alignment = taLeftJustify
@@ -268,6 +290,8 @@ object fmPersonList: TfmPersonList
       RowIndex = 0
       FieldName = 'W_DBEG'
       SummaryFooterFormat = '0'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataColumnFLD_B: TdxDBGridColumn
       Alignment = taRightJustify
@@ -279,6 +303,7 @@ object fmPersonList: TfmPersonList
       FieldName = 'FLD_B'
       SummaryFooterType = cstSum
       SummaryFooterFormat = '0'
+      GroupIndex = 0
     end
     object dbgDataColumnNUMB_T2: TdxDBGridColumn
       Alignment = taRightJustify
@@ -288,6 +313,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'NUMB_T2'
+      GroupIndex = 0
     end
     object dbgDataColumnW_DEND: TdxDBGridDateColumn
       Alignment = taRightJustify
@@ -300,6 +326,8 @@ object fmPersonList: TfmPersonList
       SummaryFooterType = cstSum
       SummaryFooterField = 'W_EndCount'
       SummaryFooterFormat = '0'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataColumnWDISCL: TdxDBGridColumn
       Caption = #1054#1090#1084#1077#1090#1082#1080' '#1086' '#1089#1085#1103#1090#1080#1080' '#1089' '#1091#1095#1077#1090#1072'/'#1087#1086#1084#1077#1097#1077#1085#1080#1080' '#1074' '#1072#1088#1093#1080#1074
@@ -308,6 +336,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 3
       RowIndex = 0
       FieldName = 'WDISCL'
+      GroupIndex = 0
     end
     object dbgDataMOBFLAG: TdxDBGridMaskColumn
       Caption = #1048#1084#1077#1077#1090' '#1084#1086#1073'. '#1087#1088#1077#1076#1087#1080#1089#1072#1085#1080#1077
@@ -318,6 +347,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'MobFlag'
+      GroupIndex = 0
     end
     object dbgDataColumn43: TdxDBGridColumn
       Caption = #1058#1077#1083#1077#1092#1086#1085' '#1088#1072#1073#1086#1095#1080#1081
@@ -326,6 +356,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'PHONEWRK'
+      GroupIndex = 0
     end
     object dbgDataPHONEMOB: TdxDBGridMaskColumn
       Alignment = taLeftJustify
@@ -335,6 +366,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'PHONEMOB'
+      GroupIndex = 0
     end
     object dbgDataPHONEDOM: TdxDBGridMaskColumn
       Caption = #1058#1077#1083#1077#1092#1086#1085' '#1076#1086#1084#1072#1096#1085#1080#1081
@@ -343,6 +375,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'PHONEDOM'
+      GroupIndex = 0
     end
     object dbgDataADDRPASS: TdxDBGridMaskColumn
       Caption = #1040#1076#1088#1077#1089' '#1087#1086' '#1087#1088#1086#1087#1080#1089#1082#1077
@@ -352,6 +385,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'ADDRPASS'
+      GroupIndex = 0
     end
     object dbgDataADDR_DATE_END: TdxDBGridDateColumn
       Caption = #1044#1072#1090#1072' '#1079#1072#1074#1077#1088#1096#1077#1085#1080#1103' '#1088#1077#1075#1080#1089#1090#1088#1072#1094#1080#1080
@@ -360,6 +394,8 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'ADDR_DATE_END'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataColumn41: TdxDBGridColumn
       Caption = #1048#1085#1076#1077#1082#1089' '#1072#1076#1088'. '#1087#1086' '#1087#1088#1086#1087#1080#1089#1082#1077
@@ -369,6 +405,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'INDADDRPASS'
+      GroupIndex = 0
     end
     object dbgDataADDRREAL: TdxDBGridMaskColumn
       Caption = #1040#1076#1088#1077#1089' '#1092#1072#1082#1090#1080#1095#1077#1089#1082#1086#1075#1086' '#1087#1088#1086#1078#1080#1074#1072#1085#1080#1103
@@ -378,6 +415,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'ADDRREAL'
+      GroupIndex = 0
     end
     object dbgDataIS_BAD: TdxDBGridMaskColumn
       DisableCustomizing = True
@@ -386,6 +424,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 6
       RowIndex = 0
       FieldName = 'IS_BAD'
+      GroupIndex = 0
     end
     object dbgDataReserved: TdxDBGridColumn
       DisableCustomizing = True
@@ -394,6 +433,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 6
       RowIndex = 0
       FieldName = 'Reserved'
+      GroupIndex = 0
     end
     object dbgDataTooOld: TdxDBGridColumn
       DisableCustomizing = True
@@ -402,6 +442,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 6
       RowIndex = 0
       FieldName = 'TooOld'
+      GroupIndex = 0
     end
     object dbgDataColumnIS_WAR: TdxDBGridColumn
       DisableCustomizing = True
@@ -410,6 +451,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 6
       RowIndex = 0
       FieldName = 'IS_WAR'
+      GroupIndex = 0
     end
     object dbgDataColumnOUT_DATE: TdxDBGridDateColumn
       DisableCustomizing = True
@@ -418,6 +460,8 @@ object fmPersonList: TfmPersonList
       BandIndex = 6
       RowIndex = 0
       FieldName = 'OUT_DATE'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataColumnOUT_ORD_NUMB: TdxDBGridColumn
       DisableCustomizing = True
@@ -426,6 +470,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 6
       RowIndex = 0
       FieldName = 'OUT_ORD_NUMB'
+      GroupIndex = 0
     end
     object dbgDataEndAkadem_date: TdxDBGridDateColumn
       DisableCustomizing = True
@@ -433,6 +478,8 @@ object fmPersonList: TfmPersonList
       BandIndex = 6
       RowIndex = 0
       FieldName = 'EndAkadem_date'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataRealEndAkadem_date: TdxDBGridDateColumn
       DisableCustomizing = True
@@ -440,6 +487,8 @@ object fmPersonList: TfmPersonList
       BandIndex = 6
       RowIndex = 0
       FieldName = 'RealEndAkadem_date'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataColumnDismissal_Date: TdxDBGridDateColumn
       DisableCustomizing = True
@@ -447,6 +496,8 @@ object fmPersonList: TfmPersonList
       BandIndex = 6
       RowIndex = 0
       FieldName = 'Dismissal_Date'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataColumnBeginStudy_Date: TdxDBGridDateColumn
       DisableCustomizing = True
@@ -454,6 +505,8 @@ object fmPersonList: TfmPersonList
       BandIndex = 6
       RowIndex = 0
       FieldName = 'BeginStudy_Date'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataWUCHET1: TdxDBGridColumn
       DisableCustomizing = True
@@ -461,6 +514,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 6
       RowIndex = 0
       FieldName = 'WUCHET1'
+      GroupIndex = 0
     end
     object dbgDataColumn42: TdxDBGridColumn
       Caption = #1048#1085#1076#1077#1082#1089' '#1072#1076#1088#1077#1089#1072' '#1092#1072#1082#1090'.'
@@ -470,6 +524,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'INDADDRREAL'
+      GroupIndex = 0
     end
     object dbgDataColumn34: TdxDBGridColumn
       Caption = #1060#1072#1084#1080#1083#1080#1103
@@ -479,6 +534,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 0
       RowIndex = 0
       FieldName = 'FAM'
+      GroupIndex = 0
     end
     object dbgDataColumn35: TdxDBGridColumn
       Caption = #1048#1084#1103
@@ -488,6 +544,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 0
       RowIndex = 0
       FieldName = 'IM'
+      GroupIndex = 0
     end
     object dbgDataColumn36: TdxDBGridColumn
       Caption = #1054#1090#1095#1077#1089#1090#1074#1086
@@ -497,6 +554,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 0
       RowIndex = 0
       FieldName = 'OTCH'
+      GroupIndex = 0
     end
     object dbgDataColumn37: TdxDBGridColumn
       Caption = #1057#1077#1088#1080#1103' '#1087#1072#1089#1087#1086#1088#1090#1072
@@ -506,6 +564,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'PSP_SER'
+      GroupIndex = 0
     end
     object dbgDataColumn38: TdxDBGridColumn
       Caption = #8470' '#1087#1072#1089#1087#1086#1088#1090#1072
@@ -515,6 +574,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'PSP_NUM'
+      GroupIndex = 0
     end
     object dbgDataColumn40: TdxDBGridColumn
       Caption = #1050#1077#1084' '#1074#1099#1076#1072#1085' '#1087#1072#1089#1087#1086#1088#1090
@@ -524,6 +584,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'PSP_PLACE'
+      GroupIndex = 0
     end
     object dbgDataColumn39: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1074#1099#1076#1072#1095#1080' '#1087#1072#1089#1087#1086#1088#1090#1072
@@ -533,6 +594,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'PSP_DATE'
+      GroupIndex = 0
     end
     object dbgDataColumn44: TdxDBGridColumn
       Caption = #1048#1053#1053
@@ -542,6 +604,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'INN'
+      GroupIndex = 0
     end
     object dbgDataColumn45: TdxDBGridColumn
       Caption = #8470' '#1089#1090#1088#1072#1093#1086#1074#1086#1075#1086' '#1089#1074#1080#1076#1077#1090#1077#1083#1100#1089#1090#1074#1072
@@ -551,6 +614,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'STRAH'
+      GroupIndex = 0
     end
     object dbgDataColumn46: TdxDBGridColumn
       Caption = #1057#1077#1084#1077#1081#1085#1086#1077' '#1087#1086#1083#1086#1078#1077#1085#1080#1077
@@ -560,6 +624,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'FST_NAME'
+      GroupIndex = 0
     end
     object dbgDataColumn47: TdxDBGridColumn
       Caption = #1042#1080#1076' '#1086#1073#1088#1072#1079#1086#1074#1072#1085#1080#1103
@@ -569,6 +634,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'ED_NAME'
+      GroupIndex = 0
     end
     object dbgDataColumn48: TdxDBGridColumn
       Caption = #1055#1088#1086#1092#1077#1089#1089#1080#1103' '#1087#1086' '#1086#1073#1088#1072#1079#1086#1074#1072#1085#1080#1102
@@ -577,6 +643,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'PROF1'
+      GroupIndex = 0
     end
     object dbgDataColumn49: TdxDBGridColumn
       Caption = #1050#1072#1090#1077#1075#1086#1088#1080#1103' '#1076#1086#1083#1078#1085#1086#1089#1090#1080
@@ -586,6 +653,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'CPROF_NAME'
+      GroupIndex = 0
     end
     object dbgDataColumn50: TdxDBGridColumn
       Caption = #1043#1088#1091#1087#1087#1072' '#1091#1095#1077#1090#1072
@@ -595,6 +663,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'BranchName'
+      GroupIndex = 0
     end
     object dbgDataColumn51: TdxDBGridColumn
       Caption = #1051#1080#1095#1085#1099#1081' '#8470
@@ -604,6 +673,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'WID'
+      GroupIndex = 0
     end
     object dbgDataColumn52: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1091#1074#1086#1083#1100#1085#1077#1085#1080#1103' '#1080#1079' '#1072#1088#1084#1080#1080
@@ -613,6 +683,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'EOARMY_DATE'
+      GroupIndex = 0
     end
     object dbgDataColumn53: TdxDBGridColumn
       Caption = #1050#1072#1090#1077#1075#1086#1088#1080#1103' '#1079#1072#1087#1072#1089#1072
@@ -622,6 +693,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'CAT_ZAP'
+      GroupIndex = 0
     end
     object dbgDataColumn54: TdxDBGridColumn
       Caption = #1043#1086#1076#1085#1086#1089#1090#1100' '#1082' '#1089#1083#1091#1078#1073#1077
@@ -631,6 +703,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'WCAT'
+      GroupIndex = 0
     end
     object dbgDataColumn55: TdxDBGridColumn
       Caption = #1054#1042#1050
@@ -640,6 +713,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'OVK_NAME'
+      GroupIndex = 0
     end
     object dbgDataColumn56: TdxDBGridColumn
       Caption = #1059#1095#1072#1089#1090#1085#1080#1082' '#1073#1086#1077#1074#1099#1093' '#1076#1077#1081#1089#1090#1074#1080#1081
@@ -649,6 +723,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'Warfare'
+      GroupIndex = 0
     end
     object dbgDataColumn57: TdxDBGridColumn
       Caption = #1054#1090#1089#1088#1086#1095#1082#1072' '#1086#1090' '#1087#1088#1080#1079#1099#1074#1072
@@ -658,6 +733,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'DelayName'
+      GroupIndex = 0
     end
     object dbgDataColumn58: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1086#1082#1086#1085#1095#1072#1085#1080#1103' '#1086#1090#1089#1088#1086#1095#1082#1080
@@ -667,6 +743,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'DelayEnd_date'
+      GroupIndex = 0
     end
     object dbgDataColumn59: TdxDBGridColumn
       Caption = #1057#1086#1089#1090#1086#1103#1085#1080#1077' '#1079#1076#1086#1088#1086#1074#1100#1103
@@ -676,6 +753,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'Health'
+      GroupIndex = 0
     end
     object dbgDataColumn60: TdxDBGridColumn
       Caption = #1058#1088#1091#1076#1086#1074#1086#1081' '#1076#1086#1075#1086#1074#1086#1088
@@ -685,6 +763,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'Dog_NumbWork'
+      GroupIndex = 0
     end
     object dbgDataColumn61: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1090#1088#1091#1076#1086#1074#1086#1075#1086' '#1076#1086#1075#1086#1074#1086#1088#1072
@@ -694,6 +773,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'Dog_DateWork'
+      GroupIndex = 0
     end
     object dbgDataColumn62: TdxDBGridColumn
       HeaderAlignment = taCenter
@@ -702,6 +782,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'OUT_DATE'
+      GroupIndex = 0
     end
     object dbgDataColumn63: TdxDBGridColumn
       Caption = #8470' '#1087#1088#1080#1082#1072#1079#1072' '#1086#1073' '#1091#1074#1086#1083#1100#1085#1077#1085#1080#1080
@@ -711,6 +792,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'OUT_ORD_NUMB'
+      GroupIndex = 0
     end
     object dbgDataColumn64: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1087#1088#1080#1082#1072#1079#1072' '#1086#1073' '#1091#1074#1086#1083#1100#1085#1077#1085#1080#1080
@@ -720,6 +802,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'OUT_ORD_DATE'
+      GroupIndex = 0
     end
     object dbgDataColumn65: TdxDBGridColumn
       Caption = #1043#1086#1089#1089#1083#1091#1078#1072#1097#1080#1081
@@ -729,6 +812,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'Gos'
+      GroupIndex = 0
     end
     object dbgDataColumn66: TdxDBGridColumn
       Caption = #1057#1090#1072#1090#1091#1089' '#1091#1095#1072#1097#1077#1075#1086#1089#1103
@@ -738,6 +822,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'PostStudy'
+      GroupIndex = 0
     end
     object dbgDataColumn67: TdxDBGridColumn
       Caption = #1055#1083#1072#1085#1086#1074#1072#1103' '#1076#1072#1090#1072' '#1086#1082#1086#1085#1095#1072#1085#1080#1103' '#1086#1073#1091#1095#1077#1085#1080#1103
@@ -747,6 +832,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'StudyEnd_date'
+      GroupIndex = 0
     end
     object dbgDataColumn68: TdxDBGridColumn
       Caption = #8470' '#1076#1086#1075#1086#1074#1086#1088#1072' '#1086#1073' '#1086#1073#1091#1095#1077#1085#1080#1080
@@ -756,6 +842,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'Dog_NumbStudy'
+      GroupIndex = 0
     end
     object dbgDataColumn69: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1076#1086#1075#1086#1074#1086#1088#1072' '#1086#1073' '#1086#1073#1091#1095#1077#1085#1080#1080
@@ -765,6 +852,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'Dog_DateStudy'
+      GroupIndex = 0
     end
     object dbgDataColumn70: TdxDBGridColumn
       Caption = #1057#1087#1077#1094#1080#1072#1083#1100#1085#1086#1089#1090#1100' '#1087#1086' '#1082#1086#1090#1086#1088#1086#1081' '#1091#1095#1080#1090#1089#1103
@@ -774,6 +862,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'Napr'
+      GroupIndex = 0
     end
     object dbgDataColumn71: TdxDBGridColumn
       Caption = #1053#1072#1095#1072#1083#1086' '#1072#1082#1072#1076#1077#1084#1080#1095#1077#1089#1082#1086#1075#1086' '#1086#1090#1087#1091#1089#1082#1072
@@ -783,6 +872,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'BeginAkadem_date'
+      GroupIndex = 0
     end
     object dbgDataColumn72: TdxDBGridColumn
       Caption = #1055#1083#1072#1085#1086#1074#1086#1077' '#1086#1082#1086#1085#1095#1072#1085#1080#1077' '#1072#1082#1072#1076#1077#1084#1080#1095#1077#1089#1082#1086#1075#1086' '#1086#1090#1087#1091#1089#1082#1072
@@ -792,6 +882,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'EndAkadem_date'
+      GroupIndex = 0
     end
     object dbgDataColumn73: TdxDBGridColumn
       Caption = #1060#1072#1082#1090'. '#1086#1082#1086#1085#1095#1072#1085#1080#1077' '#1072#1082#1072#1076#1077#1084#1080#1095#1077#1089#1082#1086#1075#1086' '#1086#1090#1087#1091#1089#1082#1072
@@ -801,6 +892,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'RealEndAkadem_date'
+      GroupIndex = 0
     end
     object dbgDataColumn74: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1084#1077#1076#1082#1086#1084#1080#1089#1089#1080#1080' '#1087#1086#1089#1083#1077' '#1072#1082#1072#1076#1077#1084'. '#1086#1090#1087#1091#1089#1082#1072
@@ -810,6 +902,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'MedResult_date'
+      GroupIndex = 0
     end
     object dbgDataColumn75: TdxDBGridColumn
       Caption = #1056#1077#1079#1091#1083#1100#1090#1072#1090' '#1084#1077#1076#1082#1086#1084#1080#1089#1089#1080#1080' '#1087#1086#1089#1083#1077' '#1072#1082#1072#1076#1077#1084'.'#1086#1090#1087#1091#1089#1082#1072
@@ -819,6 +912,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'MedResultText'
+      GroupIndex = 0
     end
     object dbgDataColumn76: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1086#1090#1095#1080#1089#1083#1077#1085#1080#1103
@@ -828,6 +922,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'Dismissal_Date'
+      GroupIndex = 0
     end
     object dbgDataColumn77: TdxDBGridColumn
       Caption = #8470' '#1087#1088#1080#1082#1072#1079#1072' '#1086#1073' '#1086#1090#1095#1080#1089#1083#1077#1085#1080#1080
@@ -837,6 +932,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'OrderDismissal'
+      GroupIndex = 0
     end
     object dbgDataColumn78: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1087#1088#1080#1082#1072#1079#1072' '#1086#1073' '#1086#1090#1095#1080#1089#1083#1077#1085#1080#1080
@@ -846,6 +942,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'OrderDismissal_date'
+      GroupIndex = 0
     end
     object dbgDataColumn79: TdxDBGridColumn
       Caption = #1054#1089#1085#1086#1074#1072#1085#1080#1077' '#1086#1090#1095#1080#1089#1083#1077#1085#1080#1103
@@ -855,6 +952,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'ReasonDismissal'
+      GroupIndex = 0
     end
     object dbgDataASFName: TdxDBGridColumn
       Caption = #1053#1040#1057#1060
@@ -863,6 +961,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 5
       RowIndex = 0
       FieldName = 'ASFName'
+      GroupIndex = 0
     end
     object dbgDataColumn80: TdxDBGridColumn
       Caption = #1055#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1077' ('#1053#1040#1057#1060')'
@@ -871,6 +970,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 5
       RowIndex = 0
       FieldName = 'ASDep_Name'
+      GroupIndex = 0
     end
     object dbgDataColumn81: TdxDBGridColumn
       Caption = #1044#1086#1083#1078#1085#1086#1089#1090#1100' ('#1053#1040#1057#1060')'
@@ -879,6 +979,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 5
       RowIndex = 0
       FieldName = 'ASPost_Name'
+      GroupIndex = 0
     end
     object dbgDataColumn84: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1079#1072#1095#1080#1089#1083#1077#1085#1080#1103' ('#1053#1040#1057#1060')'
@@ -888,6 +989,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 5
       RowIndex = 0
       FieldName = 'ASIn_Date'
+      GroupIndex = 0
     end
     object dbgDataColumn85: TdxDBGridColumn
       Caption = #8470' '#1087#1088#1080#1082#1072#1079#1072' '#1086' '#1079#1072#1095#1080#1089#1083#1077#1085#1080#1080' ('#1053#1040#1057#1060')'
@@ -897,6 +999,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 5
       RowIndex = 0
       FieldName = 'ASOrder_In'
+      GroupIndex = 0
     end
     object dbgDataColumn86: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1087#1088#1080#1082#1072#1079#1072' '#1086' '#1079#1072#1095#1080#1089#1083#1077#1085#1080#1080' ('#1053#1040#1057#1060')'
@@ -906,6 +1009,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 5
       RowIndex = 0
       FieldName = 'ASDate_In'
+      GroupIndex = 0
     end
     object dbgDataColumn87: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1074#1099#1093#1086#1076#1072' ('#1053#1040#1057#1060')'
@@ -915,6 +1019,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 5
       RowIndex = 0
       FieldName = 'ASOut_Date'
+      GroupIndex = 0
     end
     object dbgDataColumn88: TdxDBGridColumn
       Caption = #8470' '#1087#1088#1080#1082#1072#1079#1072' '#1086' '#1074#1099#1093#1086#1076#1077' ('#1053#1040#1057#1060')'
@@ -924,6 +1029,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 5
       RowIndex = 0
       FieldName = 'ASOut_ORD_NUMB'
+      GroupIndex = 0
     end
     object dbgDataColumn89: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1087#1088#1080#1082#1072#1079#1072' '#1086' '#1074#1099#1093#1086#1076#1077' ('#1053#1040#1057#1060')'
@@ -933,6 +1039,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 5
       RowIndex = 0
       FieldName = 'ASOut_ORD_Date'
+      GroupIndex = 0
     end
     object dbgDataColumn90: TdxDBGridColumn
       Alignment = taLeftJustify
@@ -943,6 +1050,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'WSOST_Name'
+      GroupIndex = 0
     end
     object dbgDataWUch1: TdxDBGridMaskColumn
       Caption = #8470' '#1082#1086#1084#1072#1085#1076#1099' ('#1084#1086#1073')'
@@ -952,6 +1060,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 7
       RowIndex = 0
       FieldName = 'WUch1'
+      GroupIndex = 0
     end
     object dbgDataMob_CardDate: TdxDBGridDateColumn
       Caption = #1044#1072#1090#1072' '#1074#1088#1091#1095#1077#1085#1080#1103' ('#1084#1086#1073')'
@@ -961,6 +1070,8 @@ object fmPersonList: TfmPersonList
       BandIndex = 7
       RowIndex = 0
       FieldName = 'Mob_CardDate'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataMob_MissReason: TdxDBGridMaskColumn
       Caption = #1055#1088#1080#1095#1080#1085#1072' '#1085#1077#1074#1088#1091#1095#1077#1085#1080#1103' ('#1084#1086#1073')'
@@ -970,6 +1081,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 7
       RowIndex = 0
       FieldName = 'Mob_MissReason'
+      GroupIndex = 0
     end
     object dbgDataWUch2: TdxDBGridMaskColumn
       Caption = #1057#1077#1088#1080#1103', '#8470' '#1091#1076#1086#1089#1090#1086#1074#1077#1088#1077#1085#1080#1103
@@ -979,6 +1091,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 8
       RowIndex = 0
       FieldName = 'WUch2'
+      GroupIndex = 0
     end
     object dbgDataWUCHET2_date: TdxDBGridDateColumn
       Caption = #1044#1072#1090#1072' '#1091#1076#1086#1089#1090#1086#1074#1077#1088#1077#1085#1080#1103
@@ -988,6 +1101,8 @@ object fmPersonList: TfmPersonList
       BandIndex = 8
       RowIndex = 0
       FieldName = 'WUCHET2_date'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataColumn97: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1089#1074#1077#1088#1082#1080' '#1089' '#1054#1042#1050
@@ -997,6 +1112,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'D_OVK'
+      GroupIndex = 0
     end
     object dbgDataColumn98: TdxDBGridColumn
       Caption = #1044#1072#1090#1072' '#1089#1074#1077#1088#1082#1080' '#1089' '#1074#1086#1077#1085#1085#1099#1084' '#1073#1080#1083#1077#1090#1086#1084
@@ -1006,6 +1122,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'D_WBIL'
+      GroupIndex = 0
     end
     object dbgDataKUZ_Name1: TdxDBGridMaskColumn
       Caption = #1059#1095#1077#1073#1085#1086#1077' '#1079#1072#1074#1077#1076#1077#1085#1080#1077' (1)'
@@ -1014,6 +1131,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 9
       RowIndex = 0
       FieldName = 'KUZ_Name1'
+      GroupIndex = 0
     end
     object dbgDataKObrDoc_Name1: TdxDBGridMaskColumn
       Caption = #1042#1080#1076' '#1076#1086#1082#1091#1084#1077#1085#1090#1072' (1)'
@@ -1022,6 +1140,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 9
       RowIndex = 0
       FieldName = 'KObrDoc_Name1'
+      GroupIndex = 0
     end
     object dbgDataKVal_Name1: TdxDBGridMaskColumn
       Caption = #1050#1074#1072#1083#1080#1092#1080#1082#1072#1094#1080#1103' (1)'
@@ -1030,6 +1149,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 9
       RowIndex = 0
       FieldName = 'KVal_Name1'
+      GroupIndex = 0
     end
     object dbgDataNapr_Name1: TdxDBGridMaskColumn
       Caption = #1057#1087#1077#1094#1080#1072#1083#1100#1085#1086#1089#1090#1100' (1)'
@@ -1038,6 +1158,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 9
       RowIndex = 0
       FieldName = 'Napr_Name1'
+      GroupIndex = 0
     end
     object dbgDataDiplom_Ser1: TdxDBGridMaskColumn
       Caption = #1057#1077#1088#1080#1103' '#1076#1086#1082#1091#1084#1077#1085#1090#1072' (1)'
@@ -1046,6 +1167,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 9
       RowIndex = 0
       FieldName = 'Diplom_Ser1'
+      GroupIndex = 0
     end
     object dbgDataDiplom1: TdxDBGridMaskColumn
       Caption = #8470' '#1076#1086#1082#1091#1084#1077#1085#1090#1072' (1)'
@@ -1054,6 +1176,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 9
       RowIndex = 0
       FieldName = 'Diplom1'
+      GroupIndex = 0
     end
     object dbgDataEnd_Date1: TdxDBGridMaskColumn
       Caption = #1044#1072#1090#1072'/'#1075#1086#1076' '#1086#1082#1086#1085#1095#1072#1085#1080#1103' (1)'
@@ -1062,6 +1185,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 9
       RowIndex = 0
       FieldName = 'End_Date1'
+      GroupIndex = 0
     end
     object dbgDataKUZ_Name2: TdxDBGridMaskColumn
       Caption = #1059#1095#1077#1073#1085#1086#1077' '#1079#1072#1074#1077#1076#1077#1085#1080#1077' (2)'
@@ -1070,6 +1194,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 10
       RowIndex = 0
       FieldName = 'KUZ_Name2'
+      GroupIndex = 0
     end
     object dbgDataKObrDoc_Name2: TdxDBGridMaskColumn
       Caption = #1042#1080#1076' '#1076#1086#1082#1091#1084#1077#1085#1090#1072' (2)'
@@ -1078,6 +1203,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 10
       RowIndex = 0
       FieldName = 'KObrDoc_Name2'
+      GroupIndex = 0
     end
     object dbgDataKVal_Name2: TdxDBGridMaskColumn
       Caption = #1050#1074#1072#1083#1080#1092#1080#1082#1072#1094#1080#1103' (2)'
@@ -1086,6 +1212,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 10
       RowIndex = 0
       FieldName = 'KVal_Name2'
+      GroupIndex = 0
     end
     object dbgDataNapr_Name2: TdxDBGridMaskColumn
       Caption = #1057#1087#1077#1094#1080#1072#1083#1100#1085#1086#1089#1090#1100' (2)'
@@ -1094,6 +1221,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 10
       RowIndex = 0
       FieldName = 'Napr_Name2'
+      GroupIndex = 0
     end
     object dbgDataDiplom_Ser2: TdxDBGridMaskColumn
       Caption = #1057#1077#1088#1080#1103' '#1076#1086#1082#1091#1084#1077#1085#1090#1072' (2)'
@@ -1102,6 +1230,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 10
       RowIndex = 0
       FieldName = 'Diplom_Ser2'
+      GroupIndex = 0
     end
     object dbgDataDiplom2: TdxDBGridMaskColumn
       Caption = #8470' '#1076#1086#1082#1091#1084#1077#1085#1090#1072' (2)'
@@ -1110,6 +1239,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 10
       RowIndex = 0
       FieldName = 'Diplom2'
+      GroupIndex = 0
     end
     object dbgDataEnd_Date2: TdxDBGridMaskColumn
       Caption = #1044#1072#1090#1072'/'#1075#1086#1076' '#1086#1082#1086#1085#1095#1072#1085#1080#1103' (2)'
@@ -1118,6 +1248,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 10
       RowIndex = 0
       FieldName = 'End_Date2'
+      GroupIndex = 0
     end
     object dbgDataKOKPDTR_Code: TdxDBGridColumn
       Caption = #1050#1086#1076' '#1087#1086' '#1054#1050#1055#1044#1058#1056
@@ -1126,6 +1257,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'KOKPDTR_Code'
+      GroupIndex = 0
     end
     object dbgDataKOKPDTR_Name: TdxDBGridColumn
       Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1087#1086' '#1054#1050#1055#1044#1058#1056
@@ -1134,6 +1266,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'KOKPDTR_Name'
+      GroupIndex = 0
     end
     object dbgDataWTP_Name: TdxDBGridColumn
       Caption = #1042#1080#1076' '#1088#1072#1073#1086#1090#1099
@@ -1142,6 +1275,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'WTP_Name'
+      GroupIndex = 0
     end
     object dbgDataWCH_Name: TdxDBGridColumn
       Caption = #1061#1072#1088#1072#1082#1090#1077#1088' '#1088#1072#1073#1086#1090#1099
@@ -1150,6 +1284,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'WCH_Name'
+      GroupIndex = 0
     end
     object dbgDataComments: TdxDBGridMaskColumn
       Caption = #1044#1086#1087#1086#1083#1085#1080#1090#1077#1083#1100#1085#1099#1077' '#1089#1074#1077#1076#1077#1085#1080#1103
@@ -1157,30 +1292,36 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'Comments'
+      GroupIndex = 0
     end
     object dbgDataColumn186: TdxDBGridMaskColumn
       Visible = False
       BandIndex = 0
       RowIndex = 0
       FieldName = 'WBser'
+      GroupIndex = 0
     end
     object dbgDataColumn187: TdxDBGridMaskColumn
       Visible = False
       BandIndex = 0
       RowIndex = 0
       FieldName = 'WBNum'
+      GroupIndex = 0
     end
     object dbgDataOUT_DATE: TdxDBGridDateColumn
       Visible = False
       BandIndex = 0
       RowIndex = 0
       FieldName = 'OUT_DATE'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataOUT_ORD_NUMB: TdxDBGridMaskColumn
       Visible = False
       BandIndex = 0
       RowIndex = 0
       FieldName = 'OUT_ORD_NUMB'
+      GroupIndex = 0
     end
     object dbgDataAssignText: TdxDBGridMaskColumn
       Caption = #1056#1072#1079#1088#1103#1076', '#1095#1080#1085', '#1088#1072#1085#1075
@@ -1189,6 +1330,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 4
       RowIndex = 0
       FieldName = 'AssignText'
+      GroupIndex = 0
     end
     object dbgDataIn_Ord_NumbStudy: TdxDBGridColumn
       Caption = #1053#1086#1084#1077#1088' '#1087#1088#1080#1082#1072#1079#1072' '#1086' '#1079#1072#1095#1080#1089#1083#1077#1085#1080#1080
@@ -1196,6 +1338,7 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'In_Ord_NumbStudy'
+      GroupIndex = 0
     end
     object dbgDataIn_Ord_DateStudy: TdxDBGridDateColumn
       Caption = #1044#1072#1090#1072' '#1087#1088#1080#1082#1072#1079#1072' '#1086' '#1079#1072#1095#1080#1089#1083#1077#1085#1080#1080
@@ -1203,6 +1346,8 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'In_Ord_DateStudy'
+      UseEditMask = True
+      GroupIndex = 0
     end
     object dbgDataIn_DateStudy: TdxDBGridDateColumn
       Caption = #1044#1072#1090#1072' '#1079#1072#1095#1080#1089#1083#1077#1085#1080#1103
@@ -1210,6 +1355,8 @@ object fmPersonList: TfmPersonList
       BandIndex = 1
       RowIndex = 0
       FieldName = 'In_DateStudy'
+      UseEditMask = True
+      GroupIndex = 0
     end
   end
   object DataSQL: TMemo

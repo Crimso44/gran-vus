@@ -79,7 +79,7 @@ object fmTPDP: TfmTPDP
       BandIndex = 0
       RowIndex = 0
       FieldName = 'Limited'
-      ValueChecked = '1'
+      ValueChecked = 'True'
       ValueUnchecked = '0'
     end
     object dbgDataWRange: TdxDBGridMaskColumn
