@@ -1238,7 +1238,8 @@ procedure TdxDBTreeListColumn.SetGroupIndex(Value: Integer);
 begin
   if Value >= -1 then
   // Delphi 5 - BUG !!!
-    if ({$IFDEF DELPHI5}csReading{$ELSE}csLoading{$ENDIF} in ComponentState) then
+    //if ({$IFDEF DELPHI5}csReading{$ELSE}csLoading{$ENDIF} in ComponentState) then
+    if (csLoading in ComponentState) then
       FGroupIndex := Value
     else
       if ATreeList <> nil then

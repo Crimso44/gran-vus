@@ -52,7 +52,6 @@ object fmUsers: TfmUsers
     OptionsCustomize = [edgoBandMoving, edgoBandSizing, edgoColumnMoving, edgoColumnSizing, edgoFullSizing, edgoRowSizing]
     OptionsDB = [edgoCancelOnExit, edgoCanDelete, edgoCanInsert, edgoCanNavigation, edgoConfirmDelete, edgoLoadAllRecords, edgoUseBookmarks, edgoUseLocate]
     OptionsView = [edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoRowSelect, edgoUseBitmap]
-    RegistryPath = '\Software\Granit\GranVUS\UsersGrid'
     OnColumnSorting = dbgDataColumnSorting
     object dbgDataNum: TdxDBGridColumn
       Caption = #8470' '#1087'/'#1087
@@ -65,7 +64,6 @@ object fmUsers: TfmUsers
       BandIndex = 0
       RowIndex = 0
       OnGetText = dbgDataNumGetText
-      GroupIndex = 0
     end
     object dbgDataFIO: TdxDBGridColumn
       Caption = #1060#1048#1054
@@ -73,7 +71,6 @@ object fmUsers: TfmUsers
       BandIndex = 0
       RowIndex = 0
       FieldName = 'FIO'
-      GroupIndex = 0
     end
     object dbgDataLOGIN: TdxDBGridColumn
       Caption = #1057#1080#1089#1090#1077#1084#1085#1086#1077' '#1080#1084#1103
@@ -81,7 +78,6 @@ object fmUsers: TfmUsers
       BandIndex = 0
       RowIndex = 0
       FieldName = 'LOGIN'
-      GroupIndex = 0
     end
     object dbgDatarLogin: TdxDBGridCheckColumn
       Caption = #1056#1072#1079#1088#1077#1096#1105#1085' '#1074#1093#1086#1076
@@ -90,7 +86,6 @@ object fmUsers: TfmUsers
       RowIndex = 0
       FieldName = 'rLogin'
       ValueChecked = 'True'
-      GroupIndex = 0
       DisplayChecked = '0'
     end
     object dbgDatarAdmin: TdxDBGridCheckColumn
@@ -100,7 +95,6 @@ object fmUsers: TfmUsers
       RowIndex = 0
       FieldName = 'rAdmin'
       ValueChecked = 'True'
-      GroupIndex = 0
       DisplayChecked = '0'
     end
     object dbgDatarImport: TdxDBGridCheckColumn
@@ -111,7 +105,6 @@ object fmUsers: TfmUsers
       RowIndex = 0
       FieldName = 'rImport'
       ValueChecked = 'True'
-      GroupIndex = 0
       DisplayChecked = '0'
     end
     object dbgDatarExport: TdxDBGridCheckColumn
@@ -121,7 +114,6 @@ object fmUsers: TfmUsers
       RowIndex = 0
       FieldName = 'rExport'
       ValueChecked = 'True'
-      GroupIndex = 0
       DisplayChecked = '0'
     end
     object dbgDatarPrint: TdxDBGridCheckColumn
@@ -131,7 +123,6 @@ object fmUsers: TfmUsers
       RowIndex = 0
       FieldName = 'rPrint'
       ValueChecked = 'True'
-      GroupIndex = 0
       DisplayChecked = '0'
     end
     object dbgDatarEdit: TdxDBGridCheckColumn
@@ -141,7 +132,6 @@ object fmUsers: TfmUsers
       RowIndex = 0
       FieldName = 'rEdit'
       ValueChecked = 'True'
-      GroupIndex = 0
       DisplayChecked = '0'
     end
   end

@@ -52,7 +52,7 @@ object fmParamDlg: TfmParamDlg
   object Label3: TLabel
     Left = 16
     Top = 208
-    Width = 362
+    Width = 354
     Height = 13
     Caption = #1059#1082#1072#1078#1080#1090#1077' '#1076#1086#1083#1078#1085#1086#1089#1090#1100' ('#1087#1088#1086#1092#1077#1089#1089#1080#1102') '#1075#1088#1072#1078#1076#1072#1085#1080#1085#1072' '#1074' '#1088#1086#1076#1080#1090#1077#1083#1100#1085#1086#1084' '#1087#1072#1076#1077#1078#1077
   end
@@ -66,8 +66,6 @@ object fmParamDlg: TfmParamDlg
     Default = True
     ModalResult = 1
     TabOrder = 0
-    ExplicitLeft = 152
-    ExplicitTop = 122
   end
   object Button2: TButton
     Left = 319
@@ -79,8 +77,6 @@ object fmParamDlg: TfmParamDlg
     Caption = #1054#1090#1084#1077#1085#1080#1090#1100
     ModalResult = 2
     TabOrder = 1
-    ExplicitLeft = 236
-    ExplicitTop = 122
   end
   object cbPrintVK: TCheckBox
     Left = 21
@@ -102,14 +98,6 @@ object fmParamDlg: TfmParamDlg
     State = cbChecked
     TabOrder = 3
     WordWrap = True
-  end
-  object edMonthCount: TcxSpinEdit
-    Left = 221
-    Top = 8
-    Properties.OnChange = edMonthCountPropertiesChange
-    TabOrder = 4
-    Value = 12
-    Width = 49
   end
   object Button3: TButton
     Left = 8
@@ -135,6 +123,14 @@ object fmParamDlg: TfmParamDlg
     Height = 21
     TabOrder = 7
     Text = 'edPostRod'
+  end
+  object edMonthCount: TdxSpinEdit
+    Left = 217
+    Top = 8
+    Width = 45
+    TabOrder = 4
+    OnChange = edMonthCountPropertiesChange
+    Value = 12.000000000000000000
   end
   object ActionList1: TActionList
     Left = 89

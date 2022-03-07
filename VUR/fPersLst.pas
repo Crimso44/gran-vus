@@ -1036,7 +1036,15 @@ begin
 end;
 
 procedure TfmPersonList.FormActivate(Sender: TObject);
+var
+  col: TdxDBGridColumn;
+  i: Integer;
 begin
+  // см. камент  "не понимаю, какого хрена" в \DevExOld\ExpressQuantumTreeList 3\Sources\dxDBCtrl.pas
+  (*for i := 0 to dbgData.ColumnCount - 1 do begin
+    col := TdxDBGridColumn(dbgData.Columns[i]);
+    col.GroupIndex := -1;
+  end;*)
   if FMaximized then ShowWindow(handle, sw_ShowMaximized);
 end;
 

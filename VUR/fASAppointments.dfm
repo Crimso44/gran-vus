@@ -37,7 +37,6 @@ object fmASAppointments: TfmASAppointments
     OptionsCustomize = [edgoBandMoving, edgoBandSizing, edgoColumnMoving, edgoColumnSizing, edgoFullSizing, edgoRowSizing]
     OptionsDB = [edgoCanAppend, edgoCancelOnExit, edgoCanDelete, edgoCanInsert, edgoCanNavigation, edgoConfirmDelete, edgoLoadAllRecords, edgoUseBookmarks]
     OptionsView = [edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoIndicator, edgoUseBitmap]
-    RegistryPath = '\Software\Granit\GranVUS\Person_AppointmentGrid'
     OnChangedColumnsWidth = qridAppointmentChangedColumnsWidth
     OnColumnSorting = qridAppointmentColumnSorting
     ExplicitTop = 26

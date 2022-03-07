@@ -79,7 +79,6 @@ object fmAsfMtrList: TfmAsfMtrList
       OptionsCustomize = [edgoBandSizing, edgoColumnMoving, edgoColumnSizing, edgoRowSizing]
       OptionsDB = [edgoCanNavigation, edgoConfirmDelete, edgoLoadAllRecords, edgoUseBookmarks]
       OptionsView = [edgoAutoHeaderPanelHeight, edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoUseBitmap]
-      RegistryPath = '\Software\Granit\GranVUS\MtrListGrid1'
       OnColumnSorting = GridColumnSorting
       OnCustomDrawCell = GridCustomDrawCell
       OnCustomDrawColumnHeader = GridCustomDrawColumnHeader

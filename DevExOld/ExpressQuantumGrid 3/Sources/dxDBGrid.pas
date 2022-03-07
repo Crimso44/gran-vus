@@ -6793,7 +6793,8 @@ begin
     end;
   end
   else
-    FSaveBkmList.Assign(BkmList);
+    // !!! Crimso
+    if BkmList <> nil then FSaveBkmList.Assign(BkmList);
 end;
 
 procedure TCustomdxDBGrid.SaveGroupFields;

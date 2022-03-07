@@ -39,6 +39,6 @@ requires
 contains
   dxGrFCmn,
   dxDBTLCl,
-  dxDBCtrl;
+  dxDBCtrl in 'dxDBCtrl.pas';
 
 end.

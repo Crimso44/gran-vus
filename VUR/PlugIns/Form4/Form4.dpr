@@ -73,7 +73,7 @@ begin
         'Печать справки для отсрочки призыва учащегося',MB_OK or MB_ICONERROR);
       Result := -1;
     end else begin
-      if not dmMain.PrintData(convert(edMonthCount.Value), cbPrintVK.Checked, cbPrintAddr.Checked, edFioDat.Text, edPostRod.Text) then begin
+      if not dmMain.PrintData(convert(edMonthCount.IntValue), cbPrintVK.Checked, cbPrintAddr.Checked, edFioDat.Text, edPostRod.Text) then begin
         Result := -2;
         SaveEvent(dmMain.dbMain, evs_Report_Error, sEventObject,
           ['Ошибка при создании отчета.']);

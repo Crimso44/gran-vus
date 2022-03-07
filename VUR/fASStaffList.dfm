@@ -80,7 +80,6 @@ object fmASStaffList: TfmASStaffList
       OptionsCustomize = [edgoBandSizing, edgoColumnMoving, edgoColumnSizing, edgoRowSizing]
       OptionsDB = [edgoCanNavigation, edgoConfirmDelete, edgoLoadAllRecords, edgoUseBookmarks]
       OptionsView = [edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoUseBitmap]
-      RegistryPath = '\Software\Granit\GranVUS\StaffListGrid'
       OnColumnSorting = GridColumnSorting
       OnCustomDrawCell = GridCustomDrawCell
       OnCustomDrawColumnHeader = GridCustomDrawColumnHeader

@@ -186,10 +186,11 @@ var
   col: TdxDBGridColumn;
   i: Integer;
 begin
-  for i := 0 to dbgData.ColumnCount - 1 do begin
+  // см. камент  "не понимаю, какого хрена" в \DevExOld\ExpressQuantumTreeList 3\Sources\dxDBCtrl.pas
+  (*for i := 0 to dbgData.ColumnCount - 1 do begin
     col := TdxDBGridColumn(dbgData.Columns[i]);
     col.GroupIndex := -1;
-  end;
+  end;*)
 end;
 
 procedure TfmUsers.FormClose(Sender: TObject; var Action: TCloseAction);

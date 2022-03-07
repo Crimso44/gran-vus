@@ -63,7 +63,6 @@ object fmBaseLst: TfmBaseLst
       BandIndex = 0
       RowIndex = 0
       OnGetText = dbgDataNumGetText
-      GroupIndex = 0
     end
   end
   object qrTblData: TADOQuery

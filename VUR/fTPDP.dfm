@@ -46,20 +46,17 @@ object fmTPDP: TfmTPDP
     OptionsCustomize = [edgoBandMoving, edgoBandSizing, edgoColumnMoving, edgoColumnSizing, edgoRowSizing]
     OptionsDB = [edgoCancelOnExit, edgoCanDelete, edgoCanInsert, edgoCanNavigation, edgoConfirmDelete, edgoLoadAllRecords, edgoUseBookmarks]
     OptionsView = [edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoRowAutoHeight, edgoRowSelect, edgoUseBitmap]
-    RegistryPath = '\Software\Granit\GranVUS\TPDPDGrid'
     OnCustomDrawCell = dbgDataCustomDrawCell
-    ExplicitTop = 26
-    ExplicitHeight = 221
     object dbgDataTPDP_ID: TdxDBGridMaskColumn
       Visible = False
-      Width = 24
+      Width = 20
       BandIndex = 0
       RowIndex = 0
       FieldName = 'TPDP_ID'
     end
     object dbgDataCOND_ID: TdxDBGridMaskColumn
       Visible = False
-      Width = 24
+      Width = 20
       BandIndex = 0
       RowIndex = 0
       FieldName = 'COND_ID'
@@ -105,6 +102,7 @@ object fmTPDP: TfmTPDP
     end
     object dbgDataKOKPDTR: TdxDBGridMaskColumn
       Visible = False
+      Width = 23
       BandIndex = 0
       RowIndex = 0
       FieldName = 'KOKPDTR'
@@ -113,19 +111,21 @@ object fmTPDP: TfmTPDP
       Caption = #1050#1086#1076' '#1076#1086#1083#1078#1085#1086#1089#1090#1080' '#1087#1086' '#1054#1050#1055#1044#1058#1056
       Sorted = csUp
       Visible = False
+      Width = 176
       BandIndex = 0
       RowIndex = 0
       FieldName = 'KOKPDTR_Name_Full'
-      GroupIndex = 1
+      GroupIndex = 0
     end
     object dbgDataOKVED: TdxDBGridMaskColumn
       Caption = #1050#1086#1076' '#1054#1050#1042#1069#1044
       Sorted = csUp
       Visible = False
+      Width = 83
       BandIndex = 0
       RowIndex = 0
       FieldName = 'OKVED'
-      GroupIndex = 0
+      GroupIndex = 1
     end
   end
   object dsData: TDataSource

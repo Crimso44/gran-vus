@@ -89,7 +89,6 @@ object frmReplacePlan: TfrmReplacePlan
     OptionsCustomize = [edgoBandMoving, edgoBandSizing, edgoColumnMoving, edgoColumnSizing, edgoRowSizing]
     OptionsDB = [edgoCancelOnExit, edgoCanDelete, edgoCanInsert, edgoCanNavigation, edgoConfirmDelete, edgoLoadAllRecords, edgoUseBookmarks]
     ShowBands = True
-    ExplicitTop = 30
     object MainGridPers_Dep: TdxDBGridMaskColumn
       Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1089#1083#1091#1078#1073', '#1087#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074', '#1094#1077#1093#1086#1074
       DisableEditor = True
@@ -102,7 +101,6 @@ object frmReplacePlan: TfrmReplacePlan
       RowIndex = 0
       DisableGrouping = True
       FieldName = 'Pers_Dep'
-      GroupIndex = 0
     end
     object MainGridPers_id: TdxDBGridMaskColumn
       DisableEditor = True
@@ -114,7 +112,6 @@ object frmReplacePlan: TfrmReplacePlan
       RowIndex = 0
       DisableGrouping = True
       FieldName = 'Pers_id'
-      GroupIndex = 0
     end
     object MainGridPers_Post: TdxDBGridMaskColumn
       Caption = #1047#1072#1085#1080#1084#1072#1077#1084#1072#1103' '#1076#1086#1083#1078#1085#1086#1089#1090#1100
@@ -126,7 +123,6 @@ object frmReplacePlan: TfrmReplacePlan
       RowIndex = 0
       DisableGrouping = True
       FieldName = 'Pers_Post'
-      GroupIndex = 0
     end
     object MainGridPers_Fio: TdxDBGridMaskColumn
       Caption = #1060#1072#1084#1080#1083#1080#1103', '#1080#1084#1103', '#1086#1090#1095#1077#1089#1090#1074#1086
@@ -138,7 +134,6 @@ object frmReplacePlan: TfrmReplacePlan
       RowIndex = 0
       DisableGrouping = True
       FieldName = 'Pers_Fio'
-      GroupIndex = 0
     end
     object MainGridRepl_Id: TdxDBGridMaskColumn
       DisableEditor = True
@@ -150,7 +145,6 @@ object frmReplacePlan: TfrmReplacePlan
       RowIndex = 0
       DisableGrouping = True
       FieldName = 'Repl_Id'
-      GroupIndex = 0
     end
     object MainGridRepl_Dep: TdxDBGridMaskColumn
       Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1089#1083#1091#1078#1073', '#1086#1090#1076#1077#1083#1086#1074
@@ -160,7 +154,6 @@ object frmReplacePlan: TfrmReplacePlan
       RowIndex = 0
       DisableGrouping = True
       FieldName = 'Repl_Dep'
-      GroupIndex = 0
     end
     object MainGridRepl_Post: TdxDBGridMaskColumn
       Caption = #1047#1072#1085#1080#1084#1072#1077#1084#1072#1103' '#1076#1086#1083#1078#1085#1086#1089#1090#1100
@@ -170,7 +163,6 @@ object frmReplacePlan: TfrmReplacePlan
       RowIndex = 0
       DisableGrouping = True
       FieldName = 'Repl_Post'
-      GroupIndex = 0
     end
     object MainGridRepl_Fio: TdxDBGridButtonColumn
       Caption = #1060#1072#1084#1080#1083#1080#1103', '#1080#1084#1103', '#1086#1090#1095#1077#1089#1090#1074#1086
@@ -185,7 +177,6 @@ object frmReplacePlan: TfrmReplacePlan
         item
           Default = True
         end>
-      GroupIndex = 0
     end
     object MainGridRepl_War: TdxDBGridMaskColumn
       Caption = #1054#1090#1085#1086#1096#1077#1085#1080#1077' '#1082' '#1074#1086#1077#1085#1085#1086#1081' '#1089#1083#1091#1078#1073#1077
@@ -195,7 +186,6 @@ object frmReplacePlan: TfrmReplacePlan
       RowIndex = 0
       DisableGrouping = True
       FieldName = 'Repl_War'
-      GroupIndex = 0
     end
     object MainGridRecId: TdxDBGridColumn
       Visible = False
@@ -203,7 +193,6 @@ object frmReplacePlan: TfrmReplacePlan
       RowIndex = 0
       DisableGrouping = True
       FieldName = 'RecId'
-      GroupIndex = 0
     end
   end
   object dsGrid: TDataSource

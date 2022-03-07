@@ -396,12 +396,12 @@ begin
       EkRTF1.CreateVar('CategGodn',qrPers.FieldByName('WCAT').AsString);
       EkRTF1.CreateVar('OVK',qrOVK.FieldByName('OVK').AsString);
       EkRTF1.CreateVar('OVK_NAME',qrOVK.FieldByName('OVK_NAME').AsString);
-      //if GetParamValue(11) = '1' then begin
+      if GetParamValue(15) = '1' then begin
         EkRTF1.CreateVar('WUch1',qrPers.FieldByName('WUCHET1').AsString);
         if qrPers.FieldByName('WUCHET2_IsWork').AsInteger <> 0 then begin
           if qrPers.FieldByName('WUCH2_ListNumb').AsString <> '' then
             s := 'Список № ' + qrPers.FieldByName('WUCH2_ListNumb').AsString +
-              ' от ' + Date2Doc(qrPers.FieldByName('WUCHET2_ListDate').AsDateTime);
+              ' от ' + Date2Doc(qrPers.FieldByName('WUCH2_ListDate').AsDateTime);
           if qrPers.FieldByName('WUCHET2').AsString <> '' then begin
             s := qrPers.FieldByName('WUCHET2').AsString;
             if qrPers.FieldByName('WUCHET2_Ser').AsString <> '' then
@@ -416,7 +416,12 @@ begin
             EkRTF1.CreateVar('WOKPDTR', '  ОКПДТР:'+Copy(s, ii+1, MaxInt));
           end;
         end;
-      //end;
+      end else begin
+        EkRTF1.CreateVar('WUch1','');
+        EkRTF1.CreateVar('WUch2','');
+        EkRTF1.CreateVar('WOKVED', '');
+        EkRTF1.CreateVar('WOKPDTR', '');
+      end;
       EkRTF1.CreateVar('WDiscl',qrPers.FieldByName('WDISCL').AsString);
       EkRTF1.CreateVar('W_DEND', ShortDATE(qrPers.FieldByName('W_DEND').AsDateTime));
       if GetParamValue(14) = '1' then begin

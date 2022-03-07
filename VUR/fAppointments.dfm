@@ -37,7 +37,6 @@ object fmAppointments: TfmAppointments
     OptionsCustomize = [edgoBandMoving, edgoBandSizing, edgoColumnMoving, edgoColumnSizing, edgoFullSizing, edgoRowSizing]
     OptionsDB = [edgoCanAppend, edgoCancelOnExit, edgoCanDelete, edgoCanInsert, edgoCanNavigation, edgoConfirmDelete, edgoLoadAllRecords, edgoUseBookmarks]
     OptionsView = [edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoIndicator, edgoUseBitmap]
-    RegistryPath = '\Software\Granit\GranVUS\Person_AppointmentGrid'
     OnChangedColumnsWidth = qridAppointmentChangedColumnsWidth
     OnColumnSorting = qridAppointmentColumnSorting
     object qridAppointmentID: TdxDBGridColumn
@@ -52,7 +51,6 @@ object fmAppointments: TfmAppointments
       BandIndex = 0
       RowIndex = 0
       FieldName = 'PERS_ID'
-      GroupIndex = 0
     end
     object qridAppointmentNum: TdxDBGridColumn
       Caption = #8470' '#1087'/'#1087
@@ -63,7 +61,6 @@ object fmAppointments: TfmAppointments
       BandIndex = 0
       RowIndex = 0
       OnGetText = qridAppointmentNumGetText
-      GroupIndex = 0
     end
     object qridAppointmentWTP: TdxDBGridLookupColumn
       Caption = #1042#1080#1076' '#1088#1072#1073#1086#1090#1099
@@ -73,7 +70,6 @@ object fmAppointments: TfmAppointments
       FieldName = 'WTP_NAME'
       DropDownRows = 20
       CanDeleteText = True
-      GroupIndex = 0
     end
     object qridAppointmentWCH: TdxDBGridLookupColumn
       Caption = #1061#1072#1088#1072#1082#1090#1077#1088' '#1088#1072#1073#1086#1090#1099
@@ -83,7 +79,6 @@ object fmAppointments: TfmAppointments
       FieldName = 'WCH_NAME'
       DropDownRows = 20
       CanDeleteText = True
-      GroupIndex = 0
     end
     object qridAppointmentPOST: TdxDBGridLookupColumn
       Caption = #1044#1086#1083#1078#1085#1086#1089#1090#1100
@@ -94,7 +89,6 @@ object fmAppointments: TfmAppointments
       DropDownRows = 20
       DropDownWidth = 350
       CanDeleteText = True
-      GroupIndex = 0
     end
     object qridAppointmentDEP: TdxDBGridLookupColumn
       Caption = #1055#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1077
@@ -105,7 +99,6 @@ object fmAppointments: TfmAppointments
       DropDownRows = 20
       DropDownWidth = 350
       CanDeleteText = True
-      GroupIndex = 0
     end
     object qridAppointmentIN_ORD_NUMB: TdxDBGridColumn
       Caption = #1054#1089#1085#1086#1074#1072#1085#1080#1077
@@ -113,7 +106,6 @@ object fmAppointments: TfmAppointments
       BandIndex = 0
       RowIndex = 0
       FieldName = 'IN_ORD_NUMB'
-      GroupIndex = 0
     end
     object qridAppointmentIN_ORD_DATE: TdxDBGridDateColumn
       Caption = #1044#1072#1090#1072' '#1086#1089#1085#1086#1074#1072#1085#1080#1103
@@ -122,7 +114,6 @@ object fmAppointments: TfmAppointments
       RowIndex = 0
       FieldName = 'IN_ORD_DATE'
       UseEditMask = True
-      GroupIndex = 0
     end
     object qridAppointmentIN_DATE: TdxDBGridDateColumn
       Caption = #1044#1072#1090#1072' '#1085#1072#1079#1085#1072#1095#1077#1085#1080#1103
@@ -131,7 +122,6 @@ object fmAppointments: TfmAppointments
       RowIndex = 0
       FieldName = 'IN_DATE'
       UseEditMask = True
-      GroupIndex = 0
     end
     object qridAppointmentPROBATION_DATE: TdxDBGridDateColumn
       Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1099#1081' '#1089#1088#1086#1082' '#1076#1086
@@ -140,7 +130,6 @@ object fmAppointments: TfmAppointments
       RowIndex = 0
       FieldName = 'PROBATION_DATE'
       UseEditMask = True
-      GroupIndex = 0
     end
     object qridAppointmentOVK_NAME: TdxDBGridLookupColumn
       Caption = #1054#1042#1050' '#1087#1086' '#1084#1077#1089#1090#1091' '#1078#1080#1090#1077#1083#1100#1089#1090#1074#1072
@@ -149,7 +138,6 @@ object fmAppointments: TfmAppointments
       RowIndex = 0
       FieldName = 'OVK_NAME'
       CanDeleteText = True
-      GroupIndex = 0
     end
     object qridAppointmentOVK_DATE: TdxDBGridDateColumn
       Caption = #1044#1072#1090#1072' '#1080#1089#1093'. '#1089#1086#1086#1073#1097#1077#1085#1080#1103
@@ -157,7 +145,6 @@ object fmAppointments: TfmAppointments
       RowIndex = 0
       FieldName = 'OVK_DATE'
       UseEditMask = True
-      GroupIndex = 0
     end
     object qridAppointmentOVK_NUM: TdxDBGridMaskColumn
       Caption = #8470' '#1080#1089#1093'. '#1089#1086#1086#1073#1097#1077#1085#1080#1103
@@ -165,7 +152,6 @@ object fmAppointments: TfmAppointments
       BandIndex = 0
       RowIndex = 0
       FieldName = 'OVK_NUM'
-      GroupIndex = 0
     end
   end
   object StatusBar1: TStatusBar

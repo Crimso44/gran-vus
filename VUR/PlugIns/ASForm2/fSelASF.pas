@@ -75,10 +75,11 @@ var
   col: TdxDBGridColumn;
   i: Integer;
 begin
-  for i := 0 to dxDbGrid1.ColumnCount - 1 do begin
+  // см. камент  "не понимаю, какого хрена" в \DevExOld\ExpressQuantumTreeList 3\Sources\dxDBCtrl.pas
+  (*for i := 0 to dxDbGrid1.ColumnCount - 1 do begin
     col := TdxDBGridColumn(dxDbGrid1.Columns[i]);
     col.GroupIndex := -1;
-  end;
+  end;*)
 
   qASF.Open;
   mASF.Open;

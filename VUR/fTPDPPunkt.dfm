@@ -229,7 +229,6 @@ object fmTPDPPunkt: TfmTPDPPunkt
       OptionsCustomize = [edgoBandMoving, edgoBandSizing, edgoColumnMoving, edgoColumnSizing, edgoRowSizing]
       OptionsDB = [edgoCancelOnExit, edgoCanDelete, edgoCanInsert, edgoCanNavigation, edgoConfirmDelete, edgoLoadAllRecords, edgoUseBookmarks]
       OptionsView = [edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoRowAutoHeight, edgoRowSelect, edgoUseBitmap]
-      RegistryPath = '\Software\Granit\GranVUS\TPDPDPunktGrid'
       OnChangedColumnsWidth = dbgDataChangedColumnsWidth
       OnCustomDrawCell = dbgDataCustomDrawCell
       object dbgDataWSosts: TdxDBGridMaskColumn

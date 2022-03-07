@@ -155,7 +155,6 @@ object fmEventList: TfmEventList
         OptionsCustomize = [edgoBandMoving, edgoBandSizing, edgoColumnMoving, edgoColumnSizing, edgoFullSizing, edgoRowSizing]
         OptionsDB = [edgoCancelOnExit, edgoCanDelete, edgoCanInsert, edgoCanNavigation, edgoConfirmDelete, edgoLoadAllRecords, edgoUseBookmarks, edgoUseLocate]
         OptionsView = [edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoRowSelect, edgoUseBitmap]
-        RegistryPath = '\Software\Granit\GranVUS\EvntsGrid'
         OnChangeNode = gridMasterChangeNode
         OnColumnSorting = gridMasterColumnSorting
         object gridMasterNum: TdxDBGridColumn

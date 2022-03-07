@@ -367,7 +367,6 @@ object fmPersonForm: TfmPersonForm
           BandIndex = 0
           RowIndex = 0
           FieldName = 'BEGIN_DATE'
-          GroupIndex = 0
         end
         object dbgDataColumn2: TdxDBGridMaskColumn
           Caption = 
@@ -377,14 +376,12 @@ object fmPersonForm: TfmPersonForm
           BandIndex = 0
           RowIndex = 0
           FieldName = 'NOTBEGINREASON'
-          GroupIndex = 0
         end
         object dbgDataColumn3: TdxDBGridDateColumn
           Width = 65
           BandIndex = 0
           RowIndex = 0
           FieldName = 'END_DATE'
-          GroupIndex = 0
         end
       end
       object GroupBox3: TGroupBox
