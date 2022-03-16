@@ -27,7 +27,6 @@ object dmMain: TdmMain
       'se=False;Jet OLEDB:Don'#39't Copy Locale on Compact=False;Jet OLEDB:' +
       'Compact Without Replica Repair=False;Jet OLEDB:SFP=False;'
     LoginPrompt = False
-    Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
     Left = 32
     Top = 16
@@ -281,6 +280,7 @@ object dmMain: TdmMain
       'inner join AppointmentLastAll a on a.Pers_Id = p.pers_id)'
       'inner join KDepart d on d.dep_id = a.dep_id)'
       'inner join KPost pp on pp.post_id = a.post_Id)'
+      'where IsNull(p.WUchet1) or p.WUchet1 = '#39#39
       'order by 2')
     Left = 136
     Top = 16

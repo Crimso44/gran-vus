@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="C:\Program Files (x86)\InstallShield\2020\Support\0409\buildreport.xsl"?>
+<BuildReport ProductName="GranVus" ProductVersion="3.82" Built="3-8-2022 06-08-28" Config="Product Configuration 1" Media="Release 1" Uncompressed="295.85 MB">
+  <Features>
+    <Feature Title="##IDS_Feature_0##">Complete</Feature>
+  </Features>
+  <Components>
+    <Component x64="32">ASForm1.dll</Component>
+    <Component x64="32" KeyPath="asform1.dll">ASForm1.dll1</Component>
+    <Component x64="32">ASForm2.dll</Component>
+    <Component x64="32" KeyPath="asform2.dll">ASForm2.dll1</Component>
+    <Component x64="32">ASForm3.dll</Component>
+    <Component x64="32" KeyPath="asform3.dll">ASForm3.dll1</Component>
+    <Component x64="32">ASForm4.dll</Component>
+    <Component x64="32" KeyPath="asform4.dll">ASForm4.dll1</Component>
+    <Component x64="32">AllOtherFiles</Component>
+    <Component x64="32">AllOtherFiles1</Component>
+    <Component x64="32">AllOtherFiles2</Component>
+    <Component x64="32">AllOtherFiles3</Component>
+    <Component x64="32">AllOtherFiles4</Component>
+    <Component x64="32">AllOtherFiles5</Component>
+    <Component x64="32">Analiz.dll</Component>
+    <Component x64="32" KeyPath="analiz.dll">Analiz.dll1</Component>
+    <Component x64="32">CreateFolder</Component>
+    <Component x64="32" KeyPath="registry3">CurrentUser</Component>
+    <Component x64="32">Form10.dll</Component>
+    <Component x64="32" KeyPath="form10.dll">Form10.dll1</Component>
+    <Component x64="32">Form10X.dll</Component>
+    <Component x64="32">Form10X.dll1</Component>
+    <Component x64="32">Form10X.dll2</Component>
+    <Component x64="32">Form10X.dll3</Component>
+    <Component x64="32">Form10X.dll4</Component>
+    <Component x64="32">Form10X.dll5</Component>
+    <Component x64="32">Form10X.dll6</Component>
+    <Component x64="32" KeyPath="form10x.dll">Form10X.dll7</Component>
+    <Component x64="32" KeyPath="form11mu.dll">Form11MU.dll</Component>
+    <Component x64="32">Form11MU.dll15</Component>
+    <Component x64="32">Form14.dll</Component>
+    <Component x64="32" KeyPath="form14.dll">Form14.dll1</Component>
+    <Component x64="32">Form2.dll</Component>
+    <Component x64="32" KeyPath="form2.dll">Form2.dll1</Component>
+    <Component x64="32" KeyPath="form26.dll">Form26.dll</Component>
+    <Component x64="32">Form26.dll13</Component>
+    <Component x64="32">Form4.dll</Component>
+    <Component x64="32" KeyPath="form4.dll">Form4.dll1</Component>
+    <Component x64="32" KeyPath="form6.dll">Form6.dll</Component>
+    <Component x64="32">Form6.dll14</Component>
+    <Component x64="32">Form6_2015.dll</Component>
+    <Component x64="32" KeyPath="form6_2015.dll">Form6_2015.dll1</Component>
+    <Component x64="32" KeyPath="form8.dll">Form8.dll</Component>
+    <Component x64="32">Form8.dll16</Component>
+    <Component x64="32">Form9.dll</Component>
+    <Component x64="32" KeyPath="form9.dll">Form9.dll1</Component>
+    <Component x64="32" KeyPath="formt2.dll">FormT2.dll</Component>
+    <Component x64="32">FormT2.dll9</Component>
+    <Component x64="32">FormT2Old.dll</Component>
+    <Component x64="32" KeyPath="formt2old.dll">FormT2Old.dll1</Component>
+    <Component x64="32">GranUpdate.dll2</Component>
+    <Component x64="32">GranVUS.HLP</Component>
+    <Component x64="32" KeyPath="granvus.hlp">GranVUS.HLP1</Component>
+    <Component x64="32">GranVUS.HLP3</Component>
+    <Component x64="32">GranVUS.exe</Component>
+    <Component x64="32">GranVUS.exe1</Component>
+    <Component x64="32" KeyPath="granvus.exe">GranVUS.exe2</Component>
+    <Component x64="32">LetterSpec.dll</Component>
+    <Component x64="32" KeyPath="letterspec.dll">LetterSpec.dll1</Component>
+    <Component x64="32" KeyPath="listt2.dll">ListT2.dll</Component>
+    <Component x64="32">ListT2.dll18</Component>
+    <Component x64="32">LoadFromXLS.exe</Component>
+    <Component x64="32" KeyPath="loadfromxls.exe">LoadFromXLS.exe1</Component>
+    <Component x64="32" KeyPath="moblist.dll">MobList.dll</Component>
+    <Component x64="32">MobList.dll20</Component>
+    <Component x64="32" KeyPath="notcard.dll">NotCard.dll</Component>
+    <Component x64="32">NotCard.dll12</Component>
+    <Component x64="32">PersApplication.dll</Component>
+    <Component x64="32" KeyPath="persapplication.dll">PersApplication.dll1</Component>
+    <Component x64="32">PersChanges.dll</Component>
+    <Component x64="32" KeyPath="perschanges.dll">PersChanges.dll1</Component>
+    <Component x64="32" KeyPath="persovk.dll">PersOVK.dll</Component>
+    <Component x64="32">PersOVK.dll19</Component>
+    <Component x64="32">PersOVK1516.dll</Component>
+    <Component x64="32" KeyPath="persovk1516.dll">PersOVK1516.dll1</Component>
+    <Component x64="32" KeyPath="persovkblue.dll">PersOVKBlue.dll</Component>
+    <Component x64="32">PersOVKBlue.dll11</Component>
+    <Component x64="32" KeyPath="persovkgreen.dll">PersOVKGreen.dll</Component>
+    <Component x64="32">PersOVKGreen.dll17</Component>
+    <Component x64="32" KeyPath="persovkred.dll">PersOVKRed.dll</Component>
+    <Component x64="32">PersOVKRed.dll23</Component>
+    <Component x64="32" KeyPath="persovkyellow.dll">PersOVKYellow.dll</Component>
+    <Component x64="32">PersOVKYellow.dll22</Component>
+    <Component x64="32">ProgramMenuFolder</Component>
+    <Component x64="32">Receipt.dll</Component>
+    <Component x64="32" KeyPath="receipt.dll">Receipt.dll1</Component>
+    <Component x64="32" KeyPath="registry2">Registry</Component>
+    <Component x64="32">ReplacePlan.dll</Component>
+    <Component x64="32" KeyPath="replaceplan.dll">ReplacePlan.dll1</Component>
+    <Component x64="32">Roboex32.dll</Component>
+    <Component x64="32" KeyPath="roboex32.dll">Roboex32.dll1</Component>
+    <Component x64="32">Roboex32.dll6</Component>
+    <Component x64="32" KeyPath="workin.dll">WorkIn.dll</Component>
+    <Component x64="32">WorkIn.dll10</Component>
+    <Component x64="32">WorkInStandard.dll</Component>
+    <Component x64="32" KeyPath="workinstandard.dll">WorkInStandard.dll1</Component>
+    <Component x64="32">_.docx</Component>
+    <Component x64="32">backup.dll</Component>
+    <Component x64="32">backup.dll1</Component>
+    <Component x64="32" KeyPath="backup.dll">backup.dll2</Component>
+    <Component x64="32">expdata.dll</Component>
+    <Component x64="32" KeyPath="expdata.dll">expdata.dll1</Component>
+    <Component x64="32">expdata.dll4</Component>
+    <Component x64="32" KeyPath="form18.dll">form18.dll</Component>
+    <Component x64="32">form18.dll21</Component>
+    <Component x64="32">form18_2021.dll</Component>
+    <Component x64="32" KeyPath="form18_2021.dll">form18_2021.dll1</Component>
+    <Component x64="32">form2vus2.rtf</Component>
+    <Component x64="32">granvus.mdb8</Component>
+    <Component x64="32">kbdmouhk.dll</Component>
+    <Component x64="32" KeyPath="kbdmouhk.dll">kbdmouhk.dll1</Component>
+    <Component x64="32">kbdmouhk.dll5</Component>
+    <Component x64="32">reg_info.ini24</Component>
+    <Component x64="32">wh2robo.dll</Component>
+    <Component x64="32" KeyPath="wh2robo.dll">wh2robo.dll1</Component>
+  </Components>
+  <Prerequisites />
+  <MergeModules />
+  <DynamicLinks />
+  <Files>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="ASForm4.dll1" Modified="13.02.2022 9:06:28" Size="3953664" Version="">ASForm4.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="ASForm1.dll1" Modified="13.02.2022 9:05:24" Size="3742720" Version="">ASForm1.dll</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="expdata.dll1" Modified="13.02.2022 9:04:04" Size="3360768" Version="">expdata.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="ASForm2.dll1" Modified="06.03.2022 18:02:45" Size="4871680" Version="">ASForm2.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="ASForm3.dll1" Modified="13.02.2022 9:06:10" Size="3902976" Version="">ASForm3.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="Form10.dll1" Modified="17.02.2022 20:03:03" Size="3737600" Version="">Form10.dll</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="GranVUS.HLP1" Modified="01.06.2011 9:46:02" Size="39629101" Version="">GranVUS.HLP</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="313606" Version="">form2vus2.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.03.2021 18:24:38" Size="14260356" Version="">form4blank.pdf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="56912" Version="">form10.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:16:04" Size="131461" Version="">form18-2021.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="78544" Version="">EndAkadem2.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="382958" Version="">form2vus1.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="69250" Version="">BeginAkadem.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:16:04" Size="114103" Version="">form6.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:16:04" Size="197197" Version="">form4.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="57179" Version="">ASForm1.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="55169" Version="">ASForm2.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:16:04" Size="57080" Version="">Form8.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="67673" Version="">ASForm3.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:16:04" Size="101692" Version="">form6-2015.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:16:04" Size="91519" Version="">Analiz.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:16:04" Size="63323" Version="">Form2.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:16:04" Size="321146" Version="">form2vus1new.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="51760" Version="">form9.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:16:04" Size="65288" Version="">Form14.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="147368" Version="">form18.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="78141" Version="">Form11MU.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="75772" Version="">BeginAkadem2.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="67519" Version="">Form26.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="04.03.2022 19:10:19" Size="246233" Version="">form10x.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="72517" Version="">EndAkadem.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="101693" Version="">ASForm4.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="82536" Version="">LetterSpec.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="94045" Version="">listT2.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="49154" Version="">MobList.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="88974" Version="">NotCard.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:16:04" Size="95820" Version="">PersApplication.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="81792" Version="">PersChanges.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="28.02.2022 22:46:28" Size="91329" Version="">PersOVK.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:16:04" Size="82282" Version="">PersOVK1516.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="43771" Version="">PersOVKAdd.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="66839" Version="">PersOVKAll.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="91643" Version="">Receipt.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="58200" Version="">ReplacePlan.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="71083" Version="">StudyInProcess.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="76895" Version="">StudyInProcess2.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="70911" Version="">WorkIn.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="28.02.2022 22:55:46" Size="89716" Version="">WorkIn2.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="75376" Version="">WorkInStandard.rtf</File>
+    <File Destination="{Templates8} [INSTALLDIR]Templates" Component="AllOtherFiles2" Modified="12.01.2022 18:14:09" Size="74874" Version="">WorkOutStandard.rtf</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="Analiz.dll1" Modified="13.02.2022 9:05:12" Size="4275712" Version="">Analiz.dll</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="AllOtherFiles" Modified="17.08.2021 20:24:29" Size="2063113" Version="">Руководство пользователя Гран-ВУР 3.82.docx</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="AllOtherFiles" Modified="30.12.2016 7:47:35" Size="1293" Version="">BACKUP.CFG</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="AllOtherFiles" Modified="12.01.2022 18:14:09" Size="40" Version="">frmdata.ini</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="AllOtherFiles" Modified="01.06.2011 10:45:17" Size="3094" Version="">GranVUS.cnt</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="AllOtherFiles" Modified="30.08.2007 16:53:27" Size="17014" Version="">Granvus.GID</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="AllOtherFiles" Modified="12.01.2022 18:14:09" Size="371" Version="">patch.ini</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="backup.dll2" Modified="07.03.2022 16:18:16" Size="3985920" Version="">backup.dll</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="GranVUS.exe2" Modified="07.03.2022 16:16:16" Size="28001280" Version="3.8.9.444">GranVUS.exe</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="kbdmouhk.dll1" Modified="12.11.2001 17:56:32" Size="17920" Version="">kbdmouhk.dll</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="LoadFromXLS.exe1" Modified="17.02.2022 17:15:57" Size="35586048" Version="1.0.8083.31078">LoadFromXLS.exe</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="Roboex32.dll1" Modified="12.04.2002 13:23:56" Size="1044480" Version="10.0.1092.0">Roboex32.dll</File>
+    <File Destination="{INSTALLDIR} [INSTALLDIR]" Component="wh2robo.dll1" Modified="12.04.2002 13:43:24" Size="40960" Version="">wh2robo.dll</File>
+    <File Destination="{Data5} [INSTALLDIR]Data" Component="AllOtherFiles3" Modified="08.03.2022 17:39:12" Size="2441216" Version="">granvus.mdb</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="Form10X.dll7" Modified="05.03.2022 22:23:17" Size="3918848" Version="">Form10X.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="Form11MU.dll" Modified="13.02.2022 9:07:55" Size="3742208" Version="">Form11MU.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="Form14.dll1" Modified="13.02.2022 9:08:07" Size="3779584" Version="">Form14.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="form18.dll" Modified="13.02.2022 9:08:17" Size="3748864" Version="">form18.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="form18_2021.dll1" Modified="13.02.2022 9:08:26" Size="3749376" Version="">form18_2021.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="Form2.dll1" Modified="13.02.2022 9:06:39" Size="3740672" Version="">Form2.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="Form26.dll" Modified="13.02.2022 9:08:37" Size="4686848" Version="">Form26.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="Form4.dll1" Modified="05.03.2022 22:40:13" Size="35926016" Version="">Form4.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="Form6.dll" Modified="13.02.2022 9:07:05" Size="4615168" Version="">Form6.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="Form6_2015.dll1" Modified="13.02.2022 9:24:24" Size="4616704" Version="">Form6_2015.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="Form8.dll" Modified="13.02.2022 9:07:26" Size="3739136" Version="">Form8.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="Form9.dll1" Modified="13.02.2022 9:07:36" Size="4287488" Version="">Form9.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="FormT2.dll" Modified="13.02.2022 9:08:47" Size="3927040" Version="">FormT2.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="FormT2Old.dll1" Modified="13.02.2022 9:08:57" Size="3927040" Version="">FormT2Old.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="LetterSpec.dll1" Modified="13.02.2022 9:09:06" Size="3744768" Version="">LetterSpec.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="ListT2.dll" Modified="13.02.2022 9:09:19" Size="3920384" Version="">ListT2.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="MobList.dll" Modified="13.02.2022 9:09:29" Size="3812352" Version="">MobList.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="NotCard.dll" Modified="13.02.2022 9:09:39" Size="3742208" Version="">NotCard.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="PersApplication.dll1" Modified="13.02.2022 9:09:49" Size="3762176" Version="">PersApplication.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="PersChanges.dll1" Modified="13.02.2022 9:09:57" Size="3924992" Version="">PersChanges.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="PersOVK.dll" Modified="28.02.2022 22:46:46" Size="3810304" Version="">PersOVK.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="PersOVK1516.dll1" Modified="13.02.2022 9:10:12" Size="3803648" Version="">PersOVK1516.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="PersOVKBlue.dll" Modified="13.02.2022 9:10:21" Size="3805184" Version="">PersOVKBlue.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="PersOVKGreen.dll" Modified="13.02.2022 9:10:29" Size="3795456" Version="">PersOVKGreen.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="PersOVKRed.dll" Modified="13.02.2022 9:10:37" Size="3802624" Version="">PersOVKRed.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="PersOVKYellow.dll" Modified="13.02.2022 9:10:45" Size="3802624" Version="">PersOVKYellow.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="Receipt.dll1" Modified="13.02.2022 9:11:05" Size="3740672" Version="">Receipt.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="ReplacePlan.dll1" Modified="06.03.2022 18:03:00" Size="5263872" Version="">ReplacePlan.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="WorkIn.dll" Modified="28.02.2022 22:56:11" Size="3888128" Version="">WorkIn.dll</File>
+    <File Destination="{PlugIns6} [INSTALLDIR]PlugIns" Component="WorkInStandard.dll1" Modified="13.02.2022 9:12:16" Size="3792384" Version="">WorkInStandard.dll</File>
+    <File Destination="{RegInfo7} [INSTALLDIR]RegInfo" Component="AllOtherFiles4" Modified="16.07.2021 20:25:18" Size="321" Version="">reg_info.ini</File>
+    <File Destination="{_} [INSTALLDIR]Templates\Исполнитель документа" Component="AllOtherFiles5" Modified="17.08.2021 20:26:49" Size="19983" Version="">Инструкция.docx</File>
+  </Files>
+</BuildReport>

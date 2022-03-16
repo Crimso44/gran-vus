@@ -15,7 +15,6 @@ object dmMain: TdmMain
       'se=False;Jet OLEDB:Don'#39't Copy Locale on Compact=False;Jet OLEDB:' +
       'Compact Without Replica Repair=False;Jet OLEDB:SFP=False;'
     LoginPrompt = False
-    Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
     Left = 28
     Top = 32
@@ -57,6 +56,7 @@ object dmMain: TdmMain
   object qrPerson: TADOQuery
     Connection = dbMain
     CursorType = ctStatic
+    AfterScroll = qrPersonAfterScroll
     Parameters = <
       item
         Name = 'PERS_ID'

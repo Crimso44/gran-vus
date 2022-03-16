@@ -6973,7 +6973,11 @@ begin
         if aoAutoCopySelectedToClipboard in OptionsEx then
           CopySelectedToClipboard;
     end;
-  if FSearching and (Key in [#32..#255]) and not IsControlPressed then // TODO: ^V, ^X, ...
+  if FSearching and (
+      (Key in [#32..#255]) or
+      ((Key >= 'à') and (Key <= 'ÿ')) or
+      ((Key >= 'À') and (Key <= 'ß'))
+    ) and not IsControlPressed then // TODO: ^V, ^X, ...
   begin
     CheckSearchColumn;
     FSearchText := FSearchText + Key;

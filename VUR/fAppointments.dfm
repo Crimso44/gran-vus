@@ -40,6 +40,7 @@ object fmAppointments: TfmAppointments
     OnChangedColumnsWidth = qridAppointmentChangedColumnsWidth
     OnColumnSorting = qridAppointmentColumnSorting
     object qridAppointmentID: TdxDBGridColumn
+      Visible = False
       Width = 81
       BandIndex = 0
       RowIndex = 0

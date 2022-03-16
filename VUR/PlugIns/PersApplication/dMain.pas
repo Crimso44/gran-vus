@@ -181,6 +181,7 @@ type
       ArgCount: Integer; UDFResult: TObject);
     procedure EkUDFList1Functions2Calculate(Sender: TObject; Args: TEkUDFArgs;
       ArgCount: Integer; UDFResult: TObject);
+    procedure qrPersonAfterScroll(DataSet: TDataSet);
   private
     FPersID: Integer;
     FReason: string;
@@ -194,7 +195,7 @@ var
   dmMain: TdmMain;
 
 const
-  sEventObject = 'Письма в ОВК о снятии со спецучета по возрасту';
+  sEventObject = 'Заявление о постановке на воинский учет';
 
 implementation
 
@@ -207,11 +208,11 @@ begin
   FPersID := PersId;
   FReason := reason;
   try
+    qrOVK.Open;
     qrOrg.Open;
     qrPerson.Parameters.ParamByName('PERS_ID').Value := PersId;
     qrPerson.SQL.Text := ReplaceFullAges(qrPerson.SQL.Text);
     qrPerson.Open;
-    qrOVK.Open;
 
     Result := true;
   except on e: Exception do begin
@@ -234,6 +235,11 @@ begin
 //  except
 //    Result := false;
 //  end;
+end;
+
+procedure TdmMain.qrPersonAfterScroll(DataSet: TDataSet);
+begin
+  qrOVK.Locate('OVK_ID', qrPerson.FieldByName('Ovk_Id').AsInteger, []);
 end;
 
 procedure TdmMain.EkUDFList1Functions0Calculate(Sender: TObject;
