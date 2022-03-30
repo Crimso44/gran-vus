@@ -1,4 +1,4 @@
-unit fAppointments;
+unit fStudyHistory;
 
 interface
 
@@ -9,7 +9,7 @@ uses
   dxSkinsCore, dxSkinsDefaultPainters, dxSkinsdxBarPainter;
 
 type
-  TfmAppointments = class(TForm)
+  TfmStudyHistory = class(TForm)
     dxBarManager1: TdxBarManager;
     dxBarDBNavigator: TdxBarDBNavigator;
     dxBarDBNavFirst1: TdxBarDBNavButton;
@@ -21,51 +21,37 @@ type
     dxBarDBNavEdit1: TdxBarDBNavButton;
     dxBarDBNavPost1: TdxBarDBNavButton;
     dxBarDBNavCancel1: TdxBarDBNavButton;
-    qridAppointment: TdxDBGrid;
-    qridAppointmentID: TdxDBGridColumn;
-    qridAppointmentPERS_ID: TdxDBGridColumn;
-    qridAppointmentWTP: TdxDBGridLookupColumn;
-    qridAppointmentWCH: TdxDBGridLookupColumn;
-    qridAppointmentPOST: TdxDBGridLookupColumn;
-    qridAppointmentDEP: TdxDBGridLookupColumn;
-    qridAppointmentIN_ORD_NUMB: TdxDBGridColumn;
-    qridAppointmentIN_ORD_DATE: TdxDBGridDateColumn;
+    qridStudyHistory: TdxDBGrid;
+    qridStudyHistoryID: TdxDBGridColumn;
+    qridStudyHistoryPERS_ID: TdxDBGridColumn;
+    qridStudyHistoryPOST: TdxDBGridLookupColumn;
+    qridStudyHistoryDEP: TdxDBGridLookupColumn;
+    qridStudyHistoryIN_ORD_NUMB: TdxDBGridColumn;
+    qridStudyHistoryIN_ORD_DATE: TdxDBGridDateColumn;
     dsAppointment: TDataSource;
     qrAppointment: TADOQuery;
     qrAppointmentID: TIntegerField;
     qrAppointmentPERS_ID: TIntegerField;
-    qrKWKTYPE: TADOQuery;
-    qrKWKCHAR: TADOQuery;
     qrKPOST: TADOQuery;
     qrKDEPART: TADOQuery;
-    qrAppointmentWTP_ID: TIntegerField;
-    qrKWKTYPEWTP_ID: TIntegerField;
-    qrKWKTYPEWTP_NAME: TStringField;
-    qrKWKCHARWCH_ID: TIntegerField;
-    qrKWKCHARWCH_NAME: TStringField;
     qrKPOSTPOST_ID: TIntegerField;
     qrKPOSTPOST_NAME: TStringField;
     qrKDEPARTDEP_ID: TIntegerField;
     qrKDEPARTDEP_NAME: TStringField;
-    qrAppointmentWCH_ID: TIntegerField;
     qrAppointmentPOST_ID: TIntegerField;
     qrAppointmentDEP_ID: TIntegerField;
-    qrAppointmentWTP_NAME: TStringField;
-    qrAppointmentWCH_NAME: TStringField;
     qrAppointmentPOST_NAME: TStringField;
     qrAppointmentDEP_NAME: TStringField;
     qrAppointmentIN_ORD_DATE: TDateField;
-    qridAppointmentIN_DATE: TdxDBGridDateColumn;
+    qridStudyHistoryIN_DATE: TdxDBGridDateColumn;
     qrAppointmentIN_DATE: TDateField;
     StatusBar1: TStatusBar;
-    qridAppointmentNum: TdxDBGridColumn;
+    qridStudyHistoryNum: TdxDBGridColumn;
     qrKPOSTXPost_Name: TWideStringField;
     qrKPOSTKPOST_Num: TIntegerField;
     qrKDEPARTXDep_Name: TWideStringField;
     qrKDEPARTKDEPART_Num: TIntegerField;
     qrAppointmentIN_ORD_NUMB: TStringField;
-    qrAppointmentPROBATION_DATE: TDateField;
-    qridAppointmentPROBATION_DATE: TdxDBGridDateColumn;
     qrKOVK: TADOQuery;
     qrKOVKOVK_ID: TIntegerField;
     qrKOVKOVK_NAME: TWideStringField;
@@ -73,35 +59,40 @@ type
     qrAppointmentOVK_NAME: TStringField;
     qrAppointmentOVK_DATE: TDateField;
     qrAppointmentOVK_NUM: TStringField;
-    qridAppointmentOVK_NAME: TdxDBGridLookupColumn;
-    qridAppointmentOVK_DATE: TdxDBGridDateColumn;
-    qridAppointmentOVK_NUM: TdxDBGridMaskColumn;
+    qridStudyHistoryOVK_NAME: TdxDBGridLookupColumn;
+    qridStudyHistoryOVK_DATE: TdxDBGridDateColumn;
+    qridStudyHistoryOVK_NUM: TdxDBGridMaskColumn;
+    qrAppointmentNAPR_ID: TIntegerField;
+    qrNapr: TADOQuery;
+    qrNaprNAPR_ID: TIntegerField;
+    qrNaprNAPR_NAME: TWideStringField;
+    qrAppointmentNAPR_NAME: TStringField;
+    qridStudyHistoryNAPR_NAME: TdxDBGridLookupColumn;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure qrAppointmentNewRecord(DataSet: TDataSet);
     procedure qrAppointmentBeforePost(DataSet: TDataSet);
     procedure qrAppointmentBeforeDelete(DataSet: TDataSet);
-    procedure qridAppointmentNumGetText(Sender: TObject; ANode: TdxTreeListNode;
+    procedure qridStudyHistoryNumGetText(Sender: TObject; ANode: TdxTreeListNode;
       var AText: string);
-    procedure qridAppointmentColumnSorting(Sender: TObject;
+    procedure qridStudyHistoryColumnSorting(Sender: TObject;
       Column: TdxDBTreeListColumn; var Allow: Boolean);
     procedure qrAppointmentAfterPost(DataSet: TDataSet);
     procedure qrAppointmentAfterDelete(DataSet: TDataSet);
-    procedure qridAppointmentChangedColumnsWidth(Sender: TObject);
+    procedure qridStudyHistoryChangedColumnsWidth(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    PERS_ID, Post_Id, Dep_Id, OVK_Id: Integer;
-    procedure GetPostAndDep;
+    PERS_ID, OVK_Id: Integer;
     procedure SetPostAndDep;
   end;
 
 var
-  fmAppointments: TfmAppointments;
+  fmStudyHistory: TfmStudyHistory;
 
-procedure ShowAppointments(pPERS_ID, pOVK_ID: Integer);
+procedure ShowStudyHistory(pPERS_ID, pOVK_ID: Integer);
 
 implementation
 
@@ -109,12 +100,12 @@ uses dMain, Rdialogs, msg;
 
 {$R *.dfm}
 
-procedure ShowAppointments(pPERS_ID, pOVK_ID: Integer);
+procedure ShowStudyHistory(pPERS_ID, pOVK_ID: Integer);
 var
   I: Integer;
-  f: TfmAppointments;
+  f: TfmStudyHistory;
 begin
-  f := TfmAppointments.Create(Application);
+  f := TfmStudyHistory.Create(Application);
   with f do try
     qrKPost.SQL[qrKPost.SQL.Count-1] :=
       'ORDER BY '+iifStr(dmMain.isAbcSort, 'Post_Name', 'KPOST_Num');
@@ -136,12 +127,12 @@ begin
   end;
 end;
 
-procedure TfmAppointments.FormActivate(Sender: TObject);
+procedure TfmStudyHistory.FormActivate(Sender: TObject);
 begin
-  qridAppointmentId.Visible := false;
+  qridStudyHistoryId.Visible := false;
 end;
 
-procedure TfmAppointments.FormCloseQuery(Sender: TObject;
+procedure TfmStudyHistory.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
   CanClose := True;
@@ -160,7 +151,7 @@ begin
     ParamCheck := False;
     SQL.Text := Format('SELECT IN_DATE FROM Appointment '+
       'WHERE PERS_ID = %d AND IN_DATE IS NOT NULL AND '+
-      'POST_ID IN (SELECT POST_ID FROM KPOST WHERE CPROF_ID <> 500 and CPROF2015_ID <> 500)'+
+      'POST_ID IN (SELECT POST_ID FROM KPOST WHERE CPROF_ID = 500 or CPROF2015_ID = 500)'+
       'GROUP BY IN_DATE HAVING COUNT(*)>1', [PERS_ID]);
     Open;
     if not IsEmpty then begin
@@ -185,7 +176,7 @@ begin
   end;
 end;
 
-procedure TfmAppointments.qrAppointmentNewRecord(DataSet: TDataSet);
+procedure TfmStudyHistory.qrAppointmentNewRecord(DataSet: TDataSet);
 begin
   with qrAppointment do begin
     FieldByName('PERS_ID').Value := PERS_ID;
@@ -193,29 +184,26 @@ begin
   end;
 end;
 
-procedure TfmAppointments.qridAppointmentChangedColumnsWidth(Sender: TObject);
+procedure TfmStudyHistory.qridStudyHistoryChangedColumnsWidth(Sender: TObject);
 begin
-  qridAppointmentPOST.DropDownWidth := qridAppointmentPOST.Width * 2;
-  qridAppointmentDep.DropDownWidth := qridAppointmentDep.Width * 2;
-  qridAppointmentWTP.DropDownWidth := qridAppointmentWTP.Width * 2;
-  qridAppointmentWCH.DropDownWidth := qridAppointmentWCH.Width * 2;
+  qridStudyHistoryPOST.DropDownWidth := qridStudyHistoryPOST.Width * 2;
+  qridStudyHistoryDep.DropDownWidth := qridStudyHistoryDep.Width * 2;
 end;
 
-procedure TfmAppointments.qridAppointmentColumnSorting(Sender: TObject;
+procedure TfmStudyHistory.qridStudyHistoryColumnSorting(Sender: TObject;
   Column: TdxDBTreeListColumn; var Allow: Boolean);
 begin
-  Allow := Column <> qridAppointmentNum;
+  Allow := Column <> qridStudyHistoryNum;
 end;
 
-procedure TfmAppointments.qridAppointmentNumGetText(Sender: TObject;
+procedure TfmStudyHistory.qridStudyHistoryNumGetText(Sender: TObject;
   ANode: TdxTreeListNode; var AText: string);
 begin
   AText := IntToStr(ANode.Index + 1);
 end;
 
-procedure TfmAppointments.SetPostAndDep;
+procedure TfmStudyHistory.SetPostAndDep;
 var
-  new_Post_Id, new_Dep_Id: Integer;
   q: TADOQuery;
   Study, NoStudy: TList;
   ALast, ALastAll, ALastStudy, AFirst, AFirstStudy: Integer;
@@ -229,48 +217,11 @@ var
   end;
 
 begin
-  new_Post_Id := -1; new_Dep_Id := -1;
   q := TADOQuery.Create(nil);
   with q do
   try
     Connection := dmMain.dbMain;
     ParamCheck := False;
-    SQL.Text := Format('SELECT Dismissal_Date, Out_Date From Person '+
-      'WHERE PERS_ID = %d ', [PERS_ID]);
-    Open;
-    if Fields[0].IsNull and Fields[0].IsNull then begin
-      Close;
-      SQL.Text := Format('SELECT Post_Id, Dep_Id FROM Appointment '+
-        'WHERE PERS_ID = %d AND IN_DATE IS NOT NULL AND '+
-        'POST_ID IN (SELECT POST_ID FROM KPOST WHERE CPROF_ID <> 500 and CPROF2015_ID <> 500)'+
-        'Order By In_Date Desc', [PERS_ID]);
-      Open;
-      if not IsEmpty then begin
-        new_Post_Id := Fields[0].AsInteger;
-        new_Dep_Id := Fields[1].AsInteger;
-      end;
-    end;
-    Close;
-
-    if (Dep_Id <> new_Dep_Id) or (Post_Id <> new_Post_Id) then begin
-      SQL.Text :=
-        'Update StaffList Set GeneralQty = GeneralQty - 1 '+
-        'Where Dep_Id = '+IntToStr(Dep_Id)+' and Post_Id = '+IntToStr(Post_Id)+' and '+
-          'GeneralQty > 0';
-      ExecSQL;
-      SQL.Text :=
-        'Insert Into StaffList (Dep_Id, Post_Id, GeneralQty) '+
-        'Select Top 1 '+IntToStr(new_Dep_Id)+', '+IntToStr(new_Post_Id)+', 0 '+
-        'From VerInfo '+
-        'Where not exists (select * from StaffList '+
-          'Where Dep_Id = '+IntToStr(new_Dep_Id)+' and Post_Id = '+IntToStr(new_Post_Id)+')';
-      ExecSQL;
-      SQL.Text :=
-        'Update StaffList Set GeneralQty = GeneralQty + 1 '+
-        'Where Dep_Id = '+IntToStr(new_Dep_Id)+' and Post_Id = '+IntToStr(new_Post_Id);
-      ExecSQL;
-    end;
-    Close;
 
     Study := TList.Create; NoStudy := TList.Create;
     SQL.Text := 'SELECT POST_ID FROM KPOST WHERE CPROF_ID = 500 or CPROF2015_ID = 500';
@@ -324,7 +275,7 @@ begin
   end;
 end;
 
-procedure TfmAppointments.qrAppointmentBeforePost(DataSet: TDataSet);
+procedure TfmStudyHistory.qrAppointmentBeforePost(DataSet: TDataSet);
 begin
   with qrAppointment do begin
     if Pos('(упразднено)',qrAppointmentDep_Name.Value) > 0 then begin
@@ -346,55 +297,27 @@ begin
             FieldByName('IN_DATE').Value := FieldByName('IN_ORD_DATE').Value
     else if FieldByName('IN_ORD_DATE').IsNull then
       FieldByName('IN_ORD_DATE').Value := FieldByName('IN_DATE').Value;
-    GetPostAndDep;
   end;
 end;
 
-procedure TfmAppointments.FormCreate(Sender: TObject);
+procedure TfmStudyHistory.FormCreate(Sender: TObject);
 begin
-  qridAppointmentChangedColumnsWidth(Sender);
+  qridStudyHistoryChangedColumnsWidth(Sender);
 end;
 
-procedure TfmAppointments.GetPostAndDep;
-begin
-  Post_Id := -1; Dep_Id := -1;
-  with TADOQuery.Create(nil) do
-  try
-    Connection := dmMain.dbMain;
-    ParamCheck := False;
-    SQL.Text := Format('SELECT Dismissal_Date, Out_Date From Person '+
-      'WHERE PERS_ID = %d ', [PERS_ID]);
-    Open;
-    if Fields[0].IsNull and Fields[1].IsNull then begin
-      Close;
-      SQL.Text := Format('SELECT Post_Id, Dep_Id FROM Appointment '+
-        'WHERE PERS_ID = %d AND IN_DATE IS NOT NULL AND '+
-        'POST_ID IN (SELECT POST_ID FROM KPOST WHERE CPROF_ID <> 500 and CPROF2015_ID <> 500)'+
-        'Order By In_Date Desc', [PERS_ID]);
-      Open;
-      if not IsEmpty then begin
-        Post_Id := Fields[0].AsInteger;
-        Dep_Id := Fields[1].AsInteger;
-      end;
-    end;
-  finally Free;
-  end;
-end;
-
-procedure TfmAppointments.qrAppointmentAfterDelete(DataSet: TDataSet);
+procedure TfmStudyHistory.qrAppointmentAfterDelete(DataSet: TDataSet);
 begin
   SetPostAndDep;
 end;
 
-procedure TfmAppointments.qrAppointmentAfterPost(DataSet: TDataSet);
+procedure TfmStudyHistory.qrAppointmentAfterPost(DataSet: TDataSet);
 begin
   SetPostAndDep;
 end;
 
-procedure TfmAppointments.qrAppointmentBeforeDelete(DataSet: TDataSet);
+procedure TfmStudyHistory.qrAppointmentBeforeDelete(DataSet: TDataSet);
 begin
   if not Confirm('Действительно удалить?') then Abort;
-  GetPostAndDep;
 end;
 
 end.

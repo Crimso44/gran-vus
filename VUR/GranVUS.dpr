@@ -47,7 +47,6 @@ uses
   CryptoAPI in 'Crypt\CryptoAPI.pas',
   fPersChangesLst in 'fPersChangesLst.pas' {fmPersonChangesList},
   ColumnCustomize in 'ColumnCustomize.pas' {ColumnCustomizeForm},
-  fAppointments in 'fAppointments.pas' {fmAppointments},
   fParamDlg in 'fParamDlg.pas' {fmParamDlg},
   fAsfMtr in 'fAsfMtr.pas' {TfmAsfMtr},
   fAsfMtrList in 'fAsfMtrList.pas' {fmAsfMtrList},
@@ -64,7 +63,9 @@ uses
   fCorrectOkved in 'fCorrectOkved.pas' {fmCorrectOkved},
   dxExEdtr in 'E:\Granit\DevExOld\ExpressEditors Library 3\Sources\dxExEdtr.pas',
   dxGrDate in 'E:\Granit\DevExOld\ExpressEditors Library 3\Sources\dxGrDate.pas',
-  frmAddr in 'frmAddr.pas' {fAddr};
+  frmAddr in 'frmAddr.pas' {fAddr},
+  fStudyHistory in 'fStudyHistory.pas' {fmStudyHistory},
+  fAppointments in 'fAppointments.pas' {fmAppointments};
 
 {$R *.RES}
 
@@ -75,5 +76,7 @@ begin
   IsDemoVersion(true);
   Application.CreateForm(TfmMain, fmMain);
   Application.CreateForm(TdmMain, dmMain);
+  Application.CreateForm(TfmStudyHistory, fmStudyHistory);
+  Application.CreateForm(TfmAppointments, fmAppointments);
   Application.Run;
 end.

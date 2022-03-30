@@ -113,9 +113,11 @@
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <DCC_ExeOutput>E:\Program Files\GranVUS</DCC_ExeOutput>
-        <VerInfo_Build>444</VerInfo_Build>
+        <VerInfo_Build>446</VerInfo_Build>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=3.8.9.444;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=3.9.1.446;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_MinorVer>9</VerInfo_MinorVer>
+        <VerInfo_Release>1</VerInfo_Release>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -231,9 +233,6 @@
         <DCCReference Include="ColumnCustomize.pas">
             <Form>ColumnCustomizeForm</Form>
         </DCCReference>
-        <DCCReference Include="fAppointments.pas">
-            <Form>fmAppointments</Form>
-        </DCCReference>
         <DCCReference Include="fParamDlg.pas">
             <Form>fmParamDlg</Form>
         </DCCReference>
@@ -274,6 +273,14 @@
         <DCCReference Include="E:\Granit\DevExOld\ExpressEditors Library 3\Sources\dxGrDate.pas"/>
         <DCCReference Include="frmAddr.pas">
             <Form>fAddr</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="fStudyHistory.pas">
+            <Form>fmStudyHistory</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="fAppointments.pas">
+            <Form>fmAppointments</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <None Include="SQL\PersonMob.SQL">

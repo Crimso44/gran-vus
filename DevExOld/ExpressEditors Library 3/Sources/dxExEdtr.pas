@@ -7200,7 +7200,7 @@ begin
   FToolBarAlignment := ptaRight;
   BorderIcons := [biSystemMenu];
   BorderStyle := bsToolWindow;
-  Caption := LoadStr(dxSToolBarCaption); // 'Toolbox'
+  Caption := LoadStrEdStr(dxSToolBarCaption); // 'Toolbox'
   FormStyle := fsStayOnTop;
   ShowHint := True;
   FClipboardFormat := CF_PICTURE;
@@ -11418,7 +11418,7 @@ initialization
   GetCheckSize;
   Screen.Cursors[crdxHandPointCursor] := LoadCursor(HInstance, dxHandPointCursor);
   // Date Edit
-  sdxDateError := LoadStr(dxSDateError);
+  sdxDateError := LoadStrEdStr(dxSDateError);
   // Time Edit
   dxTimeEditOneSec    := EncodeTime(0, 0, 1, 0); // '00:00:01'
   dxTimeEditOneMin    := EncodeTime(0, 1, 0, 0); // '00:01:00'
@@ -11430,9 +11430,9 @@ initialization
   for I := ptbCut to ptbSave do
   begin
     // caption
-    ToolButtons[I, 0] := LoadStr(dxSToolBarButtonCaptionCut + Byte(I));
+    ToolButtons[I, 0] := LoadStrEdStr(dxSToolBarButtonCaptionCut + Byte(I));
     // hint
-    ToolButtons[I, 1] := LoadStr(dxSToolBarButtonHintCut + Byte(I));
+    ToolButtons[I, 1] := LoadStrEdStr(dxSToolBarButtonHintCut + Byte(I));
   end;
   ToolButtons[ptbCustom, 0] := '';
   ToolButtons[ptbCustom, 1] := '';
@@ -11440,21 +11440,21 @@ initialization
   // load blob images
   LoadBlobImages;
   // load blob buttons
-  sdxBlobEditButtons[bebOK] := LoadStr(dxSBlobButtonOK);
-  sdxBlobEditButtons[bebCancel] := LoadStr(dxSBlobButtonCancel);
-  sdxBlobEditButtons[bebClose] := LoadStr(dxSBlobButtonClose);
+  sdxBlobEditButtons[bebOK] := LoadStrEdStr(dxSBlobButtonOK);
+  sdxBlobEditButtons[bebCancel] := LoadStrEdStr(dxSBlobButtonCancel);
+  sdxBlobEditButtons[bebClose] := LoadStrEdStr(dxSBlobButtonClose);
 
-  sdxBlobPopupItems[0] := LoadStr(dxSBlobPopupCut);
-  sdxBlobPopupItems[1] := LoadStr(dxSBlobPopupCopy);
-  sdxBlobPopupItems[2] := LoadStr(dxSBlobPopupPaste);
-  sdxBlobPopupItems[3] := LoadStr(dxSBlobPopupDelete);
-  sdxBlobPopupItems[4] := LoadStr(dxSBlobPopupSave);
-  sdxBlobPopupItems[5] := LoadStr(dxSBlobPopupLoad);
+  sdxBlobPopupItems[0] := LoadStrEdStr(dxSBlobPopupCut);
+  sdxBlobPopupItems[1] := LoadStrEdStr(dxSBlobPopupCopy);
+  sdxBlobPopupItems[2] := LoadStrEdStr(dxSBlobPopupPaste);
+  sdxBlobPopupItems[3] := LoadStrEdStr(dxSBlobPopupDelete);
+  sdxBlobPopupItems[4] := LoadStrEdStr(dxSBlobPopupSave);
+  sdxBlobPopupItems[5] := LoadStrEdStr(dxSBlobPopupLoad);
 
   DefaultCheckEditStyleController := TdxCheckEditStyleController.Create(nil);
 
   for J := Low(TdxDateEditSmartInput) to High(TdxDateEditSmartInput) do
-    sdxDateEditSmartInput[J] := LoadStr(dxSDateToday + Ord(J));
+    sdxDateEditSmartInput[J] := LoadStrEdStr(dxSDateToday + Ord(J));
 
 finalization
   DefaultCheckEditStyleController.Free;

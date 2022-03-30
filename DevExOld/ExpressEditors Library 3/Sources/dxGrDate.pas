@@ -1470,8 +1470,8 @@ const
 {$ENDIF}
 
 initialization
-  sdxGridDatePopupToday := LoadStr(dxSDatePopupToday);
-  sdxGridDatePopupClear := LoadStr(dxSDatePopupClear);
+  sdxGridDatePopupToday := LoadStrEdStr(dxSDatePopupToday);
+  sdxGridDatePopupClear := LoadStrEdStr(dxSDatePopupClear);
 
   RetrieveStartOfWeek;
 

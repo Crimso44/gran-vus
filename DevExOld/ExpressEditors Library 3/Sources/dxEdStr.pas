@@ -99,8 +99,84 @@ const
   dxSEditDeleteCaption               = 38955; // '&Delete'
   dxSEditSelectAllCaption            = 38956; // 'Select &All'
 
+function LoadStrEdStr(id: Integer): string;
+
+
 implementation
 
 {$R dxEdStr.res}
+
+function LoadStrEdStr(id: Integer): string;
+begin
+  Result := '';
+  case id of
+    //dxGrClms strings
+    38901: Result := 'Да';
+    38902: Result := 'Нет';
+    38903: Result := 'Сегодня';
+    38904: Result := 'Очистить';
+
+    // blob edit buttons
+    38905: Result := '&OK';
+    38906: Result := '&Отмена';
+    38907: Result := '&Закрыть';
+
+    38908: Result := 'Вы&резать';
+    38909: Result := '&Копировать';
+    38910: Result := '&Вставить';
+    38911: Result := '&Удалить';
+    38912: Result := '&Сохранить в файл...';
+    38913: Result := '&Загрузить из файла...';
+
+    38914: Result := 'Вы&резать';
+    38915: Result := '&Копировать';
+    38916: Result := '&Вставить';
+    38917: Result := '&Удалить';
+    38918: Result := '&Загрузить...';
+    38919: Result := '&Сохранить...';
+
+    38920: Result := 'Вырезать';
+    38921: Result := 'Копировать';
+    38922: Result := 'Вставить';
+    38923: Result := 'Удалить';
+    38924: Result := 'Загрузить из файла...';
+    38925: Result := 'Сохранить в файл...';
+
+    38926: Result := 'Инструменты';
+
+    38927: Result := 'Ошибочная дата';
+
+    38928: Result := 'СЕГОДНЯ';
+    38929: Result := 'ВЧЕРА';
+    38930: Result := 'ЗАВТРА';
+    38931: Result := 'ВОСКРЕСЕНЬЕ';
+    38932: Result := 'ПОНЕДЕЛЬНИК';
+    38933: Result := 'ВТОРНИК';
+    38934: Result := 'СРЕДА';
+    38935: Result := 'ЧЕТВЕРГ';
+    38936: Result := 'ПЯТНИЦА';
+    38937: Result := 'СУББОТА';
+    38938: Result := 'ПЕРВЫЙ';
+    38939: Result := 'ВТОРОЙ';
+    38940: Result := 'ТРЕТИЙ';
+    38941: Result := 'ЧЕТВЕРТЫЙ';
+    38942: Result := 'ПЯТЫЙ';
+    38943: Result := 'ШЕСТОЙ';
+    38944: Result := 'СЕДЬМОЙ';
+    38945: Result := 'НАЧ.МЕС.';
+    38946: Result := 'КОН.МЕС';
+    38947: Result := 'СЕЙЧАС';
+
+    38948: Result := 'Неправильный формат данных. Нажмите Esc для отмены редактирования';
+
+    38949: Result := '&Undo';
+    38950: Result := '&Redo';
+    38952: Result := 'Вы&резать';
+    38953: Result := '&Копировать';
+    38954: Result := '&Вставить';
+    38955: Result := '&Удалить';
+    38956: Result := 'Выбрать &все';
+  end;
+end;
 
 end.

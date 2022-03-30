@@ -98,11 +98,7 @@ type
     Label60: TLabel;
     dtConf: TdxDateEdit;
     pnlWarMain: TPanel;
-    rbNoSost: TRadioButton;
-    rbFlySost: TRadioButton;
-    rbSweemSost: TRadioButton;
     lbCateg: TLabel;
-    Label46: TLabel;
     chkVoen: TCheckBox;
     qrAddr: TADOQuery;
     dsData: TDataSource;
@@ -174,15 +170,8 @@ type
     cbBranch: TComboBox;
     Label86: TLabel;
     tabSheetX1: TTabSheet;
-    rbStudent: TRadioButton;
-    rbAspirant: TRadioButton;
     lBeginStudy: TLabel;
     dtBeginStudy: TdxDateEdit;
-    dxtStudyHistory: TdxTreeList;
-    colStudentStatus: TdxTreeListPickColumn;
-    colVUZDep: TdxTreeListPickColumn;
-    dxtStudyHistoryColumn4: TdxTreeListColumn;
-    Label89: TLabel;
     Label90: TLabel;
     dxtN26History: TdxTreeList;
     dxTreeListColumn1: TdxTreeListColumn;
@@ -229,33 +218,18 @@ type
     edReasonDismissal: TEdit;
     Label108: TLabel;
     dtDismissal: TdxDateEdit;
-    Label109: TLabel;
-    edDisserName: TEdit;
     Label111: TLabel;
-    Label112: TLabel;
-    Label113: TLabel;
-    Label114: TLabel;
-    edFIOGuide: TEdit;
-    Label115: TLabel;
-    dtDefend: TdxDateEdit;
     Label116: TLabel;
     dtRealDefend: TdxDateEdit;
     Label117: TLabel;
     dtMedResult: TdxDateEdit;
     cbMedResult: TComboBox;
     Label118: TLabel;
-    edDegree: TdxMRUEdit;
-    edGuideDegree: TdxMRUEdit;
     qrStudyHistory: TADOQuery;
     qrN26History: TADOQuery;
-    pmStudyHistory: TPopupMenu;
-    MenuItem3: TMenuItem;
-    MenuItem4: TMenuItem;
     pmN26History: TPopupMenu;
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
-    dxtStudyHistoryColumn6: TdxTreeListDateColumn;
-    dxtStudyHistoryColumn7: TdxTreeListDateColumn;
     dxtN26HistoryColumn4: TdxTreeListDateColumn;
     dxtN26HistoryColumn5: TdxTreeListDateColumn;
     Label119: TLabel;
@@ -268,19 +242,11 @@ type
     edContractEnd: TEdit;
     Label121: TLabel;
     edStudyForm: TEdit;
-    colStudyForm: TdxTreeListPickColumn;
-    Label124: TLabel;
     Label125: TLabel;
     edDocNumb: TEdit;
     Label126: TLabel;
     dtDocDate: TdxDateEdit;
     Label127: TLabel;
-    Label26: TLabel;
-    edOKSO1: TEdit;
-    Label32: TLabel;
-    edOKSO2: TEdit;
-    Label82: TLabel;
-    edOKSO3: TEdit;
     GroupBox1: TGroupBox;
     dxpDelay: TdxMRUEdit;
     Label122: TLabel;
@@ -418,7 +384,6 @@ type
     Label162: TLabel;
     cbFormPrep3: TdxPickEdit;
     edNapr4: TComboBox;
-    edKval4: TComboBox;
     edNapr1: TComboBox;
     edKval1: TComboBox;
     edNapr2: TComboBox;
@@ -429,7 +394,6 @@ type
     bNapr3: TSpeedButton;
     bKval1: TSpeedButton;
     bKval2: TSpeedButton;
-    bKval4: TSpeedButton;
     bNapr4: TSpeedButton;
     edAssignText: TdxPickEdit;
     edAssignDate: TdxDateEdit;
@@ -448,7 +412,6 @@ type
     dtMobContract: TdxDateEdit;
     bDriver: TCheckBox;
     SpeedButton2: TSpeedButton;
-    bNonStudent: TcxButton;
     GroupBox6: TGroupBox;
     Label171: TLabel;
     Label172: TLabel;
@@ -474,6 +437,21 @@ type
     pmPersDeps: TPopupMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    cbStudent: TCheckBox;
+    edSovet_Shifr: TEdit;
+    Label10: TLabel;
+    edSovet_Org: TEdit;
+    Label11: TLabel;
+    edSovet_Num: TEdit;
+    Label12: TLabel;
+    edSovet_Org_Order: TEdit;
+    Label13: TLabel;
+    dtSovet_Date: TdxDateEdit;
+    Label14: TLabel;
+    rbWarProgram: TRadioGroup;
+    bStudyHistory: TButton;
+    Label20: TLabel;
+    dxpWBOvk: TdxMRUEdit;
     procedure PCChanging(Sender: TObject; var AllowChange: Boolean);
     procedure PCDrawTab(Control: TCustomTabControl; TabIndex: Integer;
       const Rect: TRect; Active: Boolean);
@@ -498,8 +476,6 @@ type
     procedure edKval3ButtonClick(Sender: TObject);
     procedure dxpOVKButtonClick(Sender: TObject);
     procedure rbAspirantClick(Sender: TObject);
-    procedure MenuItem3Click(Sender: TObject);
-    procedure MenuItem4Click(Sender: TObject);
     procedure MenuItem5Click(Sender: TObject);
     procedure MenuItem6Click(Sender: TObject);
     procedure edOrderAkademExit(Sender: TObject);
@@ -507,12 +483,6 @@ type
     procedure dxtStudyHistoryEdited(Sender: TObject; Node: TdxTreeListNode);
     procedure aPrintForm26Update(Sender: TObject);
     procedure aPrintForm26Execute(Sender: TObject);
-    procedure colStudentStatusCloseUp(Sender: TObject; var Value: Variant;
-      var Accept: Boolean);
-    procedure dxtStudyHistoryChangeNode(Sender: TObject; OldNode,
-      Node: TdxTreeListNode);
-    procedure colStudyFormCloseUp(Sender: TObject; var Value: Variant;
-      var Accept: Boolean);
     procedure edKvalnNaprButtonClick(Sender: TObject);
     procedure edKvalnNaprChange(Sender: TObject);
     procedure dxpDelayButtonClick(Sender: TObject);
@@ -536,9 +506,9 @@ type
     procedure MenuItem11Click(Sender: TObject);
     procedure MenuItem12Click(Sender: TObject);
     procedure bDriverClick(Sender: TObject);
-    procedure bNonStudentClick(Sender: TObject);
     procedure edVodUdSerKeyPress(Sender: TObject; var Key: Char);
     procedure bAddrClick(Sender: TObject);
+    procedure bStudyHistoryClick(Sender: TObject);
   private
     { Private declarations }
     PrevTab: Integer;
@@ -562,6 +532,7 @@ type
     procedure WM_NavNotify(var msg: TMEssage); message WM_NAV_NOTIFY;
     procedure WM_OnMove(var msg: TMessage); message WM_MOVE;
     procedure RefreshAppointment;
+    procedure RefreshStudyHistory;
     procedure RefreshASAppointment;
     procedure FillGroupValues(var groupvalues: array of string);
     procedure FillChanges;
@@ -601,7 +572,7 @@ implementation
 
 uses
   msg, dMain, fMain, MD5, misc, fAppointments, fASAppointments, fBaseLst,
-  DateUtils, Math, StrUtils, BirthDay;
+  DateUtils, Math, StrUtils, BirthDay, fStudyHistory;
 
 {$R *.DFM}
 
@@ -661,55 +632,17 @@ begin
 end;
 
 procedure TfmPersonForm.rbAspirantClick(Sender: TObject);
-const
-  s: array[0..1]of string = ('Зачислен студентом с',
-                             'Зачислен в аспирантуру с');
 var
   i: Integer;
 begin
-  lBeginStudy.Caption := IfThen(rbAspirant.Checked,s[1],s[0]);
-
   dtBeginStudy.Text := '';
   edOrder.Text := '';
   dtOrder.Text := '';
   edStudyForm.Text := '';
 
-  if rbStudent.Checked then begin
-    for i := 0 to dxtStudyHistory.Count - 1 do
-      if AnsiUpperCase(LeftStr(VarToStr(dxtStudyHistory.Items[i].Values[0]),7)) = 'СТУДЕНТ' then begin
-        dtBeginStudy.Text := dxtStudyHistory.Items[i].Values[2];
-        edOrder.Text := dxtStudyHistory.Items[i].Values[3];
-        dtOrder.Text := dxtStudyHistory.Items[i].Values[4];
-        Break;
-      end;
-    for i := dxtStudyHistory.Count - 1 downto 0 do
-      if AnsiUpperCase(LeftStr(VarToStr(dxtStudyHistory.Items[i].Values[0]),7)) = 'СТУДЕНТ' then begin
-        edStudyForm.Text := dxtStudyHistory.Items[i].Values[5];
-        Break;
-      end;
-    LoadStrings(edDegree.Items,true,'SELECT * FROM KSCIENCE WHERE SC_FLAG = 1 ORDER BY SC_NAME','SC_ID','SC_NAME');
-    LoadStrings(edKval4.Items,true,'SELECT KVAL_ID, KVAL_NAME FROM KKVAL ORDER BY KVAL_NAME','KVAL_ID','KVAL_NAME');
-    bNonStudent.Visible := true;
-  end
-  else if rbAspirant.Checked then begin
-    for i := 0 to dxtStudyHistory.Count - 1 do
-      if AnsiUpperCase(LeftStr(VarToStr(dxtStudyHistory.Items[i].Values[0]),8)) = 'АСПИРАНТ' then begin
-        dtBeginStudy.Text := dxtStudyHistory.Items[i].Values[2];
-        edOrder.Text := dxtStudyHistory.Items[i].Values[3];
-        dtOrder.Text := dxtStudyHistory.Items[i].Values[4];
-        Break;
-      end;
-    for i := dxtStudyHistory.Count - 1 downto 0 do
-      if AnsiUpperCase(LeftStr(VarToStr(dxtStudyHistory.Items[i].Values[0]),8)) = 'АСПИРАНТ' then begin
-        edStudyForm.Text := dxtStudyHistory.Items[i].Values[5];
-        Break;
-      end;
-    LoadStrings(edDegree.Items,true,'SELECT * FROM KSCIENCE WHERE SC_FLAG = 2 ORDER BY SC_NAME','SC_ID','SC_NAME');
-    LoadStrings(edKval4.Items,true,'SELECT KVAL_ID, KVAL_NAME FROM KKVAL ORDER BY KVAL_NAME','KVAL_ID','KVAL_NAME');
-    bNonStudent.Visible := true;
+  if cbStudent.Checked then begin
+    RefreshStudyHistory;
   end;
-  edDegree.ItemIndex := edDegree.Items.IndexOfObject(TObject(0));
-  edKval4.ItemIndex := edKval4.Items.IndexOfObject(TObject(0));
 
   Application.ProcessMessages;
   edFamChange(nil);
@@ -919,17 +852,18 @@ begin
 //    LoadStrings(edKval3.Items,false,'SELECT DISTINCT KVAL FROM EDUC WHERE Type=3 ORDER BY KVAL','','KVAL');
     LoadStrings(edKval3.Items,true,'SELECT * FROM KSCIENCE ORDER BY SC_NAME','SC_ID','SC_NAME');
     edKval3.ItemIndex := 0;
-    LoadStrings(edNapr1.Items,true,'SELECT NAPR_ID, NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
+    LoadStrings(edNapr1.Items,true,'SELECT NAPR_ID, iif(IsNull(Napr_Kod), "", Trim(NAPR_KOD)) + " " + NAPR_NAME as NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
     edNapr1.ItemIndex := edNapr1.Items.IndexOfObject(TObject(0));
-    LoadStrings(edNapr2.Items,true,'SELECT NAPR_ID, NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
+    LoadStrings(edNapr2.Items,true,'SELECT NAPR_ID, iif(IsNull(Napr_Kod), "", Trim(NAPR_KOD)) + " " + NAPR_NAME as NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
     edNapr2.ItemIndex := edNapr2.Items.IndexOfObject(TObject(0));
-    LoadStrings(edNapr3.Items,true,'SELECT NAPR_ID, NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
+    LoadStrings(edNapr3.Items,true,'SELECT NAPR_ID, iif(IsNull(Napr_Kod), "", Trim(NAPR_KOD)) + " " + NAPR_NAME as NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
     edNapr3.ItemIndex := edNapr3.Items.IndexOfObject(TObject(0));
     (*LoadStrings(edNapr1.Items,false,'SELECT DISTINCT NAPR FROM EDUC WHERE Type IN (1,2) ORDER BY NAPR','','NAPR');
     LoadStrings(edNapr2.Items,false,'SELECT DISTINCT NAPR FROM EDUC WHERE Type IN (1,2) ORDER BY NAPR','','NAPR');
     LoadStrings(edNapr3.Items,false,'SELECT DISTINCT NAPR FROM EDUC WHERE Type=3 ORDER BY NAPR','','NAPR');*)
 //    LoadStrings(cbCateg.Items,false,'SELECT * FROM KCPROF WHERE STATE = 0 ORDER BY CPROF_ID','CPROF_ID','CPROF_NAME');
     LoadStrings(dxpOVK.Items,false,'SELECT * FROM KOVK ORDER BY OVK_NAME','OVK_ID','OVK_NAME');
+    LoadStrings(dxpWBOVK.Items,false,'SELECT * FROM KOVK ORDER BY OVK_NAME','OVK_ID','OVK_NAME');
     LoadStrings(dxpDelay.Items,false,'SELECT ID, DelayName FROM KDELAY ORDER BY DelayName','ID','DelayName');
 
     LoadStrings(edAssignText.Items, false, 'SELECT Id, Name FROM KAssign ORDER BY Name','Id','Name');
@@ -941,13 +875,8 @@ begin
     //LoadStrings(dxtASAssignWhere.Items, false, 'SELECT DISTINCT AssignWhere FROM ASAssign ORDER BY AssignWhere','','AssignWhere');
 
     //Сведения об учащемся
-    LoadStrings(edGuideDegree.Items,true,'SELECT * FROM KSCIENCE WHERE SC_FLAG = 2 ORDER BY SC_NAME','SC_ID','SC_NAME');
-    edGuideDegree.ItemIndex := edGuideDegree.Items.IndexOfObject(TObject(0));
     LoadStrings(edNapr4.Items,true,'SELECT NAPR_ID, iif(IsNull(Napr_Kod), NAPR_NAME, NAPR_KOD+'' / ''+NAPR_NAME) As NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
     edNapr4.ItemIndex := edNapr4.Items.IndexOfObject(TObject(0));
-    LoadStrings(colStudentStatus.Items,false,'SELECT * FROM KPOST WHERE CPROF_ID = 500 or CPROF2015_ID = 500 ORDER BY '+iifStr(dmMain.isAbcSort,'Post_Name', 'KPOST_Num'),'POST_ID','POST_NAME');
-    LoadStrings(colVUZDep.Items,false,'SELECT * FROM KDEPART ORDER BY '+iifStr(dmMain.isAbcSort,'Dep_Name', 'KDEPART_Num'),'DEP_ID','DEP_NAME');
-    LoadStrings(colStudyForm.Items,false,'SELECT * FROM KWKTYPE WHERE WTP_FLAG IN (1,2)','WTP_ID','WTP_NAME');
     //////////////////////
 
     qrWRange.Open;
@@ -1018,27 +947,21 @@ begin
   edDate1.Enabled := dmMain.rEdit;
   edKval1.Enabled := dmMain.rEdit;
   edNapr1.Enabled := dmMain.rEdit;
-  edOKSO1.Enabled := dmMain.rEdit;
   cbUz2.Enabled := dmMain.rEdit;
   edDipl2.Enabled := dmMain.rEdit;
   edDate2.Enabled := dmMain.rEdit;
   edKval2.Enabled := dmMain.rEdit;
   edNapr2.Enabled := dmMain.rEdit;
-  edOKSO2.Enabled := dmMain.rEdit;
   cbUz3.Enabled := dmMain.rEdit;
   edDipl3.Enabled := dmMain.rEdit;
   edDate3.Enabled := dmMain.rEdit;
   edKval3.Enabled := dmMain.rEdit;
   edNapr3.Enabled := dmMain.rEdit;
-  edOKSO3.Enabled := dmMain.rEdit;
   edProf1.Enabled := dmMain.rEdit;
   edOKPDTR1.Enabled := dmMain.rEdit;
   edProf2.Enabled := dmMain.rEdit;
   edOKPDTR2.Enabled := dmMain.rEdit;
   chkVoen.Enabled := dmMain.rEdit;
-  rbNoSost.Enabled := dmMain.rEdit;
-  rbFlySost.Enabled := dmMain.rEdit;
-  rbSweemSost.Enabled := dmMain.rEdit;
   edNumbT2.Enabled := dmMain.rEdit;
   cbDocument.Enabled := dmMain.rEdit;
   edWBSer.Enabled := dmMain.rEdit;
@@ -1057,6 +980,7 @@ begin
   edWCat.Enabled := dmMain.rEdit;
   edVUS.Enabled := dmMain.rEdit;
   dxpOVK.Enabled := dmMain.rEdit;
+  dxpWBOVK.Enabled := dmMain.rEdit;
   dxpDelay.Enabled := dmMain.rEdit;
   dtDelayBeg.Enabled := dmMain.rEdit;
   dtDelayEnd.Enabled := dmMain.rEdit;
@@ -1115,10 +1039,8 @@ begin
   edAsf_Sport.Enabled := dmMain.rEdit;
 
   // Сведения об учащемся
-  rbStudent.Enabled := dmMain.rEdit;
-  rbAspirant.Enabled := dmMain.rEdit;
+  cbStudent.Enabled := dmMain.rEdit;
   dtEndStudy.Enabled := dmMain.rEdit;
-  dxtStudyHistory.Enabled := dmMain.rEdit;
   dxtN26History.Enabled := dmMain.rEdit;
   edOrderAkadem.Enabled := dmMain.rEdit;
   dtOrderAkadem.Enabled := dmMain.rEdit;
@@ -1128,6 +1050,7 @@ begin
   dtRealEndAkadem.Enabled := dmMain.rEdit;
   dtMedResult.Enabled := dmMain.rEdit;
   cbMedResult.Enabled := dmMain.rEdit;
+  rbWarProgram.Enabled := dmMain.rEdit;
   rbNone.Enabled := dmMain.rEdit;
   rbInProcess.Enabled := dmMain.rEdit;
   rbCompleted.Enabled := dmMain.rEdit;
@@ -1140,14 +1063,13 @@ begin
   edOrderDismissal.Enabled := dmMain.rEdit;
   dtOrderDismissal.Enabled := dmMain.rEdit;
   edReasonDismissal.Enabled := dmMain.rEdit;
-  edDisserName.Enabled := dmMain.rEdit;
   edNapr4.Enabled := dmMain.rEdit;
-  edKval4.Enabled := dmMain.rEdit;
-  edDegree.Enabled := dmMain.rEdit;
-  edGuideDegree.Enabled := dmMain.rEdit;
-  edFIOGuide.Enabled := dmMain.rEdit;
-  dtDefend.Enabled := dmMain.rEdit;
   dtRealDefend.Enabled := dmMain.rEdit;
+  dtSovet_Date.Enabled := dmMain.rEdit;
+  edSovet_Shifr.Enabled := dmMain.rEdit;
+  edSovet_Org.Enabled := dmMain.rEdit;
+  edSovet_Num.Enabled := dmMain.rEdit;
+  edSovet_Org_Order.Enabled := dmMain.rEdit;
   ///////////////////////
 
   btnOk.Visible        := dmMain.rEdit;
@@ -1193,20 +1115,6 @@ procedure TfmPersonForm.MenuItem12Click(Sender: TObject);
 begin
   if dxtPersDeps.FocusedNode<>nil then begin
     dxtPersDeps.FocusedNode.Destroy;
-    edFam.OnChange(Self);
-  end;
-end;
-
-procedure TfmPersonForm.MenuItem3Click(Sender: TObject);
-begin
-  dxtStudyHistory.Add.Focused := true;
-  edFam.OnChange(Self);
-end;
-
-procedure TfmPersonForm.MenuItem4Click(Sender: TObject);
-begin
-  if dxtStudyHistory.FocusedNode<>nil then begin
-    dxtStudyHistory.FocusedNode.Destroy;
     edFam.OnChange(Self);
   end;
 end;
@@ -1431,7 +1339,7 @@ begin
 end;
 
 function TfmPersonForm.LoadData: boolean;
-var n, nn: Integer;
+var napr, n, nn: Integer;
     isStudent: Boolean;
     NewPDPCode, ss: String;
 
@@ -1456,7 +1364,6 @@ var n, nn: Integer;
     edDipl, edDiplSer, edDate, edDateGive: TEdit;
     edKval, edNapr: TComboBox;
     edKval3: TdxMRUEdit;
-    edOKSO: TEdit;
     rbEducMain: TRadioButton;
   begin
     cbUz   := FindComponent('cbUz'  +IntToStr(EduType)) as TdxPickEdit;
@@ -1471,7 +1378,6 @@ var n, nn: Integer;
     else
       edKval := FindComponent('edKval'+IntToStr(EduType)) as TComboBox;
     edNapr := FindComponent('edNapr'+IntToStr(EduType)) as TComboBox;
-    edOKSO := FindComponent('edOKSO'+IntToStr(EduType)) as TEdit;
     rbEducMain := FindComponent('rbEduc'+IntToStr(EduType)+'Main') as TRadioButton;
 
     if qrEduc.Locate('TYPE',EduType,[]) then begin
@@ -1513,7 +1419,6 @@ var n, nn: Integer;
       edNapr.ItemIndex := n;
       if n>=0 then edNapr.Text := edNapr.Items[n];
 
-      edOKSO.Text := qrEduc.FieldByName('OKSO').AsString;
       rbEducMain.Checked := qrEduc.FieldByName('IsMain').AsBoolean;
     end
     else begin
@@ -1533,7 +1438,6 @@ var n, nn: Integer;
         edKval3.Text := EmptyStr;
       end;
       edNapr4.ItemIndex := 0;
-      edOKSO.Text := EmptyStr;
       rbEducMain.Checked := false;
     end;
   end;
@@ -1687,11 +1591,6 @@ begin
     chkVoen.Checked := qrData.FieldByName('IS_WAR').AsInteger<>0;
     chkVoen.OnClick(chkVoen);
 //    cbCateg.ItemIndex := ListIndex(cbCateg.Items,qrData.FieldByName('CPROF_ID').AsInteger);
-    case qrData.FieldByName('CSOST').AsInteger of
-      1: rbFlySost.Checked := true;
-      2: rbSweemSost.Checked := true;
-      else rbNoSost.Checked := true;
-    end;
     LoadText(edNumbT2      ,'NUMB_T2');
     LoadDate(dtWBeg        ,'W_DBEG');
     LoadDate(dtWBDate      ,'WBDate');
@@ -1728,6 +1627,8 @@ begin
     LoadText(edWCat        ,'WCAT');
     n := ListIndex(dxpOVK.Items,qrData.FieldByName('OVK_ID').AsInteger);
     dxpOVK.ItemIndex := n; if n>=0 then dxpOVK.Text := dxpOVK.Items[n];
+    n := ListIndex(dxpWBOVK.Items,qrData.FieldByName('WBOVK').AsInteger);
+    dxpWBOVK.ItemIndex := n; if n>=0 then dxpWBOVK.Text := dxpWBOVK.Items[n];
     n := ListIndex(dxpDelay.Items,qrData.FieldByName('Delay_ID').AsInteger);
     dxpDelay.ItemIndex := n; if n>=0 then dxpDelay.Text := dxpDelay.Items[n];
     LoadDate(dtDelayBeg    ,'DelayStart_date');
@@ -1837,38 +1738,14 @@ begin
     end;
 
     // Сведения об учащемся
-    rbAspirant.Checked := False;
-    rbStudent.Checked := False;
-    bNonStudent.Visible := false;
+    cbStudent.Checked := False;
     if not qrData.FieldByName('IsAspirant').IsNull then
     begin
-      rbAspirant.Checked := qrData.FieldByName('IsAspirant').AsInteger = 1;
-      rbStudent.Checked := not rbAspirant.Checked;
-      bNonStudent.Visible := true;
+      cbStudent.Checked := true;
     end;
-    //dtBeginStudy
-//    LoadText(edOrder,'StudyOrder');
-//    LoadDate(dtOrder,'StudyOrder_date');
     LoadDate(dtEndStudy,'StudyEnd_date');
 
-    if qrStudyHistory.Active then qrStudyHistory.Requery else qrStudyHistory.Open;
-    qrStudyHistory.First;
-    dxtStudyHistory.ClearNodes;
-    while not qrStudyHistory.EOF do begin
-      with dxtStudyHistory.Add do begin
-        Values[0] := colStudentStatus.Items[ListIndex(colStudentStatus.Items,qrStudyHistory.FieldByName('POST_ID').AsInteger,0)];
-        Values[1] := colVUZDep.Items[ListIndex(colVUZDep.Items,qrStudyHistory.FieldByName('DEP_ID').AsInteger,0)];
-        Values[2] := qrStudyHistory.FieldByName('IN_DATE').Value;
-        Values[3] := qrStudyHistory.FieldByName('IN_ORD_NUMB').Value;
-        Values[4] := qrStudyHistory.FieldByName('IN_ORD_DATE').Value;
-        Values[5] := colStudyForm.Items[ListIndex(colStudyForm.Items,qrStudyHistory.FieldByName('WTP_ID').AsInteger,0)];
-        Data := colStudyForm.Items.Objects[colStudyForm.Items.IndexOf(VarToStr(Values[5]))];
-      end;
-      qrStudyHistory.Next;
-    end;
-
     rbAspirantClick(nil);
-    dxtStudyHistoryChangeNode(dxtStudyHistory, nil, nil);
 
     if qrN26History.Active then qrN26History.Requery else qrN26History.Open;
     qrN26History.First;
@@ -1895,6 +1772,7 @@ begin
     rbInProcess.Checked := qrData.FieldByName('VKStatus').AsInteger = 1;
     rbCompleted.Checked := qrData.FieldByName('VKStatus').AsInteger = 2;
     rbFailed.Checked := qrData.FieldByName('VKStatus').AsInteger = 3;
+    rbWarProgram.ItemIndex := qrData.FieldByName('War_Program').AsInteger;
     LoadDate(dtBeginWar,'BeginWar_date');
     LoadDate(dtEndWar,'EndWar_date');
     LoadDate(dtRealEndWar,'RealEndWar_date');
@@ -1903,7 +1781,6 @@ begin
     LoadText(edOrderDismissal,'OrderDismissal');
     LoadDate(dtOrderDismissal,'OrderDismissal_date');
     LoadText(edReasonDismissal,'ReasonDismissal');
-    LoadText(edDisserName,'DisserName');
 
     if qrEduc.Locate('PERS_ID;TYPE',VarArrayOf([qrData.FieldByName('PERS_ID').AsInteger,4]),[]) then begin
       n := ListIndex(edNapr4.Items,qrEduc.FieldByName('NAPR_ID').AsInteger);
@@ -1914,13 +1791,13 @@ begin
       edNapr4.ItemIndex := 0;
       //edNapr4.Text := EmptyStr;
     end;
-    edKval4.ItemIndex := ListIndex(edKval4.Items,qrData.FieldByName('Kval_ID').AsInteger,0);
 
-    edDegree.ItemIndex := ListIndex(edDegree.Items,qrData.FieldByName('Degree_ID').AsInteger,0);
-    edGuideDegree.ItemIndex := ListIndex(edGuideDegree.Items,qrData.FieldByName('GuideDegree_ID').AsInteger,0);
-    LoadText(edFIOGuide,'FIOGuide');
-    LoadDate(dtDefend,'Defend_date');
     LoadDate(dtRealDefend,'RealDefend_date');
+    LoadDate(dtSovet_Date,'Sovet_Date');
+    LoadText(edSovet_Shifr,'Sovet_Shifr');
+    LoadText(edSovet_Org,'Sovet_Org');
+    LoadText(edSovet_Num,'Sovet_Num');
+    LoadText(edSovet_Org_Order,'Sovet_Org_Order');
     ///////////////////////
 
     fAkadem := (Trim(edOrderAkadem.Text)<>'')or
@@ -2160,16 +2037,6 @@ begin
         ChkFiled(dtWEnd, 'Не указана дата снятия с воинского учета/сдачи карточки в архив!');
     end;
 
-    for i := 0 to dxtStudyHistory.Count - 1 do
-      if (dxtStudyHistory.Items[i].Strings[0] = EmptyStr) or
-         (dxtStudyHistory.Items[i].Strings[1] = EmptyStr) or
-         (dxtStudyHistory.Items[i].Strings[2] = EmptyStr) then
-      begin
-        ShowErrAt(dxtStudyHistory, 'Некорректно заполнены сведения об истории обучения!');
-        dxtStudyHistory.Items[i].Focused := true;
-        Abort;
-      end;
-
     for i := 0 to dxtN26History.Count - 1 do
       if (dxtN26History.Items[i].Strings[0] = EmptyStr) and
          (not IsDateOrYear(dxtN26History.Items[i].Strings[1])) and
@@ -2316,6 +2183,10 @@ begin
 end;
 
 function TfmPersonForm.StoreData: boolean;
+var
+  napr: integer;
+
+
   function GetID(tbl,fld: string): Integer;
   begin
     with TADOQuery.Create(Self) do begin
@@ -2372,11 +2243,11 @@ function TfmPersonForm.StoreData: boolean;
     edDipl, edDiplSer, edDate, edDateGive: TEdit;
     edKval, edNapr: TComboBox;
     edKval3: TdxMRUEdit;
-    edOKSO: TEdit;
     rbEducMain: TRadioButton;
     d: TDateTime;
     sd: String;
     fmt: TFormatSettings;
+    qry: TAdoQuery;
   begin
     GetLocaleFormatSettings(0, fmt);
     fmt.ShortDateFormat := 'dd/mm/yyyy';
@@ -2397,7 +2268,6 @@ function TfmPersonForm.StoreData: boolean;
     else
       edKval := FindComponent('edKval'+IntToStr(EduType)) as TComboBox;
     edNapr := FindComponent('edNapr'+IntToStr(EduType)) as TComboBox;
-    edOKSO := FindComponent('edOKSO'+IntToStr(EduType)) as TEdit;
     if (Trim(cbUz.Text)<>EmptyStr)
     or (Trim(cbObrDoc.Text)<>EmptyStr)
     or (Trim(edDipl.Text)<>EmptyStr)
@@ -2408,7 +2278,6 @@ function TfmPersonForm.StoreData: boolean;
     or ((EduType=3) and (Trim(edDateGive.Text)<>EmptyStr))
     or ((EduType=3) and (Trim(cbFormPrep.Text)<>EmptyStr))
     or (Trim(edNapr.Text)<>EmptyStr)
-    or (Trim(edOKSO.Text)<>EmptyStr)
     then begin
       if (cbUz.ItemIndex<0) and (Trim(cbUz.Text)<>EmptyStr) then
       with TADOTable.Create(Self) do begin// store education-org
@@ -2467,10 +2336,19 @@ function TfmPersonForm.StoreData: boolean;
           qrEduc.FieldByName('FormPrep_ID' ).Value := Integer(cbFormPrep.Items.Objects[cbFormPrep.ItemIndex]);
       end;
 
-      if edNapr.ItemIndex>=0 then
+      if edNapr.ItemIndex>=0 then begin
         qrEduc.FieldByName('NAPR_ID').Value := Integer(edNapr.Items.Objects[edNapr.ItemIndex]);
+        qry := TAdoQuery.Create(Self);
+        qry.Connection := qrData.Connection;
+        qry.SQL.Text := 'Select * from KNapr where Napr_Id = '+IntToStr(Integer(edNapr.Items.Objects[edNapr.ItemIndex]));
+        qry.Open;
+        if qry.Eof then
+          qrEduc.FieldByName('OKSO').Clear
+        else
+          qrEduc.FieldByName('OKSO').AsString := qry.FieldByName('Napr_Kod').AsString;
+        qry.Free;
+      end;
 
-      AssignStr(qrEduc.FieldByName('OKSO'),edOKSO);
       qrEduc.FieldByName('Type').AsInteger := EduType;
       qrEduc.FieldByName('IsMain').AsBoolean := rbEducMain.Checked;
       qrEduc.Post;
@@ -2549,12 +2427,6 @@ begin  //StoreData
 
 //    qrData.FieldByName('CPROF_ID').Value :=
 //      Integer(cbCateg.Items.Objects[cbCateg.ItemIndex]);
-    if rbNoSost.Checked then
-      qrData.FieldByName('CSOST').Value := 0
-    else
-      if rbFlySost.Checked
-        then qrData.FieldByName('CSOST').Value := 1
-        else qrData.FieldByName('CSOST').Value := 2;
     if chkVoen.Checked
       then qrData.FieldByName('IS_WAR').Value := 1
       else qrData.FieldByName('IS_WAR').Value := 0;
@@ -2571,28 +2443,6 @@ begin  //StoreData
     end;
     qrData.Edit;
 
-  // store StudyHistory
-    if not qrStudyHistory.Active then qrStudyHistory.Open;
-    while not qrStudyHistory.IsEmpty do qrStudyHistory.Delete;
-    for n:=0 to dxtStudyHistory.Count-1 do begin
-      qrStudyHistory.Append;
-      if qrStudyHistory.FieldByName('ID').DataType<>ftAutoInc then
-        qrStudyHistory.FieldByName('ID').Value := GetID('Appointment','ID');
-      qrStudyHistory.FieldByName('PERS_ID').Value := qrData.FieldByName('PERS_ID').AsInteger;
-      qrStudyHistory.FieldByName('POST_ID').Value :=
-        Integer(colStudentStatus.Items.Objects[colStudentStatus.Items.IndexOf(dxtStudyHistory.Items[n].Values[0])]);
-      qrStudyHistory.FieldByName('DEP_ID').Value :=
-        Integer(colVUZDep.Items.Objects[colVUZDep.Items.IndexOf(dxtStudyHistory.Items[n].Values[1])]);
-      if Trim(dxtStudyHistory.Items[n].Strings[2]) <> '' then
-        qrStudyHistory.FieldByName('IN_DATE').Value := dxtStudyHistory.Items[n].Values[2];
-      qrStudyHistory.FieldByName('IN_ORD_NUMB').Value := dxtStudyHistory.Items[n].Strings[3];
-      if Trim(dxtStudyHistory.Items[n].Strings[4]) <> '' then
-        qrStudyHistory.FieldByName('IN_ORD_DATE').Value := dxtStudyHistory.Items[n].Values[4];
-      qrStudyHistory.FieldByName('WTP_ID').Value := Integer(dxtStudyHistory.Items[n].Data);
-
-      qrStudyHistory.FieldByName('WCH_ID').Value := 1;
-      qrStudyHistory.Post;
-    end;
   /////////////////////
 
     AssignDate(qrData.FieldByName('W_DBEG'),dtWBeg);
@@ -2641,6 +2491,28 @@ begin  //StoreData
           Free;
           dxpOVK.Items.AddObject(dxpOVK.Text,Pointer(qrData.FieldByName('OVK_ID').AsInteger));
           dxpOVK.ItemIndex := dxpOVK.Items.Count-1;
+        end;
+    qrData.FieldByName('WBOVK').Clear;
+    if dxpWBOVK.ItemIndex>=0
+    then
+      qrData.FieldByName('WBOVK').Value := Integer(dxpWBOVK.Items.Objects[dxpWBOVK.ItemIndex])
+    else
+      if Trim(dxpWBOVK.Text)=EmptyStr then qrData.FieldByName('WBOVK').Value := NULL
+      else
+    //creating new record in KOVK
+        with TADOTable.Create(Self) do begin
+          Connection := dmMain.dbMain;
+          TableName := 'KOVK';
+          Open;
+          Append;
+          if FieldByName('OVK_ID').DataType<>ftAutoInc then
+            FieldByName('OVK_ID').Value := GetID('KOVK','OVK_ID');
+          FieldByName('OVK_NAME').Value := dxpWBOVK.Text;
+          Post;
+          qrData.FieldByName('WBOVK').Value := FieldByName('OVK_ID').AsInteger;
+          Free;
+          dxpWBOVK.Items.AddObject(dxpWBOVK.Text,Pointer(qrData.FieldByName('WBOVK').AsInteger));
+          dxpWBOVK.ItemIndex := dxpWBOVK.Items.Count-1;
         end;
     with dxpDelay do
       if ItemIndex >= 0 then begin
@@ -2758,12 +2630,8 @@ begin  //StoreData
       else qrData.FieldByName('SC_ID').Value := Integer(Items.Objects[ItemIndex]);
 
     //Сведения об учащемся
-    if rbAspirant.Checked then qrData.FieldByName('IsAspirant').Value := 1
-    else if rbStudent.Checked then qrData.FieldByName('IsAspirant').Value := 0
+    if cbStudent.Checked then qrData.FieldByName('IsAspirant').Value := 0
     else qrData.FieldByName('IsAspirant').Clear;
-    //dtBeginStudy
-//    AssignStr(edOrder,'StudyOrder');
-//    AssignDate(dtOrder,'StudyOrder_date');
     AssignDate(qrData.FieldByName('StudyEnd_date'),dtEndStudy);
     AssignStr(qrData.FieldByName('OrderAkadem'),edOrderAkadem);
     AssignDate(qrData.FieldByName('OrderAkadem_date'),dtOrderAkadem);
@@ -2777,6 +2645,7 @@ begin  //StoreData
     if rbInProcess.Checked then qrData.FieldByName('VKStatus').AsInteger := 1;
     if rbCompleted.Checked then qrData.FieldByName('VKStatus').AsInteger := 2;
     if rbFailed.Checked then qrData.FieldByName('VKStatus').AsInteger := 3;
+    qrData.FieldByName('War_Program').AsInteger := rbWarProgram.ItemIndex;
     AssignDate(qrData.FieldByName('BeginWar_date'),dtBeginWar);
     AssignDate(qrData.FieldByName('EndWar_date'),dtEndWar);
     AssignDate(qrData.FieldByName('RealEndWar_date'),dtRealEndWar);
@@ -2785,25 +2654,14 @@ begin  //StoreData
     AssignStr(qrData.FieldByName('OrderDismissal'),edOrderDismissal);
     AssignDate(qrData.FieldByName('OrderDismissal_date'),dtOrderDismissal);
     AssignStr(qrData.FieldByName('ReasonDismissal'),edReasonDismissal);
-    AssignStr(qrData.FieldByName('DisserName'),edDisserName);
-    with edKval4 do
-      if ItemIndex >= 0 then begin
-        if Integer(Items.Objects[ItemIndex])=0 then qrData.FieldByName('Kval_ID').Value := NULL
-        else qrData.FieldByName('Kval_ID').Value := Integer(Items.Objects[ItemIndex]);
-      end
-      else qrData.FieldByName('Kval_ID').Value := NULL;
-    with edDegree do
-      if ItemIndex >= 0 then begin
-        if Integer(Items.Objects[ItemIndex])=0 then qrData.FieldByName('Degree_ID').Value := NULL
-        else qrData.FieldByName('Degree_ID').Value := Integer(Items.Objects[ItemIndex]);
-      end
-      else qrData.FieldByName('Degree_ID').Value := NULL;
-    with edGuideDegree do
-      if Integer(Items.Objects[ItemIndex])=0 then qrData.FieldByName('GuideDegree_ID').Value := NULL
-      else qrData.FieldByName('GuideDegree_ID').Value := Integer(Items.Objects[ItemIndex]);
-    AssignStr(qrData.FieldByName('FIOGuide'),edFIOGuide);
-    AssignDate(qrData.FieldByName('Defend_date'),dtDefend);
     AssignDate(qrData.FieldByName('RealDefend_date'),dtRealDefend);
+
+    AssignDate(qrData.FieldByName('Sovet_Date'), dtSovet_Date);
+    AssignStr(qrData.FieldByName('Sovet_Shifr'), edSovet_Shifr);
+    AssignStr(qrData.FieldByName('Sovet_Org'), edSovet_Org);
+    AssignStr(qrData.FieldByName('Sovet_Num'), edSovet_Num);
+    AssignStr(qrData.FieldByName('Sovet_Org_Order'), edSovet_Org_Order);
+
     //////////////////////
     qrData.Post;
     SetPostAndDep;
@@ -2959,40 +2817,6 @@ begin
   edFam.OnChange(edFam);
 end;
 
-procedure TfmPersonForm.colStudentStatusCloseUp(Sender: TObject;
-  var Value: Variant; var Accept: Boolean);
-var
-  i: Integer;
-begin
-  Accept := True;
-  if AnsiUpperCase(LeftStr(VarToStr(Value),7)) = 'СТУДЕНТ' then i := 1
-  else if AnsiUpperCase(LeftStr(VarToStr(Value),8)) = 'АСПИРАНТ' then i := 2
-  else i := 1;
-  LoadStrings(colStudyForm.Items, false,
-    'SELECT * FROM KWKTYPE WHERE WTP_FLAG = ' + IntToStr(i), 'WTP_ID', 'WTP_NAME');
-  if colStudyForm.Items.IndexOfObject(dxtStudyHistory.Items[dxtStudyHistory.FocusedNumber].Data) = -1 then
-    if colStudyForm.Items.Count > 0 then begin
-      dxtStudyHistory.Items[dxtStudyHistory.FocusedNumber].Values[5] := colStudyForm.Items[0];
-      dxtStudyHistory.Items[dxtStudyHistory.FocusedNumber].Data := colStudyForm.Items.Objects[0];
-    end;
-end;
-
-procedure TfmPersonForm.colStudyFormCloseUp(Sender: TObject; var Value: Variant;
-  var Accept: Boolean);
-begin
-  Accept := True;
-  dxtStudyHistory.Items[dxtStudyHistory.FocusedNumber].Data := colStudyForm.Items.Objects[
-    colStudyForm.Items.IndexOf(VarToStr(Value))];
-end;
-
-procedure TfmPersonForm.bNonStudentClick(Sender: TObject);
-begin
-  rbStudent.Checked := false;
-  rbAspirant.Checked := false;
-  bNonStudent.Visible := false;
-  edFamChange(nil);
-end;
-
 procedure TfmPersonForm.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
@@ -3046,9 +2870,6 @@ begin
   S := edKval2.Text;
   LoadStrings(edKval2.Items,true,'SELECT Kval_ID, Kval_NAME FROM KKval ORDER BY Kval_KOD, Kval_NAME','Kval_ID','Kval_NAME');
   edKval2.ItemIndex := Max(edKval2.Items.IndexOf(S),0);
-  S := edKval4.Text;
-  LoadStrings(edKval4.Items,true,'SELECT Kval_ID, Kval_NAME FROM KKval ORDER BY Kval_KOD, Kval_NAME','Kval_ID','Kval_NAME');
-  edKval4.ItemIndex := Max(edKval3.Items.IndexOf(S),0);
 end;
 
 procedure TfmPersonForm.bNapr1Click(Sender: TObject);
@@ -3056,17 +2877,28 @@ var S: String;
 begin
   EditBaseLstModal(31);//KNAPR
   S := edNapr1.Text;
-  LoadStrings(edNapr1.Items,true,'SELECT NAPR_ID, NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
+  LoadStrings(edNapr1.Items,true,'SELECT NAPR_ID, iif(IsNull(Napr_Kod), "", Trim(NAPR_KOD)) + " " + NAPR_NAME as NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
   edNapr1.ItemIndex := Max(edNapr1.Items.IndexOf(S),0);
   S := edNapr2.Text;
-  LoadStrings(edNapr2.Items,true,'SELECT NAPR_ID, NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
+  LoadStrings(edNapr2.Items,true,'SELECT NAPR_ID, iif(IsNull(Napr_Kod), "", Trim(NAPR_KOD)) + " " + NAPR_NAME as NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
   edNapr2.ItemIndex := Max(edNapr2.Items.IndexOf(S),0);
   S := edNapr3.Text;
-  LoadStrings(edNapr3.Items,true,'SELECT NAPR_ID, NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
+  LoadStrings(edNapr3.Items,true,'SELECT NAPR_ID, iif(IsNull(Napr_Kod), "", Trim(NAPR_KOD)) + " " + NAPR_NAME as NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
   edNapr3.ItemIndex := Max(edNapr3.Items.IndexOf(S),0);
   S := edNapr4.Text;
-  LoadStrings(edNapr4.Items,true,'SELECT NAPR_ID, NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
+  LoadStrings(edNapr4.Items,true,'SELECT NAPR_ID, iif(IsNull(Napr_Kod), "", Trim(NAPR_KOD)) + " " + NAPR_NAME as NAPR_NAME FROM KNAPR ORDER BY NAPR_KOD, NAPR_NAME','NAPR_ID','NAPR_NAME');
   edNapr4.ItemIndex := Max(edNapr4.Items.IndexOf(S),0);
+end;
+
+procedure TfmPersonForm.bStudyHistoryClick(Sender: TObject);
+begin
+  if ID<=0
+  then
+    ShowErr('Команда будет доступна после сохранения карточки сотрудника!')
+  else begin
+    ShowStudyHistory(qrData.FieldByName('PERS_ID').AsInteger, qrData.FieldByName('OVK_ID').AsInteger);
+    RefreshStudyHistory;
+  end;
 end;
 
 procedure TfmPersonForm.btnApplyClick(Sender: TObject);
@@ -3310,8 +3142,6 @@ begin
   values[2] := values[2] + edKval1.Text;
   if (values[2] <> '') and (Trim(edNapr1.Text) <> '') then values[2] := values[2] + ', ';
   values[2] := values[2] + edNapr1.Text;
-  if (values[2] <> '') and (Trim(edOKSO1.Text) <> '') then values[2] := values[2] + ', ';
-  values[2] := values[2] + edOKSO1.Text;
 
   values[3] := cbUz2.Text;
   if (values[3] <> '') and (Trim(cbObrDoc2.Text) <> '') then values[3] := values[3] + ', ';
@@ -3326,9 +3156,7 @@ begin
   values[3] := values[3] + edKval2.Text;
   if (values[3] <> '') and (Trim(edNapr2.Text) <> '') then values[3] := values[3] + ', ';
   values[3] := values[3] + edNapr2.Text;
-  if (values[3] <> '') and (Trim(edOKSO2.Text) <> '') then values[3] := values[3] + ', ';
-  values[3] := values[3] + edOKSO2.Text;
-
+  
   values[4] := cbFormPrep3.Text;
   if (values[4] <> '') and (Trim(cbUz3.Text) <> '') then values[4] := values[4] + ', ';
   values[4] := values[4] + cbUz3.Text;
@@ -3348,30 +3176,10 @@ begin
   end;
   if (values[4] <> '') and (Trim(edNapr3.Text) <> '') then values[4] := values[4] + ', ';
   values[4] := values[4] + edNapr3.Text;
-  if (values[4] <> '') and (Trim(edOKSO3.Text) <> '') then values[4] := values[4] + ', ';
-  values[4] := values[4] + edOKSO3.Text;
 
   values[5] := '';
   values[6] := '';
-  if rbStudent.Checked then
-  begin
-    for i := dxtStudyHistory.Count - 1 downto 0 do
-      if AnsiUpperCase(LeftStr(VarToStr(dxtStudyHistory.Items[i].Values[0]),7)) = 'СТУДЕНТ' then begin
-        values[5] := dxtStudyHistory.Items[i].Values[1];
-        values[6] := dxtStudyHistory.Items[i].Values[0];
-        Break;
-      end;
-  end
-  else if rbAspirant.Checked then
-  begin
-    for i := dxtStudyHistory.Count - 1 downto 0 do
-      if AnsiUpperCase(LeftStr(VarToStr(dxtStudyHistory.Items[i].Values[0]),7)) = 'АСПИРАНТ' then begin
-        values[5] := dxtStudyHistory.Items[i].Values[1];
-        values[6] := dxtStudyHistory.Items[i].Values[0];
-        Break;
-      end;
-  end
-  else
+  if not cbStudent.Checked then
   begin
     values[5] := IfThen(dep_full_name = '', stDepart.Text, dep_full_name);
     values[6] := stPost.Text;
@@ -3718,7 +3526,7 @@ begin
     RefreshAppointment;
 
     NewValues := OldValues;
-    if (not rbStudent.Checked) and (not rbAspirant.Checked) then begin
+    if (not cbStudent.Checked) then begin
       NewValues[5] := IfThen(dep_full_name = '', stDepart.Text, dep_full_name);
       NewValues[6] := stPost.Text;
       FillChanges;
@@ -3846,6 +3654,34 @@ begin
   end;
 end;
 
+procedure TfmPersonForm.RefreshStudyHistory;
+var CPROF_ID, CPROF2015_ID: String;
+begin
+  if (qrData.State = dsBrowse) and not qrData.IsEmpty  then
+  with TADOQuery.Create(nil) do
+  try
+    Connection := dmMain.dbMain;
+    ParamCheck := False;
+
+    SQL.Text := 'SELECT *, iif(IsNull(Napr_Kod), "", Trim(NAPR_KOD)) + " " + NAPR_NAME as XNAPR_NAME '+
+      ' FROM (Appointment'+
+      ' LEFT JOIN KNAPR   ON KNAPR.NAPR_ID=Appointment.NAPR_ID)'+
+      ' WHERE PERS_ID='+
+      qrData.FieldByName('PERS_ID').AsString+
+      ' AND Appointment.POST_ID IN (SELECT POST_ID FROM KPOST WHERE CPROF_ID = 500 or CPROF2015_ID = 500)' +
+      ' ORDER BY IN_DATE';
+    Open;
+    Last;
+    dtBeginStudy.Text := FieldByName('IN_DATE').AsString;
+    edOrder.Text := FieldByName('IN_ORD_NUMB').AsString;
+    dtOrder.Text := FieldByName('IN_ORD_DATE').AsString;
+    edStudyForm.Text := FieldByName('XNAPR_NAME').AsString;
+    //Appointment_Id  := FieldByName('Id').AsInteger;
+    Close;
+  finally Free;
+  end;
+end;
+
 procedure TfmPersonForm.edKvalnNaprChange(Sender: TObject);
 var
   Comp: TdxMRUEdit absolute Sender;
@@ -3871,9 +3707,6 @@ begin
   S := edKval3.Text;
   LoadStrings(edKval3.Items,true,'SELECT * FROM KSCIENCE WHERE SC_FLAG = 2 ORDER BY SC_NAME','SC_ID','SC_NAME');
   edKval3.ItemIndex := Max(edKval3.Items.IndexOf(S),0);
-  S := edGuideDegree.Text;
-  LoadStrings(edGuideDegree.Items,true,'SELECT * FROM KSCIENCE WHERE SC_FLAG = 2 ORDER BY SC_NAME','SC_ID','SC_NAME');
-  edGuideDegree.ItemIndex := Max(edGuideDegree.Items.IndexOf(S),0);
   rbAspirantClick(nil);
 //  S := edDegree.Text;
 //  LoadStrings(edDegree.Items,true,'SELECT * FROM KSCIENCE WHERE SC_FLAG = 2 ORDER BY SC_NAME','SC_ID','SC_NAME');
@@ -3916,31 +3749,18 @@ end;
 
 procedure TfmPersonForm.dxpOVKButtonClick(Sender: TObject);
 var S: String;
+  dxp: TdxMRUEdit;
 begin
+  dxp := Sender as TdxMRUEdit;
   EditBaseLstModal(1);//KOVK
-  S := dxpOVK.Text;
-  LoadStrings(dxpOVK.Items,false,'SELECT * FROM KOVK ORDER BY OVK_NAME','OVK_ID','OVK_NAME');
-  dxpOVK.ItemIndex := Max(dxpOVK.Items.IndexOf(S),0);
+  S := dxp.Text;
+  LoadStrings(dxp.Items,false,'SELECT * FROM KOVK ORDER BY OVK_NAME','OVK_ID','OVK_NAME');
+  dxp.ItemIndex := Max(dxp.Items.IndexOf(S),0);
 end;
 
 procedure TfmPersonForm.dxtAssignEdited(Sender: TObject; Node: TdxTreeListNode);
 begin
   if (Node.Values[0] = NULL) or (Node.Values[0] = '') then Node.Values[0] := Date;  
-end;
-
-procedure TfmPersonForm.dxtStudyHistoryChangeNode(Sender: TObject; OldNode,
-  Node: TdxTreeListNode);
-var
-  i: Integer;
-begin
-  if dxtStudyHistory.Items[dxtStudyHistory.FocusedNumber] = nil then Exit;
-  if AnsiUpperCase(LeftStr(VarToStr(dxtStudyHistory.Items[dxtStudyHistory.FocusedNumber].Values[0]),7)) =
-                                                                  'СТУДЕНТ' then i := 1
-  else if AnsiUpperCase(LeftStr(VarToStr(dxtStudyHistory.Items[dxtStudyHistory.FocusedNumber].Values[0]),8)) =
-                                                                  'АСПИРАНТ' then i := 2
-  else i := 0;
-  LoadStrings(colStudyForm.Items, false,
-    'SELECT * FROM KWKTYPE WHERE WTP_FLAG = ' + IntToStr(i), 'WTP_ID', 'WTP_NAME');
 end;
 
 procedure TfmPersonForm.dxtStudyHistoryEdited(Sender: TObject;

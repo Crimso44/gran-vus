@@ -120,7 +120,9 @@ begin
 end;
 
 function TdmMain.OpenData(ID: Integer): boolean;
-var i, AppointmentRowCount: Integer;
+var
+  i, AppointmentRowCount: Integer;
+  Worker: Boolean;
 begin
   try
     qrPers.Close;
@@ -136,9 +138,11 @@ begin
 //      else AppointmentRowCount := 8;
     AppointmentRowCount := 5;
 
+    Worker := qrPers.FieldByName('IsAspirant').IsNull;
+
     with taAppointment do begin
       LoadFromDataSet(qrAppointment);
-      if not qrPers.FieldByName('Out_Date').IsNull then begin
+      if Worker and not qrPers.FieldByName('Out_Date').IsNull then begin
         qrAppointment.Last;
         Append;
         FieldByName('IN_ORD').AsString := 'œËÍ‡Á π ' +
@@ -147,6 +151,27 @@ begin
         FieldByName('XOVK_ID').Value := qrOVK.FieldByName('OVK_ID').Value;
         Post;
       end;
+
+      if (not Worker) and not qrPers.FieldByName('Dismissal_Date').IsNull then begin
+        qrAppointment.Last;
+        Append;
+        FieldByName('IN_ORD').AsString := 'œËÍ‡Á π ' +
+          qrPers.FieldByName('OrderDismissal').AsString + ' ÓÚ ' + ConfDate(qrPers.FieldByName('OrderDismissal_Date').AsDateTime);
+        FieldByName('POST_NAME').AsString := 'Œ“◊»—À≈Õ';
+        FieldByName('XOVK_ID').Value := qrOVK.FieldByName('OVK_ID').Value;
+        FieldByName('CPROF_ID').AsInteger := 500;
+        Post;
+      end;
+
+      taAppointment.Last;
+      while not taAppointment.Bof do begin
+        if (taAppointment.FieldByName('CPROF_ID').AsInteger = 500) and Worker then
+          taAppointment.Delete
+        else if (taAppointment.FieldByName('CPROF_ID').AsInteger <> 500) and not Worker then
+          taAppointment.Delete
+        else taAppointment.Prior;
+      end;
+
       while RecordCount<AppointmentRowCount do begin
         Append; Post;
       end;
@@ -192,7 +217,7 @@ type
 const
   Gender: array [Boolean] of String = ('ÏÛÊÒÍÓÈ','ÊÂÌÒÍËÈ');
 var
-  Worker, Student: Boolean;
+  Worker: Boolean;
   i: Double;
   ii: Integer;
   s: String;
@@ -200,26 +225,10 @@ begin
   try
     EkRTF1.ClearVars;
 
-    taAppointment.Last;
-    Worker := taAppointment.FieldByName('CPROF_ID').AsInteger <> 500;
-    Student := qrPers.FieldByName('IsAspirant').AsInteger < 1;
-    while not taAppointment.Bof do begin
-      if (taAppointment.FieldByName('CPROF_ID').AsInteger = 500) and Worker then
-        taAppointment.Delete
-      else if (taAppointment.FieldByName('CPROF_ID').AsInteger <> 500) and not Worker then
-        taAppointment.Delete
-      else if (taAppointment.FieldByName('CPROF_ID').AsInteger = 500) and not Worker then begin
-        if (AnsiUpperCase(LeftStr(taAppointment.FieldByName('POST_NAME').AsString, 7)) = '—“”ƒ≈Õ“')
-            and (not Student) then taAppointment.Delete
-        else if (AnsiUpperCase(LeftStr(taAppointment.FieldByName('POST_NAME').AsString, 8)) = '¿—œ»–¿Õ“')
-            and Student then taAppointment.Delete
-        else taAppointment.Prior;
-      end
-      else taAppointment.Prior;
-    end;
+    Worker := qrPers.FieldByName('IsAspirant').IsNull;
 
     EkRTF1.CreateVar('Worker', Worker);
-    EkRTF1.CreateVar('Student', Student);
+    EkRTF1.CreateVar('Student', not Worker);
     EkRTF1.CreateVar('OrgName',qrOrg.FieldByName('ORGNAME').AsString);
     EkRTF1.CreateVar('OKPO',qrOrg.FieldByName('OKPO').AsString);
     EkRTF1.CreateVar('NumbT2',qrPers.FieldByName('NUMB_T2').AsString);
@@ -259,6 +268,17 @@ begin
     end;
     EkRTF1.CreateVar('WBSer', qrPers.FieldByName('WBSer').AsString);
     EkRTF1.CreateVar('WBnum', qrPers.FieldByName('WBnum').AsString);
+    EkRTF1.CreateVar('WBdate', ConfDate(qrPers.FieldByName('WBdate').AsDateTime));
+
+    if qrPers.FieldByName('WBovk').IsNull then
+      EkRTF1.CreateVar('WBovk', '')
+    else begin
+      qrOvkX.Close;
+      qrOvkX.Parameters.ParamByName('OVK_Id').Value := qrPers.FieldByName('WBovk').Value;
+      qrOvkX.Open;
+      EkRTF1.CreateVar('WBovk', qrOvkX.FieldByName('OVK_NAME').AsString);
+      qrOvkX.Close;
+    end;
 
     EkRTF1.CreateVar('Fam',qrPers.FieldByName('FAM').AsString);
     EkRTF1.CreateVar('Im',qrPers.FieldByName('IM').AsString);
@@ -468,8 +488,8 @@ begin
     end;
 
     EkRTF1.CreateVar('FIO',
-        qrPers.FieldByName('Im').AsString[1]+'. '+
-        qrPers.FieldByName('Otch').AsString[1]+'. '+
+        (qrPers.FieldByName('Im').AsString+' ')[1]+'. '+
+        (qrPers.FieldByName('Otch').AsString+' ')[1]+'. '+
         qrPers.FieldByName('Fam').AsString);
 
 

@@ -1353,7 +1353,7 @@ end;
 
 initialization
   DrawBitmap := TBitmap.Create;
-  sdxCalcError := LoadStr(dx_Error);
+  sdxCalcError := 'Error'; //LoadStr(dx_Error);
 
 finalization
   if DrawBitmap <> nil then

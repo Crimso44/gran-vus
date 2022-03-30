@@ -1557,7 +1557,7 @@ begin
   if Modified and (FLockValidate = 0) then
   begin
     Accept := True;
-    ErrorText := LoadStr(dxSValidateEditErrorText); // TODO res
+    ErrorText := LoadStrEdStr(dxSValidateEditErrorText); // TODO res
     if Assigned(FOnValidate) then
       FOnValidate(Self, ErrorText, Accept);
     if not Accept then

@@ -47,7 +47,7 @@ var
   dmMain: TdmMain;
 
 const
-  sEventObject = 'Справка об обучении учащегося колледжа или студента';
+  sEventObject = 'Справка об обучении аспиранта, адъюнкта, ординатора, ассистента-стажера';
 
 implementation
 
@@ -140,8 +140,8 @@ end;
 procedure TdmMain.DataModuleCreate(Sender: TObject);
 begin
   if dbMain.Connected then ShowMessage('Close default connection!');
-  EkRTF1.Infile := GetTemplatesDir + 'form26.rtf';
-  EkRTF1.Outfile := GetReportsDir + 'form26.rtf';
+  EkRTF1.Infile := GetTemplatesDir + 'form26x.rtf';
+  EkRTF1.Outfile := GetReportsDir + 'form26x.rtf';
 end;
 
 function TdmMain.OpenData(ID: Integer): boolean;
@@ -239,22 +239,21 @@ begin
         qrStudyHistory.FieldByName('NAPR_NAME').AsString);
 
     qrStudyHistory.Last;
-    if qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('02') then
-      EkRTF1.CreateVar('vid_obr2', 'среднего профессионального')
-    else if
-      qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('06') or
-      qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('07') or
-      qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('08') or
-      qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('09') then begin
-
-      Dialogs.ShowMessage('Данный документ предназначен только для студентов и учащихся колледжей и не соответствует образовательному уровню обучающегося');
-      Result := false;
-      Exit;
-    end else (*if
-      qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('03') or
-      qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('04') or
-      qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('05') then*) begin
-      EkRTF1.CreateVar('vid_obr2', 'высшего')
+    if qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('06') then begin
+      EkRTF1.CreateVar('vid_obr2', 'аспирантуры');
+      EkRTF1.CreateVar('vid_obr3', 'Аспирантура');
+    end else if qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('07') then begin
+      EkRTF1.CreateVar('vid_obr2', 'адьюнктуры');
+      EkRTF1.CreateVar('vid_obr3', 'Адьюнктура');
+    end else if qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('08') then begin
+      EkRTF1.CreateVar('vid_obr2', 'ординатуры');
+      EkRTF1.CreateVar('vid_obr3', 'Ординатура');
+    end else if qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('09') then begin
+      EkRTF1.CreateVar('vid_obr2', 'ассистентуры-стажировки');
+      EkRTF1.CreateVar('vid_obr3', 'Ассистентура-стажировка');
+    end else begin
+      EkRTF1.CreateVar('vid_obr2', '');
+      EkRTF1.CreateVar('vid_obr3', '');
     end;
     if qrStudyHistory.FieldByName('NNAPR_KOD').IsNull then begin
       s := Copy(qrStudyHistory.FieldByName('NAPR_KOD').AsString, 1, 2) + '0000';
@@ -391,9 +390,19 @@ begin
       EkRTF1.CreateVar('vkname', '');
     end;
 
-    EkRTF1.CreateVar('VKStatusOK',
-      (qrPers.FieldByName('VKStatus').AsInteger = 1) or
-      (qrPers.FieldByName('VKStatus').AsInteger = 2));
+    EkRTF1.CreateVar('Certificate', qrOrg.FieldByName('Certificate').AsString);
+    EkRTF1.CreateVar('CertificateWho', qrOrg.FieldByName('CertificateWho').AsString);
+    EkRTF1.CreateVar('BeginCertificate', Date2Doc(qrOrg.FieldByName('BeginCertificate_date').AsDateTime));
+    EkRTF1.CreateVar('EndCertificate', Date2Doc(qrOrg.FieldByName('EndCertificate_date').AsDateTime));
+
+    EkRTF1.CreateVar('DefendOK', not qrPers.FieldByName('RealDefend_date').IsNull);
+    EkRTF1.CreateVar('Defend_Date', Date2Doc(qrPers.FieldByName('RealDefend_date').AsDateTime));
+    EkRTF1.CreateVar('Sovet_Shifr', qrPers.FieldByName('Sovet_Shifr').AsString);
+    EkRTF1.CreateVar('Sovet_Org', qrPers.FieldByName('Sovet_Org').AsString);
+    EkRTF1.CreateVar('Sovet_Date', Date2Doc(qrPers.FieldByName('Sovet_Date').AsDateTime));
+    EkRTF1.CreateVar('Sovet_Num', qrPers.FieldByName('Sovet_Num').AsString);
+    EkRTF1.CreateVar('Sovet_Org_Order', qrPers.FieldByName('Sovet_Org_Order').AsString);
+
     s := '';
     case qrPers.FieldByName('war_program').AsInteger of
       0: s := 'офицера';
@@ -408,7 +417,7 @@ begin
     else
       EkRTF1.CreateVar('EndWar_Date', Date2Doc(qrPers.FieldByName('RealEndWar_Date').AsDateTime));
 
-    EkRTF1.Infile := ExtractFilePath(EkRTF1.Infile)+'form26.rtf';
+    EkRTF1.Infile := ExtractFilePath(EkRTF1.Infile)+'form26x.rtf';
     EkRTF1.Outfile := ExtractFilePath(EkRTF1.Outfile)+
       'Справка для отсрочки призыва учащегося '+
       qrPers.FieldByName('Fam').AsString+' '+

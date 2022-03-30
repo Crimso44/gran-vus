@@ -173,7 +173,7 @@ object fmPersonForm: TfmPersonForm
     Top = 55
     Width = 797
     Height = 406
-    ActivePage = TabSheetUpol
+    ActivePage = tabSheetX0
     HotTrack = True
     MultiLine = True
     RaggedRight = True
@@ -909,27 +909,6 @@ object fmPersonForm: TfmPersonForm
         Height = 13
         Caption = #1076#1088#1091#1075#1072#1103', '#1054#1050#1055#1044#1058#1056
       end
-      object Label26: TLabel
-        Left = 376
-        Top = 95
-        Width = 70
-        Height = 13
-        Caption = #1050#1086#1076' '#1087#1086' '#1054#1050#1057#1054':'
-      end
-      object Label32: TLabel
-        Left = 376
-        Top = 185
-        Width = 70
-        Height = 13
-        Caption = #1050#1086#1076' '#1087#1086' '#1054#1050#1057#1054':'
-      end
-      object Label82: TLabel
-        Left = 376
-        Top = 306
-        Width = 70
-        Height = 13
-        Caption = #1050#1086#1076' '#1087#1086' '#1054#1050#1057#1054':'
-      end
       object Label155: TLabel
         Left = 179
         Top = 49
@@ -1074,7 +1053,7 @@ object fmPersonForm: TfmPersonForm
         Left = 128
         Top = 114
         Width = 445
-        TabOrder = 9
+        TabOrder = 8
         MaxLength = 100
         Text = ''
         OnChange = edFamChange
@@ -1087,7 +1066,7 @@ object fmPersonForm: TfmPersonForm
         Width = 98
         Height = 21
         MaxLength = 50
-        TabOrder = 12
+        TabOrder = 11
         OnChange = edFamChange
       end
       object edOKPDTR1: TEdit
@@ -1096,7 +1075,7 @@ object fmPersonForm: TfmPersonForm
         Width = 61
         Height = 21
         MaxLength = 10
-        TabOrder = 28
+        TabOrder = 25
         OnChange = edFamChange
         OnKeyPress = edOKATOKeyPress
       end
@@ -1106,7 +1085,7 @@ object fmPersonForm: TfmPersonForm
         Width = 61
         Height = 21
         MaxLength = 10
-        TabOrder = 30
+        TabOrder = 27
         OnChange = edFamChange
         OnKeyPress = edOKATOKeyPress
       end
@@ -1116,7 +1095,7 @@ object fmPersonForm: TfmPersonForm
         Width = 220
         Height = 21
         MaxLength = 50
-        TabOrder = 27
+        TabOrder = 24
         OnChange = edFamChange
       end
       object edProf2: TEdit
@@ -1125,7 +1104,7 @@ object fmPersonForm: TfmPersonForm
         Width = 220
         Height = 21
         MaxLength = 50
-        TabOrder = 29
+        TabOrder = 26
         OnChange = edFamChange
       end
       object edDate1: TEdit
@@ -1143,7 +1122,7 @@ object fmPersonForm: TfmPersonForm
         Width = 91
         Height = 21
         MaxLength = 10
-        TabOrder = 13
+        TabOrder = 12
         OnChange = edFamChange
       end
       object edDate3: TEdit
@@ -1152,7 +1131,7 @@ object fmPersonForm: TfmPersonForm
         Width = 91
         Height = 21
         MaxLength = 10
-        TabOrder = 18
+        TabOrder = 16
         OnChange = edFamChange
       end
       object edDipl3: TEdit
@@ -1161,14 +1140,14 @@ object fmPersonForm: TfmPersonForm
         Width = 98
         Height = 21
         MaxLength = 50
-        TabOrder = 22
+        TabOrder = 20
         OnChange = edFamChange
       end
       object cbUz3: TdxPickEdit
         Left = 225
         Top = 227
         Width = 349
-        TabOrder = 19
+        TabOrder = 17
         MaxLength = 100
         Text = ''
         OnChange = edFamChange
@@ -1179,7 +1158,7 @@ object fmPersonForm: TfmPersonForm
         Left = 128
         Top = 301
         Width = 242
-        TabOrder = 25
+        TabOrder = 23
         MaxLength = 50
         Text = ''
         OnChange = edFamChange
@@ -1187,36 +1166,6 @@ object fmPersonForm: TfmPersonForm
         DropDownListStyle = True
         OnButtonClick = edKval3ButtonClick
         StoredValues = 2
-      end
-      object edOKSO1: TEdit
-        Left = 452
-        Top = 90
-        Width = 121
-        Height = 21
-        MaxLength = 10
-        TabOrder = 8
-        OnChange = edFamChange
-        OnKeyPress = edOKATOKeyPress
-      end
-      object edOKSO2: TEdit
-        Left = 452
-        Top = 180
-        Width = 121
-        Height = 21
-        MaxLength = 10
-        TabOrder = 16
-        OnChange = edFamChange
-        OnKeyPress = edOKATOKeyPress
-      end
-      object edOKSO3: TEdit
-        Left = 452
-        Top = 301
-        Width = 121
-        Height = 21
-        MaxLength = 10
-        TabOrder = 26
-        OnChange = edFamChange
-        OnKeyPress = edOKATOKeyPress
       end
       object cbObrDoc1: TdxPickEdit
         Left = 76
@@ -1244,14 +1193,14 @@ object fmPersonForm: TfmPersonForm
         Width = 41
         Height = 21
         MaxLength = 50
-        TabOrder = 11
+        TabOrder = 10
         OnChange = edFamChange
       end
       object cbObrDoc2: TdxPickEdit
         Left = 76
         Top = 135
         Width = 97
-        TabOrder = 10
+        TabOrder = 9
         MaxLength = 100
         Text = ''
         OnChange = edFamChange
@@ -1264,7 +1213,7 @@ object fmPersonForm: TfmPersonForm
         Width = 91
         Height = 21
         MaxLength = 10
-        TabOrder = 23
+        TabOrder = 21
         OnChange = edFamChange
       end
       object edDiplSer3: TEdit
@@ -1273,14 +1222,14 @@ object fmPersonForm: TfmPersonForm
         Width = 41
         Height = 21
         MaxLength = 50
-        TabOrder = 21
+        TabOrder = 19
         OnChange = edFamChange
       end
       object cbObrDoc3: TdxPickEdit
         Left = 76
         Top = 252
         Width = 97
-        TabOrder = 20
+        TabOrder = 18
         MaxLength = 100
         Text = ''
         OnChange = edFamChange
@@ -1291,7 +1240,7 @@ object fmPersonForm: TfmPersonForm
         Left = 128
         Top = 203
         Width = 242
-        TabOrder = 17
+        TabOrder = 15
         MaxLength = 100
         Text = ''
         OnChange = edFamChange
@@ -1319,7 +1268,7 @@ object fmPersonForm: TfmPersonForm
         Top = 158
         Width = 419
         Height = 21
-        TabOrder = 14
+        TabOrder = 13
         OnChange = edFamChange
       end
       object edKval2: TComboBox
@@ -1327,7 +1276,7 @@ object fmPersonForm: TfmPersonForm
         Top = 181
         Width = 217
         Height = 21
-        TabOrder = 15
+        TabOrder = 14
         OnChange = edFamChange
       end
       object edNapr3: TComboBox
@@ -1335,7 +1284,7 @@ object fmPersonForm: TfmPersonForm
         Top = 279
         Width = 419
         Height = 21
-        TabOrder = 24
+        TabOrder = 22
         OnChange = edFamChange
       end
       object rbEduc1Main: TRadioButton
@@ -1344,7 +1293,7 @@ object fmPersonForm: TfmPersonForm
         Width = 113
         Height = 17
         Caption = #1054#1089#1085#1086#1074#1085#1086#1077
-        TabOrder = 31
+        TabOrder = 28
         OnClick = edFamChange
       end
       object rbEduc2Main: TRadioButton
@@ -1353,7 +1302,7 @@ object fmPersonForm: TfmPersonForm
         Width = 113
         Height = 17
         Caption = #1054#1089#1085#1086#1074#1085#1086#1077
-        TabOrder = 32
+        TabOrder = 29
         OnClick = edFamChange
       end
       object rbEduc3Main: TRadioButton
@@ -1362,7 +1311,7 @@ object fmPersonForm: TfmPersonForm
         Width = 113
         Height = 17
         Caption = #1054#1089#1085#1086#1074#1085#1086#1077
-        TabOrder = 33
+        TabOrder = 30
         OnClick = edFamChange
       end
     end
@@ -1564,13 +1513,6 @@ object fmPersonForm: TfmPersonForm
           Height = 13
           Caption = #1076#1086' 2015'#1075'.:'
         end
-        object Label46: TLabel
-          Left = 500
-          Top = 36
-          Width = 39
-          Height = 13
-          Caption = 'C'#1086#1089#1090#1072#1074':'
-        end
         object Label87: TLabel
           Left = 264
           Top = 36
@@ -1588,38 +1530,9 @@ object fmPersonForm: TfmPersonForm
         object Label167: TLabel
           Left = 340
           Top = 36
-          Width = 29
+          Width = 33
           Height = 13
-          Caption = #1044#1072#1090#1072':'
-        end
-        object rbNoSost: TRadioButton
-          Left = 547
-          Top = 34
-          Width = 36
-          Height = 17
-          Caption = #1085#1077#1090
-          Checked = True
-          TabOrder = 7
-          TabStop = True
-          OnClick = edFamChange
-        end
-        object rbFlySost: TRadioButton
-          Left = 589
-          Top = 34
-          Width = 109
-          Height = 17
-          Caption = #1083#1077#1090#1085#1086'-'#1087#1086#1076#1098#1077#1084#1085#1099#1081
-          TabOrder = 8
-          OnClick = edFamChange
-        end
-        object rbSweemSost: TRadioButton
-          Left = 704
-          Top = 34
-          Width = 76
-          Height = 17
-          Caption = #1087#1083#1072#1074#1072#1102#1097#1080#1081
-          TabOrder = 9
-          OnClick = edFamChange
+          Caption = #1042#1099#1076#1072#1085
         end
         object chkVoen: TCheckBox
           Left = 12
@@ -1694,14 +1607,28 @@ object fmPersonForm: TfmPersonForm
           TabOrder = 0
         end
         object dtWBDate: TdxDateEdit
-          Left = 372
+          Left = 679
           Top = 32
           Width = 101
           Style.ButtonStyle = btsDefault
-          TabOrder = 6
+          TabOrder = 7
           OnChange = edFamChange
           Date = -700000.000000000000000000
           DateOnError = deToday
+        end
+        object dxpWBOvk: TdxMRUEdit
+          Left = 379
+          Top = 32
+          Width = 294
+          TabOrder = 6
+          MaxLength = 50
+          Text = ''
+          OnChange = edFamChange
+          DropDownRows = 20
+          DropDownListStyle = True
+          CanDeleteText = True
+          OnButtonClick = dxpOVKButtonClick
+          StoredValues = 2
         end
       end
       object cbWRange: TComboBox
@@ -2599,26 +2526,13 @@ object fmPersonForm: TfmPersonForm
       object lBeginStudy: TLabel
         Left = 2
         Top = 26
-        Width = 132
+        Width = 91
         Height = 13
-        Caption = #1047#1072#1095#1080#1089#1083#1077#1085' '#1074' '#1072#1089#1087#1080#1088#1072#1085#1090#1091#1088#1091' '#1089
-      end
-      object Label89: TLabel
-        Left = 2
-        Top = 89
-        Width = 113
-        Height = 13
-        Caption = #1048#1089#1090#1086#1088#1080#1103' '#1086#1073#1091#1095#1077#1085#1080#1103':'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
-        ParentFont = False
+        Caption = #1047#1072#1095#1080#1089#1083#1077#1085' '#1074' '#1042#1059#1047' '#1089
       end
       object Label90: TLabel
-        Left = 589
-        Top = 76
+        Left = 448
+        Top = 72
         Width = 173
         Height = 26
         Caption = #1048#1089#1090#1086#1088#1080#1103' '#1074#1099#1076#1072#1095#1080' '#1089#1087#1088#1072#1074#1086#1082' '#1085#1072' '#1086#1090#1089#1088#1086#1095#1082#1091' '#1087#1088#1080#1079#1099#1074#1072':'
@@ -2632,10 +2546,10 @@ object fmPersonForm: TfmPersonForm
       end
       object Label91: TLabel
         Left = 3
-        Top = 48
-        Width = 123
+        Top = 80
+        Width = 109
         Height = 13
-        Caption = #1055#1088#1080#1082#1072#1079' '#1086' '#1079#1072#1095#1080#1089#1083#1077#1085#1080#1080' '#8470
+        Caption = #1055#1088#1080#1082#1072#1079' '#1086' '#1079#1072#1095#1080#1089#1083#1077#1085#1080#1080
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -2644,28 +2558,28 @@ object fmPersonForm: TfmPersonForm
         ParentFont = False
       end
       object Label92: TLabel
-        Left = 296
-        Top = 46
+        Left = 158
+        Top = 106
         Width = 11
         Height = 13
         Caption = #1086#1090
       end
       object Label93: TLabel
         Left = 3
-        Top = 70
+        Top = 134
         Width = 181
         Height = 13
         Caption = #1055#1083#1072#1085#1086#1074#1072#1103' '#1076#1072#1090#1072' '#1086#1082#1086#1085#1095#1072#1085#1080#1103' '#1086#1073#1091#1095#1077#1085#1080#1103
       end
       object Label121: TLabel
-        Left = 295
-        Top = 28
-        Width = 86
+        Left = 4
+        Top = 53
+        Width = 78
         Height = 13
-        Caption = #1060#1086#1088#1084#1072' '#1086#1073#1091#1095#1077#1085#1080#1103
+        Caption = #1057#1087#1077#1094#1080#1072#1083#1100#1085#1086#1089#1090#1100
       end
       object Label125: TLabel
-        Left = 573
+        Left = 448
         Top = 4
         Width = 132
         Height = 13
@@ -2678,39 +2592,28 @@ object fmPersonForm: TfmPersonForm
         ParentFont = False
       end
       object Label126: TLabel
-        Left = 573
-        Top = 45
+        Left = 600
+        Top = 26
         Width = 29
         Height = 13
         Caption = #1044#1072#1090#1072':'
       end
       object Label127: TLabel
-        Left = 573
+        Left = 448
         Top = 26
         Width = 11
         Height = 13
         Caption = #8470
       end
-      object rbStudent: TRadioButton
-        Left = 3
-        Top = 3
-        Width = 61
-        Height = 17
-        Caption = #1089#1090#1091#1076#1077#1085#1090
-        TabOrder = 0
-        OnClick = rbAspirantClick
-      end
-      object rbAspirant: TRadioButton
-        Left = 70
-        Top = 3
-        Width = 75
-        Height = 17
-        Caption = #1072#1089#1087#1080#1088#1072#1085#1090
-        TabOrder = 1
-        OnClick = rbAspirantClick
+      object Label20: TLabel
+        Left = 158
+        Top = 80
+        Width = 11
+        Height = 13
+        Caption = #8470
       end
       object dtBeginStudy: TdxDateEdit
-        Left = 190
+        Left = 192
         Top = 23
         Width = 100
         Enabled = False
@@ -2722,86 +2625,15 @@ object fmPersonForm: TfmPersonForm
         ParentFont = False
         Style.ButtonStyle = btsDefault
         Style.ButtonTransparence = ebtNone
-        TabOrder = 2
+        TabOrder = 0
         OnChange = edFamChange
         Date = -700000.000000000000000000
       end
-      object dxtStudyHistory: TdxTreeList
-        Left = 0
-        Top = 108
-        Width = 584
-        Height = 100
-        Bands = <
-          item
-          end>
-        DefaultLayout = False
-        HeaderMinRowCount = 2
-        HeaderPanelRowCount = 1
-        PopupMenu = pmStudyHistory
-        TabOrder = 9
-        LookAndFeel = lfFlat
-        Options = [aoColumnSizing, aoEditing, aoTabThrough, aoImmediateEditor, aoDrawEndEllipsis, aoCaseInsensitive]
-        OptionsEx = [aoUseBitmap, aoBandHeaderWidth, aoAutoCalcPreviewLines, aoBandSizing, aoBandMoving, aoEnterShowEditor, aoDragScroll, aoDragExpand, aoRowSizing]
-        TreeLineColor = clGrayText
-        ShowRoot = False
-        ShowIndicator = True
-        OnChangeNode = dxtStudyHistoryChangeNode
-        OnEdited = dxtStudyHistoryEdited
-        object colStudentStatus: TdxTreeListPickColumn
-          Caption = #1057#1090#1072#1090#1091#1089' '#1091#1095#1072#1097#1077#1075#1086#1089#1103
-          CharCase = ecUpperCase
-          Width = 137
-          BandIndex = 0
-          RowIndex = 0
-          OnChange = edFamChange
-          DropDownListStyle = True
-          Revertable = True
-          OnCloseUp = colStudentStatusCloseUp
-        end
-        object colVUZDep: TdxTreeListPickColumn
-          Caption = #1055#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1077' '#1042#1059#1047#1072
-          Width = 92
-          BandIndex = 0
-          RowIndex = 0
-          OnChange = edFamChange
-          DropDownListStyle = True
-          Revertable = True
-        end
-        object dxtStudyHistoryColumn6: TdxTreeListDateColumn
-          Caption = #1044#1072#1090#1072
-          Width = 58
-          BandIndex = 0
-          RowIndex = 0
-          OnChange = edFamChange
-        end
-        object dxtStudyHistoryColumn4: TdxTreeListColumn
-          Caption = #8470' '#1087#1088#1080#1082#1072#1079#1072
-          Width = 63
-          BandIndex = 0
-          RowIndex = 0
-          OnChange = edFamChange
-        end
-        object dxtStudyHistoryColumn7: TdxTreeListDateColumn
-          Caption = #1044#1072#1090#1072' '#1087#1088#1080#1082#1072#1079#1072
-          Width = 61
-          BandIndex = 0
-          RowIndex = 0
-          OnChange = edFamChange
-        end
-        object colStudyForm: TdxTreeListPickColumn
-          Caption = #1060#1086#1088#1084#1072' '#1086#1073#1091#1095#1077#1085#1080#1103
-          Width = 159
-          BandIndex = 0
-          RowIndex = 0
-          OnChange = edFamChange
-          OnCloseUp = colStudyFormCloseUp
-        end
-      end
       object dxtN26History: TdxTreeList
-        Left = 590
-        Top = 108
-        Width = 181
-        Height = 100
+        Left = 448
+        Top = 104
+        Width = 323
+        Height = 104
         Bands = <
           item
           end>
@@ -2809,7 +2641,7 @@ object fmPersonForm: TfmPersonForm
         HeaderMinRowCount = 2
         HeaderPanelRowCount = 1
         PopupMenu = pmN26History
-        TabOrder = 10
+        TabOrder = 7
         LookAndFeel = lfFlat
         Options = [aoColumnSizing, aoEditing, aoTabThrough, aoImmediateEditor, aoDrawEndEllipsis, aoCaseInsensitive]
         OptionsEx = [aoUseBitmap, aoBandHeaderWidth, aoAutoCalcPreviewLines, aoBandSizing, aoBandMoving, aoEnterShowEditor, aoDragScroll, aoDragExpand, aoRowSizing]
@@ -2819,57 +2651,58 @@ object fmPersonForm: TfmPersonForm
         object dxtN26HistoryColumn6: TdxTreeListMaskColumn
           Caption = 'ID'
           Visible = False
+          Width = 175
           BandIndex = 0
           RowIndex = 0
         end
         object dxTreeListColumn1: TdxTreeListColumn
           Caption = #1053#1086#1084#1077#1088' '#1092#1086#1088#1084#1099
-          Width = 47
+          Width = 103
           BandIndex = 0
           RowIndex = 0
           OnChange = edFamChange
         end
         object dxtN26HistoryColumn4: TdxTreeListDateColumn
           Caption = #1044#1072#1090#1072' '#1074#1099#1087#1080#1089#1082#1080
-          Width = 57
+          Width = 92
           BandIndex = 0
           RowIndex = 0
           OnChange = edFamChange
         end
         object dxtN26HistoryColumn5: TdxTreeListDateColumn
           Caption = #1044#1072#1090#1072' '#1074#1099#1076#1072#1095#1080
-          Width = 63
+          Width = 97
           BandIndex = 0
           RowIndex = 0
           OnChange = edFamChange
         end
       end
       object edOrder: TEdit
-        Left = 190
-        Top = 43
-        Width = 99
+        Left = 191
+        Top = 77
+        Width = 100
         Height = 21
         Color = clBtnFace
         MaxLength = 12
         ReadOnly = True
-        TabOrder = 3
+        TabOrder = 1
         OnChange = edFamChange
       end
       object dtOrder: TdxDateEdit
-        Left = 387
-        Top = 43
+        Left = 191
+        Top = 104
         Width = 100
         Enabled = False
-        TabOrder = 6
+        TabOrder = 4
         OnChange = edFamChange
         Date = -700000.000000000000000000
         SaveTime = False
       end
       object dtEndStudy: TdxDateEdit
         Left = 190
-        Top = 64
+        Top = 134
         Width = 100
-        TabOrder = 4
+        TabOrder = 2
         OnChange = edFamChange
         Date = -700000.000000000000000000
         SaveTime = False
@@ -2879,32 +2712,18 @@ object fmPersonForm: TfmPersonForm
         Top = 214
         Width = 792
         Height = 154
-        ActivePage = TabSheet8
+        ActivePage = TabSheet9
         HotTrack = True
         MultiLine = True
         RaggedRight = True
         Style = tsFlatButtons
-        TabOrder = 11
+        TabOrder = 8
         object TabSheet9: TTabSheet
-          Caption = 'C'#1074#1077#1076#1077#1085#1080#1103' '#1086' '#1074#1099#1087#1091#1089#1082#1085#1080#1082#1077
+          Caption = #1057#1074#1077#1076#1077#1085#1080#1103' '#1086' '#1074#1099#1087#1091#1089#1082#1085#1080#1082#1077' '#1072#1089#1087#1080#1088#1072#1085#1090#1091#1088#1099' '#1080' '#1072#1076#1098#1102#1085#1082#1090#1091#1088#1099
           ImageIndex = 3
-          object Label109: TLabel
-            Left = -1
-            Top = 1
-            Width = 171
-            Height = 26
-            Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1076#1080#1089#1089#1077#1088#1090#1072#1094#1080#1086#1085#1085#1086#1081' / '#1076#1080#1087#1083#1086#1084#1085#1086#1081' '#1088#1072#1073#1086#1090#1099
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentFont = False
-            WordWrap = True
-          end
           object Label111: TLabel
-            Left = 0
-            Top = 28
+            Left = 6
+            Top = 1
             Width = 170
             Height = 26
             AutoSize = False
@@ -2917,165 +2736,145 @@ object fmPersonForm: TfmPersonForm
             ParentFont = False
             WordWrap = True
           end
-          object Label112: TLabel
-            Left = 513
-            Top = 28
-            Width = 158
-            Height = 26
-            Caption = #1048#1089#1082#1086#1084#1072#1103' '#1091#1095#1077#1085#1072#1103' '#1089#1090#1077#1087#1077#1085#1100' / '#1091#1088#1086#1074#1077#1085#1100' '#1074#1099#1089#1096#1077#1075#1086' '#1086#1073#1088#1072#1079#1086#1074#1072#1085#1080#1103
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentFont = False
-            WordWrap = True
-          end
-          object Label113: TLabel
-            Left = -1
-            Top = 54
-            Width = 132
-            Height = 26
-            Caption = #1059#1095#1077#1085#1072#1103' '#1089#1090#1077#1087#1077#1085#1100' '#1085#1072#1091#1095#1085#1086#1075#1086' '#1088#1091#1082#1086#1074#1086#1076#1080#1090#1077#1083#1103
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentFont = False
-            WordWrap = True
-          end
-          object Label114: TLabel
-            Left = 297
-            Top = 62
-            Width = 100
-            Height = 13
-            Caption = #1060#1048#1054' '#1088#1091#1082#1086#1074#1086#1076#1080#1090#1077#1083#1103
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentFont = False
-          end
-          object Label115: TLabel
-            Left = -2
-            Top = 86
-            Width = 110
-            Height = 13
-            Caption = #1047#1072#1097#1080#1090#1072' '#1085#1072#1079#1085#1072#1095#1077#1085#1072' '#1085#1072
-          end
           object Label116: TLabel
-            Left = 287
-            Top = 88
-            Width = 101
+            Left = 592
+            Top = 6
+            Width = 69
             Height = 13
-            Caption = #1047#1072#1097#1080#1090#1072' '#1089#1086#1089#1090#1086#1103#1083#1072#1089#1100
-          end
-          object Label124: TLabel
-            Left = 363
-            Top = 7
-            Width = 75
-            Height = 13
-            Caption = #1050#1074#1072#1083#1080#1092#1080#1082#1072#1094#1080#1103
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentFont = False
-          end
-          object bKval4: TSpeedButton
-            Left = 758
-            Top = 3
-            Width = 23
-            Height = 22
-            Caption = '...'
-            OnClick = bKval1Click
+            Caption = #1044#1072#1090#1072' '#1079#1072#1097#1080#1090#1099
           end
           object bNapr4: TSpeedButton
-            Left = 473
-            Top = 30
+            Left = 480
+            Top = 2
             Width = 23
             Height = 22
             Caption = '...'
             OnClick = bNapr1Click
           end
-          object edDisserName: TEdit
-            Left = 180
+          object Label10: TLabel
+            Left = 8
+            Top = 37
+            Width = 112
+            Height = 13
+            Caption = #1064#1080#1092#1088' '#1091#1095#1077#1085#1086#1075#1086' '#1089#1086#1074#1077#1090#1072':'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label11: TLabel
+            Left = 260
+            Top = 30
+            Width = 154
+            Height = 26
+            Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1086#1088#1075#1072#1085#1080#1079#1072#1094#1080#1080', '#1085#1072' '#1073#1072#1079#1077' '#1082#1086#1090#1086#1088#1086#1081' '#1089#1086#1079#1076#1072#1085' '#1089#1086#1074#1077#1090
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            WordWrap = True
+          end
+          object Label12: TLabel
+            Left = 260
+            Top = 62
+            Width = 142
+            Height = 26
+            Caption = #1053#1086#1084#1077#1088' '#1087#1088#1080#1082#1072#1079#1072' '#1086' '#1089#1086#1079#1076#1072#1085#1080#1080' '#1089#1086#1074#1077#1090#1072
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            WordWrap = True
+          end
+          object Label13: TLabel
+            Left = 260
+            Top = 92
+            Width = 111
+            Height = 26
+            Caption = #1054#1088#1075#1072#1085' ('#1086#1088#1075#1072#1085#1080#1079#1072#1094#1080#1103'), '#1080#1079#1076#1072#1074#1096#1072#1103' '#1087#1088#1080#1082#1072#1079
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            WordWrap = True
+          end
+          object Label14: TLabel
+            Left = 8
+            Top = 60
+            Width = 86
+            Height = 26
+            Caption = #1044#1072#1090#1072' '#1087#1088#1080#1082#1072#1079#1072' '#1086' '#1089#1086#1079#1076#1072#1085#1080#1080' '#1089#1086#1074#1077#1090#1072
+            WordWrap = True
+          end
+          object dtRealDefend: TdxDateEdit
+            Left = 667
             Top = 3
-            Width = 177
+            Width = 100
+            TabOrder = 1
+            OnChange = edFamChange
+            Date = -700000.000000000000000000
+            SaveTime = False
+          end
+          object edNapr4: TComboBox
+            Left = 140
+            Top = 3
+            Width = 334
             Height = 21
-            MaxLength = 100
             TabOrder = 0
             OnChange = edFamChange
           end
-          object edFIOGuide: TEdit
-            Left = 403
-            Top = 60
-            Width = 176
+          object edSovet_Shifr: TEdit
+            Left = 140
+            Top = 33
+            Width = 101
             Height = 21
-            MaxLength = 60
-            TabOrder = 4
+            MaxLength = 10
+            TabOrder = 2
             OnChange = edFamChange
           end
-          object dtDefend: TdxDateEdit
-            Left = 180
-            Top = 84
-            Width = 100
+          object edSovet_Org: TEdit
+            Left = 432
+            Top = 35
+            Width = 335
+            Height = 21
+            MaxLength = 10
+            TabOrder = 3
+            OnChange = edFamChange
+          end
+          object edSovet_Num: TEdit
+            Left = 432
+            Top = 62
+            Width = 101
+            Height = 21
+            MaxLength = 10
             TabOrder = 5
             OnChange = edFamChange
-            Date = -700000.000000000000000000
-            SaveTime = False
           end
-          object dtRealDefend: TdxDateEdit
-            Left = 403
-            Top = 84
-            Width = 100
+          object edSovet_Org_Order: TEdit
+            Left = 432
+            Top = 92
+            Width = 335
+            Height = 21
+            MaxLength = 10
             TabOrder = 6
             OnChange = edFamChange
+          end
+          object dtSovet_Date: TdxDateEdit
+            Left = 141
+            Top = 64
+            Width = 100
+            TabOrder = 4
+            OnChange = edFamChange
             Date = -700000.000000000000000000
             SaveTime = False
-          end
-          object edDegree: TdxMRUEdit
-            Left = 675
-            Top = 30
-            Width = 111
-            TabOrder = 2
-            MaxLength = 50
-            Text = ''
-            OnChange = edFamChange
-            DropDownListStyle = True
-            OnButtonClick = edKval3ButtonClick
-            StoredValues = 2
-          end
-          object edGuideDegree: TdxMRUEdit
-            Left = 180
-            Top = 57
-            Width = 111
-            TabOrder = 3
-            MaxLength = 50
-            Text = ''
-            OnChange = edFamChange
-            DropDownListStyle = True
-            OnButtonClick = edKval3ButtonClick
-            StoredValues = 2
-          end
-          object edNapr4: TComboBox
-            Left = 180
-            Top = 30
-            Width = 293
-            Height = 21
-            TabOrder = 7
-            OnChange = edFamChange
-          end
-          object edKval4: TComboBox
-            Left = 444
-            Top = 3
-            Width = 314
-            Height = 21
-            TabOrder = 1
-            OnChange = edFamChange
           end
         end
         object TabSheet6: TTabSheet
@@ -3252,7 +3051,7 @@ object fmPersonForm: TfmPersonForm
           end
         end
         object tbVK: TTabSheet
-          Caption = #1054#1073#1091#1095#1077#1085#1080#1077' '#1085#1072' '#1074#1086#1077#1085'. '#1082#1072#1092'.'
+          Caption = #1054#1073#1091#1095#1077#1085#1080#1077' '#1074' '#1074#1086#1077#1085#1085#1086'-'#1091#1095#1077#1073#1085#1086#1084' '#1094#1077#1085#1090#1088#1077
           ImageIndex = 1
           object Label101: TLabel
             Left = 248
@@ -3295,6 +3094,20 @@ object fmPersonForm: TfmPersonForm
             Width = 171
             Height = 13
             Caption = #1055#1088#1080#1095#1080#1085#1072' '#1088#1072#1089#1090#1086#1088#1078#1077#1085#1080#1103' '#1082#1086#1085#1090#1088#1072#1082#1090#1072':'
+          end
+          object rbWarProgram: TRadioGroup
+            Left = 536
+            Top = 3
+            Width = 231
+            Height = 79
+            Caption = #1054#1073#1091#1095#1072#1077#1090#1089#1103' '#1087#1086' '#1087#1088#1086#1075#1088'. '#1074#1086#1077#1085#1085#1086#1081' '#1087#1086#1076#1075#1086#1090#1086#1074#1082#1080':'
+            ItemIndex = 0
+            Items.Strings = (
+              #1086#1092#1080#1094#1077#1088#1072
+              #1089#1086#1083#1076#1072#1090#1072' ('#1084#1072#1090#1088#1086#1089#1072')'
+              #1089#1077#1088#1078#1072#1085#1090#1072' ('#1089#1090#1072#1088#1096#1080#1085#1099')')
+            TabOrder = 8
+            OnClick = edFamChange
           end
           object rbNone: TRadioButton
             Left = 3
@@ -3453,42 +3266,63 @@ object fmPersonForm: TfmPersonForm
         end
       end
       object edStudyForm: TEdit
-        Left = 387
-        Top = 23
+        Left = 111
+        Top = 50
         Width = 180
         Height = 21
         Color = clBtnFace
         MaxLength = 12
         ReadOnly = True
-        TabOrder = 5
+        TabOrder = 3
         OnChange = edFamChange
       end
       object edDocNumb: TEdit
-        Left = 608
+        Left = 475
         Top = 23
         Width = 105
         Height = 21
         MaxLength = 20
-        TabOrder = 7
+        TabOrder = 5
         OnChange = edFamChange
       end
       object dtDocDate: TdxDateEdit
-        Left = 608
-        Top = 45
+        Left = 635
+        Top = 23
         Width = 105
-        TabOrder = 8
+        TabOrder = 6
         OnChange = edFamChange
         Date = -700000.000000000000000000
         SaveTime = False
       end
-      object bNonStudent: TcxButton
-        Left = 140
-        Top = 2
-        Width = 157
-        Height = 19
-        Caption = #1089#1085#1103#1090#1100' '#1086#1090#1084#1077#1090#1082#1091' '#1086#1073' '#1086#1073#1091#1095#1077#1085#1080#1080
-        TabOrder = 12
-        OnClick = bNonStudentClick
+      object cbStudent: TCheckBox
+        Left = 4
+        Top = 0
+        Width = 180
+        Height = 17
+        Caption = #1054#1073#1091#1095#1072#1077#1090#1089#1103' '#1074' '#1042#1059#1047'-'#1077
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 9
+        OnClick = rbAspirantClick
+      end
+      object bStudyHistory: TButton
+        Left = 2
+        Top = 177
+        Width = 176
+        Height = 20
+        Caption = #1048#1089#1090#1086#1088#1080#1103' '#1086#1073#1091#1095#1077#1085#1080#1103
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 10
+        OnClick = bStudyHistoryClick
       end
     end
     object tabSheetX2: TTabSheet
@@ -4232,8 +4066,8 @@ object fmPersonForm: TfmPersonForm
       end>
     SQL.Strings = (
       'SELECT * FROM ADDR WHERE PERS_ID=:PERS_ID')
-    Left = 620
-    Top = 399
+    Left = 338
+    Top = 229
   end
   object dsData: TDataSource
     DataSet = qrData
@@ -4270,8 +4104,8 @@ object fmPersonForm: TfmPersonForm
       end>
     SQL.Strings = (
       'SELECT * FROM LANGS WHERE PERS_ID=:PERS_ID')
-    Left = 689
-    Top = 377
+    Left = 533
+    Top = 231
   end
   object qrFam: TADOQuery
     Connection = dmMain.dbMain
@@ -4324,8 +4158,8 @@ object fmPersonForm: TfmPersonForm
       'WHERE PERS_ID=:PERS_ID AND'
       'POST_ID IN (SELECT POST_ID FROM KPOST '
       'WHERE CPROF_ID = 500 or CPROF2015_ID = 500)')
-    Left = 391
-    Top = 267
+    Left = 382
+    Top = 234
   end
   object qrN26History: TADOQuery
     Connection = dmMain.dbMain
@@ -4343,23 +4177,9 @@ object fmPersonForm: TfmPersonForm
     Left = 703
     Top = 287
   end
-  object pmStudyHistory: TPopupMenu
-    Left = 314
-    Top = 335
-    object MenuItem3: TMenuItem
-      Caption = #1044#1086#1073#1072#1074#1080#1090#1100
-      ShortCut = 45
-      OnClick = MenuItem3Click
-    end
-    object MenuItem4: TMenuItem
-      Caption = #1059#1076#1072#1083#1080#1090#1100
-      ShortCut = 16430
-      OnClick = MenuItem4Click
-    end
-  end
   object pmN26History: TPopupMenu
-    Left = 570
-    Top = 323
+    Left = 616
+    Top = 237
     object MenuItem5: TMenuItem
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
       ShortCut = 45
@@ -4473,8 +4293,8 @@ object fmPersonForm: TfmPersonForm
     Top = 19
   end
   object pmAssign: TPopupMenu
-    Left = 416
-    Top = 335
+    Left = 433
+    Top = 237
     object MenuItem7: TMenuItem
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
       ShortCut = 45
@@ -4493,8 +4313,8 @@ object fmPersonForm: TfmPersonForm
     Top = 12
   end
   object psASAssing: TPopupMenu
-    Left = 320
-    Top = 263
+    Left = 271
+    Top = 234
     object MenuItem9: TMenuItem
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
       ShortCut = 45
@@ -4519,8 +4339,8 @@ object fmPersonForm: TfmPersonForm
       end>
     SQL.Strings = (
       'SELECT * FROM ASASSIGN WHERE PERS_ID=:PERS_ID')
-    Left = 500
-    Top = 267
+    Left = 481
+    Top = 234
   end
   object qrPersDeps: TADOQuery
     Connection = dmMain.dbMain
@@ -4538,12 +4358,12 @@ object fmPersonForm: TfmPersonForm
       end>
     SQL.Strings = (
       'SELECT * FROM Pers_Deps WHERE PERS_ID=:PERS_ID')
-    Left = 641
-    Top = 337
+    Left = 689
+    Top = 236
   end
   object pmPersDeps: TPopupMenu
-    Left = 168
-    Top = 319
+    Left = 95
+    Top = 252
     object MenuItem1: TMenuItem
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
       ShortCut = 45

@@ -2908,13 +2908,13 @@ initialization
   if (FLibHandle > 0) and (FLibHandle < HINSTANCE_ERROR) then FLibHandle := 0;
   SetErrorMode(OldError);
 
-  sdxEditUndoCaption := LoadStr(dxSEditUndoCaption);
-  sdxEditRedoCaption := LoadStr(dxSEditRedoCaption); 
-  sdxEditCutCaption := LoadStr(dxSEditCutCaption);
-  sdxEditCopyCaption := LoadStr(dxSEditCopyCaption);
-  sdxEditPasteCaption := LoadStr(dxSEditPasteCaption);
-  sdxEditDeleteCaption := LoadStr(dxSEditDeleteCaption);
-  sdxEditSelectAllCaption := LoadStr(dxSEditSelectAllCaption);
+  sdxEditUndoCaption := LoadStrEdStr(dxSEditUndoCaption);
+  sdxEditRedoCaption := LoadStrEdStr(dxSEditRedoCaption);
+  sdxEditCutCaption := LoadStrEdStr(dxSEditCutCaption);
+  sdxEditCopyCaption := LoadStrEdStr(dxSEditCopyCaption);
+  sdxEditPasteCaption := LoadStrEdStr(dxSEditPasteCaption);
+  sdxEditDeleteCaption := LoadStrEdStr(dxSEditDeleteCaption);
+  sdxEditSelectAllCaption := LoadStrEdStr(dxSEditSelectAllCaption);
 
 finalization
   if FLibHandle <> 0 then FreeLibrary(FLibHandle);

@@ -1,8 +1,8 @@
-object fmAppointments: TfmAppointments
+object fmStudyHistory: TfmStudyHistory
   Left = 307
   Top = 274
   HelpContext = 511
-  Caption = #1055#1088#1080#1077#1084' '#1085#1072' '#1088#1072#1073#1086#1090#1091' '#1080' '#1087#1077#1088#1077#1074#1086#1076' '#1085#1072' '#1076#1088#1091#1075#1091#1102' '#1088#1072#1073#1086#1090#1091
+  Caption = #1048#1089#1090#1086#1088#1080#1103' '#1086#1073#1091#1095#1077#1085#1080#1103
   ClientHeight = 297
   ClientWidth = 681
   Color = clBtnFace
@@ -17,7 +17,7 @@ object fmAppointments: TfmAppointments
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object qridAppointment: TdxDBGrid
+  object qridStudyHistory: TdxDBGrid
     Left = 0
     Top = 28
     Width = 681
@@ -38,23 +38,25 @@ object fmAppointments: TfmAppointments
     OptionsCustomize = [edgoBandMoving, edgoBandSizing, edgoColumnMoving, edgoColumnSizing, edgoFullSizing, edgoRowSizing]
     OptionsDB = [edgoCanAppend, edgoCancelOnExit, edgoCanDelete, edgoCanInsert, edgoCanNavigation, edgoConfirmDelete, edgoLoadAllRecords, edgoUseBookmarks]
     OptionsView = [edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoIndicator, edgoUseBitmap]
-    OnChangedColumnsWidth = qridAppointmentChangedColumnsWidth
-    OnColumnSorting = qridAppointmentColumnSorting
-    object qridAppointmentID: TdxDBGridColumn
+    OnChangedColumnsWidth = qridStudyHistoryChangedColumnsWidth
+    OnColumnSorting = qridStudyHistoryColumnSorting
+    ExplicitLeft = 53
+    ExplicitTop = 39
+    object qridStudyHistoryID: TdxDBGridColumn
       Visible = False
       Width = 81
       BandIndex = 0
       RowIndex = 0
       FieldName = 'ID'
     end
-    object qridAppointmentPERS_ID: TdxDBGridColumn
+    object qridStudyHistoryPERS_ID: TdxDBGridColumn
       Visible = False
       Width = 81
       BandIndex = 0
       RowIndex = 0
       FieldName = 'PERS_ID'
     end
-    object qridAppointmentNum: TdxDBGridColumn
+    object qridStudyHistoryNum: TdxDBGridColumn
       Caption = #8470' '#1087'/'#1087
       DisableDragging = True
       DisableEditor = True
@@ -62,28 +64,10 @@ object fmAppointments: TfmAppointments
       Width = 40
       BandIndex = 0
       RowIndex = 0
-      OnGetText = qridAppointmentNumGetText
+      OnGetText = qridStudyHistoryNumGetText
     end
-    object qridAppointmentWTP: TdxDBGridLookupColumn
-      Caption = #1042#1080#1076' '#1088#1072#1073#1086#1090#1099
-      Width = 172
-      BandIndex = 0
-      RowIndex = 0
-      FieldName = 'WTP_NAME'
-      DropDownRows = 20
-      CanDeleteText = True
-    end
-    object qridAppointmentWCH: TdxDBGridLookupColumn
-      Caption = #1061#1072#1088#1072#1082#1090#1077#1088' '#1088#1072#1073#1086#1090#1099
-      Width = 175
-      BandIndex = 0
-      RowIndex = 0
-      FieldName = 'WCH_NAME'
-      DropDownRows = 20
-      CanDeleteText = True
-    end
-    object qridAppointmentPOST: TdxDBGridLookupColumn
-      Caption = #1044#1086#1083#1078#1085#1086#1089#1090#1100
+    object qridStudyHistoryPOST: TdxDBGridLookupColumn
+      Caption = #1057#1090#1072#1090#1091#1089' '#1091#1095#1072#1097#1077#1075#1086#1089#1103
       Width = 124
       BandIndex = 0
       RowIndex = 0
@@ -92,8 +76,8 @@ object fmAppointments: TfmAppointments
       DropDownWidth = 350
       CanDeleteText = True
     end
-    object qridAppointmentDEP: TdxDBGridLookupColumn
-      Caption = #1055#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1077
+    object qridStudyHistoryDEP: TdxDBGridLookupColumn
+      Caption = #1055#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1077' '#1042#1059#1047#1072
       Width = 124
       BandIndex = 0
       RowIndex = 0
@@ -102,38 +86,37 @@ object fmAppointments: TfmAppointments
       DropDownWidth = 350
       CanDeleteText = True
     end
-    object qridAppointmentIN_ORD_NUMB: TdxDBGridColumn
-      Caption = #1054#1089#1085#1086#1074#1072#1085#1080#1077
-      Width = 83
-      BandIndex = 0
-      RowIndex = 0
-      FieldName = 'IN_ORD_NUMB'
-    end
-    object qridAppointmentIN_ORD_DATE: TdxDBGridDateColumn
-      Caption = #1044#1072#1090#1072' '#1086#1089#1085#1086#1074#1072#1085#1080#1103
-      Width = 106
-      BandIndex = 0
-      RowIndex = 0
-      FieldName = 'IN_ORD_DATE'
-      UseEditMask = True
-    end
-    object qridAppointmentIN_DATE: TdxDBGridDateColumn
-      Caption = #1044#1072#1090#1072' '#1085#1072#1079#1085#1072#1095#1077#1085#1080#1103
+    object qridStudyHistoryIN_DATE: TdxDBGridDateColumn
+      Caption = #1044#1072#1090#1072
       Width = 111
       BandIndex = 0
       RowIndex = 0
       FieldName = 'IN_DATE'
       UseEditMask = True
     end
-    object qridAppointmentPROBATION_DATE: TdxDBGridDateColumn
-      Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1099#1081' '#1089#1088#1086#1082' '#1076#1086
-      Width = 132
+    object qridStudyHistoryIN_ORD_NUMB: TdxDBGridColumn
+      Caption = #8470' '#1087#1088#1080#1082#1072#1079#1072
+      Width = 83
       BandIndex = 0
       RowIndex = 0
-      FieldName = 'PROBATION_DATE'
+      FieldName = 'IN_ORD_NUMB'
+    end
+    object qridStudyHistoryIN_ORD_DATE: TdxDBGridDateColumn
+      Caption = #1044#1072#1090#1072' '#1087#1088#1080#1082#1072#1079#1072
+      Width = 106
+      BandIndex = 0
+      RowIndex = 0
+      FieldName = 'IN_ORD_DATE'
       UseEditMask = True
     end
-    object qridAppointmentOVK_NAME: TdxDBGridLookupColumn
+    object qridStudyHistoryNAPR_NAME: TdxDBGridLookupColumn
+      Caption = #1050#1086#1076' '#1054#1050#1057#1054' / '#1057#1087#1077#1094#1080#1072#1083#1100#1085#1086#1089#1090#1100
+      Width = 200
+      BandIndex = 0
+      RowIndex = 0
+      FieldName = 'NAPR_NAME'
+    end
+    object qridStudyHistoryOVK_NAME: TdxDBGridLookupColumn
       Caption = #1054#1042#1050' '#1087#1086' '#1084#1077#1089#1090#1091' '#1078#1080#1090#1077#1083#1100#1089#1090#1074#1072
       Width = 200
       BandIndex = 0
@@ -141,14 +124,14 @@ object fmAppointments: TfmAppointments
       FieldName = 'OVK_NAME'
       CanDeleteText = True
     end
-    object qridAppointmentOVK_DATE: TdxDBGridDateColumn
+    object qridStudyHistoryOVK_DATE: TdxDBGridDateColumn
       Caption = #1044#1072#1090#1072' '#1080#1089#1093'. '#1089#1086#1086#1073#1097#1077#1085#1080#1103
       BandIndex = 0
       RowIndex = 0
       FieldName = 'OVK_DATE'
       UseEditMask = True
     end
-    object qridAppointmentOVK_NUM: TdxDBGridMaskColumn
+    object qridStudyHistoryOVK_NUM: TdxDBGridMaskColumn
       Caption = #8470' '#1080#1089#1093'. '#1089#1086#1086#1073#1097#1077#1085#1080#1103
       Width = 200
       BandIndex = 0
@@ -670,16 +653,20 @@ object fmAppointments: TfmAppointments
     Parameters = <
       item
         Name = 'PERS_ID'
-        Size = -1
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 510
         Value = Null
       end>
     SQL.Strings = (
       'SELECT *'
       'FROM Appointment WHERE PERS_ID = :PERS_ID'
-      
-        'AND POST_ID NOT IN (SELECT POST_ID FROM KPOST WHERE CPROF_ID = 5' +
-        '00)')
-    Left = 56
+      'AND POST_ID IN (SELECT POST_ID FROM KPOST '
+      'WHERE CPROF_ID = 500 or CPROF2015_ID = 500)'
+      'Order by IN_DATE')
+    Left = 57
     Top = 147
     object qrAppointmentID: TIntegerField
       FieldName = 'ID'
@@ -687,35 +674,11 @@ object fmAppointments: TfmAppointments
     object qrAppointmentPERS_ID: TIntegerField
       FieldName = 'PERS_ID'
     end
-    object qrAppointmentWTP_ID: TIntegerField
-      FieldName = 'WTP_ID'
-    end
-    object qrAppointmentWCH_ID: TIntegerField
-      FieldName = 'WCH_ID'
-    end
     object qrAppointmentPOST_ID: TIntegerField
       FieldName = 'POST_ID'
     end
     object qrAppointmentDEP_ID: TIntegerField
       FieldName = 'DEP_ID'
-    end
-    object qrAppointmentWTP_NAME: TStringField
-      FieldKind = fkLookup
-      FieldName = 'WTP_NAME'
-      LookupDataSet = qrKWKTYPE
-      LookupKeyFields = 'WTP_ID'
-      LookupResultField = 'WTP_NAME'
-      KeyFields = 'WTP_ID'
-      Lookup = True
-    end
-    object qrAppointmentWCH_NAME: TStringField
-      FieldKind = fkLookup
-      FieldName = 'WCH_NAME'
-      LookupDataSet = qrKWKCHAR
-      LookupKeyFields = 'WCH_ID'
-      LookupResultField = 'WCH_NAME'
-      KeyFields = 'WCH_ID'
-      Lookup = True
     end
     object qrAppointmentPOST_NAME: TStringField
       DisplayWidth = 50
@@ -749,9 +712,6 @@ object fmAppointments: TfmAppointments
       FieldName = 'IN_ORD_NUMB'
       Size = 255
     end
-    object qrAppointmentPROBATION_DATE: TDateField
-      FieldName = 'PROBATION_DATE'
-    end
     object qrAppointmentOVK_ID: TIntegerField
       FieldName = 'XOVK_ID'
     end
@@ -772,43 +732,18 @@ object fmAppointments: TfmAppointments
       FieldName = 'OVK_NUM'
       Size = 255
     end
-  end
-  object qrKWKTYPE: TADOQuery
-    Connection = dmMain.dbMain
-    ParamCheck = False
-    Parameters = <>
-    SQL.Strings = (
-      'SELECT WTP_ID, WTP_NAME FROM KWKTYPE'
-      'UNION'
-      'SELECT NULL, '#39'<'#1085#1077' '#1091#1082#1072#1079#1072#1085#1086'>'#39' FROM KWKTYPE'
-      'ORDER BY WTP_NAME'
-      '')
-    Left = 116
-    Top = 171
-    object qrKWKTYPEWTP_ID: TIntegerField
-      FieldName = 'WTP_ID'
+    object qrAppointmentNAPR_ID: TIntegerField
+      FieldName = 'NAPR_ID'
     end
-    object qrKWKTYPEWTP_NAME: TStringField
-      FieldName = 'WTP_NAME'
-    end
-  end
-  object qrKWKCHAR: TADOQuery
-    Connection = dmMain.dbMain
-    ParamCheck = False
-    Parameters = <>
-    SQL.Strings = (
-      'SELECT WCH_ID, WCH_NAME FROM KWKCHAR'
-      'UNION'
-      'SELECT NULL, '#39'<'#1085#1077' '#1091#1082#1072#1079#1072#1085#1086'>'#39' FROM KWKCHAR'
-      'ORDER BY WCH_NAME'
-      '')
-    Left = 176
-    Top = 151
-    object qrKWKCHARWCH_ID: TIntegerField
-      FieldName = 'WCH_ID'
-    end
-    object qrKWKCHARWCH_NAME: TStringField
-      FieldName = 'WCH_NAME'
+    object qrAppointmentNAPR_NAME: TStringField
+      FieldKind = fkLookup
+      FieldName = 'NAPR_NAME'
+      LookupDataSet = qrNapr
+      LookupKeyFields = 'NAPR_ID'
+      LookupResultField = 'NAPR_NAME'
+      KeyFields = 'NAPR_ID'
+      Size = 255
+      Lookup = True
     end
   end
   object qrKPOST: TADOQuery
@@ -820,7 +755,7 @@ object fmAppointments: TfmAppointments
       'SELECT POST_ID, POST_NAME,'
       'POST_NAME + iif(is_old, '#39' ('#1091#1087#1088#1072#1079#1076#1085#1077#1085#1086')'#39', '#39#39') as XPost_Name, '
       'KPOST_Num FROM KPOST'
-      'WHERE CPROF_ID <> 500 and CPROF2015_ID <> 500 '
+      'WHERE CPROF_ID = 500 or CPROF2015_ID = 500 '
       'UNION'
       'SELECT NULL, '#39#39', '#39'<'#1085#1077' '#1091#1082#1072#1079#1072#1085#1086'>'#39', -1 FROM KPOST'
       'Order By 1')
@@ -889,6 +824,28 @@ object fmAppointments: TfmAppointments
     object qrKOVKOVK_NAME: TWideStringField
       FieldName = 'OVK_NAME'
       Size = 250
+    end
+  end
+  object qrNapr: TADOQuery
+    Connection = dmMain.dbMain
+    CursorType = ctStatic
+    ParamCheck = False
+    Parameters = <>
+    SQL.Strings = (
+      
+        'SELECT NAPR_ID, iif(IsNull(Napr_Kod), "", Trim(NAPR_KOD)) + " " ' +
+        '+ NAPR_NAME as NAPR_NAME FROM KNAPR'
+      'UNION'
+      'SELECT NULL, '#39'<'#1085#1077' '#1091#1082#1072#1079#1072#1085#1086'>'#39' FROM KNAPR'
+      'Order By 2')
+    Left = 245
+    Top = 91
+    object qrNaprNAPR_ID: TIntegerField
+      FieldName = 'NAPR_ID'
+    end
+    object qrNaprNAPR_NAME: TWideStringField
+      FieldName = 'NAPR_NAME'
+      Size = 255
     end
   end
 end
