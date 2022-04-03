@@ -1279,7 +1279,7 @@ function TCustomdxDBTreeList.GetNodeVariant(Node: TdxTreeListNode; Column: Integ
 var
   S: string;
 begin
-  if Columns[Column].VariantType = varString then
+  if (Columns[Column].VariantType = varString) or (Columns[Column].VariantType = varUString) then
   begin
     S := Node.Strings[Column];
     if IsCaseInsensitive then
@@ -2210,7 +2210,7 @@ end;
 
 function TCustomdxDBTreeList.GetRootValueAsVariant: Variant;
 begin
-  if (VarType(FRootValue) = varString) and (FRootValue = '') then
+  if ((VarType(FRootValue) = varString) or (VarType(FRootValue) = varUString)) and (FRootValue = '') then
     Result := Null
   else Result := FRootValue;
 end;

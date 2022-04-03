@@ -1115,7 +1115,7 @@ function TdxDBTreeListColumn.IsEqualValues(const Value: Variant): Boolean;
 begin
   if Assigned(Field) and not VarIsEmpty(Value) then
   begin
-    if (VarType(Value) = varString) and not IsBlobColumn {TODO Check !!!} then
+    if ((VarType(Value) = varString) or (VarType(Value) = varUString)) and not IsBlobColumn {TODO Check !!!} then
       Result := Field.Text = Value
     else Result := Field.Value = Value
   end
@@ -2193,7 +2193,7 @@ begin
   else
     begin
       Result := ANode.Values[AColumn.Index];
-      if (VarType(Result) = varString) and (Result = '') then
+      if ((VarType(Result) = varString) or (VarType(Result) = varUString)) and (Result = '') then
         Result := Null;
     end;
 end;
@@ -3262,7 +3262,7 @@ function TdxDBTreeListMaskColumn.IsEqualValues(const Value: Variant): Boolean;
 begin
   if Assigned(Field) and not VarIsEmpty(Value) then
   begin
-    if (VarType(Value) = varString) and not IsBlobColumn {TODO Check !!!} then
+    if ((VarType(Value) = varString) or (VarType(Value) = varUString)) and not IsBlobColumn {TODO Check !!!} then
     begin
       if (Value = GetBlankText) and (Field.Text = '') then
         Result := True

@@ -3002,7 +3002,7 @@ begin
       Result := CompareNextAnsiVariantValues(PNext1^.PNext, PNext2^.PNext)
     else
     begin
-      if PNext1^.Node.FOwner.IsAnsiSort and (VarType(PNext1^.Value) = varString) then
+      if PNext1^.Node.FOwner.IsAnsiSort and ((VarType(PNext1^.Value) = varString) or (VarType(PNext1^.Value) = varUString)) then
         Result := AnsiCompareStr(PNext1^.Value, PNext2^.Value)
       else
       {$IFNDEF DELPHI6}
@@ -3027,7 +3027,7 @@ begin
   end
   else
   begin
-    if PNodeVariant(Item1)^.Node.FOwner.IsAnsiSort and (VarType(PNodeVariant(Item1)^.Value) = varString) then
+    if PNodeVariant(Item1)^.Node.FOwner.IsAnsiSort and ((VarType(PNodeVariant(Item1)^.Value) = varString) or (VarType(PNodeVariant(Item1)^.Value) = varUString)) then
       Result := AnsiCompareStr(PNodeVariant(Item1)^.Value, PNodeVariant(Item2)^.Value)
     else
     {$IFNDEF DELPHI6}

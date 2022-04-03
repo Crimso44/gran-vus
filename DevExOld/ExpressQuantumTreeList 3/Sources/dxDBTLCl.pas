@@ -1614,7 +1614,7 @@ begin
   inherited GetFilterEditValues(AEdit, V, S);
 //  if (VarType(V) = varString) and (V = FValueGrayed) then
 //    V := Null;
-  if VarType(V) = varString then
+  if (VarType(V) = varString) or (VarType(V) = varUString) then
   begin
     if Assigned(Field) and (Field.DataType = ftBoolean) then
     begin
@@ -2977,7 +2977,7 @@ begin
       begin
         V := ACellViewData.Cell_Node.Values[Self.Index];
         try
-          if VarIsNull(V) or (VarType(V) = varString) then
+          if VarIsNull(V) or (VarType(V) = varString) or (VarType(V) = varUString) then
           begin
             Data := VarToStr(V);
             if (Data = '') and Nullable then
@@ -3664,7 +3664,7 @@ begin
       end
       else
         Data := '';
-      IsNull := VarIsNull(Data) or ((VarType(Data) = varString) and (Data = ''));
+      IsNull := VarIsNull(Data) or (((VarType(Data) = varString) or (VarType(Data) = varUString)) and (Data = ''));
     end;
 end;
 

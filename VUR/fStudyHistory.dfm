@@ -40,8 +40,6 @@ object fmStudyHistory: TfmStudyHistory
     OptionsView = [edgoBandHeaderWidth, edgoDrawEndEllipsis, edgoIndicator, edgoUseBitmap]
     OnChangedColumnsWidth = qridStudyHistoryChangedColumnsWidth
     OnColumnSorting = qridStudyHistoryColumnSorting
-    ExplicitLeft = 53
-    ExplicitTop = 39
     object qridStudyHistoryID: TdxDBGridColumn
       Visible = False
       Width = 81
@@ -115,6 +113,7 @@ object fmStudyHistory: TfmStudyHistory
       BandIndex = 0
       RowIndex = 0
       FieldName = 'NAPR_NAME'
+      DropDownRows = 20
     end
     object qridStudyHistoryOVK_NAME: TdxDBGridLookupColumn
       Caption = #1054#1042#1050' '#1087#1086' '#1084#1077#1089#1090#1091' '#1078#1080#1090#1077#1083#1100#1089#1090#1074#1072
@@ -122,6 +121,7 @@ object fmStudyHistory: TfmStudyHistory
       BandIndex = 0
       RowIndex = 0
       FieldName = 'OVK_NAME'
+      DropDownRows = 20
       CanDeleteText = True
     end
     object qridStudyHistoryOVK_DATE: TdxDBGridDateColumn

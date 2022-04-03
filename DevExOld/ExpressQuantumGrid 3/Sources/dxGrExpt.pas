@@ -1856,7 +1856,7 @@ begin
       else
       begin
         Result := V;
-        ATextFlag := (VarType(V) = varString) and (Result <> '');
+        ATextFlag := ((VarType(V) = varString) or (VarType(V) = varUString)) and (Result <> '');
       end;
     end;
   end
@@ -1890,7 +1890,7 @@ begin
       else
       begin
         Result := ANode.Strings[AColumn.Index];
-        ATextFlag := (VarType(V) = varString) and (Result <> '');
+        ATextFlag := ((VarType(V) = varString) or (VarType(V) = varUString)) and (Result <> '');
       end;
     end;
   end;

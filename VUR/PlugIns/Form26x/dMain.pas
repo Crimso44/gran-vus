@@ -219,12 +219,13 @@ begin
 
     napr_missing := TStringList.Create;
 
-    if qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('02') then
+    s := Copy(qrStudyHistory.FieldByName('NAPR_KOD').AsString, 3, 2);
+    if s = '02' then
       EkRTF1.CreateVar('vid_obr', 'среднего профессионального')
     else (*if
-      qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('03') or
-      qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('04') or
-      qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('05') then*)
+      (s = '03') or
+      (s = '04') or
+      (s = '05') then*)
       EkRTF1.CreateVar('vid_obr', 'высшего');
     if qrStudyHistory.FieldByName('NNAPR_KOD').IsNull then begin
       s := Copy(qrStudyHistory.FieldByName('NAPR_KOD').AsString, 1, 2) + '0000';
@@ -239,16 +240,17 @@ begin
         qrStudyHistory.FieldByName('NAPR_NAME').AsString);
 
     qrStudyHistory.Last;
-    if qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('06') then begin
+    s := Copy(qrStudyHistory.FieldByName('NAPR_KOD').AsString, 3, 2);
+    if (s = '06') then begin
       EkRTF1.CreateVar('vid_obr2', 'аспирантуры');
       EkRTF1.CreateVar('vid_obr3', 'Аспирантура');
-    end else if qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('07') then begin
+    end else if (s = '07') then begin
       EkRTF1.CreateVar('vid_obr2', 'адьюнктуры');
       EkRTF1.CreateVar('vid_obr3', 'Адьюнктура');
-    end else if qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('08') then begin
+    end else if (s = '08') then begin
       EkRTF1.CreateVar('vid_obr2', 'ординатуры');
       EkRTF1.CreateVar('vid_obr3', 'Ординатура');
-    end else if qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('09') then begin
+    end else if (s = '09') then begin
       EkRTF1.CreateVar('vid_obr2', 'ассистентуры-стажировки');
       EkRTF1.CreateVar('vid_obr3', 'Ассистентура-стажировка');
     end else begin
@@ -299,13 +301,13 @@ begin
     else if (Pos('3', qrStudyHistory.FieldByName('POST_NAME').AsString) > 0) or
        (Pos('ТРЕТЬ', AnsiUpperCase(qrStudyHistory.FieldByName('POST_NAME').AsString)) > 0) then
         EkRTF1.VarByName('post_name').AsString := 'третьем курсе' + ss
-    else if (Pos('3', qrStudyHistory.FieldByName('POST_NAME').AsString) > 0) or
+    else if (Pos('4', qrStudyHistory.FieldByName('POST_NAME').AsString) > 0) or
        (Pos('ЧЕТВЕР', AnsiUpperCase(qrStudyHistory.FieldByName('POST_NAME').AsString)) > 0) then
         EkRTF1.VarByName('post_name').AsString := 'четвертом курсе' + ss
-    else if (Pos('3', qrStudyHistory.FieldByName('POST_NAME').AsString) > 0) or
+    else if (Pos('5', qrStudyHistory.FieldByName('POST_NAME').AsString) > 0) or
        (Pos('ПЯТО', AnsiUpperCase(qrStudyHistory.FieldByName('POST_NAME').AsString)) > 0) then
         EkRTF1.VarByName('post_name').AsString := 'пятом курсе' + ss
-    else if (Pos('3', qrStudyHistory.FieldByName('POST_NAME').AsString) > 0) or
+    else if (Pos('6', qrStudyHistory.FieldByName('POST_NAME').AsString) > 0) or
        (Pos('ШЕСТО', AnsiUpperCase(qrStudyHistory.FieldByName('POST_NAME').AsString)) > 0) then
         EkRTF1.VarByName('post_name').AsString := 'шестом курсе' + ss
     else EkRTF1.VarByName('post_name').AsString := qrStudyHistory.FieldByName('POST_NAME').AsString;

@@ -2284,7 +2284,7 @@ procedure TdxEditDBDataDefinition.SetEditValue(const Value: Variant);
 begin
   if Assigned(Field) then
   begin
-    if VarType(Value) = varString then
+    if (VarType(Value) = varString) or (VarType(Value) = varUString) then
       Field.Text := Value
     else Field.Value := Value;
   end;
@@ -2434,7 +2434,7 @@ end;
 { TdxMemoEditDBDataDefinition }
 procedure TdxMemoEditDBDataDefinition.SetEditValue(const Value: Variant);
 begin
-  if Assigned(Field) and (VarType(Value) = varString) then
+  if Assigned(Field) and ((VarType(Value) = varString) or (VarType(Value) = varUString)) then
     Field.AsString := Value
   else
     inherited SetEditValue(Value);

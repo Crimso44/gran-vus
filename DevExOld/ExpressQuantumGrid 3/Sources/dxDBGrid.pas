@@ -2796,7 +2796,7 @@ var
 
     procedure AddValue(const V: Variant; const S: string);
     begin
-      if VarIsEmpty(V) or VarIsNull(V) or ((VarType(V) = varString) and (V = '')) then
+      if VarIsEmpty(V) or VarIsNull(V) or (((VarType(V) = varString) or (VarType(V) = varUString)) and (V = '')) then
         FlagNullExist := True
       else
         FFilterPopupListBox.FilterValues.AddValue(S, V, not IsAutoFilterValuesLoad);
@@ -3514,7 +3514,8 @@ function TCustomdxDBGrid.FindGroupNode(StartNode: TdxDBGridNode; Value : Variant
           if V1 < V2 then Result := -1
           else Result := 1;
 }
-      if (VarType(V1) = varString) and (VarType(V2) = varString) and
+      if ((VarType(V1) = varString) or (VarType(V1) = varUString)) and
+         ((VarType(V2) = varString) or (VarType(V2) = varUString)) and
         IsCaseInsensitive then
       begin
         V1 := AnsiUpperCase(V1);
@@ -3530,7 +3531,7 @@ function TCustomdxDBGrid.FindGroupNode(StartNode: TdxDBGridNode; Value : Variant
             Result := 1
           else
           begin
-            if (VarType(V1) = varString) and IsAnsiSort then
+            if ((VarType(V1) = varString) or (VarType(V1) = varUString)) and IsAnsiSort then
               Result := AnsiCompareStr(V1, V2)
             else
               if V1 < V2 then Result := -1
@@ -4447,7 +4448,7 @@ begin
     Result := TdxDBGridNode(Node).FSummary
   else
   begin
-    if Columns[Column].VariantType = varString then
+    if (Columns[Column].VariantType = varString) or (Columns[Column].VariantType = varUString) then
     begin
       S := Node.Strings[Column];
       if IsCaseInsensitive then
@@ -7661,7 +7662,7 @@ var
   AIndex: Integer;
   P: PVariant;
 begin
-  if CaseInsensitive and (VarType(AValue) = varString) then
+  if CaseInsensitive and ((VarType(AValue) = varString) or (VarType(AValue) = varUString)) then
   begin
     AValue := AnsiUpperCase(AValue);
     AText := AnsiUpperCase(AText);
@@ -7698,7 +7699,7 @@ begin
   while L <= H do
   begin
     I := (L + H) shr 1;
-    if AnsiSort and (VarType(AValue) = varString) then
+    if AnsiSort and ((VarType(AValue) = varString) or (VarType(AValue) = varUString))then
       C := AnsiCompareStr(PVariant(Objects[I])^, AValue)
     else
       C := VarCompare(PVariant(Objects[I])^, AValue);

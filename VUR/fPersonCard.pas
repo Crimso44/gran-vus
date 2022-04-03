@@ -2336,16 +2336,18 @@ var
           qrEduc.FieldByName('FormPrep_ID' ).Value := Integer(cbFormPrep.Items.Objects[cbFormPrep.ItemIndex]);
       end;
 
+      qrEduc.FieldByName('OKSO').AsString := '000000';
       if edNapr.ItemIndex>=0 then begin
         qrEduc.FieldByName('NAPR_ID').Value := Integer(edNapr.Items.Objects[edNapr.ItemIndex]);
         qry := TAdoQuery.Create(Self);
         qry.Connection := qrData.Connection;
         qry.SQL.Text := 'Select * from KNapr where Napr_Id = '+IntToStr(Integer(edNapr.Items.Objects[edNapr.ItemIndex]));
         qry.Open;
-        if qry.Eof then
-          qrEduc.FieldByName('OKSO').Clear
-        else
-          qrEduc.FieldByName('OKSO').AsString := qry.FieldByName('Napr_Kod').AsString;
+        if not qry.Eof then
+          if qry.FieldByName('Napr_Kod').IsNull then
+            qrEduc.FieldByName('OKSO').AsString := '000000'
+          else
+            qrEduc.FieldByName('OKSO').AsString := qry.FieldByName('Napr_Kod').AsString;
         qry.Free;
       end;
 

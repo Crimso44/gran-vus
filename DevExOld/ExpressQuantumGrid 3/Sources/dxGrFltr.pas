@@ -226,7 +226,7 @@ begin
   if VarType(Result) = varCurrency then
     Result := VarAsType(Result, varDouble)
   else
-    if (VarType(Result) = varString) and CaseInsensitive then
+    if ((VarType(Result) = varString) or (VarType(Result) = varUString)) and CaseInsensitive then
       Result := AnsiUpperCase(Result);
 end;
 

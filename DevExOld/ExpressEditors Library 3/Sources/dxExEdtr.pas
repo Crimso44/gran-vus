@@ -3242,7 +3242,7 @@ procedure TdxInplaceDateEdit.AssignEditValue(const Value: Variant);
 begin
   FInternalChanging := True;
   try
-    if ((VarType(Value) = varString) and (Value = '')) or VarIsNull(Value) then
+    if (((VarType(Value) = varString) or (VarType(Value) = varUString)) and (Value = '')) or VarIsNull(Value) then
       SetValue(NullDate)
     else SetValue(Value);
   finally
@@ -6554,7 +6554,7 @@ var
 begin
   PrevModified := Modified; // TODO Modified
   try
-    if ((VarType(Value) = varString) and (Value = '')) or VarIsNull(Value) then
+    if (((VarType(Value) = varString) or (VarType(Value) = varUString)) and (Value = '')) or VarIsNull(Value) then
     begin
       FSavedDate := 0;
       SetValue(0);
@@ -6848,7 +6848,7 @@ begin
     if Assigned(DataDefinition) and IsPaintCopy then
     begin
       Value := DataDefinition.EditValue;
-      if VarIsNull(Value) or ((VarType(Value) = varString) and (Value = '')) then
+      if VarIsNull(Value) or (((VarType(Value) = varString) or (VarType(Value) = varUString)) and (Value = '')) then
       begin
         if Nullable then
         begin
@@ -7110,7 +7110,7 @@ var
   Header: TGraphicHeader;
   Graphic: TGraphic;
 begin
-  if VarType(Value) = varString then // Field.Value -> stored as string
+  if (VarType(Value) = varString) or (VarType(Value) = varUString) then // Field.Value -> stored as string
   begin
     Stream := TMemoryStreamReadOnly.Create;
     try
@@ -7935,7 +7935,7 @@ begin
   FInternalChanging := True;
   try
     if (CustomGraphic and (csDesigning in ComponentState)) or
-      ((VarType(Value) = varString) and (Value = '')) {Empty} then
+      (((VarType(Value) = varString) or (VarType(Value) = varUString)) and (Value = '')) {Empty} then
       FPicture.Assign(nil)
     else
       LoadPicture(FPicture, GetGraphicClass, Value);
@@ -8439,7 +8439,7 @@ end;
 
 function TdxInplaceBlobEdit.GetIsNull(const Data: Variant): Boolean;
 begin
-  Result := VarIsNull(Data) or ((VarType(Data) = varString) and (Data = ''));
+  Result := VarIsNull(Data) or (((VarType(Data) = varString) or (VarType(Data) = varUString)) and (Data = ''));
 end;
 
 procedure TdxInplaceBlobEdit.LoadDisplayValue(var Data: Variant; IsPaintCopy: Boolean);

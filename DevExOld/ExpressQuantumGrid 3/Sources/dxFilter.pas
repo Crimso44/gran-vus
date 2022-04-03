@@ -220,7 +220,7 @@ var
 
 function VarEqualNull(const AValue: Variant): Boolean;
 begin
-  Result := VarIsNull(AValue) or ((VarType(AValue) = varString) and (AValue = ''){TODO Soft Null?});
+  Result := VarIsNull(AValue) or (((VarType(AValue) = varString) or (VarType(AValue) = varUString)) and (AValue = ''){TODO Soft Null?});
 end;
 
 {$IFDEF DELPHI6}
@@ -480,6 +480,8 @@ begin
     varNull:
       WriteValue(vaNull);
     varString:
+      WriteString(AValue);
+    varUString:
       WriteString(AValue);
     varByte, varSmallInt, varInteger:
       WriteInteger(AValue);
@@ -908,7 +910,7 @@ function TdxCriteria.GetFilterText(AIsCaption: Boolean): string;
     begin
       Result := VarToStr(AItem.Value);
       AVarType := VarType(AItem.Value);
-      if  (AVarType = varString) or (AVarType = varDate) then
+      if  (AVarType = varString) or (AVarType = varUString) or (AVarType = varDate) then
         Result := '''' + Result + '''';
     end;
   end;

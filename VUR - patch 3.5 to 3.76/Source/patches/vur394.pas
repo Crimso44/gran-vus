@@ -67,36 +67,40 @@ begin
     if fmMain.FBreak then Exit;
 //
 
-      DoSQL('Create table KVodUd (' +
-            'Code Varchar(4) NOT NULL Primary Key,' +
-            'Name Varchar(255) NULL' +
-            ')', True);
-      DoSQL('INSERT INTO KL_DATA (KL_ID, KL_NAME, DISP_NAME, IS_EDIT, CHK_DEL) ' +
-            'VALUES (49, "KVodUd", "Категории водительского удостоверения", 0, ' +
-            'null)', True);
-      DoSQL('INSERT INTO KL_FLD (FLD_ID, KL_ID, FLD_NAME, DISP_NAME, DISP_SIZE, IS_KEY, IS_EDIT, VISIBLE, '+
-            'DEF_VALUE, HAS_NULL) VALUES (183, 49, "Code", "Код", 99, 1, 1, 1, ' +
-            '"{Type:OKVED}", 0)', True);
-      DoSQL('INSERT INTO KL_FLD (FLD_ID, KL_ID, FLD_NAME, DISP_NAME, DISP_SIZE, IS_KEY, IS_EDIT, VISIBLE, '+
-            'DEF_VALUE, HAS_NULL) VALUES (184, 49, "Name", "Наименование", 200, 0, 1, 1, ' +
-            'null, 0)', True);
+      qq.SQL.Text := 'Select * from KL_DATA Where KL_Id = 49';
+      qq.Open;
+      if qq.Eof then begin
 
-      DoSQL('Insert into KVodUd (Code, Name) values (''A'', ''Мотоциклы'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''A1'', ''Легкие мотоциклы'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''B'', ''Легковые автомобили, небольшие грузовики (до 3,5 тонн)'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''BE'', ''Легковые автомобили с прицепом'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''B1'', ''Трициклы'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''C'', ''Грузовые автомобили (от 3,5 тонн)'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''CE'', ''Грузовые автомобили с прицепом'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''C1'', ''Средние грузовики (от 3,5 до 7,5 тонн)'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''C1E'', ''Средние грузовики с прицепом'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''D'', ''Автобусы'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''DE'', ''Автобусы с прицепом'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''D1'', ''Небольшие автобусы'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''D1E'', ''Небольшие автобусы с прицепом'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''M'', ''Мопеды'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''Tm'', ''Трамваи'')', True);
-      DoSQL('Insert into KVodUd (Code, Name) values (''Tb'', ''Троллейбусы'')', True);
+        DoSQL('Create table KVodUd (' +
+              'Code Varchar(4) NOT NULL Primary Key,' +
+              'Name Varchar(255) NULL' +
+              ')', True);
+        DoSQL('INSERT INTO KL_DATA (KL_ID, KL_NAME, DISP_NAME, IS_EDIT, CHK_DEL) ' +
+              'VALUES (49, "KVodUd", "Категории водительского удостоверения", 0, ' +
+              'null)', True);
+        DoSQL('INSERT INTO KL_FLD (FLD_ID, KL_ID, FLD_NAME, DISP_NAME, DISP_SIZE, IS_KEY, IS_EDIT, VISIBLE, '+
+              'DEF_VALUE, HAS_NULL) VALUES (183, 49, "Code", "Код", 99, 1, 1, 1, ' +
+              '"{Type:OKVED}", 0)', True);
+        DoSQL('INSERT INTO KL_FLD (FLD_ID, KL_ID, FLD_NAME, DISP_NAME, DISP_SIZE, IS_KEY, IS_EDIT, VISIBLE, '+
+              'DEF_VALUE, HAS_NULL) VALUES (184, 49, "Name", "Наименование", 200, 0, 1, 1, ' +
+              'null, 0)', True);
+
+        DoSQL('Insert into KVodUd (Code, Name) values (''A'', ''Мотоциклы'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''A1'', ''Легкие мотоциклы'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''B'', ''Легковые автомобили, небольшие грузовики (до 3,5 тонн)'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''BE'', ''Легковые автомобили с прицепом'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''B1'', ''Трициклы'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''C'', ''Грузовые автомобили (от 3,5 тонн)'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''CE'', ''Грузовые автомобили с прицепом'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''C1'', ''Средние грузовики (от 3,5 до 7,5 тонн)'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''C1E'', ''Средние грузовики с прицепом'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''D'', ''Автобусы'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''DE'', ''Автобусы с прицепом'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''D1'', ''Небольшие автобусы'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''D1E'', ''Небольшие автобусы с прицепом'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''M'', ''Мопеды'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''Tm'', ''Трамваи'')', True);
+        DoSQL('Insert into KVodUd (Code, Name) values (''Tb'', ''Троллейбусы'')', True);
 
             AddField('Person', 'VodUdSer', 'varchar(4) NULL');
             AddField('Person', 'VodUdNum', 'varchar(20) NULL');
@@ -112,9 +116,9 @@ begin
             AddField('Family', 'Fam_Place', 'varchar(255) NULL');
             AddField('Educ', 'IsMain', 'bit NULL');
 
-      DoSQL('Insert Into Params (Param_Id, Param_Name, Param_Value) Values ('+
-          '15, ''Заполнять в форме № 10 поля для заполнения карандашом'',''1'')', True);
-
+        DoSQL('Insert Into Params (Param_Id, Param_Name, Param_Value) Values ('+
+            '15, ''Заполнять в форме № 10 поля для заполнения карандашом'',''1'')', True);
+    end;
 
     DoSQL('Update VerInfo Set '+
           'VerStr = ''3.82.2'', VerDesc = ''Версия релиза 3.82.2'', VerDate = #01/03/2022#');

@@ -173,7 +173,7 @@ object fmPersonForm: TfmPersonForm
     Top = 55
     Width = 797
     Height = 406
-    ActivePage = tabSheetX0
+    ActivePage = TabSheet2
     HotTrack = True
     MultiLine = True
     RaggedRight = True
@@ -1252,6 +1252,7 @@ object fmPersonForm: TfmPersonForm
         Top = 68
         Width = 419
         Height = 21
+        DropDownCount = 20
         TabOrder = 6
         OnChange = edFamChange
       end
@@ -1260,6 +1261,7 @@ object fmPersonForm: TfmPersonForm
         Top = 90
         Width = 217
         Height = 21
+        DropDownCount = 20
         TabOrder = 7
         OnChange = edFamChange
       end
@@ -1268,6 +1270,7 @@ object fmPersonForm: TfmPersonForm
         Top = 158
         Width = 419
         Height = 21
+        DropDownCount = 20
         TabOrder = 13
         OnChange = edFamChange
       end
@@ -1276,6 +1279,7 @@ object fmPersonForm: TfmPersonForm
         Top = 181
         Width = 217
         Height = 21
+        DropDownCount = 20
         TabOrder = 14
         OnChange = edFamChange
       end
@@ -1284,6 +1288,7 @@ object fmPersonForm: TfmPersonForm
         Top = 279
         Width = 419
         Height = 21
+        DropDownCount = 20
         TabOrder = 22
         OnChange = edFamChange
       end
@@ -2836,7 +2841,7 @@ object fmPersonForm: TfmPersonForm
             Top = 33
             Width = 101
             Height = 21
-            MaxLength = 10
+            MaxLength = 50
             TabOrder = 2
             OnChange = edFamChange
           end
@@ -2845,7 +2850,7 @@ object fmPersonForm: TfmPersonForm
             Top = 35
             Width = 335
             Height = 21
-            MaxLength = 10
+            MaxLength = 150
             TabOrder = 3
             OnChange = edFamChange
           end
@@ -2854,7 +2859,7 @@ object fmPersonForm: TfmPersonForm
             Top = 62
             Width = 101
             Height = 21
-            MaxLength = 10
+            MaxLength = 50
             TabOrder = 5
             OnChange = edFamChange
           end
@@ -2863,7 +2868,7 @@ object fmPersonForm: TfmPersonForm
             Top = 92
             Width = 335
             Height = 21
-            MaxLength = 10
+            MaxLength = 150
             TabOrder = 6
             OnChange = edFamChange
           end

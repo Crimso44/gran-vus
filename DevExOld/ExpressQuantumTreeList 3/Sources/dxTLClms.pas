@@ -2756,7 +2756,7 @@ begin
 //      BlobText := ACellViewData.Cell_Node.Strings[Index]; // TODO
       Images := imgBlobImages;
       Data := ACellViewData.Cell_Node.Values[Index];
-      IsNull := VarIsNull(Data) or ((VarType(Data) = varString) and (Data = ''));
+      IsNull := VarIsNull(Data) or (((VarType(Data) = varString) or (VarType(Data) = varUString)) and (Data = ''));
     end;
 end;
 

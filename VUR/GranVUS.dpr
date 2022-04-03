@@ -61,8 +61,6 @@ uses
   fOrgPropContacts in 'fOrgPropContacts.pas' {fmOrgPropContacts},
   Num2Str in 'Common\Num2Str.pas',
   fCorrectOkved in 'fCorrectOkved.pas' {fmCorrectOkved},
-  dxExEdtr in 'E:\Granit\DevExOld\ExpressEditors Library 3\Sources\dxExEdtr.pas',
-  dxGrDate in 'E:\Granit\DevExOld\ExpressEditors Library 3\Sources\dxGrDate.pas',
   frmAddr in 'frmAddr.pas' {fAddr},
   fStudyHistory in 'fStudyHistory.pas' {fmStudyHistory},
   fAppointments in 'fAppointments.pas' {fmAppointments};

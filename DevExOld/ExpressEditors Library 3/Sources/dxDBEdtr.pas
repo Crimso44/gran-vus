@@ -255,7 +255,7 @@ begin
     if VarType(AValue) = varNull then
       AField.Clear
     else
-      if VarType(AValue) = varString then
+      if (VarType(AValue) = varString) or (VarType(AValue) = varUString) then
         AField.Value := AValue
       else
         SaveGraphicToField(TGraphic(Integer(AValue)), AField);
