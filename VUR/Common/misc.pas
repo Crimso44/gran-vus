@@ -5,6 +5,7 @@ interface
 function Hex2Int(s: string): Int64;
 function SameValue(s_item,s_parent: string): boolean;
 function IsDateOrYear(s: string): boolean;
+function FormatOKSO(s: string): string;
 
 const
    E_InvDateOrYear =
@@ -13,6 +14,17 @@ const
 implementation
 
 uses SysUtils, StrUtils, DateUtils;
+
+function FormatOKSO(s: string): string;
+begin
+  Result := Copy(s, 1, 2);
+  if Length(s) > 2 then begin
+    Result := Result + '.' + Copy(s, 3, 2);
+    if Length(s) > 4 then begin
+      Result := Result + '.' + Copy(s, 5, MaxInt);
+    end;
+  end;
+end;
 
 function Hex2Int(s: string): Int64;
 var i: Integer;

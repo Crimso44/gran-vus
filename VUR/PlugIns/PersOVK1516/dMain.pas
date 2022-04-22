@@ -217,7 +217,7 @@ const
 implementation
 
 {$R *.dfm}
-uses DateUtils, SaveEvents, IniSupport, StrUtils;
+uses DateUtils, SaveEvents, IniSupport, StrUtils, misc;
 
 function TdmMain.OpenData(OrgId: Integer): boolean;
 var
@@ -412,7 +412,7 @@ begin
     qrPerson.FieldByName('NAPR').Value :=
       qrEduc.FieldByName('NAPR').Value;
     qrPerson.FieldByName('OKSO').Value :=
-      qrEduc.FieldByName('OKSO').Value;
+      FormatOkso(qrEduc.FieldByName('OKSO').Value);
   end;
   qrEduc.Close;
   s := EmptyStr;

@@ -85,7 +85,7 @@
         </DelphiCompile>
         <RcCompile Include="..\IDB_LOGO.RC">
             <ContainerId>RC</ContainerId>
-            <Form>..\IDB_LOGO.res</Form>
+            <Form>IDB_LOGO.res</Form>
         </RcCompile>
         <DCCReference Include="dMain.pas">
             <Form>dmMain</Form>
@@ -94,6 +94,7 @@
         <DCCReference Include="fParamDlg.pas">
             <Form>fmParamDlg</Form>
         </DCCReference>
+        <DCCReference Include="..\..\Common\misc.pas"/>
         <None Include="..\SZ.INC">
             <ContainerId>File</ContainerId>
         </None>

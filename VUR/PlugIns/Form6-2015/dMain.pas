@@ -332,7 +332,7 @@ var
     AIR_COL[10] := AIR_COL[2] - AIR_COL[6] - AIR_COL[9];
     NAVY_COL[10] := NAVY_COL[2] - NAVY_COL[6] - NAVY_COL[9];
     if CPROF_ID = 500 then begin
-      if Form6Query.Locate('CPROF_ID', 281{Специалисты образования}, []) then begin
+      if Form6Query.Locate('CPROF_ID', 200{Специалисты}, []) then begin
         GetColumnValues(LRN_COL);
         IncValues(LRN_COL, PROF_COL);
         SetColumnValues(LRN_COL);

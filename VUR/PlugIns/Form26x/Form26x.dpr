@@ -1,7 +1,6 @@
 library Form26x;
 
-{%File '..\SZ.INC'}
-{$R '..\IDB_LOGO.res' '..\IDB_LOGO.RC'}
+{$R 'IDB_LOGO.res' '..\IDB_LOGO.RC'}
 
 uses
   Forms,
@@ -11,7 +10,8 @@ uses
   dMain in 'dMain.pas' {dmMain: TDataModule},
   SaveEvents,
   IniSupport,
-  fParamDlg in 'fParamDlg.pas' {fmParamDlg};
+  fParamDlg in 'fParamDlg.pas' {fmParamDlg},
+  misc in '..\..\Common\misc.pas';
 
 function PlugInInfo(
   szName: PChar;

@@ -53,7 +53,7 @@ implementation
 
 {$R *.DFM}
 
-uses SaveEvents, StrUtils, dateUtils, IniSupport;
+uses SaveEvents, StrUtils, dateUtils, IniSupport, misc;
 
 procedure TdmMain.EkUDFList1EqualCalculate(Sender: TObject;
   Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
@@ -233,17 +233,18 @@ begin
       EkRTF1.CreateVar('okso_main', ' ???');
     end else
       EkRTF1.CreateVar('okso_main',
-        qrStudyHistory.FieldByName('NNAPR_KOD').AsString + ' ' +
+        FormatOkso(qrStudyHistory.FieldByName('NNAPR_KOD').AsString) + ' ' +
         qrStudyHistory.FieldByName('NNAPR_NAME').AsString);
     EkRTF1.CreateVar('okso_detail',
-        qrStudyHistory.FieldByName('NAPR_KOD').AsString + ' ' +
+        FormatOkso(qrStudyHistory.FieldByName('NAPR_KOD').AsString) + ' ' +
         qrStudyHistory.FieldByName('NAPR_NAME').AsString);
 
     qrStudyHistory.Last;
     s := Copy(qrStudyHistory.FieldByName('NAPR_KOD').AsString, 3, 2);
-    if s = '02' then
-      EkRTF1.CreateVar('vid_obr2', 'среднего профессионального')
-    else if
+    if s = '02' then begin
+      EkRTF1.CreateVar('vid_obr2', 'среднего профессионального');
+      EkRTF1.CreateVar('vid_obr3', 'специальности');
+    end else if
       (s = '06') or
       (s = '07') or
       (s = '08') or
@@ -256,7 +257,8 @@ begin
       qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('03') or
       qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('04') or
       qrStudyHistory.FieldByName('NAPR_KOD').AsString.StartsWith('05') then*) begin
-      EkRTF1.CreateVar('vid_obr2', 'высшего')
+      EkRTF1.CreateVar('vid_obr2', 'высшего');
+      EkRTF1.CreateVar('vid_obr3', 'направлению подготовки');
     end;
     if qrStudyHistory.FieldByName('NNAPR_KOD').IsNull then begin
       s := Copy(qrStudyHistory.FieldByName('NAPR_KOD').AsString, 1, 2) + '0000';
@@ -265,10 +267,9 @@ begin
       EkRTF1.CreateVar('okso_main2', s + ' ???');
     end else
       EkRTF1.CreateVar('okso_main2',
-        qrStudyHistory.FieldByName('NNAPR_KOD').AsString + ' ' +
+        FormatOkso(qrStudyHistory.FieldByName('NNAPR_KOD').AsString) + ' ' +
         qrStudyHistory.FieldByName('NNAPR_NAME').AsString);
     EkRTF1.CreateVar('okso_detail2',
-        qrStudyHistory.FieldByName('NAPR_KOD').AsString + ' ' +
         qrStudyHistory.FieldByName('NAPR_NAME').AsString);
 
     if napr_missing.Count > 0 then begin
@@ -326,7 +327,7 @@ begin
         s := s + IntToStr(i) + ' лет';
     end;
     if qrStudyHistory.FieldByName('time_m').AsInteger > 0 then begin
-      if s <> '' then s := s + ', ';
+      if s <> '' then s := s + ' ';
       i := qrStudyHistory.FieldByName('time_m').AsInteger;
       inDate := IncMonth(inDate, i);
       ii := i mod 10;
@@ -338,7 +339,7 @@ begin
         s := s + IntToStr(i) + ' мес€цев';
     end;
     if qrStudyHistory.FieldByName('time_d').AsInteger > 0 then begin
-      if s <> '' then s := s + ', ';
+      if s <> '' then s := s + ' ';
       i := qrStudyHistory.FieldByName('time_d').AsInteger;
       inDate := IncDay(inDate, i);
       ii := i mod 10;
@@ -392,6 +393,11 @@ begin
       EkRTF1.CreateVar('vkpost', '');
       EkRTF1.CreateVar('vkname', '');
     end;
+
+    EkRTF1.CreateVar('Certificate', qrOrg.FieldByName('Certificate').AsString);
+    EkRTF1.CreateVar('CertificateWho', qrOrg.FieldByName('CertificateWho').AsString);
+    EkRTF1.CreateVar('BeginCertificate', Date2Doc(qrOrg.FieldByName('BeginCertificate_date').AsDateTime));
+    EkRTF1.CreateVar('EndCertificate', Date2Doc(qrOrg.FieldByName('EndCertificate_date').AsDateTime));
 
     EkRTF1.CreateVar('VKStatusOK',
       (qrPers.FieldByName('VKStatus').AsInteger = 1) or

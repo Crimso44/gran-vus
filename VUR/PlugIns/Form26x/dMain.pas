@@ -53,7 +53,7 @@ implementation
 
 {$R *.DFM}
 
-uses SaveEvents, StrUtils, dateUtils, IniSupport;
+uses SaveEvents, StrUtils, dateUtils, IniSupport, misc;
 
 procedure TdmMain.EkUDFList1EqualCalculate(Sender: TObject;
   Args: TEkUDFArgs; ArgCount: Integer; UDFResult: TObject);
@@ -233,25 +233,25 @@ begin
       EkRTF1.CreateVar('okso_main', ' ???');
     end else
       EkRTF1.CreateVar('okso_main',
-        qrStudyHistory.FieldByName('NNAPR_KOD').AsString + ' ' +
+        FormatOkso(qrStudyHistory.FieldByName('NNAPR_KOD').AsString) + ' ' +
         qrStudyHistory.FieldByName('NNAPR_NAME').AsString);
     EkRTF1.CreateVar('okso_detail',
-        qrStudyHistory.FieldByName('NAPR_KOD').AsString + ' ' +
+        FormatOkso(qrStudyHistory.FieldByName('NAPR_KOD').AsString) + ' ' +
         qrStudyHistory.FieldByName('NAPR_NAME').AsString);
 
     qrStudyHistory.Last;
     s := Copy(qrStudyHistory.FieldByName('NAPR_KOD').AsString, 3, 2);
     if (s = '06') then begin
-      EkRTF1.CreateVar('vid_obr2', 'аспирантуры');
+      EkRTF1.CreateVar('vid_obr2', 'аспирантуре');
       EkRTF1.CreateVar('vid_obr3', 'Аспирантура');
     end else if (s = '07') then begin
-      EkRTF1.CreateVar('vid_obr2', 'адьюнктуры');
+      EkRTF1.CreateVar('vid_obr2', 'адьюнктуре');
       EkRTF1.CreateVar('vid_obr3', 'Адьюнктура');
     end else if (s = '08') then begin
-      EkRTF1.CreateVar('vid_obr2', 'ординатуры');
+      EkRTF1.CreateVar('vid_obr2', 'ординатуре');
       EkRTF1.CreateVar('vid_obr3', 'Ординатура');
     end else if (s = '09') then begin
-      EkRTF1.CreateVar('vid_obr2', 'ассистентуры-стажировки');
+      EkRTF1.CreateVar('vid_obr2', 'ассистентуре-стажировке');
       EkRTF1.CreateVar('vid_obr3', 'Ассистентура-стажировка');
     end else begin
       EkRTF1.CreateVar('vid_obr2', '');
@@ -264,10 +264,10 @@ begin
       EkRTF1.CreateVar('okso_main2', s + ' ???');
     end else
       EkRTF1.CreateVar('okso_main2',
-        qrStudyHistory.FieldByName('NNAPR_KOD').AsString + ' ' +
+        FormatOkso(qrStudyHistory.FieldByName('NNAPR_KOD').AsString) + ' ' +
         qrStudyHistory.FieldByName('NNAPR_NAME').AsString);
     EkRTF1.CreateVar('okso_detail2',
-        qrStudyHistory.FieldByName('NAPR_KOD').AsString + ' ' +
+        FormatOkso(qrStudyHistory.FieldByName('NAPR_KOD').AsString) + ' ' +
         qrStudyHistory.FieldByName('NAPR_NAME').AsString);
 
     if napr_missing.Count > 0 then begin
@@ -392,6 +392,9 @@ begin
       EkRTF1.CreateVar('vkname', '');
     end;
 
+    EkRTF1.CreateVar('License2', qrOrg.FieldByName('License2').AsString);
+    EkRTF1.CreateVar('License2Who', qrOrg.FieldByName('License2Who').AsString);
+    EkRTF1.CreateVar('License2Date', Date2Doc(qrOrg.FieldByName('License2_date').AsDateTime));
     EkRTF1.CreateVar('Certificate', qrOrg.FieldByName('Certificate').AsString);
     EkRTF1.CreateVar('CertificateWho', qrOrg.FieldByName('CertificateWho').AsString);
     EkRTF1.CreateVar('BeginCertificate', Date2Doc(qrOrg.FieldByName('BeginCertificate_date').AsDateTime));

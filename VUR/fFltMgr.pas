@@ -73,8 +73,6 @@ type
     Label4: TLabel;
     pnlEditAspirant: TPanel;
     chkAspirantEnable: TCheckBox;
-    rbAspirantYes: TRadioButton;
-    rbAspirantNo: TRadioButton;
     rbAspirantNull: TRadioButton;
     rbAspirantNotNull: TRadioButton;
     procedure FormCreate(Sender: TObject);
@@ -815,9 +813,7 @@ begin
     ptAspirant: begin
       chkAspirantEnable.Checked := dxtParams.FocusedNode.ImageIndex=2;
       if Pos('IS NOT NULL',EditText) = 9 then rbAspirantNotNull.Checked := True
-      else if Pos('IS NULL',EditText) = 9 then rbAspirantNull.Checked := True
-      else if Pos('<>',EditText) > 0 then rbAspirantYes.Checked := True
-      else rbAspirantNo.Checked := True;
+      else if Pos('IS NULL',EditText) = 9 then rbAspirantNull.Checked := True;
     end;
     ptBoolnDate: begin
       chkBoolnDate.Checked := dxtParams.FocusedNode.ImageIndex=2;
@@ -1004,7 +1000,6 @@ begin
       if not chkAspirantEnable.Checked then s := '' else
       if rbAspirantNotNull.Checked then s := '(value) IS NOT NULL'
       else if rbAspirantNull.Checked then s := '(value) IS NULL'
-      else if rbAspirantYes.Checked then s := '(value) <> 0'
       else s := '(value) = 0';
       dxtParams.FocusedNode.Values[1] := s;
     end;
@@ -1260,8 +1255,6 @@ begin
     then dxtParams.FocusedNode.ImageIndex := 2
     else dxtParams.FocusedNode.ImageIndex := 1;
   dxtParams.FocusedNode.SelectedIndex := dxtParams.FocusedNode.ImageIndex;
-  rbAspirantYes.Enabled := chkAspirantEnable.Checked;
-  rbAspirantNo.Enabled := chkAspirantEnable.Checked;
   rbAspirantNull.Enabled := chkAspirantEnable.Checked;
   rbAspirantNotNull.Enabled := chkAspirantEnable.Checked;
 end;

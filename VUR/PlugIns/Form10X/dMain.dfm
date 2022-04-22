@@ -178,11 +178,12 @@ object dmMain: TdmMain
     SQL.Strings = (
       
         'SELECT E.EDQ_ID, E.PERS_ID, E.DIPLOM, E.END_DATE, E.TYPE, UZ.UZ_' +
-        'NAME, KKval.Kval_Name as KVAL, KNapr.Napr_Name as NAPR, E.OKSO, ' +
-        'E.DIPLOM_SER, E.END_DATE_GIVE,'
+        'NAME, KKval.Kval_Name as KVAL, KNapr.Napr_Name as NAPR, '
+      '  E.OKSO,'
+      '  E.DIPLOM_SER, E.END_DATE_GIVE,'
       
-        ' KObrDoc.KObrDoc_Name As ObrDoc,  KFormPrep.KFormPrep_Name As Fo' +
-        'rmPrep  '
+        '  KObrDoc.KObrDoc_Name As ObrDoc,  KFormPrep.KFormPrep_Name As F' +
+        'ormPrep  '
       'FROM ((((EDUC E '
       'INNER JOIN KUZ UZ ON E.UZ_ID=UZ.UZ_ID)'
       'Left Join KObrDoc On KObrDoc.KObrDoc_Id = E.ObrDoc_Id)'
@@ -469,8 +470,8 @@ object dmMain: TdmMain
     SQL.Strings = (
       'SELECT *,'
       'IIF(ISOVK, '
-      '  '#39#1042#1086#1077#1085#1085#1099#1081' '#1082#1086#1084#1080#1089#1089#1072#1088#1080#1072#1090#39', '
-      '  '#39#1040#1076#1084#1080#1085#1080#1089#1090#1088#1072#1094#1080#1103#39
+      '  '#39#1042#1086#1077#1085#1085#1099#1084' '#1082#1086#1084#1080#1089#1089#1072#1088#1080#1072#1090#1086#1084#39', '
+      '  '#39#1040#1076#1084#1080#1085#1080#1089#1090#1088#1072#1094#1080#1077#1081#39
       ') as OVK'
       'FROM KOVK'
       'WHERE OVK_ID=:OVK_ID')

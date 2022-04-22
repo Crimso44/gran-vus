@@ -67,7 +67,7 @@ implementation
 
 {$R *.DFM}
 
-uses SaveEvents, StrUtils, dateUtils, IniSupport;
+uses SaveEvents, StrUtils, dateUtils, IniSupport, misc;
 
 function Date2Doc(ADate: TDateTime; template: boolean = false): string;
 const
@@ -270,13 +270,15 @@ begin
     EkRTF1.CreateVar('WBnum', qrPers.FieldByName('WBnum').AsString);
     EkRTF1.CreateVar('WBdate', ConfDate(qrPers.FieldByName('WBdate').AsDateTime));
 
-    if qrPers.FieldByName('WBovk').IsNull then
-      EkRTF1.CreateVar('WBovk', '')
-    else begin
+    if qrPers.FieldByName('WBovk').IsNull then begin
+      EkRTF1.CreateVar('WBovk', '');
+      EkRTF1.CreateVar('WBovkTitle', '');
+    end else begin
       qrOvkX.Close;
       qrOvkX.Parameters.ParamByName('OVK_Id').Value := qrPers.FieldByName('WBovk').Value;
       qrOvkX.Open;
       EkRTF1.CreateVar('WBovk', qrOvkX.FieldByName('OVK_NAME').AsString);
+      EkRTF1.CreateVar('WBovkTitle', qrOvkX.FieldByName('OVK').AsString);
       qrOvkX.Close;
     end;
 
@@ -336,7 +338,7 @@ begin
         qrEdData.FieldByName('NAPR').AsString);
       EkRTF1.CreateVar(
         'OKSO1',
-        qrEdData.FieldByName('OKSO').AsString);
+        FormatOkso(qrEdData.FieldByName('OKSO').AsString));
     end;
     EkRTF1.CreateVar('Science',qrSc.FieldByName('SC_NAME').AsString);
     EkRTF1.CreateVar('ScOKIN',qrSc.FieldByName('SC_OKIN').AsString);

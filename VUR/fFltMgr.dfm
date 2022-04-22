@@ -20,6 +20,52 @@ object fmFltMgr: TfmFltMgr
     361)
   PixelsPerInch = 96
   TextHeight = 13
+  object dxtParams: TdxTreeList
+    Left = 0
+    Top = 0
+    Width = 535
+    Height = 306
+    Bands = <
+      item
+      end>
+    DefaultLayout = True
+    HeaderPanelRowCount = 1
+    TabOrder = 0
+    Images = ImageList1
+    Options = [aoColumnSizing, aoColumnMoving, aoEditing, aoTabThrough, aoAutoWidth]
+    OptionsEx = [aoUseBitmap, aoBandHeaderWidth, aoAutoCalcPreviewLines, aoBandSizing, aoBandMoving, aoDragScroll, aoDragExpand, aoRowAutoHeight, aoRowSizing, aoShowButtonAlways]
+    PaintStyle = psOutlook
+    TreeLineColor = clGrayText
+    ShowGrid = True
+    ShowLines = False
+    OnChangeNode = dxtParamsChangeNode
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    object dxtParamsColumn1: TdxTreeListColumn
+      Caption = #1055#1072#1088#1072#1084#1077#1090#1088
+      DisableEditor = True
+      Width = 212
+      BandIndex = 0
+      RowIndex = 0
+    end
+    object dxtParamsValueColumn: TdxTreeListButtonColumn
+      Alignment = taLeftJustify
+      Caption = #1047#1085#1072#1095#1077#1085#1080#1077
+      DisableEditor = True
+      ReadOnly = True
+      Sizing = False
+      VertAlignment = tlCenter
+      Width = 250
+      BandIndex = 0
+      RowIndex = 0
+      OnEditButtonClick = dxtParamsValueColumnEditButtonClick
+      Buttons = <
+        item
+          Default = True
+          Visible = False
+        end>
+      HideEditCursor = True
+    end
+  end
   object pnlEditSet: TPanel
     Left = 116
     Top = 85
@@ -131,62 +177,6 @@ object fmFltMgr: TfmFltMgr
       Date = -700000.000000000000000000
       DateButtons = [btnToday]
       DateOnError = deToday
-    end
-  end
-  object pnlEditAspirant: TPanel
-    Left = 15
-    Top = 127
-    Width = 250
-    Height = 106
-    BevelOuter = bvNone
-    TabOrder = 15
-    Visible = False
-    object chkAspirantEnable: TCheckBox
-      Left = 8
-      Top = 8
-      Width = 161
-      Height = 17
-      Caption = #1048#1089#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100' '#1092#1080#1083#1100#1090#1088#1072#1094#1080#1102
-      TabOrder = 0
-      OnClick = chkAspirantEnableClick
-    end
-    object rbAspirantYes: TRadioButton
-      Left = 32
-      Top = 28
-      Width = 113
-      Height = 17
-      Caption = #1040#1089#1087#1080#1088#1072#1085#1090
-      Checked = True
-      Enabled = False
-      TabOrder = 1
-      TabStop = True
-    end
-    object rbAspirantNo: TRadioButton
-      Left = 32
-      Top = 48
-      Width = 113
-      Height = 17
-      Caption = #1057#1090#1091#1076#1077#1085#1090
-      Enabled = False
-      TabOrder = 2
-    end
-    object rbAspirantNull: TRadioButton
-      Left = 32
-      Top = 68
-      Width = 113
-      Height = 17
-      Caption = #1053#1077' '#1079#1072#1087#1086#1083#1085#1077#1085#1086
-      Enabled = False
-      TabOrder = 3
-    end
-    object rbAspirantNotNull: TRadioButton
-      Left = 32
-      Top = 88
-      Width = 134
-      Height = 17
-      Caption = #1040#1089#1087#1080#1088#1072#1085#1090' '#1080#1083#1080' '#1089#1090#1091#1076#1077#1085#1090
-      Enabled = False
-      TabOrder = 4
     end
   end
   object pnlEditBool: TPanel
@@ -432,52 +422,6 @@ object fmFltMgr: TfmFltMgr
       OnKeyPress = edStrValueKeyPress
     end
   end
-  object dxtParams: TdxTreeList
-    Left = 0
-    Top = 0
-    Width = 535
-    Height = 306
-    Bands = <
-      item
-      end>
-    DefaultLayout = True
-    HeaderPanelRowCount = 1
-    TabOrder = 0
-    Images = ImageList1
-    Options = [aoColumnSizing, aoColumnMoving, aoEditing, aoTabThrough, aoAutoWidth]
-    OptionsEx = [aoUseBitmap, aoBandHeaderWidth, aoAutoCalcPreviewLines, aoBandSizing, aoBandMoving, aoDragScroll, aoDragExpand, aoRowAutoHeight, aoRowSizing, aoShowButtonAlways]
-    PaintStyle = psOutlook
-    TreeLineColor = clGrayText
-    ShowGrid = True
-    ShowLines = False
-    OnChangeNode = dxtParamsChangeNode
-    Anchors = [akLeft, akTop, akRight, akBottom]
-    object dxtParamsColumn1: TdxTreeListColumn
-      Caption = #1055#1072#1088#1072#1084#1077#1090#1088
-      DisableEditor = True
-      Width = 212
-      BandIndex = 0
-      RowIndex = 0
-    end
-    object dxtParamsValueColumn: TdxTreeListButtonColumn
-      Alignment = taLeftJustify
-      Caption = #1047#1085#1072#1095#1077#1085#1080#1077
-      DisableEditor = True
-      ReadOnly = True
-      Sizing = False
-      VertAlignment = tlCenter
-      Width = 250
-      BandIndex = 0
-      RowIndex = 0
-      OnEditButtonClick = dxtParamsValueColumnEditButtonClick
-      Buttons = <
-        item
-          Default = True
-          Visible = False
-        end>
-      HideEditCursor = True
-    end
-  end
   object btnSaveFlt: TButton
     Left = 8
     Top = 330
@@ -671,6 +615,42 @@ object fmFltMgr: TfmFltMgr
     Anchors = [akLeft, akBottom]
     Caption = #1054#1090#1082#1088#1099#1090#1100' '#1085#1086#1074#1086#1077' '#1086#1082#1085#1086
     TabOrder = 10
+  end
+  object pnlEditAspirant: TPanel
+    Left = 15
+    Top = 127
+    Width = 250
+    Height = 78
+    BevelOuter = bvNone
+    TabOrder = 15
+    Visible = False
+    object chkAspirantEnable: TCheckBox
+      Left = 8
+      Top = 8
+      Width = 161
+      Height = 17
+      Caption = #1048#1089#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100' '#1092#1080#1083#1100#1090#1088#1072#1094#1080#1102
+      TabOrder = 0
+      OnClick = chkAspirantEnableClick
+    end
+    object rbAspirantNull: TRadioButton
+      Left = 35
+      Top = 29
+      Width = 113
+      Height = 17
+      Caption = #1053#1077' '#1091#1095#1072#1097#1080#1081#1089#1103
+      Enabled = False
+      TabOrder = 1
+    end
+    object rbAspirantNotNull: TRadioButton
+      Left = 35
+      Top = 49
+      Width = 134
+      Height = 17
+      Caption = #1059#1095#1072#1097#1080#1081#1089#1103
+      Enabled = False
+      TabOrder = 2
+    end
   end
   object ImageList1: TImageList
     Left = 420

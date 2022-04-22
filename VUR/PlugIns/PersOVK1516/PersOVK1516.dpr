@@ -1,5 +1,5 @@
 library PersOVK1516;
-{%File '..\SZ.INC'}
+
 
 uses
   Forms,
@@ -11,7 +11,8 @@ uses
   fParamDlg in 'fParamDlg.pas' {fmParamDlg},
   msg,
   SaveEvents,
-  IniSupport;
+  IniSupport,
+  misc in '..\..\Common\misc.pas';
 
 {$R ResData.res}
 

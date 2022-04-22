@@ -60,7 +60,7 @@ implementation
 
 {$R *.DFM}
 
-uses SaveEvents, StrUtils, dateUtils, IniSupport;
+uses SaveEvents, StrUtils, dateUtils, IniSupport, misc;
 
 function Date2Doc(ADate: TDateTime): string;
 const
@@ -296,7 +296,7 @@ begin
           qrEdData.FieldByName('NAPR').AsString);
         EkRTF1.CreateVar(
           'OKSO'+qrEdData.FieldByName('Type').AsString,
-          qrEdData.FieldByName('OKSO').AsString);
+          FormatOkso(qrEdData.FieldByName('OKSO').AsString));
       end;
       qrEdData.Next;
     end;

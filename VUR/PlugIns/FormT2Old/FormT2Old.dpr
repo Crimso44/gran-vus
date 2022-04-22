@@ -1,7 +1,6 @@
 library FormT2Old;
 
-{%File '..\SZ.INC'}
-{$R '..\IDB_LOGO.res' '..\IDB_LOGO.RC'}
+{$R 'IDB_LOGO.res' '..\IDB_LOGO.RC'}
 
 uses
   Forms,
@@ -10,7 +9,8 @@ uses
   ADOdb,
   dMain in 'dMain.pas' {dmMain: TDataModule},
   SaveEvents,
-  IniSupport;
+  IniSupport,
+  misc in '..\..\Common\misc.pas';
 
 function PlugInInfo(
   szName: PChar;

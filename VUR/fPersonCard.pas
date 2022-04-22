@@ -170,15 +170,9 @@ type
     cbBranch: TComboBox;
     Label86: TLabel;
     tabSheetX1: TTabSheet;
-    lBeginStudy: TLabel;
-    dtBeginStudy: TdxDateEdit;
     Label90: TLabel;
     dxtN26History: TdxTreeList;
     dxTreeListColumn1: TdxTreeListColumn;
-    Label91: TLabel;
-    edOrder: TEdit;
-    Label92: TLabel;
-    dtOrder: TdxDateEdit;
     Label93: TLabel;
     dtEndStudy: TdxDateEdit;
     PC1: TPageControl;
@@ -240,8 +234,6 @@ type
     dxtN26HistoryColumn6: TdxTreeListMaskColumn;
     Label120: TLabel;
     edContractEnd: TEdit;
-    Label121: TLabel;
-    edStudyForm: TEdit;
     Label125: TLabel;
     edDocNumb: TEdit;
     Label126: TLabel;
@@ -450,8 +442,26 @@ type
     Label14: TLabel;
     rbWarProgram: TRadioGroup;
     bStudyHistory: TButton;
-    Label20: TLabel;
     dxpWBOvk: TdxMRUEdit;
+    GroupBox8: TGroupBox;
+    edOrder: TEdit;
+    Label91: TLabel;
+    dtOrder: TdxDateEdit;
+    Label92: TLabel;
+    Label20: TLabel;
+    dtBeginStudy: TdxDateEdit;
+    Label26: TLabel;
+    edStudyForm: TEdit;
+    GroupBox9: TGroupBox;
+    Label32: TLabel;
+    Label46: TLabel;
+    Label82: TLabel;
+    Label89: TLabel;
+    dtOrder2: TdxDateEdit;
+    edOrder2: TEdit;
+    dtBeginStudy2: TdxDateEdit;
+    edStudyForm2: TEdit;
+    bCalcEndStudy: TButton;
     procedure PCChanging(Sender: TObject; var AllowChange: Boolean);
     procedure PCDrawTab(Control: TCustomTabControl; TabIndex: Integer;
       const Rect: TRect; Active: Boolean);
@@ -509,6 +519,7 @@ type
     procedure edVodUdSerKeyPress(Sender: TObject; var Key: Char);
     procedure bAddrClick(Sender: TObject);
     procedure bStudyHistoryClick(Sender: TObject);
+    procedure bCalcEndStudyClick(Sender: TObject);
   private
     { Private declarations }
     PrevTab: Integer;
@@ -547,6 +558,7 @@ type
     fAddr: TfAddr;
     PDPCode: String;
     cbDocumentZero: integer;
+    time_y, time_m, time_d: integer;
     function GetIsStudent: Boolean;
     procedure LoadStrings(Items: TStrings; HasEmpty: boolean;
                           sSQL,FldID,FldData: string);
@@ -639,6 +651,14 @@ begin
   edOrder.Text := '';
   dtOrder.Text := '';
   edStudyForm.Text := '';
+  dtBeginStudy2.Text := '';
+  edOrder2.Text := '';
+  dtOrder2.Text := '';
+  edStudyForm2.Text := '';
+  time_y := 0;
+  time_m := 0;
+  time_d := 0;
+
 
   if cbStudent.Checked then begin
     RefreshStudyHistory;
@@ -1808,6 +1828,9 @@ begin
                (Trim(dtRealEndAkadem.Text)<>'')or
                (Trim(dtMedResult.Text)<>'')or
                (cbMedResult.ItemIndex<>0);
+
+    RefreshStudyHistory;
+
     fLoad := False;
     fChanged := false;
     btnApply.Enabled := false;
@@ -2857,6 +2880,28 @@ begin
   fAddr.Show;
 end;
 
+procedure TfmPersonForm.bCalcEndStudyClick(Sender: TObject);
+var
+  d: TDateTime;
+begin
+  if dtBeginStudy.Text = '' then begin
+    ShowMessage('Необходимо указать дату начала обучения');
+    exit;
+  end;
+  if (time_y + time_m + time_d) <= 0 then begin
+    ShowMessage('У специальности '+edStudyForm2.Text+' не указан срок обучения');
+    exit;
+  end;
+  d := dtBeginStudy.Date;
+  if time_y > 0 then
+    d := IncYear(d, time_y);
+  if time_m > 0 then
+    d := IncMonth(d, time_m);
+  if time_d > 0 then
+    d := IncDay(d, time_d);
+  dtEndStudy.Date := d;
+end;
+
 procedure TfmPersonForm.bDriverClick(Sender: TObject);
 begin
   edFam.OnChange(edFam);
@@ -3657,15 +3702,27 @@ begin
 end;
 
 procedure TfmPersonForm.RefreshStudyHistory;
-var CPROF_ID, CPROF2015_ID: String;
+var
+  CPROF_ID, CPROF2015_ID: String;
+  q: TAdoQuery;
+
+procedure LoadDate(dt: TdxDateEdit; FLD: String; DS: TDataSet);
+begin
+  if DS.FieldByName(FLD).IsNull
+    then dt.Text := EmptyStr
+    else dt.Date := DS.FieldByName(FLD).AsDateTime;
+end;
+
 begin
   if (qrData.State = dsBrowse) and not qrData.IsEmpty  then
-  with TADOQuery.Create(nil) do
+  q := TADOQuery.Create(nil);
+  with q do
   try
     Connection := dmMain.dbMain;
     ParamCheck := False;
 
-    SQL.Text := 'SELECT *, iif(IsNull(Napr_Kod), "", Trim(NAPR_KOD)) + " " + NAPR_NAME as XNAPR_NAME '+
+    SQL.Text := 'SELECT *, iif(IsNull(Napr_Kod), "", Trim(NAPR_KOD)) + " " + NAPR_NAME as XNAPR_NAME, '+
+      ' time_y, time_m, time_d '+
       ' FROM (Appointment'+
       ' LEFT JOIN KNAPR   ON KNAPR.NAPR_ID=Appointment.NAPR_ID)'+
       ' WHERE PERS_ID='+
@@ -3673,13 +3730,37 @@ begin
       ' AND Appointment.POST_ID IN (SELECT POST_ID FROM KPOST WHERE CPROF_ID = 500 or CPROF2015_ID = 500)' +
       ' ORDER BY IN_DATE';
     Open;
-    Last;
-    dtBeginStudy.Text := FieldByName('IN_DATE').AsString;
-    edOrder.Text := FieldByName('IN_ORD_NUMB').AsString;
-    dtOrder.Text := FieldByName('IN_ORD_DATE').AsString;
-    edStudyForm.Text := FieldByName('XNAPR_NAME').AsString;
-    //Appointment_Id  := FieldByName('Id').AsInteger;
+    if not Eof then begin
+      LoadDate(dtBeginStudy, 'IN_DATE', q);
+      edOrder.Text := FieldByName('IN_ORD_NUMB').AsString;
+      LoadDate(dtOrder, 'IN_ORD_DATE', q);
+      edStudyForm.Text := FieldByName('XNAPR_NAME').AsString;
+      Last;
+      LoadDate(dtBeginStudy2, 'IN_DATE', q);
+      edOrder2.Text := FieldByName('IN_ORD_NUMB').AsString;
+      LoadDate(dtOrder2, 'IN_ORD_DATE', q);
+      edStudyForm2.Text := FieldByName('XNAPR_NAME').AsString;
+      time_y := FieldByName('time_y').AsInteger;
+      time_m := FieldByName('time_m').AsInteger;
+      time_d := FieldByName('time_d').AsInteger;
+    end;
     Close;
+    if (dtBeginAkadem.Date > dtBeginStudy2.Date) and ((dtDismissal.Text = '') or (dtBeginAkadem.Date > dtDismissal.Date)) then begin
+      if dtBeginAkadem.Date > dtBeginStudy2.Date then begin
+        dtBeginStudy2.Text := dtBeginAkadem.Text;
+        edOrder2.Text := edOrderAkadem.Text;
+        dtOrder2.Text := dtOrderAkadem.Text;
+        edStudyForm2.Text := 'Академ. отпуск';
+      end;
+    end;
+    if dtDismissal.Text <> '' then begin
+      if (dtDismissal.Date > dtBeginStudy2.Date) and ((dtBeginAkadem.Text = '') or (dtDismissal.Date > dtBeginAkadem.Date)) then begin
+        dtBeginStudy2.Text := dtDismissal.Text;
+        edOrder2.Text := edOrderDismissal.Text;
+        dtOrder2.Text := dtOrderDismissal.Text;
+        edStudyForm2.Text := 'Отчислен';
+      end;
+    end;
   finally Free;
   end;
 end;
