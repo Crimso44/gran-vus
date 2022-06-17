@@ -203,6 +203,7 @@ object fmPersonList: TfmPersonList
       RowIndex = 0
       FieldName = 'IS_ASF'
       ValueChecked = 'True'
+      ValueUnchecked = 'False'
       DisplayChecked = '0'
     end
     object dbgDataColumnPOST_NAME: TdxDBGridColumn

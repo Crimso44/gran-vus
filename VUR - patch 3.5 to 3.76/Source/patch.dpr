@@ -36,7 +36,9 @@ uses
   vur392 in 'patches\vur392.pas',
   vur393 in 'patches\vur393.pas',
   vur394 in 'patches\vur394.pas',
-  vur395 in 'patches\vur395.pas';
+  vur395 in 'patches\vur395.pas',
+  vur396 in 'patches\vur396.pas',
+  vur397 in 'patches\vur397.pas';
 
 {$R *.res}
 

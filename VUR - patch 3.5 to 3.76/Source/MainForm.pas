@@ -100,7 +100,7 @@ implementation
 uses msg, FileCtrl, registry, inifiles, Rdialogs, ShellAPI, vur36, vur361,
   vur362, vur365, vur370, StrUtils, vur371, vur372, vur373, vur374, vur375,
   vur376, vur377, vur378, vur379, vur380, vur381, vur384, vur385, vur386, vur387,
-  vur388, vur389, vur390, vur391, vur392, vur393, vur394, vur395;
+  vur388, vur389, vur390, vur391, vur392, vur393, vur394, vur395, vur396, vur397;
 
 {$R *.dfm}
 
@@ -112,7 +112,7 @@ type
     fn_ProcessPatch: procedure;
   end;
 var
-  AAppPatch: Array[0..27] of TAppPatch = (
+  AAppPatch: Array[0..29] of TAppPatch = (
     (VerValue: 360;
      fn_GetInfo: Patch36_GetInfo;
      fn_GetStepCount: Patch36_GetStepCount;
@@ -224,7 +224,15 @@ var
     (VerValue: 391;
      fn_GetInfo: Patch395_GetInfo;
      fn_GetStepCount: Patch395_GetStepCount;
-     fn_ProcessPatch: Patch395_Process)
+     fn_ProcessPatch: Patch395_Process),
+    (VerValue: 392;
+     fn_GetInfo: Patch396_GetInfo;
+     fn_GetStepCount: Patch396_GetStepCount;
+     fn_ProcessPatch: Patch396_Process),
+    (VerValue: 393;
+     fn_GetInfo: Patch397_GetInfo;
+     fn_GetStepCount: Patch397_GetStepCount;
+     fn_ProcessPatch: Patch397_Process)
   );
 
 

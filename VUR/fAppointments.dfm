@@ -670,7 +670,11 @@ object fmAppointments: TfmAppointments
     Parameters = <
       item
         Name = 'PERS_ID'
-        Size = -1
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 510
         Value = Null
       end>
     SQL.Strings = (
@@ -678,7 +682,8 @@ object fmAppointments: TfmAppointments
       'FROM Appointment WHERE PERS_ID = :PERS_ID'
       
         'AND POST_ID NOT IN (SELECT POST_ID FROM KPOST WHERE CPROF_ID = 5' +
-        '00)')
+        '00)'
+      'Order by In_Date')
     Left = 56
     Top = 147
     object qrAppointmentID: TIntegerField

@@ -352,7 +352,10 @@ begin
     end;
 
     EkRTF1.CreateVar('srok', s);
-    EkRTF1.CreateVar('srok_end', Date2Doc(inDate));
+    if qrPers.FieldByName('StudyEnd_date').IsNull then
+      EkRTF1.CreateVar('srok_end', Date2Doc(inDate))
+    else
+      EkRTF1.CreateVar('srok_end', Date2Doc(qrPers.FieldByName('StudyEnd_date').AsDateTime));
 
     EkRTF1.CreateVar('ed_name', qrPers.FieldByName('Ed_Name').AsString);
 
@@ -402,6 +405,11 @@ begin
     EkRTF1.CreateVar('VKStatusOK',
       (qrPers.FieldByName('VKStatus').AsInteger = 1) or
       (qrPers.FieldByName('VKStatus').AsInteger = 2));
+    EkRTF1.CreateVar('VKStatus0', qrPers.FieldByName('VKStatus').AsInteger = 0);
+    EkRTF1.CreateVar('VKStatus1', qrPers.FieldByName('VKStatus').AsInteger = 1);
+    EkRTF1.CreateVar('VKStatus2', qrPers.FieldByName('VKStatus').AsInteger = 2);
+    EkRTF1.CreateVar('VKStatus3', qrPers.FieldByName('VKStatus').AsInteger = 3);
+    EkRTF1.CreateVar('HasVK', qrOrg.FieldByName('HasVK').AsBoolean);
     s := '';
     case qrPers.FieldByName('war_program').AsInteger of
       0: s := 'офицера';

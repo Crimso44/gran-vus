@@ -350,7 +350,10 @@ begin
     end;
 
     EkRTF1.CreateVar('srok', s);
-    EkRTF1.CreateVar('srok_end', Date2Doc(inDate));
+    if qrPers.FieldByName('StudyEnd_date').IsNull then
+      EkRTF1.CreateVar('srok_end', Date2Doc(inDate))
+    else
+      EkRTF1.CreateVar('srok_end', Date2Doc(qrPers.FieldByName('StudyEnd_date').AsDateTime));
 
     EkRTF1.CreateVar('ed_name', qrPers.FieldByName('Ed_Name').AsString);
 

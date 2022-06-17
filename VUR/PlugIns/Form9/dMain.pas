@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  Db, ADODB, EkRtf, ImgList, ekbasereport, Variants, ekfunc;
+  Db, ADODB, EkRtf, ImgList, ekbasereport, Variants, ekfunc, System.ImageList;
 
 type
   ColumnValues = array[1..15] of Integer;
